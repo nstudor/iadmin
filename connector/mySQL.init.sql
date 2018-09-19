@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `login_agenda` (
 TRUNCATE TABLE `login_agenda`;
 
 DROP TABLE IF EXISTS `login_chat`;
+
 CREATE TABLE IF NOT EXISTS `login_chat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
@@ -30,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `login_chat` (
 TRUNCATE TABLE `login_chat`;
 
 DROP TABLE IF EXISTS `login_dashboard`;
+
 CREATE TABLE IF NOT EXISTS `login_dashboard` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
@@ -51,6 +53,7 @@ INSERT INTO `login_dashboard` (`id`, `id_user`, `ordine`, `rand`, `marimesm`, `m
 (2, 1, 2, 1, 6, 7, 'Bookmarks', 'shortcuts', 'Y', 'Y');
 
 DROP TABLE IF EXISTS `login_help`;
+
 CREATE TABLE IF NOT EXISTS `login_help` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titlu` varchar(250) CHARACTER SET utf8 NOT NULL,
@@ -61,6 +64,7 @@ CREATE TABLE IF NOT EXISTS `login_help` (
 TRUNCATE TABLE `login_help`;
 
 DROP TABLE IF EXISTS `login_menu`;
+
 CREATE TABLE IF NOT EXISTS `login_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_tata` int(11) NOT NULL,

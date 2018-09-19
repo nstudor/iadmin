@@ -2,55 +2,56 @@
     ini_set('session.bug_compat_warn', 0);
     ini_set('session.bug_compat_42', 0);
     error_reporting(0);
-    session_start();
-    
+    session_start();    
+    include('utils.php');
+        
     if(file_exists('settings.ini')) {
         
         include('settings.ini');
+ 
+        if(file_exists('lang/' . $APP_LANGUAGE . '.lng.php')) {
+            include('lang/' . $APP_LANGUAGE . '.lng.php');
+        }
+       
+        include('connector/'.$APP_DB_TYPE.'.con.php');        
         
-        include('connector/'.$DBTYPE.'.con.php');        
+        db_connect();
+        
+        if(isset($_POST['log_user']))
+	{
+            $MESSAGE='Utilizator inexistent';
+            $user=db_select('*', 'login_users', "user='".$_POST['log_user']."'")[0];            
+            if($user['pass']==md5($_POST['log_pass'])) 
+            {
+                $_SESSION['userid']=$user['id'];
+                db_update(array('logtime'=>date("Y-m-d H:i:s"), "login_users", "id=".$user['id'] ));
+                $MESSAGE='';
+                ?><script type="text/javascript">document.location="./"; </script><?php
+            } else if(isset($user['pass'])) $MESSAGE='Parola gresita';
+        }
         
         if(isset($_GET['p'])) {
             $param=explode("-",$_GET['p']);
         } else {            
-            $param=array('');
+            $param=array('dashboard');
         }  
-        
+
         if(!isset($_SESSION['userid'])) {
             $param=array('login');
-        }   
-        
-        if(file_exists('script/'.$param[1].'.scr.php')) {
-            include('script/'.$param[1].'.scr.php');
         }
         
         include('script/index.scr.php');        
-        include('template/'.$TEMPLATE.'/index.scr.php');        
+
+        if(file_exists('script/'.$param[0].'.scr.php')) {
+            include('script/'.$param[0].'.scr.php');
+        }
+        
+        if(!file_exists('template/' . $APP_TEMPLATE . '/'.$param[0].'.tpl.php')) $param[0]='404';
+        
+        include('template/' . $APP_TEMPLATE . '/index.tpl.php');        
         
     } else {
         header('Location: ./setup/');
     }
-/*
-include("defines.php");
-if(isset($_GET['p'])) $param=explode("-",$_GET['p']); else $param=array('');
-if(isset($_POST['log_user']))
-	{
-		$err='Utilizator inexistent';
-		$user=@mysql_fetch_array(mysql_query("SELECT * FROM login_users WHERE user='".$_POST['log_user']."'"));		
-		if($user['pass']==md5($_POST['log_pass'])) 
-			{
-				$_SESSION['userid']=$user['id'];
-				mysql_query("UPDATE login_users SET logtime=now() WHERE id=".$user['id']);
-				$err='';
-				?><script type="text/javascript">document.location="./"; </script><?php
-			} else if(isset($user['pass'])) $err='Parola gresita';
-	}
-if($param[0]=='logout')
-			{
-				foreach($_SESSION as $k=>$v) unset($_SESSION[$k]);
-				?><script type="text/javascript"> document.location="./"; </script><?php
-			};			
-if(isset($_SESSION['userid'])) include("main.php"); else include("login.php");
-//print_r($_SESSION);
-*/
+
 ?>

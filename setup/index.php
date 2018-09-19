@@ -1,13 +1,14 @@
 <?php 
     ini_set('session.bug_compat_warn', 0);
     ini_set('session.bug_compat_42', 0);
-//    error_reporting(0);
+    error_reporting(0);
     session_start();
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>IAdmin V.3 - Setup</title>
+<link rel="icon" type="image/gif" href="favicon.gif" />	
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
 <script src="../js/jquery.min.js"></script>
 <script src="../js/popper.min.js"></script>
@@ -28,7 +29,7 @@
 <?php if(!isset($_POST['s'])) { ?>
         <form class="needs-validation" action="" method="post">
         <div class="card">
-            <div class="card-header">IAdmin 3 - Setup</div>
+            <div class="card-header"><img src="favicon.gif" height="32" alt="i" style="float:left;" /><span style="color:#007bff; font-weight: bold">admin</span> - Setup</div>
                 <div class="card-body" id="card1"> 
                     <label for="progName">Application name</label>
                     <input name="s[APP_NAME]" type="text" class="form-control" id="progName" placeholder="Ex. IAdmin example progam" value="" />
@@ -37,6 +38,18 @@
                     <select name="s[APP_TEMPLATE]" class="form-control" id="tmpName">
 <?php
     $fileList=scandir('../template');
+    foreach($fileList as $fileName) {
+        if(strpos($fileName,'.')===false) {
+            echo '<option value="' . $fileName . '">' . $fileName . '</option>';
+        }
+    }
+?>        
+                    </select>
+                    <hr />
+                    <label for="lngName">Language</label>
+                    <select name="s[APP_LANGUAGE]" class="form-control" id="lngName">
+<?php
+    $fileList=scandir('../lang');
     foreach($fileList as $fileName) {
         if(strpos($fileName,'.')===false) {
             echo '<option value="' . $fileName . '">' . $fileName . '</option>';
