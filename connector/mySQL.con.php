@@ -29,19 +29,22 @@
         return ($MESSAGE == '');
     }
 
-    function db_select($what, $table, $where, $order = NULL, $keyField = NULL) {
+    function db_select($what, $table, $where='1', $order = NULL, $limit=NULL, $keyField = NULL) {
         global $APP_DB_LINK, $MESSAGE;
         $ret=[];
         if(is_array($what)) $what='`'.implode('`, `', $what).'`';
         
         if( !empty($order) ) $order = ' ORDER BY '.$order;
         
-        $re=mysqli_query($APP_DB_LINK, "SELECT $what FROM $table WHERE $where$order");
+        if( !empty($limit) ) $limit = ' LIMIT '.$limit;
         
+        $re=mysqli_query($APP_DB_LINK, "SELECT $what FROM $table WHERE $where$order$limit");
+        
+//        echo "SELECT $what FROM $table WHERE $where$order$limit";
         
         if( mysqli_errno ( $APP_DB_LINK ) )
         {
-            $MESSAGE = mysqli_error( $APP_DB_LINK );
+            $MESSAGE = mysqli_error( $APP_DB_LINK )."<br>SELECT $what FROM $table WHERE $where$order$limit";
             $ret = NULL;
         } else {
             while($r=mysqli_fetch_assoc( $re )) 

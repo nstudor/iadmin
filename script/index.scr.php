@@ -1,9 +1,8 @@
 <?php 
     if(isset($_SESSION['userid'])) {
         $ruser = db_select('*', 'login_users', 'id='.$_SESSION['userid'])[0];        
-        $link = $param[0]; if(!empty($param[1])) $link != "-$param[1]";
+        $link = $param[0]; if(!empty($param[1])) $link .= "-$param[1]";
         $rcmenu=db_select('*', 'login_menu', "link='$link'")[0];
-
         $rcr=db_select('*','login_rights', 'id_menu='.($rcmenu['id']*1).' AND id_role='.$ruser['role'])[0];
         $rcr['details_v']=explode(" ",$rcr['details_v']);
         $rcr['details_a']=explode(" ",$rcr['details_a']);

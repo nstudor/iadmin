@@ -19,4 +19,8 @@
         echo "</pre>";        
     }
     
+    function fieldFormat($fieldDef, $fieldValue) {
+        $type=( empty($fieldDef['type']) ? 'text' : $fieldDef['type'] );
+        include("fieldtypes/$type.type.php");
+    }
 ?>

@@ -1,0 +1,7 @@
+.navbar, .nav-link {
+    padding: 0 .5rem;    
+}
+
+.bg-secondary a.dropdown-item:hover {
+    color: #16181b!important;
+}

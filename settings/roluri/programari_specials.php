@@ -1,0 +1,3 @@
+<?php
+	$specials=array('detalii');
+?>
