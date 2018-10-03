@@ -4,15 +4,42 @@ $fields=array(
 	'nume'=>"Numele si prenumele",
 	'user'=>"Utilizator",
 	'email'=>'E-mail',
-	'role'=>"Rol",
-);
+	'role'=>array(
+            "name"=>"Rol",
+            'type'=>'dbSelect',
+            'defaultValue'=>0,
+            'defaultResult'=>'Not set',
+            'field'=>'rolename',
+            'table'=>'login_roles',
+            'relatedField'=>'id',
+        ),
+	'sex'=>array(
+            "name"=>"Sex",
+            'values'=>'M,F,X',
+            'chars'=>'mars fa-2x,venus fa-2x,transgender fa-2x',
+            'type'=>'awesomecase',
+        ),
+    );
 
 
 $addfields=array(
 	'user'=>"Utilizator",
-	'role'=>"Rol",
+	'role'=>array(
+            "name"=>"Rol",
+            'type'=>'dbSelect',
+            'defaultValue'=>0,
+            'defaultResult'=>'Not set',
+            'field'=>'rolename',
+            'table'=>'login_roles',
+            'relatedField'=>'id',
+        ),
 	'nume'=>"Numele si prenumele",
-	'sex'=>"Sex",
+	'sex'=>array(
+            "name"=>"Sex",
+            'values'=>'M,F,X',
+            'chars'=>'mars,venus',
+            'type'=>'awesomecase',
+        ),
 	'telefon'=>"Telefon",
 	'mobil'=>"Telefon mobil",
 	'fax'=>"Fax",
@@ -21,7 +48,7 @@ $addfields=array(
 	'functie'=>'Functie',
 	'cnp'=>"C.N.P.",
 	'ci'=>"C. I.",
-	'detalii'=>"Detalii",
+	'details'=>"Detalii",
 );
 
 $order="";

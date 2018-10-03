@@ -1,16 +1,53 @@
 <div class="col">
-    <h5><?= $title ?></h5>
+<?php
+    if(file_exists("settings/$pag/header.php")) 
+    {
+        include("settings/$pag/header.php"); 
+    } else {
+        echo "<h5>$title</h5>";
+    }
+?>    
 <table class="table table-striped table-bordered table-sm">
     <thead class="bg-info text-white">
         <tr class="text-center">
             <th>
+                <a href="toper-<?php echo $param[1] ?>-add.htm" class="btn btn-default text-white"><i class="fas fa-plus"></i></a>
+            </th>
+<?php foreach($fields as $f) { ?>
+            <th>                
+                <?= is_array($f)?$f['name']:$f ?>
+            </th>
+<?php } ?>            
+            <th>
+            </th>
+        </tr>
+        <tr class="text-center bg-secondary">
+            <th>
+                
+            </th>
+<?php foreach($fields as $f) { ?>
+            <th>
+<form action="" method="post" name="ord_<?php echo $k ?>">
+
+<?php if($showFilter!='no') { ?>
+        <a href="modal.php?p=filter-<?php echo $pag ?>-<?php echo $k ?>" title="Filtrare <?php echo $v ?>"></a>      
+        <i class="fa fa-filter float-left text-<?php echo (isset($_SESSION['filter'][$k])?'white':'info'); ?>"          
+           data-toggle="modal" data-target="#myModal" onclick="gomodal('filter-<?php echo $pag ?>-<?php echo $k ?>', 'Filtrare')"></i>        
+<?php } ?>         
+	<input name="order" type="hidden" value="<?php echo $k ?>" />                
+<?php if($showOrder!='no') { if(!isset($_SESSION['order'][$k])) { ?>
+    	<input name="ordertype" type="hidden" value="up" />
+        <i class="fa fa-sort float-right text-info" onclick="document.ord_<?php echo $k ?>.submit()" style="cursor:pointer"></i>
+	<?php } else { ?>
+    	<input name="ordertype" type="hidden" value="<?php echo ($_SESSION['order'][$k]=='up'?'dn':'up') ?>" />
+        <i class="fa float-right text-white fa-sort-<?php echo $_SESSION['order'][$k]=="up"?"up":"down" ?>" onclick="document.ord_<?php echo $k ?>.submit()" style="cursor:pointer"></i>
+	<?php }} ?>
+</form>            </th>
+<?php } ?>            
+            <th>
                 <input type="checkbox" id="ba" onchange="checkAll($(this).is(':checked'))">
                 <label class="form-check-label text-light" for="ba"></label>                
             </th>
-<?php foreach($fields as $f) { ?>
-            <th><?= is_array($f)?$f['name']:$f ?></th>
-<?php } ?>            
-            <th><i class="fas fa-plus-square"></i></th>
         </tr>
     </thead>
     <tbody>
@@ -26,26 +63,91 @@
     foreach($rows as $r ) { ?>
         <tr>
             <td class="text-center">
-                <input type="checkbox" class="chboxoper" id="b<?= $r[$id] ?>">
-                <label class="form-check-label" for="b<?= $r[$id] ?>"></label>                
+<div class="btn-group dropright">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <div class="dropdown-menu">
+<?php
+    foreach($specials as $sp) 
+        if(in_array($sp,$rcr['details_v'])) {
+            $spd=$sp;if(isset($stitles[$sp])) $spd=$stitles[$sp];
+?>
+    <a class="dropdown-item" href="./toper-<?= $param[1] ?>-<?= $sp ?>-id-<?= $r[$id] ?>.htm"><i class="fa fa-<?= (isset($fontawesome[$sp])?$fontawesome[$sp]:$sp) ?>"></i> <?php echo ucfirst($spd) ?></a>
+<?php } ?>
+<?php if($rcr['modify_right']=='Y') {?>
+    <a class="dropdown-item" href="./toper-<?php echo $param[1] ?>-edit-id-<?php echo $r[$id] ?>.htm"><i class="fa fa-pencil-alt"></i> Editeaza</a>
+<?php } ?>
+<?php if($rcr['delete_right']=='Y') {?>
+    <a class="dropdown-item" href="./toper-<?php echo $param[1] ?>-drop-id-<?php echo $r[$id] ?>.htm"><i class="fa fa-times"></i> Sterge</a>
+<?php } ?>
+  </div>
+</div>
             </td>
 <?php foreach($fields as $k=>$v) { ?>
-            <td<?php if($rcr['modify_right']=='Y') {?> class="cell" alt="<?php echo $k.'-'.$r[$id] ?>" title="<?php echo $v ?>"<?php }?>>
+            <td<?php if($rcr['modify_right']=='Y') {?> class="cell" alt="<?php echo $k.'-'.$r[$id] ?>" title="<?=is_array($v)?$v['name']:$v ?>"<?php }?>>
 <?php
     if(file_exists("settings/$pag/{$k}_show.php")) 
     {
         include("settings/$pag/{$k}_show.php"); 
     } else {
-        fieldFormat($v, $r[$k]);
+        fieldFormat($k, $v, $r[$k]);
     }
 ?></td>
 <?php } ?>                
-            <td class="text-center"><i class="fas fa-edit"></i></td>
+            <td class="text-center">
+                <input type="checkbox" class="chboxoper" id="b<?= $r[$id] ?>">
+                <label class="form-check-label" for="b<?= $r[$id] ?>"></label>                
+            </td>
         </tr>
 <?php }} ?>                
     </tbody>
 </table>
 </div>    
+
+<?php if(!isset($dontshowpages)) { ?>
+
+<ul class="pagination justify-content-center">
+    <li class="page-item">
+        <a class="page-link" href="./tabel-<?= $param[1].(isset($param[3])?"-".implode("-",array_slice($param,3)):'') ?>.htm">
+        <i class="fas fa-angle-double-left pb-1"></i>
+        </a>
+    </li>
+   
+    <li class="page-item">
+        <a class="page-link" href="./tabel-<?= $param[1].($st==0?'':'-'.($st-1)).(isset($param[3])?"-".implode("-",array_slice($param,3)):'') ?>.htm">
+            <i class="fas fa-angle-left pb-1"></i>
+        </a>
+    </li>
+    <li class="page-item">
+        <span class="page-link">&nbsp;</span>
+    </li>
+<?php
+    for($i=$st-3;$i<=$st+3;$i++)
+        if(($i >= 0) && ($i <= $np)) {
+?>
+    <li class="page-item">
+        <a class="page-link" href="./tabel-<?= $param[1].($i==0?'':'-'.$i).(isset($param[3])?"-".implode("-",array_slice($param,3)):'') ?>.htm">
+            <?= $i+1 ?>
+        </a>
+    </li>
+<?php } ?>
+    <li class="page-item">
+        <span class="page-link">&nbsp;</span>
+    </li>    
+    <li class="page-item">
+        <a class="page-link" href="./tabel-<?= $param[1].($st==$np?'-'.$np:'-'.($st+1)).(isset($param[3])?"-".implode("-",array_slice($param,3)):'') ?>.htm">
+            <i class="fas fa-angle-right pb-1"></i>
+        </a>
+    </li>
+ 
+    <li class="page-item">
+        <a class="page-link" href="./tabel-<?= $param[1].'-'.$np.(isset($param[3])?"-".implode("-",array_slice($param,3)):'') ?>.htm">
+        <i class="fas fa-angle-double-right pb-1"></i>
+        </a>
+    </li>  
+</ul>
+<?php } ?>
+
+
 <?php /*
 <div role="alert" class="alert alert-<?php echo $theme ?>"><h3>
 <?php if($impex) { ?>
@@ -237,40 +339,6 @@ $spd=$sp;if(isset($stitles[$sp])) $spd=$stitles[$sp];
   </tr><?php } ?>
 </form>
 </table>
-<?php if(!isset($dontshowpages)) { $st=$_SESSION['st'];?>
-<div class="row" style="margin:0">
-<div class="hidden-xs hidden-sm col-lg-3">&nbsp;</div>
-<?php if($st>1) { ?>
-<div class="col-xs-3 col-sm-2 col-lg-1">
-	<a href="./?p=tabel-<?php echo $pag; if(isset($param[3])) echo "-".implode("-",array_slice($param,3)) ?>&pag=1" class="btn btn-<?php echo $theme ?> spc"><strong class="glyphicon glyphicon-step-backward"></strong></a>
-</div>
-<div class="col-xs-3 col-sm-2 col-lg-1">
-      <a href="./?p=tabel-<?php echo $pag; if(isset($param[3])) echo "-".implode("-",array_slice($param,3)) ?>&pag=<?php echo $st-1 ?>" class="btn btn-<?php echo $theme ?> spc"><strong class="glyphicon glyphicon-chevron-left"></strong></a>
-</div>
-<?php } else { ?>
-<div class="col-xs-3 col-sm-2 col-lg-1"><button type="button" class="btn btn-default spc"><strong class="glyphicon glyphicon-step-backward"></strong></button></div>
-<div class="col-xs-3 col-sm-2 col-lg-1"><button type="button" class="btn btn-default spc"><strong class="glyphicon glyphicon-chevron-left"></strong></button></div>
-<?php }?>
-<div class="hidden-xs col-sm-2 col-lg-1">
-<input name="st" type="text" value="<?php echo $st ?>" class="form-control" onchange="document.location='./?p=tabel-<?php echo $pag; if(isset($param[3])) echo "-".implode("-",array_slice($param,3)) ?>&pag='+this.value'" />
-</div>
-<div class="hidden-xs col-sm-2 col-lg-1"><span class="spc"><?php echo $st ?> / <?php echo $np ?></span>
-</div>
-<?php if($st!=$np) { ?>
-<div class="col-xs-3 col-sm-2 col-lg-1">
-<a href="./?p=tabel-<?php echo $pag; if(isset($param[3])) echo "-".implode("-",array_slice($param,3)) ?>&pag=<?php echo $st+1 ?>" class="btn btn-<?php echo $theme ?> spc"><strong class="glyphicon glyphicon-chevron-right"></strong></a>
-</div>
-
-<div class="col-xs-3 col-sm-2 col-lg-1">
-<a href="./?p=tabel-<?php echo $pag; if(isset($param[3])) echo "-".implode("-",array_slice($param,3)) ?>&pag=<?php echo $np ?>" class="btn btn-<?php echo $theme ?> spc"><strong class="glyphicon glyphicon-step-forward"></strong></a>
-</div>
-
-<?php } else { ?>
-<div class="col-xs-3 col-sm-2 col-lg-1"><button type="button" class="btn btn-default spc"><strong class="glyphicon glyphicon-chevron-right"></strong></button></div>
-<div class="col-xs-3 col-sm-2 col-lg-1"><button type="button" class="btn btn-default spc"><strong class="glyphicon glyphicon-step-forward"></strong></button></div>
-<?php }?>
-</div>
-<?php }?>
 <div class="row" style="margin:0">&nbsp;</div>
 <?php if(file_exists("settings/$pag/bottom.php")) include("settings/$pag/bottom.php"); ?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -293,9 +361,10 @@ $spd=$sp;if(isset($stitles[$sp])) $spd=$stitles[$sp];
     </div>
     <div class="card-body">
         <div class="row panel-data"></div>
-        <div class="row panel-submit">
-            <div class="col-xs-6 col-sm-6 col-lg-6"><button type="button" class="btn btn-primary spc" onclick="salveaza()">Ok</button></div>
-            <div class="col-xs-6 col-sm-6 col-lg-6"><button type="button" class="btn btn-primary spc" onclick="$('#contextMenu').hide();">Cancel</button></div>		        
+        <div class="row panel-submit" style="margin-top:10px">
+            <div class="col">&nbsp;</div>
+            <div class="col"><button type="button" class="btn btn-primary spc" onclick="salveaza()" style="width: 100%">Ok</button></div>
+            <div class="col"><button type="button" class="btn btn-primary spc" onclick="$('#contextMenu').hide();" style="width: 100%">Cancel</button></div>		        
         </div>
     </div>
 </div>
@@ -321,7 +390,7 @@ $(function() {
 	  width: '30%'
     });
 	$.ajax({
-	  url: "ajaxmodal.php?p=medit-<?php echo $pag ?>-"+$(this).attr("alt")
+	  url: "ajax/modal.php?p=medit-<?php echo $pag ?>-"+$(this).attr("alt")
 	}).done(function(msg) {
       $("#contextMenu .panel-submit").slideDown();
 	  $("#contextMenu .panel-data").html(msg);
@@ -337,14 +406,12 @@ $(function() {
 });
 
 function salveaza() {
-
-sid=$('#ajaxid').val();
-sfld=$('#ajaxfield').val();
-$.post("ajaxmodal.php?p=mdoedit-<?php echo $pag ?>", { id: sid, field: sfld , item: $('#ajaxitem').val() }, function( msg ) {
-	$('.cell[alt="'+sfld+'-'+sid+'"]').html(msg);
-	$('#contextMenu').hide();
-});
-
+    sid=$('#ajaxid').val();
+    sfld=$('#ajaxfield').val();
+    $.post("ajax/modal.php?p=mdoedit-<?php echo $pag ?>", { id: sid, field: sfld , item: $('#ajaxitem').val() }, function( msg ) {
+            $('.cell[alt="'+sfld+'-'+sid+'"]').html(msg);
+            $('#contextMenu').hide();
+    });
 }
 
 function checkAll(x) {

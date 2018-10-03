@@ -19,6 +19,8 @@
             $st=0;
         }
 
+        $_SESSION['st']=$st;
+
         $flt=1;
 
         $rn=db_select('count(*) nr', $tabel, $flt)[0];    
@@ -27,7 +29,6 @@
 
         $rows=db_select('*', $tabel, $flt, $order, ($st*$items_per_page).', '.$items_per_page);
         if ( (count($rows) == 0) && empty($MESSAGE) ) $MESSAGE = 'No records to show !';
-    //    print_r($rcr);
         $nr=0;
     } else {
         $MESSAGE='Config file missing';
@@ -49,7 +50,7 @@
 
 
 
-	$_SESSION['st']=$st;
+	
 
 	if($_POST['fv']==999) unset($_SESSION['filter'],$_SESSION['filtertype']); // clear all filters
 / * 	if(($_POST['multi']=='yes')&&(count($_POST['d'])>0))

@@ -19,8 +19,16 @@
         echo "</pre>";        
     }
     
-    function fieldFormat($fieldDef, $fieldValue) {
+    function fieldFormat($fieldId, $fieldDef, $fieldValue, $operation = '', $pre='') {        
         $type=( empty($fieldDef['type']) ? 'text' : $fieldDef['type'] );
-        include("fieldtypes/$type.type.php");
+
+        if(!empty($operation)) {
+            $operation = "_$operation";
+            if(empty($pre)) $pre='../';            
+        }       
+        if(file_exists("{$pre}fieldtypes/$type$operation.type.php")) 
+            include("{$pre}fieldtypes/$type$operation.type.php");
+        else 
+            include("{$pre}ajax/404.php");
     }
 ?>

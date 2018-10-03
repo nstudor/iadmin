@@ -68,23 +68,22 @@ if($m2['link']=='') { // TODO:SUB-SUBMENU ?>
 <nav class="navbar fixed-bottom navbar-expand-sm navbar-light bg-secondary">
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
           <li class="nav-item dropup">
-            <a class="nav-link dropdown-toggle" href="https://getbootstrap.com" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropup</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown10">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+            <a class="nav-link dropdown-toggle text-white" href="#" id="dds1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+            <div class="dropdown-menu bg-secondary" aria-labelledby="dds1">
+              <a class="dropdown-item text-white" href="#">Change password</a>
+              <a class="dropdown-item text-white" href="#">Settings</a>
+              <a class="dropdown-item text-white" href="./logout.htm">Logout</a>
             </div>
           </li>
+<?php if($ruser['role']==1) { ?>            
+          <li class="nav-item dropup">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="dds2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Developer</a>
+            <div class="dropdown-menu bg-secondary" aria-labelledby="dds2">
+              <a class="dropdown-item text-white" href="tabel-loginmenu.htm">Menu</a>
+            </div>
+          </li>
+<?php } ?>            
         </ul>
         <ul class="navbar-nav my-2 my-md-0">
             <li class="nav-item text-white" id="clock">-</li>
@@ -118,7 +117,7 @@ $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
 
 function clock() {
 	$.ajax({
-	  url: "ajaxtime.php",
+	  url: "ajax/time.php",
 	}).done(function(msg) {
 	  $("#clock").html(msg);
 	});

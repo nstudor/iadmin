@@ -45,12 +45,12 @@
         'bool8'=>array(
             'name'=>"B9",
             'type'=>'awesomecase',
-            'template'=>'BoolCheck',
+            'template'=>'BoolSwitch',
         ),
         'bool9'=>array(
             'name'=>"B10",
             'type'=>'awesomecase',
-            'template'=>'BoolCheck',
+            'template'=>'BoolSquareCheck',
         ),
         'yesno0'=>array(
             'name'=>"YN1",
@@ -134,6 +134,7 @@
     );
     
     $addfields=array(
+        'yesno1', 'yesno2'
     );
     
     $title="AwesomeCase examples";
@@ -146,4 +147,5 @@
     $fontawesome=array(
     );
 
+    $items_per_page=5;
 ?>

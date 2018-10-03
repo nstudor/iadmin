@@ -67,11 +67,27 @@
         $upd=[];
         foreach($what as $k=>$v)
         {
-            $upd[] = "`$k`='$v'";
+            $upd[] = "`$k`='".addslashes($v)."'";
         }
+        
+//        echo "UPDATE $table SET " . implode(', ', $upd) . " WHERE $where";
         
         mysqli_query($APP_DB_LINK, "UPDATE $table SET " . implode(', ', $upd) . " WHERE $where");
        
+        if( mysqli_errno ( $APP_DB_LINK ) )
+        {
+            $MESSAGE = mysqli_error( $APP_DB_LINK );
+            return FALSE;
+        }
+        return TRUE;
+    }
+    
+    function db_insert($what, $table) {
+        global $APP_DB_LINK, $MESSAGE;
+        
+//        echo "INSERT INTO $table (" . implode(', ', array_keys($what)) . ") VALUES ('" . implode("', '", $what) . "')";
+        mysqli_query($APP_DB_LINK, "INSERT INTO $table (" . implode(', ', array_keys($what)) . 
+                ") VALUES ('" . implode("', '", $what) . "')");
         if( mysqli_errno ( $APP_DB_LINK ) )
         {
             $MESSAGE = mysqli_error( $APP_DB_LINK );

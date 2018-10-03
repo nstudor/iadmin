@@ -1,4 +1,4 @@
-<select name="item[fisier]" class="form-control" id="ajaxitem">
+PANA MEA<select name="item[fisier]" class="form-control" id="ajaxitem">
 <?php 
  	$ret=scandir('dashboard');
 	foreach($ret as $rt) if((strpos($rt,'.php')!==false)&&(strpos($rt,'_')===false)){

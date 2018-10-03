@@ -1,25 +1,45 @@
 <?php 
 $tabel="login_dashboard";
 $fields=array( 
-  'denumire'=>"Denumire",
-  'fisier'=>"Addon",
-  'rand'=>"Rand",
-  'marimesm'=>"Marime<br />Mobil",
-  'marimelg'=>"Marime<br />Desktop",
-  'ordine'=>"Ordine",
-  'deschis'=>"Deschis",
-  'vizibil'=>"Vizibil",
+    'denumire'=>"Denumire",
+    'fisier'=>"Addon",
+    'rand'=>"Rand",
+    'marimesm'=>"Marime<br />Mobil",
+    'marimelg'=>"Marime<br />Desktop",
+    'ordine'=>"Ordine",
+    'deschis'=>array(
+        'name'=>'Deschis',
+        'type'=>'awesomecase',
+        'template'=>'YesNoSquareCheck',
+        'fatype'=>'r,r'      
+    ),
+    'vizibil'=>array(
+        'name'=>"Vizibil",
+        'type'=>'awesomecase',
+        'template'=>'YesNoSquareCheck',
+        'fatype'=>'r,r'      
+    ),
 );
 
 $addfields=array(
-  'denumire'=>"Denumire",
-  'fisier'=>"Addon",
-  'rand'=>"Rand",
-  'marimesm'=>"Marime Mobil",
-  'marimelg'=>"Marime Desktop",
-  'ordine'=>"Ordine",
-  'deschis'=>"Deschis",
-  'vizibil'=>"Vizibil",
+    'denumire'=>"Denumire",
+    'fisier'=>"Addon",
+    'rand'=>"Rand",
+    'marimesm'=>"Marime Mobil",
+    'marimelg'=>"Marime Desktop",
+    'ordine'=>"Ordine",
+    'deschis'=>array(
+        'name'=>'Deschis',
+        'type'=>'awesomecase',
+        'template'=>'YesNoSquareCheck',
+        'fatype'=>'r,r'      
+    ),
+    'vizibil'=>array(
+        'name'=>"Vizibil",
+        'type'=>'awesomecase',
+        'template'=>'YesNoSquareCheck',
+        'fatype'=>'r,r'      
+    ),
 );
 
 $title="Dashboard";
