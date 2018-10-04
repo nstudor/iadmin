@@ -1,7 +1,11 @@
 <?php 
     $tabel="login_menu";
     $fields=array(
-        'id'=>"ID",
+        'id'=>array(
+            'name'=>"ID",
+            "noAdd"=>1,
+            "noEdit"=>1,
+        ),
         'id_tata'=>array(
             'name'=>"Parent",
             'type'=>'dbSelect',
@@ -19,16 +23,6 @@
             'type'=>'awesomecase',
             'template'=>'YesNoCheck',
         ),        
-        'icon'=>"Icon",
-    );
-
-
-    $addfields=array(
-        'id_tata'=>"Parent",
-        'denum'=>"Name",
-        'link'=>"Link",
-        'ordine'=>"Order",
-        'right'=>"Right",
         'icon'=>"Icon",
     );
 

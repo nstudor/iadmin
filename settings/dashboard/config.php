@@ -21,27 +21,6 @@ $fields=array(
     ),
 );
 
-$addfields=array(
-    'denumire'=>"Denumire",
-    'fisier'=>"Addon",
-    'rand'=>"Rand",
-    'marimesm'=>"Marime Mobil",
-    'marimelg'=>"Marime Desktop",
-    'ordine'=>"Ordine",
-    'deschis'=>array(
-        'name'=>'Deschis',
-        'type'=>'awesomecase',
-        'template'=>'YesNoSquareCheck',
-        'fatype'=>'r,r'      
-    ),
-    'vizibil'=>array(
-        'name'=>"Vizibil",
-        'type'=>'awesomecase',
-        'template'=>'YesNoSquareCheck',
-        'fatype'=>'r,r'      
-    ),
-);
-
 $title="Dashboard";
 
 $_SESSION['filter']['id_user']=$_SESSION['userid'];

@@ -1,6 +1,6 @@
 <?php 
-$tabel="login_users";
-$fields=array(
+    $tabel="login_users";
+    $fields=array(
 	'nume'=>"Numele si prenumele",
 	'user'=>"Utilizator",
 	'email'=>'E-mail',
@@ -19,49 +19,51 @@ $fields=array(
             'chars'=>'mars fa-2x,venus fa-2x,transgender fa-2x',
             'type'=>'awesomecase',
         ),
+	'telefon'=>array(
+            "name"=>"Telefon",
+            "noShow"=>1,
+        ),
+	'mobil'=>array(
+            "name"=>"Telefon mobil",
+            "noShow"=>1,
+        ),
+	'fax'=>array(
+            "name"=>"Fax",
+            "noShow"=>1,
+        ),
+	'yahooid'=>array(
+            "name"=>'Yahoo ID',
+            "noShow"=>1,
+        ),
+	'functie'=>array(
+            "name"=>'Functie',
+            "noShow"=>1,
+        ),
+	'cnp'=>array(
+            "name"=>"C.N.P.",
+            "noShow"=>1,
+        ),
+	'ci'=>array(
+            "name"=>"C. I.",
+            "noShow"=>1,
+        ),
+	'details'=>array(
+            "name"=>"Detalii",
+            "noShow"=>1,
+        ),
+    );
+
+    $order="";
+    $title="Utilizatori";
+    $loadmce='yes';
+
+    $specials=array('key', 'face');
+    $stitles=array(
+            'key'=>'Parola',
+            'face'=>'Tema grafica'
     );
 
 
-$addfields=array(
-	'user'=>"Utilizator",
-	'role'=>array(
-            "name"=>"Rol",
-            'type'=>'dbSelect',
-            'defaultValue'=>0,
-            'defaultResult'=>'Not set',
-            'field'=>'rolename',
-            'table'=>'login_roles',
-            'relatedField'=>'id',
-        ),
-	'nume'=>"Numele si prenumele",
-	'sex'=>array(
-            "name"=>"Sex",
-            'values'=>'M,F,X',
-            'chars'=>'mars,venus',
-            'type'=>'awesomecase',
-        ),
-	'telefon'=>"Telefon",
-	'mobil'=>"Telefon mobil",
-	'fax'=>"Fax",
-	'email'=>'E-mail',
-	'yahooid'=>'Yahoo ID',
-	'functie'=>'Functie',
-	'cnp'=>"C.N.P.",
-	'ci'=>"C. I.",
-	'details'=>"Detalii",
-);
-
-$order="";
-$title="Utilizatori";
-$loadmce='yes';
-
-$specials=array('key', 'face');
-$stitles=array(
-	'key'=>'Parola',
-	'face'=>'Tema grafica'
-);
-
-
-$confdroptext='Stergi utilizatorul';
-$confdropfield='user';
+    $confdroptext='Stergi utilizatorul';
+    $confdropfield='user';
 ?>

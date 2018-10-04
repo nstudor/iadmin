@@ -15,6 +15,17 @@ input[type="checkbox"]:checked + label::before {
     content: "\f14a";
 }
 
+
+input[type="radio"] + label {
+    padding: 6px 9px;
+    border-radius: 6px;
+}
+
+input[type="radio"]:checked + label {
+    -webkit-box-shadow: 0 0 6px 2px #D34;
+    box-shadow: 0 0 6px 2px #D34;
+}
+
 #contextMenu {
     position: fixed;    
 }

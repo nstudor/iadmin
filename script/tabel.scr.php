@@ -10,6 +10,7 @@
     if( file_exists("settings/$pag/config.php") )
     {
         include("settings/$pag/config.php");       
+        foreach($fields as $k=>$v) if(is_array($v)) if($v['noShow']) unset($fields[$k]);        
         if($pag!=$_SESSION['page'])
         {
             unset($_SESSION['filter']);
@@ -26,6 +27,7 @@
         $rn=db_select('count(*) nr', $tabel, $flt)[0];    
         $np=($rn==0?0:floor(($rn['nr']-1)/$items_per_page));
         if($st>$np) $st=$np;    
+        if($st<0) $st=0;    
 
         $rows=db_select('*', $tabel, $flt, $order, ($st*$items_per_page).', '.$items_per_page);
         if ( (count($rows) == 0) && empty($MESSAGE) ) $MESSAGE = 'No records to show !';

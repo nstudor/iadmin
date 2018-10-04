@@ -3,9 +3,7 @@ $tabel="login_roles";
 $fields=array(
     'rolename'=>"Denumire rol",
 );
-$addfields=array(
-    'rolename'=>"Denumire rol",
-);
+
 $order="";
 $title="Roluri utilizatori";
 

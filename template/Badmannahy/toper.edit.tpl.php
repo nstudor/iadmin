@@ -5,7 +5,7 @@
             <?= $title ?> - Editare
         </div>
         <div class="card-body">
-<?php foreach($addfields as $k=>$v) { ?>
+<?php foreach($editfields as $k=>$v) { ?>
             <div class="row">
                 <div class="col col-5 mb-2"><?= (is_array($v)?$v['name']:$v) ?></div>
                 <div class="col col-7 mb-2">

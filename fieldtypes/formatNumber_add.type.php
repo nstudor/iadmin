@@ -1,0 +1,1 @@
+<input name="item[<?php echo $fieldId ?>]" type="number" class="form-control" />

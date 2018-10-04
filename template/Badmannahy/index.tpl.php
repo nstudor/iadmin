@@ -10,7 +10,11 @@
 <script src="./js/jquery.min.js"></script>
 <script src="./js/popper.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>    
+<script type="text/javascript" src="./js/moment/moment-with-locales.js"></script>
 <link rel="stylesheet" href="./css/all.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="./css/bootstrap-datetimepicker.css">
+<script type="text/javascript" src="./js/bootstrap-datetimepicker.js"></script> 
+<script src="./js/ckeditor/ckeditor.js"></script>
 <?php
         if(file_exists('template/'.$APP_TEMPLATE.'/'.$param[0].'.head.php')) {
             include('template/'.$APP_TEMPLATE.'/'.$param[0].'.head.php');

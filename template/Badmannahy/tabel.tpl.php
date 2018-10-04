@@ -54,7 +54,7 @@
 <?php 
     if( count($rows) == 0 ) { ?>
         <tr>
-            <td class="text-center" colspan="3">
+            <td class="text-center" colspan="<?= 2+count($fields) ?>">
                 <?= showMessage($MESSAGE, 'danger'); ?>
             </td>
         </tr>        

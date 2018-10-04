@@ -1,9 +1,13 @@
 <?php
     $pag=$param[1];	
     $id='id';
-    if(file_exists("settings/$pag/config.php"))
-        include("settings/$pag/config.php"); 
-    else {
+    if(file_exists("settings/$pag/config.php")) {
+        include("settings/$pag/config.php");         
+        $addfields=$fields;
+        foreach($addfields as $k=>$v) if(is_array($v)) if($v['noAdd']) unset($addfields[$k]);
+        $editfields=$fields;
+        foreach($editfields as $k=>$v) if(is_array($v)) if($v['noEdit']) unset($editfields[$k]);
+    } else {
         include("404.php");die("</body></html>");        
     }        
     
