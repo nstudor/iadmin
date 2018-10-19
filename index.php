@@ -24,7 +24,7 @@
             if($user['pass']==md5($_POST['log_pass'])) 
             {
                 $_SESSION['userid']=$user['id'];
-                db_update(array('logtime'=>date("Y-m-d H:i:s"), "login_users", "id=".$user['id'] ));
+                db_update(array('logtime'=>date("Y-m-d H:i:s")), "login_users", "id=".$user['id']);
                 $MESSAGE='';
                 ?><script type="text/javascript">document.location="./"; </script><?php
             } else if(isset($user['pass'])) $MESSAGE='Parola gresita';

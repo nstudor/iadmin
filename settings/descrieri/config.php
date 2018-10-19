@@ -155,5 +155,5 @@
     $fontawesome=array(
 	'drepturi'=>'eye'
     );
-    $items_per_page=5;
+    $items_per_page=10;
 ?>

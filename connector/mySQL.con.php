@@ -84,10 +84,10 @@
     
     function db_insert($what, $table) {
         global $APP_DB_LINK, $MESSAGE;
-        
-//        echo "INSERT INTO $table (" . implode(', ', array_keys($what)) . ") VALUES ('" . implode("', '", $what) . "')";
-        mysqli_query($APP_DB_LINK, "INSERT INTO $table (" . implode(', ', array_keys($what)) . 
-                ") VALUES ('" . implode("', '", $what) . "')");
+        $query = "INSERT INTO $table (`" . implode('`, `', array_keys($what)) . 
+                "`) VALUES ('" . implode("', '", $what) . "')";
+//        echo $query;
+        mysqli_query($APP_DB_LINK, $query);
         if( mysqli_errno ( $APP_DB_LINK ) )
         {
             $MESSAGE = mysqli_error( $APP_DB_LINK );

@@ -23,24 +23,29 @@
         </tr>
         <tr class="text-center bg-secondary">
             <th>
-                
+<?php if(($filtersExists!=0)&&($showFilter!='no')) { ?>
+<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" name="clearfilters">
+    <input type="hidden" name="fv" value="999" />
+</form>
+<i class="fa fa-filter text-danger" style="cursor:pointer" onclick="document.clearfilters.submit()"></i>
+<?php } else { ?>&nbsp;<?php } ?>                
             </th>
-<?php foreach($fields as $f) { ?>
+<?php foreach($fields as $k=>$f) { ?>
             <th>
-<form action="" method="post" name="ord_<?php echo $k ?>">
+<form action="" method="post" id="ord_<?php echo $k ?>">
 
 <?php if($showFilter!='no') { ?>
         <a href="modal.php?p=filter-<?php echo $pag ?>-<?php echo $k ?>" title="Filtrare <?php echo $v ?>"></a>      
         <i class="fa fa-filter float-left text-<?php echo (isset($_SESSION['filter'][$k])?'white':'info'); ?>"          
-           data-toggle="modal" data-target="#myModal" onclick="gomodal('filter-<?php echo $pag ?>-<?php echo $k ?>', 'Filtrare')"></i>        
+           data-toggle="modal" data-target="#filterModal" onclick="gomodal('filter-<?php echo $pag ?>-<?php echo $k ?>', 'Filtrare')"></i>        
 <?php } ?>         
 	<input name="order" type="hidden" value="<?php echo $k ?>" />                
 <?php if($showOrder!='no') { if(!isset($_SESSION['order'][$k])) { ?>
     	<input name="ordertype" type="hidden" value="up" />
-        <i class="fa fa-sort float-right text-info" onclick="document.ord_<?php echo $k ?>.submit()" style="cursor:pointer"></i>
+        <i class="fa fa-sort float-right text-info" onclick="$('#ord_<?php echo $k ?>').submit()" style="cursor:pointer"></i>
 	<?php } else { ?>
-    	<input name="ordertype" type="hidden" value="<?php echo ($_SESSION['order'][$k]=='up'?'dn':'up') ?>" />
-        <i class="fa float-right text-white fa-sort-<?php echo $_SESSION['order'][$k]=="up"?"up":"down" ?>" onclick="document.ord_<?php echo $k ?>.submit()" style="cursor:pointer"></i>
+    	<input id="ord_<?php echo $k ?>_type" name="ordertype" type="hidden" value="<?php echo ($_SESSION['order'][$k]=='up'?'dn':'up') ?>" />
+        <i class="fa float-right text-white fa-sort-<?php echo $_SESSION['order'][$k]=="up"?"up":"down" ?>" onclick="$('#ord_<?php echo $k ?>').submit()" oncontextmenu="$('#ord_<?php echo $k ?>_type').val('');$('#ord_<?php echo $k ?>').submit(); return false;" style="cursor:pointer"></i>
 	<?php }} ?>
 </form>            </th>
 <?php } ?>            
@@ -50,7 +55,10 @@
             </th>
         </tr>
     </thead>
-    <tbody>
+
+<tbody>
+<form action="" method="post">
+<input name="multi" type="hidden" value="yes" />        
 <?php 
     if( count($rows) == 0 ) { ?>
         <tr>
@@ -98,8 +106,20 @@
                 <label class="form-check-label" for="b<?= $r[$id] ?>"></label>                
             </td>
         </tr>
-<?php }} ?>                
-    </tbody>
+<?php }} ?>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="<?php echo count($fields)+($rcr['delete_right']=='Y'?1:0) ?>" style="text-align:right">
+<?php if($rcr['delete_right']=='Y') {?>
+    <input name="oper-delete" type="submit" value="STERGE" class="btn btn-<?php echo $theme ?>"  />
+<?php } if(is_array($operations)) foreach($operations as $k=>$v) {?><input name="oper-<?php echo $k ?>" type="submit" value="<?php echo $v ?>" class="btn btn-<?php echo $theme ?>" /><?php } ?>
+<?php if(($rcr['delete_right']=='Y')||(is_array($operations))) {?>
+<i class="fas fa-reply fa-rotate-90"></i>
+<?php } ?>
+    </td>
+  </tr>
+</form>                
+</tbody>
 </table>
 </div>    
 
@@ -190,7 +210,6 @@ function goImpExp(x) {
 	});
 }
 </script>
-
 <?php 
 	if(isset($_POST['col'])) {
 		include("import/".$_POST['type'].".php");
@@ -215,25 +234,19 @@ function goImpExp(x) {
 	<?php die();	}}
 } ?>
 
-
-
-
 <input name="item" id="itemdata" type="text" value="0" style="display:none" />
 <?php 	if(file_exists("settings/$pag/top.php")) include("settings/$pag/top.php"); ?>
 <script type="text/javascript">
 function gomodal(l,t) {
-	$('#myModalLabel').html(t);
-	$('#myModal .modal-body').html('<h1 style="text-align:center"><i class="fa fa-spinner fa-pulse" style="font-size:108px"></i></h1>');
+	$('#filterModalLabel').html(t);
+	$('#filterModal .modal-body').html('<h1 style="text-align:center"><i class="fa fa-spinner fa-pulse" style="font-size:108px"></i></h1>');
 	$.ajax({
 	  url: "ajaxmodal.php?p="+l,
 	}).done(function(msg) {
-	  $('#myModal .modal-body').html(msg);
+	  $('#filterModal .modal-body').html(msg);
 	});
 }
-
-
 </script>
-
 <table border="0" cellspacing="1" cellpadding="3" align="center" class="table table-striped table-bordered">
   <tr class="t0">
     <td width="16">
@@ -248,7 +261,7 @@ function gomodal(l,t) {
     <td<?php if(isset($tabelw[$k])) echo ' width="'.$tabelw[$k].'"'?>><form action="" method="post" name="ord_<?php echo $k ?>">
 <?php if($showFilter!='no') { ?>
         <a href="modal.php?p=filter-<?php echo $pag ?>-<?php echo $k ?>" title="Filtrare <?php echo $v ?>"></a>      
-        <i class="fa fa-filter filter<?php echo (isset($_SESSION['filter'][$k])?'on':'off'); ?>" data-toggle="modal" data-target="#myModal" onclick="gomodal('filter-<?php echo $pag ?>-<?php echo $k ?>', 'Filtrare')"></i>        
+        <i class="fa fa-filter filter<?php echo (isset($_SESSION['filter'][$k])?'on':'off'); ?>" data-toggle="modal" data-target="#filterModal" onclick="gomodal('filter-<?php echo $pag ?>-<?php echo $k ?>', 'Filtrare')"></i>        
 <?php } ?><?php echo $v ?>
 	<input name="order" type="hidden" value="<?php echo $k ?>" />
 <?php if($showOrder!='no') { if(!isset($_SESSION['order'][$k])) { ?>
@@ -340,22 +353,26 @@ $spd=$sp;if(isset($stitles[$sp])) $spd=$stitles[$sp];
 </form>
 </table>
 <div class="row" style="margin:0">&nbsp;</div>
+*/ ?>
 <?php if(file_exists("settings/$pag/bottom.php")) include("settings/$pag/bottom.php"); ?>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
+
+<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title" id="filterModalTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
       </div>
     </div>
   </div>
 </div>
-*/ ?>
+
 <div id="contextMenu" class="card clearfix" style="display:none">
-    <div class="card-header">
+    <div class="card-header bg-secondary text-white">
         <span class="panel-info"></span>
         <i class="fa fa-times float-right" style="cursor:pointer"></i>
     </div>
@@ -368,7 +385,6 @@ $spd=$sp;if(isset($stitles[$sp])) $spd=$stitles[$sp];
         </div>
     </div>
 </div>
-  
 
 <script type="text/javascript">
 $(function() {
@@ -417,4 +433,15 @@ function salveaza() {
 function checkAll(x) {
 	$(".chboxoper").prop("checked", x==1);
 }
+
+function gomodal(l,t) {
+	$('#filterModalTitle').html(t);
+	$('#filterModal .modal-body').html('<i class="fa fa-spinner fa-pulse fa-2x"></i>');
+	$.ajax({
+	  url: "ajax/modal.php?p="+l,
+	}).done(function(msg) {
+	  $('#filterModal .modal-body').html(msg);
+	});
+}
+
 </script>
