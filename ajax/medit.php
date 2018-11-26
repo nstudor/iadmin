@@ -1,7 +1,4 @@
-<?php 
-    $pag=$pp[1];
-    $id='id';
-    include("../settings/$pag/config.php");
+<?php    
     $item=db_select('*', $tabel, "$id=$pp[3]")[0];
     $k=$pp[2];
 ?>

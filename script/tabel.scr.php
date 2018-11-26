@@ -83,6 +83,12 @@ window.onload = function() {
                         echo $flt;
                     break;
                     case 9:$flt.=" AND `$k` LIKE '$v'";break;
+
+                    case 11:$flt.=" AND `$k`>'$v'";break;
+                    case 12:$flt.=" AND `$k`<'$v'";break;
+                    case 13:$flt.=" AND `$k`>='$v'";break;
+                    case 14:$flt.=" AND `$k`<='$v'";break;
+
                 }
 
         $filtersExists=0;
@@ -93,6 +99,8 @@ window.onload = function() {
         if($st>$np) $st=$np;    
         if($st<0) $st=0;    
 
+//        echo $flt;
+        
         $rows=db_select('*', $tabel, $flt, $order, ($st*$items_per_page).', '.$items_per_page);
         if ( (count($rows) == 0) && empty($MESSAGE) ) $MESSAGE = 'No records to show !';
         $nr=0;

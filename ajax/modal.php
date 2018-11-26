@@ -11,5 +11,12 @@
     include('../connector/'.$APP_DB_TYPE.'.con.php');        
     db_connect();
     $pp=explode('-',$_GET['p']);
+    
+    $pag=$pp[1];
+    $id='id';
+    $settingFile="../settings/$pag/config.php";
+    if(!file_exists($settingFile)) $settingFile="../settings_default/$pag/config.php";
+    include($settingFile);
+    
     if(file_exists("$pp[0].php")) include("$pp[0].php"); else include("404.php");
 ?>
