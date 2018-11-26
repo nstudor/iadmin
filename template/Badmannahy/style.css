@@ -37,3 +37,22 @@ input[type="radio"]:checked + label {
 .bg-secondary a.dropdown-item:hover {
     color: #16181b!important;
 }
+
+.checksOver input[type="checkbox"] + label {
+    padding: 6px 9px;
+    border-radius: 6px;
+    margin: 3px;
+}
+
+.checksOver input[type="checkbox"] + label::before {
+    content: "";
+}
+
+.checksOver input[type="checkbox"]:checked + label::before {
+    content: "";
+}
+
+.checksOver input[type="checkbox"]:checked + label {
+    -webkit-box-shadow: 0 0 6px 2px #D34;
+    box-shadow: 0 0 6px 2px #D34;
+}
