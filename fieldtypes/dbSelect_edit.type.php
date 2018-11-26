@@ -5,7 +5,7 @@
     <option value="<?= $fieldDef['defaultValue'] ?>"><?= $fieldDef['defaultResult'] ?></option>
 <?php } ?>            
     <?php foreach($rr as $kk=>$vv) { ?>
-    <option value="<?= $vv[$fieldDef['relatedField']] ?>"<?= $fieldValue = $vv[$fieldDef['relatedField']]?' selected':'' ?>><?= $vv[$fieldDef['field']] ?></option>
+    <option value="<?= $vv[$fieldDef['relatedField']] ?>"<?= $fieldValue == $vv[$fieldDef['relatedField']]?' selected':'' ?>><?= $vv[$fieldDef['field']] ?></option>
 <?php } ?>            
 </select>
      

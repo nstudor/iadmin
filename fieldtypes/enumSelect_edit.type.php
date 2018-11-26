@@ -3,7 +3,7 @@
     <option value="<?= $fieldDef['defaultValue'] ?>"><?= $fieldDef['defaultResult'] ?></option>
 <?php } ?>            
     <?php foreach($fieldDef['selectFrom'] as $kk=>$vv) { ?>
-    <option value="<?= $kk ?>"<?= $fieldValue = $kk?' selected':'' ?>><?= $vv ?></option>
+    <option value="<?= $kk ?>"<?= $fieldValue == $kk?' selected':'' ?>><?= $vv ?></option>
 <?php } ?>            
 </select>
      
