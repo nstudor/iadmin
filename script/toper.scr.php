@@ -1,8 +1,12 @@
 <?php
     $pag=$param[1];	
     $id='id';
-    if(file_exists("settings/$pag/config.php")) {
-        include("settings/$pag/config.php");         
+    $settingFile="settings/$pag/config.php";
+    if(!file_exists($settingFile)) $settingFile="settings_default/$pag/config.php";
+    
+    if( file_exists($settingFile) )
+    {
+        include($settingFile);       
         $addfields=$fields;
         foreach($addfields as $k=>$v) if(is_array($v)) if($v['noAdd']) unset($addfields[$k]);
         $editfields=$fields;

@@ -12,9 +12,12 @@
     
     $pag=$param[1];
     
-    if( file_exists("settings/$pag/config.php") )
+    $settingFile="settings/$pag/config.php";
+    if(!file_exists($settingFile)) $settingFile="settings_default/$pag/config.php";
+    
+    if( file_exists($settingFile) )
     {
-        include("settings/$pag/config.php");       
+        include($settingFile);       
         foreach($fields as $k=>$v) if(is_array($v)) if($v['noShow']) unset($fields[$k]);        
         if($pag!=$_SESSION['page'])
         {
