@@ -127,13 +127,13 @@
 
 <ul class="pagination justify-content-center">
     <li class="page-item">
-        <a class="page-link" href="./tabel-<?= $param[1].(isset($param[3])?"-".implode("-",array_slice($param,3)):'') ?>.htm">
+        <a class="page-link" href="./tabel-<?= $param[1]."-0".(isset($param[3])?"-".implode("-",array_slice($param,3)):'') ?>.htm">
         <i class="fas fa-angle-double-left pb-1"></i>
         </a>
     </li>
    
     <li class="page-item">
-        <a class="page-link" href="./tabel-<?= $param[1].($st==0?'':'-'.($st-1)).(isset($param[3])?"-".implode("-",array_slice($param,3)):'') ?>.htm">
+        <a class="page-link" href="./tabel-<?= $param[1].($st==0?'-0':'-'.($st-1)).(isset($param[3])?"-".implode("-",array_slice($param,3)):'') ?>.htm">
             <i class="fas fa-angle-left pb-1"></i>
         </a>
     </li>
@@ -145,7 +145,7 @@
         if(($i >= 0) && ($i <= $np)) {
 ?>
     <li class="page-item">
-        <a class="page-link" href="./tabel-<?= $param[1].($i==0?'':'-'.$i).(isset($param[3])?"-".implode("-",array_slice($param,3)):'') ?>.htm">
+        <a class="page-link" href="./tabel-<?= $param[1].'-'.$i.(isset($param[3])?"-".implode("-",array_slice($param,3)):'') ?>.htm">
             <?= $i+1 ?>
         </a>
     </li>
