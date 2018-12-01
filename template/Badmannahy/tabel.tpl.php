@@ -37,7 +37,7 @@
 <?php if($showFilter!='no') { ?>
         <a href="modal.php?p=filter-<?php echo $pag ?>-<?php echo $k ?>" title="Filtrare <?php echo $v ?>"></a>      
         <i class="fa fa-filter float-left text-<?php echo (isset($_SESSION['filter'][$k])?'white':'info'); ?>"          
-           data-toggle="modal" data-target="#filterModal" onclick="gomodal('filter-<?php echo $pag ?>-<?php echo $k ?>', 'Filtrare')"></i>        
+           data-toggle="modal" data-target="#filterModal" onclick="goModal('filter-<?php echo $pag ?>-<?php echo $k ?>', 'Filtrare')"></i>        
 <?php } ?>         
 	<input name="order" type="hidden" value="<?php echo $k ?>" />                
 <?php if($showOrder!='no') { if(!isset($_SESSION['order'][$k])) { ?>
@@ -55,9 +55,8 @@
             </th>
         </tr>
     </thead>
-
+<form action="" method="post" id="multiForm" name="multiForm">
 <tbody>
-<form action="" method="post">
 <input name="multi" type="hidden" value="yes" />        
 <?php 
     if( count($rows) == 0 ) { ?>
@@ -102,7 +101,7 @@
 ?></td>
 <?php } ?>                
             <td class="text-center">
-                <input type="checkbox" class="chboxoper" id="b<?= $r[$id] ?>">
+                <input type="checkbox" class="chboxoper" id="b<?= $r[$id] ?>" name="ids[]" value="<?= $r[$id] ?>">
                 <label class="form-check-label" for="b<?= $r[$id] ?>"></label>                
             </td>
         </tr>
@@ -110,16 +109,19 @@
   <tr>
     <td>&nbsp;</td>
     <td colspan="<?php echo count($fields)+($rcr['delete_right']=='Y'?1:0) ?>" style="text-align:right">
+<?php if(is_array($multiOper)) foreach($multiOper as $k=>$v) {?>
+<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#filterModal" 
+        onclick="postModal('multi-<?= $param[1] ?>-<?php echo $k ?>-<?= $id ?>','<?php echo $v ?>', $('#multiForm').serialize() )"><?php echo $v ?></button>
+    <?php } ?>
 <?php if($rcr['delete_right']=='Y') {?>
-    <input name="oper-delete" type="submit" value="STERGE" class="btn btn-<?php echo $theme ?>"  />
-<?php } if(is_array($operations)) foreach($operations as $k=>$v) {?><input name="oper-<?php echo $k ?>" type="submit" value="<?php echo $v ?>" class="btn btn-<?php echo $theme ?>" /><?php } ?>
-<?php if(($rcr['delete_right']=='Y')||(is_array($operations))) {?>
+<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#filterModal" onclick="postModal('multi-<?= $param[1] ?>-delete-<?= $id ?>','Sterge', $('#multiForm').serialize() )">STERGE</button>
+<?php }; if(($rcr['delete_right']=='Y')||(is_array($multiOper))) {?>
 <i class="fas fa-reply fa-rotate-90"></i>
 <?php } ?>
     </td>
-  </tr>
-</form>                
+  </tr>                
 </tbody>
+</form>
 </table>
 </div>    
 
@@ -434,12 +436,22 @@ function checkAll(x) {
 	$(".chboxoper").prop("checked", x==1);
 }
 
-function gomodal(l,t) {
+function goModal(l,t,p) {
 	$('#filterModalTitle').html(t);
 	$('#filterModal .modal-body').html('<i class="fa fa-spinner fa-pulse fa-2x"></i>');
 	$.ajax({
 	  url: "ajax/modal.php?p="+l,
 	}).done(function(msg) {
+	  $('#filterModal .modal-body').html(msg);
+	});
+}
+
+function postModal(l,t,p) {
+	$('#filterModalTitle').html(t);
+	$('#filterModal .modal-body').html('<i class="fa fa-spinner fa-pulse fa-2x"></i>');
+
+        $.post( "ajax/modal.php?p="+l, p )
+        .done(function(msg) {
 	  $('#filterModal .modal-body').html(msg);
 	});
 }
