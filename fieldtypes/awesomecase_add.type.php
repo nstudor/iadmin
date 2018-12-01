@@ -15,8 +15,8 @@
     }
     foreach($fieldDef['t'] as $k=>$v) {
 ?>
-<input name="item[<?php echo $fieldId ?>]" type="radio" value="<?php echo $k ?>" id="<?php echo $item[$fieldId].$k ?>" />
-<label for="<?php echo $item[$fieldId].$k ?>">
+<input name="item[<?php echo $fieldId ?>]" type="radio" value="<?php echo $k ?>" id="<?php echo $fieldId.$k ?>" />
+<label for="<?php echo $fieldId.$k ?>">
     <i class="fa<?= $fieldDef['f'][$k] ?> fa-<?= $fieldDef['t'][$k].' '.$fieldDef['s'][$k] ?>" <?=(empty($fieldDef['c'][$k])?'':' style="color: '.$fieldDef['c'][$k].'"')?>'></i>
 </label>
 <?php } ?>
