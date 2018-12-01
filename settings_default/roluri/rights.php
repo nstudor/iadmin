@@ -142,7 +142,7 @@
     function butonat(i, v) {
         $('#d_'+i+'_'+v).html('<i class="fa fa-spinner fa-pulse"></i>');
 	$.ajax({
-	  url: "ajax/modal.php?p=../settings/roluri/ajaxright&idu=<?php echo $get['id'] ?>&idd="+i+"&tip="+v,
+	  url: "ajax/modal.php?p=../settings_default/roluri/ajaxright&idu=<?php echo $get['id'] ?>&idd="+i+"&tip="+v,
 	}).done(function(msg) {
 	  $('#d_'+i+'_'+v).html(msg);
 	});
@@ -151,7 +151,7 @@
 	$('#myModalLabel').html(t);
 	$('#myModal .modal-body').html('<i class="fa fa-spinner fa-pulse fa-2x"></i>');
 	$.ajax({
-	  url: "ajax/modal.php?p=../settings/roluri/ajaxdet&idu=<?php echo $get['id'] ?>&idd="+l,
+	  url: "ajax/modal.php?p=../settings_default/roluri/ajaxdet&idu=<?php echo $get['id'] ?>&idd="+l,
 	}).done(function(msg) {
 	  $('#myModal .modal-body').html(msg);
 	});

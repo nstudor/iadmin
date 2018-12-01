@@ -95,4 +95,17 @@
         }
         return TRUE;
     }
+    
+    function db_drop($where, $table) {
+        global $APP_DB_LINK, $MESSAGE;
+        
+        mysqli_query($APP_DB_LINK, "DELETE FROM $table WHERE $where");
+       
+        if( mysqli_errno ( $APP_DB_LINK ) )
+        {
+            $MESSAGE = mysqli_error( $APP_DB_LINK );
+            return FALSE;
+        }
+        return TRUE;
+    }
 ?>

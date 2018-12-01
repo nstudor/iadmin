@@ -20,7 +20,10 @@
     if(file_exists("../settings/$pag/{$k}_add.php"))
         include("settings/$pag/{$k}_add.php"); 
     else
-        fieldFormat($k, $v, '', 'add', './');
+        if(file_exists("../settings_default/$pag/{$k}_add.php"))
+            include("settings_default/$pag/{$k}_add.php"); 
+        else
+            fieldFormat($k, $v, '', 'add', './');
 ?>
         </div>
     </div>

@@ -11,11 +11,12 @@
                 <div class="col col-7 mb-2">
 <?php
     if(file_exists("./settings/$pag/{$k}_edit.php")) 
-    {
         include("./settings/$pag/{$k}_edit.php"); 
-    } else {
-        fieldFormat($k, $v, $item[$k], 'edit','./');
-    }
+    else
+        if(file_exists("./settings_default/$pag/{$k}_edit.php")) 
+            include("./settings_default/$pag/{$k}_edit.php"); 
+        else
+            fieldFormat($k, $v, $item[$k], 'edit','./');
 ?></div>
             </div>
 <?php } ?>            
