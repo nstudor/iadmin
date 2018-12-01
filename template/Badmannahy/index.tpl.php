@@ -27,9 +27,8 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <div class="collapse navbar-collapse" id="navbarsExample03">
-        <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse" id="navbar1">
+        <ul class="navbar-nav">
 <?php
 $menu1=$menu;
 $menu2=$menu;
@@ -42,26 +41,43 @@ if($n==0) {?>
             <a class="nav-link text-white" href="<?= $m1['link'] ?>"><?= $m1['denum'] ?></a>
           </li>
 <?php } else { ?>
-          <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" id="dropdown<?= $k1 ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $m1['denum'] ?></a>
-            <div class="dropdown-menu bg-secondary" aria-labelledby="dropdown<?= $k1 ?>">
-<?php foreach($menu2 as $m2) if($m2['id_tata']==$m1['id'])
+                <ul class="dropdown-menu bg-secondary dropright">
+<?php foreach($menu2 as $k2=>$m2) if($m2['id_tata']==$m1['id'])
 if($m2['denum']=='-') { ?>
-                <a class="divider" role="separator" href='#'></a>
+                    <li class="dropdown-item dropdown-submenu m-0 p-0"><a class="divider" role="separator" href='#'></a></li>
+<?php } else 
+    if($m2['link']!='') {    ?>
+                    <li class="dropdown-item dropdown-submenu m-0 p-0"><a class="dropdown-item text-white" href="<?php echo $m2['link'] ?>.htm"><?php echo $m2['denum'] ?></a></li>
 <?php } else {
-if($m2['link']=='') { // TODO:SUB-SUBMENU ?>
-                <a class="dropdown-item text-white" href="<?php echo $m2['link'] ?>.htm"><?php echo $m2['denum'] ?></a>
-<?php
-} else { ?>
-                <a class="dropdown-item text-white" href="<?php echo $m2['link'] ?>.htm"><?php echo $m2['denum'] ?></a>
-<?php }} ?>
-            </div>
-          </li>
-<?php }}?>            
+$n=0; foreach($menu3 as $m3) if($m3['id_tata']==$m2['id']) $n++;
+if($n!=0) {
+?>
+                    <li class="dropdown-item dropdown-submenu m-0 p-0">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item text-white"><?php echo $m2['denum'] ?></a>
+                        <ul class="dropdown-menu bg-secondary">
+<?php foreach($menu3 as $k3=>$m3) if($m3['id_tata']==$m2['id'])
+if($m3['denum']=='-') { ?>
+                            <li class="dropdown-item m-0 p-0"><a class="divider" role="separator" href='#'></a></li>
+<?php } else { ?>
+                            <li class="dropdown-item m-0 p-0"><a class="dropdown-item text-white" href="<?php echo $m3['link'] ?>.htm"><?php echo $m3['denum'] ?></a></li>
+<?php } ?>
+                        </ul>
+                    </li>
+<?php }} ?>                    
+                </ul>
+            </li>
+<?php }} ?>            
         </ul>
-      </div>
-      <a class="navbar-brand" href="logout.htm"><i class="fas fa-power-off"></i></a>
-</nav>    
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="navbar-brand" href="logout.htm"><i class="fas fa-power-off"></i></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <br /><br />    
 <?php
     if(file_exists('template/'.$APP_TEMPLATE.'/'.$param[0].'.tpl.php')) {
@@ -128,6 +144,18 @@ function clock() {
 }
 clock();
 setInterval("clock()",15000);
+
+$('.dropdown-submenu > a').on("click", function(e) {
+    var submenu = $(this);
+    $('.dropdown-submenu .dropdown-menu').removeClass('show');
+    submenu.next('.dropdown-menu').addClass('show');
+    e.stopPropagation();
+});
+
+$('.dropdown').on("hidden.bs.dropdown", function() {
+    // hide any open menus when parent closes
+    $('.dropdown-menu.show').removeClass('show');
+});
 </script>
 
 </body>
