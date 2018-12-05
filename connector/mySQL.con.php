@@ -93,7 +93,7 @@
             $MESSAGE = mysqli_error( $APP_DB_LINK );
             return FALSE;
         }
-        return TRUE;
+        return mysqli_insert_id($APP_DB_LINK);
     }
     
     function db_drop($where, $table) {

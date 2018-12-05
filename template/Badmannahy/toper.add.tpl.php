@@ -3,7 +3,7 @@
  Nothing set for adding !
 </div>
 <?php } else  { ?>
-<form action="" method="post" >
+<form enctype="multipart/form-data" method="post" action="">
 <div class="container">
     <div class="card">
         <div class="card-header bg-info text-white">
@@ -17,11 +17,11 @@
         </div>
         <div class="col-md-7 mb-2">
 <?php
-    if(file_exists("../settings/$pag/{$k}_add.php"))
-        include("settings/$pag/{$k}_add.php"); 
+    if(file_exists("./settings/$pag/{$k}_add.php"))
+        include("./settings/$pag/{$k}_add.php"); 
     else
-        if(file_exists("../settings_default/$pag/{$k}_add.php"))
-            include("settings_default/$pag/{$k}_add.php"); 
+        if(file_exists("./settings_default/$pag/{$k}_add.php"))
+            include("./settings_default/$pag/{$k}_add.php"); 
         else
             fieldFormat($k, $v, '', 'add', './');
 ?>
