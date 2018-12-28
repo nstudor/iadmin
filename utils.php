@@ -19,7 +19,7 @@
         echo "</pre>";        
     }
     
-    function fieldFormat($fieldId, $fieldDef, $fieldValue, $operation = '', $pre='') {        
+    function fieldFormat($fieldId, $fieldDef, $fieldValue, $operation = '', $pre='', $rowId = 0, $uri = '') {        
         $type=( empty($fieldDef['type']) ? 'text' : $fieldDef['type'] );
 
         if(!empty($operation)) {

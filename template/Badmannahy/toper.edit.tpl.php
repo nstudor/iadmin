@@ -1,4 +1,4 @@
-<form action="" method="post" >
+<form enctype="multipart/form-data" method="post" action="">
 <div class="container">
     <div class="card">
         <div class="card-header bg-info text-white">

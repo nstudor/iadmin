@@ -96,7 +96,7 @@
     {
         include("settings/$pag/{$k}_show.php"); 
     } else {
-        fieldFormat($k, $v, $r[$k]);
+        fieldFormat($k, $v, $r[$k],'','',$r[$id], $param[1]);
     }
 ?></td>
 <?php } ?>                
