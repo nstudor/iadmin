@@ -244,8 +244,12 @@ function checkAll(x) {
 	$(".chboxoper").prop("checked", x==1);
 }
 
-function goModal(l,t,p) {
+function goModal(l, t, s='') {
 	$('#filterModalTitle').html(t);
+
+        $('#filterModal .modal-dialog').removeClass('modal-lg').removeClass('modal-sm');
+        if(s!='') $('#filterModal .modal-dialog').addClass('modal-'+s);
+            
 	$('#filterModal .modal-body').html('<i class="fa fa-spinner fa-pulse fa-2x"></i>');
 	$.ajax({
 	  url: "ajax/modal.php?p="+l,
@@ -254,9 +258,12 @@ function goModal(l,t,p) {
 	});
 }
 
-function postModal(l,t,p) {
+function postModal(l,t,p, s='') {
 	$('#filterModalTitle').html(t);
 	$('#filterModal .modal-body').html('<i class="fa fa-spinner fa-pulse fa-2x"></i>');
+
+        $('#filterModal .modal-dialog').removeClass('modal-lg').removeClass('modal-sm');
+        if(s!='') $('#filterModal .modal-dialog').addClass('modal-'+s);
 
         $.post( "ajax/modal.php?p="+l, p )
         .done(function(msg) {

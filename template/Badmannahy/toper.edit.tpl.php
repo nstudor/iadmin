@@ -16,7 +16,7 @@
         if(file_exists("./settings_default/$pag/{$k}_edit.php")) 
             include("./settings_default/$pag/{$k}_edit.php"); 
         else
-            fieldFormat($k, $v, $item[$k], 'edit','./');
+            fieldFormat($k, $v, $item[$k], 'edit','./', $k, $pag);
 ?></div>
             </div>
 <?php } ?>            

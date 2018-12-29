@@ -8,6 +8,9 @@
  * suffix : Text after result
 */
 
+    $mtxt1='<i data-toggle="modal" data-target="#filterModal" onclick="goModal(\'edit-'."$uri-$fieldId-$rowId".'\', \'Edit\', \'lg\')">';
+    $mtxt2='</i>';
+
     $bytesLength = strlen($fieldValue);
     $unitSize = ( empty($fieldDef['unitSize']) ? 1000 : $fieldDef['unitSize'] );
     $unitDefault = ( empty($fieldDef['mesaureUnit']) ? '' : $fieldDef['mesaureUnit'] );    
@@ -32,5 +35,11 @@
         $bytesLength=round($bytesLength/$unitSize,2);
         $unitName = 'T' . $unitDefault;
     }
+
+    if( $fieldDef['modalEdit']) {
+        $fieldDef['prefix']=$mtxt1.$fieldDef['prefix'];
+        $fieldDef['suffix']=$fieldDef['suffix'].$mtxt2;
+    }
+
     echo $fieldDef['prefix'].$bytesLength.$unitName.$fieldDef['suffix'];
 ?>

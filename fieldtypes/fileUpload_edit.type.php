@@ -10,7 +10,7 @@
     setTimeout(
             function() {
                 $('#contextMenu').hide();
-                goModal('upload-<?= "$fieldDef[uri]-$fieldId-$fieldDef[rowId]"; ?>', 'Upload');
+                goModal('edit-<?= "$fieldDef[uri]-$fieldId-$fieldDef[rowId]"; ?>', 'Upload');
                 $('#filterModal').modal('show');
             },0);
 </script>
