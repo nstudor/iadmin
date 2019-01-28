@@ -34,14 +34,9 @@
         global $APP_DB_LINK, $MESSAGE;
         $ret=[];
         if(is_array($what)) $what='`'.implode('`, `', $what).'`';
-        
-        if( !empty($order) ) $order = ' ORDER BY '.$order;
-        
-        if( !empty($limit) ) $limit = ' LIMIT '.$limit;
-        
+        if( !empty($order) ) $order = ' ORDER BY '.$order;     
+        if( !empty($limit) ) $limit = ' LIMIT '.$limit;        
         $re=mysqli_query($APP_DB_LINK, "SELECT $what FROM $table WHERE $where$order$limit");
-        
-//        echo "SELECT $what FROM $table WHERE $where$order$limit";
         
         if( mysqli_errno ( $APP_DB_LINK ) )
         {
@@ -71,8 +66,6 @@
             $upd[] = "`$k`='".addslashes($v)."'";
         }
         
-//        echo "UPDATE $table SET " . implode(', ', $upd) . " WHERE $where";
-        
         mysqli_query($APP_DB_LINK, "UPDATE $table SET " . implode(', ', $upd) . " WHERE $where");
        
         if( mysqli_errno ( $APP_DB_LINK ) )
@@ -87,7 +80,6 @@
         global $APP_DB_LINK, $MESSAGE;
         $query = "INSERT INTO $table (`" . implode('`, `', array_keys($what)) . 
                 "`) VALUES ('" . implode("', '", $what) . "')";
-//        echo $query;
         mysqli_query($APP_DB_LINK, $query);
         if( mysqli_errno ( $APP_DB_LINK ) )
         {
@@ -100,7 +92,6 @@
     function db_drop($where, $table) {
         global $APP_DB_LINK, $MESSAGE;
         
-        echo "DELETE FROM $table WHERE $where";
         mysqli_query($APP_DB_LINK, "DELETE FROM $table WHERE $where");
        
         if( mysqli_errno ( $APP_DB_LINK ) )
