@@ -1,6 +1,8 @@
 <?php
     $size1 = filesize($tempName);
     
+    $crtPath = getcwd();
+    
     $im1=imagecreatefromstring(file_get_contents($tempName));
     
     if(!empty($fields[$k]['cropRatio'])) {
@@ -58,12 +60,18 @@
 
 //    file_put_contents($fields[$k]['path'].$fileName, );
     switch($fields[$k]['filetype']) {
-        case 'jpg':imagejpeg($im1, $fields[$k]['path'].$fileName);break;
-        case 'png':imagepng($im1, $fields[$k]['path'].$fileName);break;
-        case 'gif':imagegif($im1, $fields[$k]['path'].$fileName);break;
-        case 'webp':imagewebp($im1, $fields[$k]['path'].$fileName);break;
-        case 'wbmp':imagewbmp($im1, $fields[$k]['path'].$fileName);break;
+        case 'jpg':imagejpeg($im1, $crtPath.$fields[$k]['path'].$fileName);break;
+        case 'png':imagepng($im1, $crtPath.$fields[$k]['path'].$fileName);break;
+        case 'gif':imagegif($im1, $crtPath.$fields[$k]['path'].$fileName);break;
+        case 'webp':imagewebp($im1, $crtPath.$fields[$k]['path'].$fileName);break;
+        case 'wbmp':imagewbmp($im1, $crtPath.$fields[$k]['path'].$fileName);break;
     }
-    $size2 = filesize($fields[$k]['path'].$fileName);
+    $size2 = filesize($crtPath.$fields[$k]['path'].$fileName);
     if($size2 == 0) $MESSAGE = "Error saving file !";
+
+    
+    if(is_array($fields[$k]['plugin'])) {
+        include('imagePlugins/'.$fields[$k]['plugin']['name'].'.php');
+    }
+        
 ?>
