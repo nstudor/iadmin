@@ -31,4 +31,4 @@
         else 
             include("{$pre}ajax/404.php");
     }
-?>
+?>1234
