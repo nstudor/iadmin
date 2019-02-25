@@ -18,7 +18,7 @@
     $get=[];
     for($i=3;$i<count($param);$i+=2) $get[$param[$i]]=$param[$i+1];
 
-    $item=db_select('*', $tabel, "$id=$get[id]")[0];     
+    $item=db_select('*', $tabel, "$id=$get[id]")[0];
 
     if(file_exists("script/toper.$param[2].scr.php")) {
         include("script/toper.$param[2].scr.php");

@@ -37,7 +37,7 @@
         }  
 
         if(!isset($_SESSION['userid'])) {
-            $param=array('login');
+            $param=array('login',$param[0]);
         }
         
         include('script/index.scr.php');        

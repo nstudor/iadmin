@@ -77,8 +77,7 @@ if($m3['denum']=='-') { ?>
         </ul>
     </div>
 </nav>
-
-<br /><br />    
+<div class="row m-0">&nbsp;</div><div class="row m-0">&nbsp;</div>
 <?php
     if(file_exists('template/'.$APP_TEMPLATE.'/'.$param[0].'.tpl.php')) {
         include('template/'.$APP_TEMPLATE.'/'.$param[0].'.tpl.php');
@@ -91,7 +90,7 @@ if($m3['denum']=='-') { ?>
           <li class="nav-item dropup">
             <a class="nav-link dropdown-toggle text-white" href="#" id="dds1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
             <div class="dropdown-menu bg-secondary" aria-labelledby="dds1">
-              <a class="dropdown-item text-white" href="#">Change password</a>
+              <a class="dropdown-item text-white" href="./toper-utilizatori-key-id-<?= $_SESSION['userid'] ?>.htm">Change password</a>
               <a class="dropdown-item text-white" href="#">Settings</a>
               <a class="dropdown-item text-white" href="./logout.htm">Logout</a>
             </div>
