@@ -1,10 +1,3 @@
-<?php 
-	$dd=strtotime(isset($_GET['data'])?$_GET['data']:"now");
-	$an=date("Y",$dd);
-	$lu=date("m",$dd);
-	$zi=date("d",$dd);
-	$crt=(date("Y-m-d",$dd)==date("Y-m-d",strtotime("$an-$lu-".date("j"))));
-?>
 <table class="table table-striped" style="color:#999">
 <thead>
 <tr style="height:25px;" class="alert-<?php echo $theme ?>">
