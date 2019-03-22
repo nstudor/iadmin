@@ -45,4 +45,9 @@ function fieldFormat($fieldId, $fieldDef, $fieldValue, $operation = '', $pre = '
     }
 }
 
+function t($x) {
+    global $_LNG, $_DEFLNG;
+    return (isset($_LNG[$x])?$_LNG[$x]:(isset($_DEFLNG[$x])?$_DEFLNG[$x]:"%%$x%%"));
+}
+
 ?>

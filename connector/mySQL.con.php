@@ -4,9 +4,9 @@
     $MESSAGE='';
     
     function db_connect() {   
-        global $APP_DB_SERVER, $APP_DB_USER, $APP_DB_PASS, $APP_DB_NAME, $APP_DB_LINK, $MESSAGE;
-        $APP_DB_LINK = mysqli_connect( $APP_DB_SERVER, $APP_DB_USER, $APP_DB_PASS, $APP_DB_NAME);
-        if($APP_DB_LINK) $MESSAGE = mysqli_connect_error();
+        global $APP_DB_SERVER, $APP_DB_USER, $APP_DB_PASS, $APP_DB_NAME, $APP_DB_PORT, $APP_DB_LINK, $MESSAGE;
+        $APP_DB_LINK = mysqli_connect( $APP_DB_SERVER, $APP_DB_USER, $APP_DB_PASS, $APP_DB_NAME, $APP_DB_PORT);
+        if(!$APP_DB_LINK) $MESSAGE = mysqli_connect_error();
         mysqli_query($APP_DB_LINK, "SET NAMES utf8");
         return (bool)$APP_DB_LINK;
     }
@@ -20,9 +20,11 @@
 
         $txt= str_replace('[[USER]]', $_POST['iUser'], $txt);
         $txt= str_replace('[[PASS]]', md5($_POST['iPass']), $txt);
-
-        $txt=explode("\n\n",$txt);        
-        foreach($txt as $sql) if($MESSAGE=='') {
+        
+        $txtArr=explode("\n\n",$txt);  
+        if(count($txtArr)) $txtArr=explode("\r\n\r\n",$txt);
+        
+        foreach($txtArr as $sql) if($MESSAGE=='') {
             mysqli_query($APP_DB_LINK, $sql);
             if (mysqli_connect_errno($APP_DB_LINK)) { $MESSAGE = mysqli_connect_error($APP_DB_LINK); }
             echo $MESSAGE;

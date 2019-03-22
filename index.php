@@ -9,10 +9,12 @@
         
         include('settings.ini');
  
+        include('lang/english.lng.php');
+        $_DEFLNG=$_LNG;
         if(file_exists('lang/' . $APP_LANGUAGE . '.lng.php')) {
             include('lang/' . $APP_LANGUAGE . '.lng.php');
         }
-       
+
         include('connector/'.$APP_DB_TYPE.'.con.php');        
         
         db_connect();
