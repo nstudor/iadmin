@@ -17,4 +17,6 @@ $fontawesome=array(
     'rights'=>'eye'
 );
 
+$inlineSpecials=array('rights'=>'secondary');
+
 ?>
