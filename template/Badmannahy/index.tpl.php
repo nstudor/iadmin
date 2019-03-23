@@ -6,6 +6,7 @@
 <title><?php echo $APP_NAME ?></title>
 <link rel="icon" type="image/gif" href="favicon.gif" />	
 <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link href="./css/bootstrap-colorpicker.min.css" rel="stylesheet">
 <link rel="stylesheet" href="./template/Badmannahy/style.css" />
 <script src="./js/jquery.min.js"></script>
 <script src="./js/popper.min.js"></script>
@@ -15,6 +16,9 @@
 <link rel="stylesheet" type="text/css" media="screen" href="./css/bootstrap-datetimepicker.css">
 <script type="text/javascript" src="./js/bootstrap-datetimepicker.js"></script> 
 <script src="./js/ckeditor/ckeditor.js"></script>
+<script src="./js/ckeditor/ckeditor.js"></script>
+<script src="./js/bootstrap-colorpicker.js"></script>
+</head>
 <?php
         if(file_exists('template/'.$APP_TEMPLATE.'/'.$param[0].'.head.php')) {
             include('template/'.$APP_TEMPLATE.'/'.$param[0].'.head.php');
@@ -155,6 +159,8 @@ $('.dropdown').on("hidden.bs.dropdown", function() {
     // hide any open menus when parent closes
     $('.dropdown-menu.show').removeClass('show');
 });
+
+$('.color-selector').colorpicker();
 </script>
 
 </body>

@@ -1,0 +1,1 @@
+<div class="card" style="background-color: <?= $fieldValue ?>">&nbsp;</div>
