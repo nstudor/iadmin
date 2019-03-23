@@ -146,7 +146,7 @@
     for($i=$st-3;$i<=$st+3;$i++)
         if(($i >= 0) && ($i <= $np)) {
 ?>
-    <li class="page-item">
+    <li class="page-item<?= $i==$st?' active':'' ?>">
         <a class="page-link" href="./tabel-<?= $param[1].'-'.$i.(isset($param[3])?"-".implode("-",array_slice($param,3)):'') ?>.htm">
             <?= $i+1 ?>
         </a>

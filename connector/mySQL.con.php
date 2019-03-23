@@ -39,7 +39,7 @@
         if( !empty($order) ) $order = ' ORDER BY '.$order;     
         if( !empty($limit) ) $limit = ' LIMIT '.$limit;        
         $re=mysqli_query($APP_DB_LINK, "SELECT $what FROM $table WHERE $where$order$limit");
-        
+//        echo "SELECT $what FROM $table WHERE $where$order$limit";
         if( mysqli_errno ( $APP_DB_LINK ) )
         {
             $MESSAGE = mysqli_error( $APP_DB_LINK )."<br>SELECT $what FROM $table WHERE $where$order$limit";

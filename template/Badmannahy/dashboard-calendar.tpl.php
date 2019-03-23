@@ -1,3 +1,9 @@
+<?php 
+    $dd=$panelData['dd'];
+    $an=$panelData['an'];
+    $lu=$panelData['lu'];
+    $zi=$panelData['zi'];
+?>
 <table class="table table-striped" style="color:#999">
 <thead>
 <tr style="height:25px;" class="alert-<?php echo $theme ?>">

@@ -1,7 +1,7 @@
 <?php
-    if(empty($fieldDef['defaultValue'])) $fieldDef['defaultValue']='';
-    if(empty($fieldDef['defaultResult'])) $fieldDef['defaultResult']='N/A';
-    if(empty($fieldDef['field'])) $fieldDef['field']='*';
+    if(!isset($fieldDef['defaultValue'])) $fieldDef['defaultValue']='';
+    if(!isset($fieldDef['defaultResult'])) $fieldDef['defaultResult']='N/A';
+    if(!isset($fieldDef['field'])) $fieldDef['field']='*';
             
     if($fieldValue==$fieldDef['defaultValue']) {
         echo $fieldDef['defaultResult'];

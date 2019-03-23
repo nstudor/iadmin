@@ -3,10 +3,11 @@
 ?>
 <div class="row dashboard">
 <?php 
-    foreach($r['panels'] as $r2) {
+    foreach($r['panels'] as $r2) { $panelData=$r2['data'];
 ?>
 <div class="col col-xs-12 col-sm-<?php echo $r2['marimesm'] ?> col-lg-<?php echo $r2['marimelg'] ?>">
-<?php if($r2['vizibil']=='Y') { ?>
+<?php if($r2['vizibil']=='Y') { 
+    if(!$r2['no_box']) {?>
 <div class="card">
     <div class="card-header bg-info text-light">
         <b><?php echo $r2['denumire'] ?></b>
@@ -16,7 +17,7 @@
         <?php include("dashboard-$r2[fisier].tpl.php")?>
     </div>
 </div>    
-<?php } else echo "&nbsp;" ?>
+    <?php } else { include("dashboard-$r2[fisier].tpl.php"); }} else echo "&nbsp;" ?>
 </div>
 <?php } ?>
 </div>
