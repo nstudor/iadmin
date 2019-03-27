@@ -1,5 +1,11 @@
 <div class="col">
-    <?php
+<?php if(count($exportTo)>0) { ?>
+    <button type="button" class="btn btn-secondary float-right" data-toggle="modal" data-target="#filterModal" onclick="goModal('export-countries', 'Export')">
+        <i class="fas fa-download"></i>        
+    </button>
+<?php } ?>
+
+<?php
     if (file_exists("settings/$pag/header.php")) {
         include("settings/$pag/header.php");
     } else {

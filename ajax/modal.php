@@ -5,6 +5,9 @@
     session_start();
     include('../settings.ini');
     include('../utils.php');
+
+    include('../lang/english.lng.php');
+    $_DEFLNG=$_LNG;
     if(file_exists('../lang/' . $APP_LANGUAGE . '.lng.php')) {
         include('../lang/' . $APP_LANGUAGE . '.lng.php');
     }

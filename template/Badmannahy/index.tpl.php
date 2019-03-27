@@ -6,8 +6,9 @@
 <title><?php echo $APP_NAME ?></title>
 <link rel="icon" type="image/gif" href="favicon.gif" />	
 <link rel="stylesheet" href="./css/bootstrap.min.css" />
-    <link href="./css/bootstrap-colorpicker.min.css" rel="stylesheet">
+<link href="./css/bootstrap-colorpicker.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="./template/Badmannahy/style.css" />
+<link rel="stylesheet" href="./css/BsMultiSelect.css" />
 <script src="./js/jquery.min.js"></script>
 <script src="./js/popper.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>    
@@ -18,6 +19,7 @@
 <script src="./js/ckeditor/ckeditor.js"></script>
 <script src="./js/ckeditor/ckeditor.js"></script>
 <script src="./js/bootstrap-colorpicker.js"></script>
+<script src="./js/BsMultiSelect.js"></script>
 </head>
 <?php
         if(file_exists('template/'.$APP_TEMPLATE.'/'.$param[0].'.head.php')) {

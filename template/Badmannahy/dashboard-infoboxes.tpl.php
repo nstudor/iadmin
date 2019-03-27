@@ -11,7 +11,7 @@
                         </div>
                         <div class="col-3">
                             <div class="icon icon-shape">
-                                <i class="<?= $panel['iconClass'] ?> shadow fa-2x"></i>
+                                <i class="<?= $panel['iconClass'] ?> fa-2x"></i>
                             </div>
                         </div>
                     </div>

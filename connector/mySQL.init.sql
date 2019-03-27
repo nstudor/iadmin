@@ -207,3 +207,5 @@ ALTER TABLE `login_rights` ADD FULLTEXT KEY `details_d` (`details_d`);
 ALTER TABLE `login_roles` ADD FULLTEXT KEY `rolename` (`rolename`);
 
 ALTER TABLE `login_users` ADD FULLTEXT KEY `user` (`user`);
+
+ALTER TABLE `login_rights` ADD `details_e` VARCHAR(250) NOT NULL DEFAULT '' AFTER `details_d`;

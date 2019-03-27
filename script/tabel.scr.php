@@ -1,5 +1,7 @@
- <?php 
+<?php 
     $items_per_page=25;
+
+    if($dontshowpages) { $st=0; $items_per_page=1000000000; }
     
     if (!isset($id)) $id='id';
     
@@ -11,7 +13,6 @@
     if (isset($param[2])) $st=$param[2]; else $st=$_SESSION['st']*1;
     
     $pag=$param[1];
-    
     $settingFile="settings/$pag/config.php";
     if(!file_exists($settingFile)) $settingFile="settings_default/$pag/config.php";
     
@@ -107,9 +108,14 @@ window.onload = function() {
     } else {
         $MESSAGE='Config file missing';
     }
-    
 
 /*
+ * 
+ * 
+ * OLD FILE
+ * 
+ * 
+ * 
 	if($_POST['multi']=='yes') foreach($_POST as $k=>$v) if(strpos($k,'oper-')!==false) include(str_replace('_','/',str_replace('oper-','multi',"$k.php")));
 	
 / *
@@ -218,4 +224,3 @@ $q="SELECT * FROM $tabel WHERE $flt $order LIMIT $st, $items_per_page";
 $re=mysql_query($q);
 $nr=0;
 */
-?>

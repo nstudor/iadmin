@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 $_LNG = [
     'language' => 'English',
     'sign_in_title' => 'Sign in',
@@ -13,4 +7,9 @@ $_LNG = [
     'sign_in_password' => 'Password',
     'sign_in_button' => 'Sign in',
     'sign_in_recover' => 'Recover password',
+    'export_to_xls' => 'Export to XLS',
+    'export_to_xlsx' => 'Export to XLSX',
+    'export_to_pdf' => 'Export to PDF',
+    'export_to_csv' => 'Export to CSV',
+    'export_to_ods' => 'Export to ODS',
 ];
