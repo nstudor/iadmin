@@ -1,7 +1,7 @@
 <form action="" method="post" >
 <div class="container">
     <div class="card">
-        <div class="card-header bg-info text-white">
+        <div class="card-header bg-maroon text-white">
             <?= $title ?> - Stergere
         </div>
         <div class="card-body">

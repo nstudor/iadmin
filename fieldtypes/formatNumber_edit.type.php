@@ -1,1 +1,1 @@
-<input name="item[<?php echo $fieldId ?>]" type="number" class="form-control" id="ajaxitem" value="<?= $fieldValue ?>" />
+<input name="item[<?php echo $fieldId ?>]" type="text" class="form-control" id="ajaxitem" value="<?= $fieldValue ?>" />

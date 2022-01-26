@@ -21,9 +21,9 @@
         $txt= str_replace('[[USER]]', $_POST['iUser'], $txt);
         $txt= str_replace('[[PASS]]', md5($_POST['iPass']), $txt);
         
-        $txtArr=explode("\n\n",$txt);  
-        if(count($txtArr)) $txtArr=explode("\r\n\r\n",$txt);
-        
+        $txtArr=explode("\r\n\r\n",$txt);  
+        if(count($txtArr)==1) $txtArr=explode("\n\n",$txt);
+
         foreach($txtArr as $sql) if($MESSAGE=='') {
             mysqli_query($APP_DB_LINK, $sql);
             if (mysqli_connect_errno($APP_DB_LINK)) { $MESSAGE = mysqli_connect_error($APP_DB_LINK); }

@@ -15,8 +15,9 @@
     }
     foreach($fieldDef['t'] as $k=>$v) {
 ?>
-<input name="item[<?php echo $fieldId ?>]" type="radio" value="<?php echo $k ?>"<?php if($k == $fieldValue) echo " checked" ?> id="<?php echo $item[$fieldId].$k ?>" />
-<label for="<?php echo $item[$fieldId].$k ?>">
+<input type="hidden" id="ajaxitem" value="<?= $fieldValue ?>">
+<input name="item[<?= $fieldId ?>]" type="radio" value="<?= $k ?>"<?php if($k == $fieldValue) echo " checked" ?> id="<?= $item[$fieldId].$k ?>" onclick="$('#ajaxitem').val('<?= $k ?>')" />
+<label for="<?= $item[$fieldId].$k ?>">
     <i class="fa<?= $fieldDef['f'][$k] ?> fa-<?= $fieldDef['t'][$k].' '.$fieldDef['s'][$k] ?>" <?=(empty($fieldDef['c'][$k])?'':' style="color: '.$fieldDef['c'][$k].'"')?>'></i>
 </label>
 <?php } ?>

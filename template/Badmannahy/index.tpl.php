@@ -6,16 +6,21 @@
 <title><?php echo $APP_NAME ?></title>
 <link rel="icon" type="image/gif" href="favicon.gif" />	
 <link rel="stylesheet" href="./css/bootstrap.min.css" />
+<link rel="stylesheet" href="./css/colors.css" />
 <link href="./css/bootstrap-colorpicker.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="./template/Badmannahy/style.css" />
 <link rel="stylesheet" href="./css/BsMultiSelect.css" />
 <script src="./js/jquery.min.js"></script>
-<script src="./js/popper.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>    
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="./js/bootstrap.bundle.min.js"></script>    
 <script type="text/javascript" src="./js/moment/moment-with-locales.js"></script>
 <link rel="stylesheet" href="./css/all.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="./css/bootstrap-datetimepicker.css">
-<script type="text/javascript" src="./js/bootstrap-datetimepicker.js"></script> 
+
+<script src="./js/tempus-dominus.js"></script>
+<link href="./css/tempus-dominus.css" rel="stylesheet">
+<script src="./js/jQuery-provider.js"></script>
+
+
 <script src="./js/ckeditor/ckeditor.js"></script>
 <script src="./js/ckeditor/ckeditor.js"></script>
 <script src="./js/bootstrap-colorpicker.js"></script>
@@ -28,7 +33,7 @@
 ?>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm navbar-light bg-secondary rounded fixed-top">
+<nav class="navbar navbar-expand-sm navbar-light bg-maroon fixed-top">
       <a class="navbar-brand text-white" href="./"><i class="fas fa-home"></i></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -49,7 +54,7 @@ if($n==0) {?>
 <?php } else { ?>
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" id="dropdown<?= $k1 ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $m1['denum'] ?></a>
-                <ul class="dropdown-menu bg-secondary dropright">
+                <ul class="dropdown-menu bg-maroon dropright">
 <?php foreach($menu2 as $k2=>$m2) if($m2['id_tata']==$m1['id'])
 if($m2['denum']=='-') { ?>
                     <li class="dropdown-item dropdown-submenu m-0 p-0"><a class="divider" role="separator" href='#'></a></li>
@@ -62,7 +67,7 @@ if($n!=0) {
 ?>
                     <li class="dropdown-item dropdown-submenu m-0 p-0">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item text-white"><?php echo $m2['denum'] ?></a>
-                        <ul class="dropdown-menu bg-secondary">
+                        <ul class="dropdown-menu bg-maroon">
 <?php foreach($menu3 as $k3=>$m3) if($m3['id_tata']==$m2['id'])
 if($m3['denum']=='-') { ?>
                             <li class="dropdown-item m-0 p-0"><a class="divider" role="separator" href='#'></a></li>
@@ -90,12 +95,12 @@ if($m3['denum']=='-') { ?>
     }
 ?>
 <br /><br />    
-<nav class="navbar fixed-bottom navbar-expand-sm navbar-light bg-secondary">
+<nav class="navbar fixed-bottom navbar-expand-sm navbar-light bg-maroon">
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropup">
             <a class="nav-link dropdown-toggle text-white" href="#" id="dds1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-            <div class="dropdown-menu bg-secondary" aria-labelledby="dds1">
+            <div class="dropdown-menu bg-maroon" aria-labelledby="dds1">
               <a class="dropdown-item text-white" href="./toper-utilizatori-key-id-<?= $_SESSION['userid'] ?>.htm">Change password</a>
               <a class="dropdown-item text-white" href="#">Settings</a>
               <a class="dropdown-item text-white" href="./logout.htm">Logout</a>
@@ -104,7 +109,7 @@ if($m3['denum']=='-') { ?>
 <?php if($ruser['role']==1) { ?>            
           <li class="nav-item dropup">
             <a class="nav-link dropdown-toggle text-white" href="#" id="dds2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Developer</a>
-            <div class="dropdown-menu bg-secondary" aria-labelledby="dds2">
+            <div class="dropdown-menu bg-maroon" aria-labelledby="dds2">
               <a class="dropdown-item text-white" href="tabel-loginmenu.htm">Menu</a>
             </div>
           </li>

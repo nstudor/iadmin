@@ -14,9 +14,9 @@ $stitles=array(
 );
 
 $fontawesome=array(
-    'rights'=>'eye'
+    'rights'=>'eye text-green shadow-maroon'
 );
 
-$inlineSpecials=array('rights'=>'secondary');
+$inlineSpecials=array('rights'=>' bg-navy');
 
 ?>

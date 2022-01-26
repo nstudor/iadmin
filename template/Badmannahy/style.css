@@ -27,11 +27,13 @@ input[type="radio"]:checked + label {
 }
 
 #contextMenu {
-    position: fixed;    
+    position: fixed; 
+    z-index: 50;   
 }
 
 .navbar, .nav-link {
-    padding: 0 .5rem;    
+    padding: 0 .5rem;  
+    z-index: 10000;  
 }
 
 .bg-secondary a.dropdown-item:hover {
@@ -67,3 +69,12 @@ input[type="radio"]:checked + label {
   margin-top: -1px;
 }
     
+
+.tempus-dominus-widget {
+    margin: 0 auto;
+}
+
+.fa-stack {
+    height: 1em!important;
+    line-height: 1em!important;
+ }
