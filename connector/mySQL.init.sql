@@ -2,13 +2,13 @@ DROP TABLE IF EXISTS `login_agenda`;
 CREATE TABLE IF NOT EXISTS `login_agenda` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL DEFAULT 0,
-  `data` date NOT NULL DEFAULT '0000-00-00',
+  `data` date NOT NULL DEFAULT current_timestamp(),
   `ora` int(11) NOT NULL DEFAULT 0,
   `subiect` varchar(250) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `descriere` text CHARACTER SET utf8 NOT NULL DEFAULT '',
   `durata` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 TRUNCATE TABLE `login_agenda`;
 DROP TABLE IF EXISTS `login_chat`;
 CREATE TABLE IF NOT EXISTS `login_chat` (
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `login_chat` (
   KEY `id_user` (`id_user`),
   KEY `id_from` (`id_from`),
   KEY `data` (`data`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 TRUNCATE TABLE `login_chat`;
 DROP TABLE IF EXISTS `login_dashboard`;
 CREATE TABLE IF NOT EXISTS `login_dashboard` (
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `login_dashboard` (
   `deschis` varchar(1) CHARACTER SET utf8 NOT NULL DEFAULT 'Y',
   `vizibil` varchar(1) CHARACTER SET utf8 NOT NULL DEFAULT 'Y',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 TRUNCATE TABLE `login_dashboard`;
 INSERT INTO `login_dashboard` (`id`, `id_user`, `ordine`, `rand`, `marimesm`, `marimelg`, `denumire`, `fisier`, `deschis`, `vizibil`) VALUES
 (1, 1, 1, 1, 6, 5, 'Calendar', 'calendar', 'Y', 'Y'),
@@ -63,17 +63,18 @@ CREATE TABLE IF NOT EXISTS `login_menu` (
   KEY `id_tata` (`id_tata`),
   KEY `ordine` (`ordine`),
   KEY `right` (`right`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 TRUNCATE TABLE `login_menu`;
 INSERT INTO `login_menu` (`id`, `id_tata`, `denum`, `link`, `ordine`, `right`, `icon`) VALUES
-(0, 0, 'ROOT', '#', 0, 'Y', ''),
+(10, 0, 'ROOT', '#', 0, 'Y', ''),
 (1, 0, 'Setari', '', 1, 'N', 'setari'),
-(2, 1, 'Profiluri', 'tabel-roluri', 20, 'N', 'pofile'),
-(3, 1, 'Utilizatori', 'tabel-utilizatori', 10, 'N', 'user'),
-(4, 1, 'Dashboard', 'tabel-dashboard', 30, 'N', 'empty'),
-(5, 1, 'Scurtaturi', 'tabel-shortcuts', 40, 'N', 'empty'),
+(2, 1, 'Profiluri', 'roluri', 20, 'N', 'pofile'),
+(3, 1, 'Utilizatori', 'utilizatori', 10, 'N', 'user'),
+(4, 1, 'Dashboard', 'dashboard', 30, 'N', 'empty'),
+(5, 1, 'Scurtaturi', 'shortcuts', 40, 'N', 'empty'),
 (6, 1, '-', '', 25, 'Y', 'empty'),
-(7, 1, 'Agenda', 'tabel-agenda', 50, 'N', 'empty');
+(7, 1, 'Agenda', 'agenda', 50, 'N', 'empty');
 DROP TABLE IF EXISTS `login_rights`;
 CREATE TABLE IF NOT EXISTS `login_rights` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -91,7 +92,8 @@ CREATE TABLE IF NOT EXISTS `login_rights` (
   PRIMARY KEY (`id`),
   KEY `id_menu` (`id_menu`),
   KEY `id_role` (`id_role`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 TRUNCATE TABLE `login_rights`;
 INSERT INTO `login_rights` (`id`, `id_menu`, `id_role`, `view_right`, `add_right`, `modify_right`, `delete_right`, `details_v`, `details_a`, `details_m`, `details_d`, `details_e`) VALUES
 (1, 2, 1, 'Y', 'Y', 'Y', 'Y', 'rights', 'rights', 'rights', 'rights', ''),
@@ -151,7 +153,8 @@ CREATE TABLE IF NOT EXISTS `login_users` (
   PRIMARY KEY (`id`),
   KEY `role` (`role`),
   KEY `id_firma` (`id_firma`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 TRUNCATE TABLE `login_users`;
 INSERT INTO `login_users` (`id`, `user`, `pass`, `nume`, `role`, `cnp`, `ci`, `telefon`, `fax`, `email`, `functie`, `details`, `mobil`, `sex`, `yahooid`, `id_firma`, `logtime`, `chattime`, `chatroomtime`) VALUES
 (1, '[[USER]]', '[[PASS]]', '[[USER]]', 1, '', '', '', '', '', '', '', '', 'M', '', 2, '2022-01-25 10:07:37', '2022-01-25 12:06:01', '2022-01-25 12:06:01');
@@ -165,3 +168,22 @@ ALTER TABLE `login_rights` ADD FULLTEXT KEY `details_m` (`details_m`);
 ALTER TABLE `login_rights` ADD FULLTEXT KEY `details_d` (`details_d`);
 ALTER TABLE `login_roles` ADD FULLTEXT KEY `rolename` (`rolename`);
 ALTER TABLE `login_users` ADD FULLTEXT KEY `user` (`user`);
+
+UPDATE `login_menu` SET id=0 WHERE id=10;
+ALTER TABLE `login_menu` auto_increment = 1;
+
+CREATE TABLE `login_pages` (
+  `id` int(11) NOT NULL,
+  `slug` varchar(250) NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `content` text NOT NULL,
+  `ordine` int(11) NOT NULL,
+  `public` varchar(1) NOT NULL DEFAULT 'Y'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `login_pages`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `login_pages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;

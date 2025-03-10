@@ -20,18 +20,20 @@
   <link href="./css/tempus-dominus.css" rel="stylesheet">
   <script src="./js/jQuery-provider.js"></script>
   <script src="./js/ckeditor/ckeditor.js"></script>
-  <script src="./js/ckeditor/ckeditor.js"></script>F
+  <script src="./js/ckeditor/ckeditor.js"></script>
   <script src="./js/bootstrap-colorpicker.js"></script>
   <script src="./js/BsMultiSelect.js"></script>
 </head>
 <?php
-if (file_exists('template/' . $APP_TEMPLATE . '/' . $param[0] . '.head.php')) {
-  include('template/' . $APP_TEMPLATE . '/' . $param[0] . '.head.php');
+if (file_exists('template/' . $APP_TEMPLATE . '/' . $scriptPage . '.head.php')) {
+  include('template/' . $APP_TEMPLATE . '/' . $scriptPage . '.head.php');
 }
 ?>
 </head>
 
 <body>
+
+<?php if (isset($_SESSION['userid'])) { ?>
   <nav class="navbar navbar-expand-sm navbar-light bg-maroon fixed-top">
     <a class="navbar-brand text-white" href="./"><i class="fas fa-home"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,11 +95,13 @@ if (file_exists('template/' . $APP_TEMPLATE . '/' . $param[0] . '.head.php')) {
   </nav>
   <div class="row m-0">&nbsp;</div>
   <div class="row m-0">&nbsp;</div>
+  <?php } ?>  
   <?php
-  if (file_exists('template/' . $APP_TEMPLATE . '/' . $param[0] . '.tpl.php')) {
-    include('template/' . $APP_TEMPLATE . '/' . $param[0] . '.tpl.php');
+  if (file_exists('template/' . $APP_TEMPLATE . '/' . $scriptPage . '.tpl.php')) {
+    include('template/' . $APP_TEMPLATE . '/' . $scriptPage . '.tpl.php');
   }
   ?>
+  <?php if (isset($_SESSION['userid'])) { ?>
   <br /><br />
   <nav class="navbar fixed-bottom navbar-expand-sm navbar-light bg-maroon">
     <div class="collapse navbar-collapse">
@@ -114,7 +118,7 @@ if (file_exists('template/' . $APP_TEMPLATE . '/' . $param[0] . '.head.php')) {
           <li class="nav-item dropup">
             <a class="nav-link dropdown-toggle text-white" href="#" id="dds2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Developer</a>
             <div class="dropdown-menu bg-maroon" aria-labelledby="dds2">
-              <a class="dropdown-item text-white" href="tabel-loginmenu.htm">Menu</a>
+              <a class="dropdown-item text-white" href="loginmenu.htm">Menu</a>
             </div>
           </li>
         <?php } ?>
@@ -124,28 +128,6 @@ if (file_exists('template/' . $APP_TEMPLATE . '/' . $param[0] . '.head.php')) {
       </ul>
     </div>
   </nav>
-  <?php /*    
-<?php if($ruser['user']=='stefan') { ?>
-	<a href="./?p=tabel-ihelp" class="logout" style="margin-right:20px"><i class="fa fa-big fa-info-circle"></i></a>
-<?php } ?>
-<?php /*
-<div class="bottom navbar navbar-default">
-<div style="float:right; margin-right:10px;" id="clock">0:00</div>
-</div>
-$('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
-    event.preventDefault(); 
-    event.stopPropagation(); 
-    $(this).parent().addClass('open');
-    var menu = $(this).parent().find("ul");
-    var menupos = menu.offset(); 
-    if ((menupos.left + menu.width()) + 30 > $(window).width()) {
-        var newpos = - menu.width();      
-    } else {
-        var newpos = $(this).parent().width();
-    }
-    menu.css({ left:newpos });
-});
- */ ?>
   <script>
     function clock() {
       $.ajax({
@@ -168,6 +150,7 @@ $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
     });
     $('.color-selector').colorpicker();
   </script>
+<?php } ?>  
 </body>
 
 </html>
