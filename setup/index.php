@@ -26,7 +26,6 @@ session_start();
             <div class="row">
                 <div class="d-none d-sm-block col-sm">&nbsp;</div>
                 <div class="col-sm-10 col-md-8 col-lg-6">
-
                     <?php if (!isset($_POST['s'])) { ?>
                         <form class="needs-validation" action="" method="post">
                             <div class="card">
@@ -66,7 +65,6 @@ session_start();
                                        onclick="$('#card1').slideUp();$('#card2').slideDown()">Next &raquo;</a>
                                 </div>
 
-
                                 <div class="card-body" id="card2">
                                     <label for="dbType">Database type</label>
                                     <select name="s[APP_DB_TYPE]" class="form-control" id="dbType">
@@ -99,12 +97,10 @@ session_start();
                                     <label for="dbPass">Database port</label>
                                     <input name="s[APP_DB_PORT]" type="text" class="form-control" id="dbPass" placeholder=""
                                            value="3306"/>
-
                                     <a href="#" class="btn btn-primary my-2 float-left"
                                        onclick="$('#card1').slideDown();$('#card2').slideUp()">&laquo; Prev</a>
                                     <a href="#" class="btn btn-primary my-2 float-right"
                                        onclick="$('#card2').slideUp();$('#card3').slideDown()">Next &raquo;</a>
-
                                 </div>
                                 <div class="card-body" id="card3">
                                     <label for="iUser">Application admin user</label>
@@ -112,7 +108,6 @@ session_start();
                                     <hr/>
                                     <label for="iPass">User password</label>
                                     <input name="iPass" type="password" class="form-control" id="iPass" placeholder="" value=""/>
-
                                     <a href="#" class="btn btn-primary my-2 float-left"
                                        onclick="$('#card2').slideDown();$('#card3').slideUp()">&laquo; Prev</a>
                                     <button class="btn btn-primary my-2 float-right" type="submit">SET</button>
@@ -121,18 +116,14 @@ session_start();
                         </form>
 <?php
 } else {
-
     $txt = '<?php' . "\r\n";
     foreach ($_POST['s'] as $k => $v) {
         $txt .= '    $' . $k . '="' . $v . '";' . "\r\n";
         $$k = $v;
     }
     $txt .= '?>';
-
     $fileOK = file_put_contents('../settings.ini', $txt);
-
     include('../connector/' . $APP_DB_TYPE . '.con.php');
-
     $dbOK = db_connect();
     if ($dbOK) {
         $dbOK = db_initialize();

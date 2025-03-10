@@ -8,7 +8,6 @@
     typeof define === 'function' && define.amd ? define(['exports', '@popperjs/core'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.tempusDominus = {}, global.Popper));
 })(this, (function (exports, core) { 'use strict';
-
     exports.Unit = void 0;
     (function (Unit) {
         Unit["seconds"] = "seconds";
@@ -404,7 +403,6 @@
             return this.date + (this.isLeapYear ? this.leapLadder : this.nonLeapLadder)[this.month];
         }
     }
-
     class TdError extends Error {
     }
     class ErrorMessages {
@@ -528,7 +526,6 @@
             console.warn(`${this.base} Using a string for date options is not recommended unless you specify an ISO string.`);
         }
     }
-
     // this is not the way I want this to stay but nested classes seemed to blown up once its compiled.
     const NAME = 'tempus-dominus', version = '6.0.0-alpha1', dataKey = 'td';
     /**
@@ -750,7 +747,6 @@
     Namespace.events = new Events();
     Namespace.css = new Css();
     Namespace.errorMessages = new ErrorMessages();
-
     const DefaultOptions = {
         restrictions: {
             minDate: undefined,
@@ -874,7 +870,6 @@
             step: 100,
         },
     ];
-
     /**
      * Provides a collapse functionality to the view changes
      */
@@ -955,7 +950,6 @@
             Number.parseFloat(transitionDelay)) *
             1000);
     };
-
     /**
      *
      */
@@ -1207,7 +1201,6 @@
         ActionTypes["close"] = "close";
         ActionTypes["today"] = "today";
     })(ActionTypes || (ActionTypes = {}));
-
     /**
      * Creates and updates the grid for `date`
      */
@@ -1327,7 +1320,6 @@
             return row;
         }
     }
-
     /**
      * Creates and updates the grid for `month`
      */
@@ -1386,7 +1378,6 @@
             });
         }
     }
-
     class OptionConverter {
         static _mergeOptions(providedOptions, mergeTo) {
             var _a;
@@ -1752,7 +1743,6 @@
             }
         }
     }
-
     class Dates {
         constructor(context) {
             this._dates = [];
@@ -1967,7 +1957,6 @@
             }
         }
     }
-
     /**
      * Creates and updates the grid for `year`
      */
@@ -2031,7 +2020,6 @@
             });
         }
     }
-
     /**
      * Creates and updates the grid for `seconds`
      */
@@ -2110,7 +2098,6 @@
             });
         }
     }
-
     /**
      * Creates the clock display
      */
@@ -2296,7 +2283,6 @@
             return [...top, ...middle, ...bottom];
         }
     }
-
     /**
      * Creates and updates the grid for `hours`
      */
@@ -2345,7 +2331,6 @@
             });
         }
     }
-
     /**
      * Creates and updates the grid for `minutes`
      */
@@ -2396,7 +2381,6 @@
             });
         }
     }
-
     /**
      * Creates and updates the grid for `seconds`
      */
@@ -2441,7 +2425,6 @@
             });
         }
     }
-
     /**
      * Main class for all things display related.
      */
@@ -2934,7 +2917,6 @@
             }
         }
     }
-
     /**
      * Main class for date validation rules based on the options provided.
      */
@@ -3049,7 +3031,6 @@
             return this._context._options.restrictions.enabledHours.find((x) => x === formattedDate);
         }
     }
-
     /**
      * A robust and powerful date/time picker component.
      */
@@ -3446,13 +3427,10 @@
             }, this._options.promptTimeOnDateChangeTransitionDelay);
         }
     }
-
     exports.DateTime = DateTime;
     exports.DefaultOptions = DefaultOptions;
     exports.Namespace = Namespace;
     exports.TempusDominus = TempusDominus;
-
     Object.defineProperty(exports, '__esModule', { value: true });
-
 }));
 //# sourceMappingURL=tempus-dominus.js.map

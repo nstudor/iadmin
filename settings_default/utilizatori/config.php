@@ -52,17 +52,14 @@
             "noShow"=>1,
         ),
     );
-
     $order="";
     $title="Utilizatori";
     $loadmce='yes';
-
     $specials=array('key', 'face');
     $stitles=array(
             'key'=>'Parola',
             'face'=>'Tema grafica'
     );
-
 
     $confdroptext='Stergi utilizatorul';
     $confdropfield='user';

@@ -1,24 +1,19 @@
 (function () {
   'use strict';
-
   var _WINDOW = {};
   var _DOCUMENT = {};
-
   try {
     if (typeof window !== 'undefined') _WINDOW = window;
     if (typeof document !== 'undefined') _DOCUMENT = document;
   } catch (e) {}
-
   var _ref = _WINDOW.navigator || {},
       _ref$userAgent = _ref.userAgent,
       userAgent = _ref$userAgent === void 0 ? '' : _ref$userAgent;
-
   var WINDOW = _WINDOW;
   var DOCUMENT = _DOCUMENT;
   var IS_BROWSER = !!WINDOW.document;
   var IS_DOM = !!DOCUMENT.documentElement && !!DOCUMENT.head && typeof DOCUMENT.addEventListener === 'function' && typeof DOCUMENT.createElement === 'function';
   var IS_IE = ~userAgent.indexOf('MSIE') || ~userAgent.indexOf('Trident/');
-
   var NAMESPACE_IDENTIFIER = '___FONT_AWESOME___';
   var PRODUCTION = function () {
     try {
@@ -27,7 +22,6 @@
       return false;
     }
   }();
-
   function bunker(fn) {
     try {
       fn();
@@ -37,7 +31,6 @@
       }
     }
   }
-
   function _defineProperty(obj, key, value) {
     if (key in obj) {
       Object.defineProperty(obj, key, {
@@ -49,36 +42,29 @@
     } else {
       obj[key] = value;
     }
-
     return obj;
   }
-
   function _objectSpread(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       var ownKeys = Object.keys(source);
-
       if (typeof Object.getOwnPropertySymbols === 'function') {
         ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
           return Object.getOwnPropertyDescriptor(source, sym).enumerable;
         }));
       }
-
       ownKeys.forEach(function (key) {
         _defineProperty(target, key, source[key]);
       });
     }
-
     return target;
   }
-
   var w = WINDOW || {};
   if (!w[NAMESPACE_IDENTIFIER]) w[NAMESPACE_IDENTIFIER] = {};
   if (!w[NAMESPACE_IDENTIFIER].styles) w[NAMESPACE_IDENTIFIER].styles = {};
   if (!w[NAMESPACE_IDENTIFIER].hooks) w[NAMESPACE_IDENTIFIER].hooks = {};
   if (!w[NAMESPACE_IDENTIFIER].shims) w[NAMESPACE_IDENTIFIER].shims = [];
   var namespace = w[NAMESPACE_IDENTIFIER];
-
   function defineIcons(prefix, icons) {
     var params = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
     var _params$skipHooks = params.skipHooks,
@@ -86,16 +72,13 @@
     var normalized = Object.keys(icons).reduce(function (acc, iconName) {
       var icon = icons[iconName];
       var expanded = !!icon.icon;
-
       if (expanded) {
         acc[icon.iconName] = icon.icon;
       } else {
         acc[iconName] = icon;
       }
-
       return acc;
     }, {});
-
     if (typeof namespace.hooks.addPack === 'function' && !skipHooks) {
       namespace.hooks.addPack(prefix, normalized);
     } else {
@@ -108,12 +91,10 @@
      * this as well.
      */
 
-
     if (prefix === 'fas') {
       defineIcons('fa', icons);
     }
   }
-
   var icons = {
     "address-book": [448, 512, [], "f2b9", "M436 160c6.6 0 12-5.4 12-12v-40c0-6.6-5.4-12-12-12h-20V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h320c26.5 0 48-21.5 48-48v-48h20c6.6 0 12-5.4 12-12v-40c0-6.6-5.4-12-12-12h-20v-64h20c6.6 0 12-5.4 12-12v-40c0-6.6-5.4-12-12-12h-20v-64h20zm-68 304H48V48h320v416zM208 256c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm-89.6 128h179.2c12.4 0 22.4-8.6 22.4-19.2v-19.2c0-31.8-30.1-57.6-67.2-57.6-10.8 0-18.7 8-44.8 8-26.9 0-33.4-8-44.8-8-37.1 0-67.2 25.8-67.2 57.6v19.2c0 10.6 10 19.2 22.4 19.2z"],
     "address-card": [576, 512, [], "f2bb", "M528 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm0 400H48V80h480v352zM208 256c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm-89.6 128h179.2c12.4 0 22.4-8.6 22.4-19.2v-19.2c0-31.8-30.1-57.6-67.2-57.6-10.8 0-18.7 8-44.8 8-26.9 0-33.4-8-44.8-8-37.1 0-67.2 25.8-67.2 57.6v19.2c0 10.6 10 19.2 22.4 19.2zM360 320h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm0-64h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm0-64h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8z"],
@@ -268,9 +249,7 @@
     "window-minimize": [512, 512, [], "f2d1", "M480 480H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h448c17.7 0 32 14.3 32 32s-14.3 32-32 32z"],
     "window-restore": [512, 512, [], "f2d2", "M464 0H144c-26.5 0-48 21.5-48 48v48H48c-26.5 0-48 21.5-48 48v320c0 26.5 21.5 48 48 48h320c26.5 0 48-21.5 48-48v-48h48c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-96 464H48V256h320v208zm96-96h-48V144c0-26.5-21.5-48-48-48H144V48h320v320z"]
   };
-
   bunker(function () {
     defineIcons('far', icons);
   });
-
 }());

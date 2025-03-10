@@ -2,78 +2,62 @@ input[type=radio],
 input[type=checkbox] {
     display: none;
 }
-
 input[type="checkbox"] + label {
     font-family: 'Font Awesome 5 Free';
 }
-
 input[type="checkbox"] + label::before {
     content: "\f0c8";
 }
-
 input[type="checkbox"]:checked + label::before {
     content: "\f14a";
 }
-
 
 input[type="radio"] + label {
     padding: 6px 9px;
     border-radius: 6px;
 }
-
 input[type="radio"]:checked + label {
     -webkit-box-shadow: 0 0 6px 2px #D34;
     box-shadow: 0 0 6px 2px #D34;
 }
-
 #contextMenu {
     position: fixed; 
     z-index: 50;   
 }
-
 .navbar, .nav-link {
     padding: 0 .5rem;  
     z-index: 10000;  
 }
-
 .bg-secondary a.dropdown-item:hover {
     color: #16181b!important;
 }
-
 .checksOver input[type="checkbox"] + label {
     padding: 6px 9px;
     border-radius: 6px;
     margin: 3px;
 }
-
 .checksOver input[type="checkbox"] + label::before {
     content: "";
 }
-
 .checksOver input[type="checkbox"]:checked + label::before {
     content: "";
 }
-
 .checksOver input[type="checkbox"]:checked + label {
     -webkit-box-shadow: 0 0 6px 2px #D34;
     box-shadow: 0 0 6px 2px #D34;
 }
-
 .dropdown-submenu {
   position: relative;
 }
-
 .dropdown-submenu .dropdown-menu {
   top: 0;
   left: 100%;
   margin-top: -1px;
 }
     
-
 .tempus-dominus-widget {
     margin: 0 auto;
 }
-
 .fa-stack {
     height: 1em!important;
     line-height: 1em!important;

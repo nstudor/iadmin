@@ -9,8 +9,8 @@
     if(!isset($item[$fields[$_GET['tip']]]))
         db_insert(
             [
-                'id_role'=>$_GET[idu],
-                'id_menu'=>$_GET[idd],
+                'id_role'=>$_GET['idu'],
+                'id_menu'=>$_GET['idd'],
                 $fields[$_GET['tip']]=>'Y'
             ], 'login_rights');
         else

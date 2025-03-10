@@ -2,7 +2,6 @@
     if(!empty($fieldDef['displayLocale'])) {
         setlocale(LC_ALL, $fieldDef['displayLocale']);
     }
-
     echo $fieldValue[0]=='0'?(empty($fieldDef['nodate'])?'N/A':$fieldDef['nodate']):
     (strpos($fieldDef['format'],'%')===false?
     date(             

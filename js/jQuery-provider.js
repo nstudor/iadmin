@@ -1,6 +1,5 @@
 ///<reference src="js/tempus-dominus"/>
 /*global $ */
-
 /*!
   * Tempus Dominus v6.0.0-beta2 (https://getdatepicker.com/)
   * Copyright 2013-2021 [object Object]
@@ -15,18 +14,15 @@ tempusDominus.jQueryInterface = function (option, argument) {
     tempusDominus.jQueryHandleThis(this, option, argument);
   });
 };
-
 tempusDominus.jQueryHandleThis = function (me, option, argument) {
   let data = $(me).data(tempusDominus.Namespace.dataKey);
   if (typeof option === 'object') {
     $.extend({}, tempusDominus.DefaultOptions, option);
   }
-
   if (!data) {
     data = new tempusDominus.TempusDominus($(me)[0], option);
     $(me).data(tempusDominus.Namespace.dataKey, data);
   }
-
   if (typeof option === 'string') {
     if (data[option] === undefined) {
       throw new Error(`No method named "${option}"`);
@@ -43,11 +39,9 @@ tempusDominus.jQueryHandleThis = function (me, option, argument) {
     }
   }
 };
-
 tempusDominus.getSelectorFromElement = function ($element) {
   let selector = $element.data('target'),
     $selector;
-
   if (!selector) {
     selector = $element.attr('href') || '';
     selector = /^#[a-z]/i.test(selector) ? selector : null;
@@ -56,14 +50,11 @@ tempusDominus.getSelectorFromElement = function ($element) {
   if ($selector.length === 0) {
     return $element;
   }
-
   if (!$selector.data(tempusDominus.Namespace.dataKey)) {
     $.extend({}, $selector.data(), $(this).data());
   }
-
   return $selector;
 };
-
 /**
  * ------------------------------------------------------------------------
  * jQuery

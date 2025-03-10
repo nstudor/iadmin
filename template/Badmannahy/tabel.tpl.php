@@ -1,17 +1,15 @@
 <div class="col">
-    <?php if (count($exportTo) > 0) { ?>
+    <?php if (isset($exportTo)) if (count($exportTo) > 0) { ?>
         <button type="button" class="btn btn-secondary float-right" data-toggle="modal" data-target="#filterModal" onclick="goModal('export-countries', 'Export')">
             <i class="fas fa-download"></i>
         </button>
     <?php } ?>
-
     <?php
     if (file_exists("settings/$pag/header.php")) {
         include("settings/$pag/header.php");
     } else {
         echo "<h5>$title</h5>";
     }
-
     $iSpecials = [];
     foreach ($inlineSpecials as $sp => $btn)
         if (in_array($sp, $rcr['details_v']))
@@ -32,7 +30,6 @@
                     <th>&nbsp;</th>
                 <?php } ?>
                 <th width="2%">&nbsp;</th>
-
             </tr>
             <tr class="text-center bg-maroon">
                 <th>
@@ -49,7 +46,6 @@
                 <?php foreach ($fields as $k => $f) { ?>
                     <th>
                         <form action="" method="post" id="ord_<?php echo $k ?>">
-
                             <?php if ($showFilter != 'no') { ?>
                                 <a href="modal.php?p=filter-<?php echo $pag ?>-<?php echo $k ?>" title="Filtrare <?php echo $v ?>"></a>
                                 <i class="fa fa-filter float-left text-<?php echo (isset($_SESSION['filter'][$k]) ? 'orange' : 'white'); ?>" data-toggle="modal" data-target="#filterModal" onclick="goModal('filter-<?php echo $pag ?>-<?php echo $k ?>', 'Filtrare')"></i>
@@ -81,7 +77,7 @@
         <form action="" method="post" id="multiForm" name="multiForm">
             <tbody>
                 <input name="multi" type="hidden" value="yes" />
-                <?php if (count($rows) == 0) { ?>
+                <?php if (isset($rows)) if (count($rows) == 0) { ?>
                     <tr>
                         <td class="text-center" colspan="<?= 2 + count($fields) ?>">
                             <?= showMessage($MESSAGE, 'danger'); ?>
@@ -128,7 +124,6 @@
                                     }
                                     ?></td>
                                 <?php } ?>
-
                                 <?php if (count($iSpecials) > 0) { ?>
                                     <td class="text-center">
                                         <?php foreach ($iSpecials as $sp => $btn) { ?>
@@ -163,16 +158,13 @@
         </form>
     </table>
 </div>
-
 <?php if (!isset($dontshowpages)) { ?>
-
     <ul class="pagination justify-content-center">
         <li class="page-item">
             <a class="page-link" href="./tabel-<?= $param[1] . "-0" . (isset($param[3]) ? "-" . implode("-", array_slice($param, 3)) : '') ?>.htm">
                 <i class="fas fa-angle-double-left pb-1 text-maroon"></i>
             </a>
         </li>
-
         <li class="page-item">
             <a class="page-link" href="./tabel-<?= $param[1] . ($st == 0 ? '-0' : '-' . ($st - 1)) . (isset($param[3]) ? "-" . implode("-", array_slice($param, 3)) : '') ?>.htm">
                 <i class="fas fa-angle-left pb-1 text-maroon"></i>
@@ -199,7 +191,6 @@
                 <i class="fas fa-angle-right pb-1 text-maroon"></i>
             </a>
         </li>
-
         <li class="page-item">
             <a class="page-link" href="./tabel-<?= $param[1] . '-' . $np . (isset($param[3]) ? "-" . implode("-", array_slice($param, 3)) : '') ?>.htm">
                 <i class="fas fa-angle-double-right pb-1 text-maroon"></i>
@@ -207,9 +198,7 @@
         </li>
     </ul>
 <?php } ?>
-
 <?php if (file_exists("settings/$pag/bottom.php")) include("settings/$pag/bottom.php"); ?>
-
 <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -224,7 +213,6 @@
         </div>
     </div>
 </div>
-
 <div id="contextMenu" class="card clearfix" style="display:none">
     <div class="card-header bg-secondary text-white">
         <span class="panel-info"></span>
@@ -239,10 +227,8 @@
         </div>
     </div>
 </div>
-
 <script type="text/javascript">
     $(function() {
-
         $("body").on("contextmenu", ".cell", function(e) {
             $("#contextMenu .panel-info").html('Editare ' + $(this).attr("title"));
             $("#contextMenu .panel-data").html('<i class="fa fa-spinner fa-pulse fa-2x"></i>');
@@ -250,7 +236,6 @@
             mx = e.clientX;
             wx = $(window).width();
             if (mx > wx * 0.7) mx = wx * 0.7 - 5;
-
             $("#contextMenu").css({
                 display: "block",
                 left: mx,
@@ -263,14 +248,11 @@
                 $("#contextMenu .panel-submit").slideDown();
                 $("#contextMenu .panel-data").html(msg);
             });
-
             return false;
         });
-
         $("#contextMenu").on("click", ".fa-times", function() {
             $("#contextMenu").hide();
         });
-
     });
 
     function salveaza() {
@@ -292,11 +274,9 @@
 
     function goModal(l, t, s = '') {
         $('#filterModalTitle').html(t);
-
         $('#filterModal .modal-dialog').removeClass('modal-lg').removeClass('modal-sm');
         if (s != '')
             $('#filterModal .modal-dialog').addClass('modal-' + s);
-
         $('#filterModal .modal-body').html('<i class="fa fa-spinner fa-pulse fa-2x"></i>');
         $.ajax({
             url: "ajax/modal.php?p=" + l,
@@ -308,11 +288,9 @@
     function postModal(l, t, p, s = '') {
         $('#filterModalTitle').html(t);
         $('#filterModal .modal-body').html('<i class="fa fa-spinner fa-pulse fa-2x"></i>');
-
         $('#filterModal .modal-dialog').removeClass('modal-lg').removeClass('modal-sm');
         if (s != '')
             $('#filterModal .modal-dialog').addClass('modal-' + s);
-
         $.post("ajax/modal.php?p=" + l, p)
             .done(function(msg) {
                 $('#filterModal .modal-body').html(msg);

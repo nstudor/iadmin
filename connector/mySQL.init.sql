@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS `login_agenda`;
-
 CREATE TABLE IF NOT EXISTS `login_agenda` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL DEFAULT 0,
@@ -10,11 +9,8 @@ CREATE TABLE IF NOT EXISTS `login_agenda` (
   `durata` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 TRUNCATE TABLE `login_agenda`;
-
 DROP TABLE IF EXISTS `login_chat`;
-
 CREATE TABLE IF NOT EXISTS `login_chat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL DEFAULT 0,
@@ -27,11 +23,8 @@ CREATE TABLE IF NOT EXISTS `login_chat` (
   KEY `id_from` (`id_from`),
   KEY `data` (`data`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 TRUNCATE TABLE `login_chat`;
-
 DROP TABLE IF EXISTS `login_dashboard`;
-
 CREATE TABLE IF NOT EXISTS `login_dashboard` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL DEFAULT 0,
@@ -45,26 +38,19 @@ CREATE TABLE IF NOT EXISTS `login_dashboard` (
   `vizibil` varchar(1) CHARACTER SET utf8 NOT NULL DEFAULT 'Y',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
 TRUNCATE TABLE `login_dashboard`;
-
 INSERT INTO `login_dashboard` (`id`, `id_user`, `ordine`, `rand`, `marimesm`, `marimelg`, `denumire`, `fisier`, `deschis`, `vizibil`) VALUES
 (1, 1, 1, 1, 6, 5, 'Calendar', 'calendar', 'Y', 'Y'),
 (2, 1, 2, 1, 6, 7, 'Bookmarks', 'shortcuts', 'Y', 'Y');
-
 DROP TABLE IF EXISTS `login_help`;
-
 CREATE TABLE IF NOT EXISTS `login_help` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titlu` varchar(250) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `continut` longtext CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 TRUNCATE TABLE `login_help`;
-
 DROP TABLE IF EXISTS `login_menu`;
-
 CREATE TABLE IF NOT EXISTS `login_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_tata` int(11) NOT NULL DEFAULT 0,
@@ -78,9 +64,7 @@ CREATE TABLE IF NOT EXISTS `login_menu` (
   KEY `ordine` (`ordine`),
   KEY `right` (`right`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
 TRUNCATE TABLE `login_menu`;
-
 INSERT INTO `login_menu` (`id`, `id_tata`, `denum`, `link`, `ordine`, `right`, `icon`) VALUES
 (0, 0, 'ROOT', '#', 0, 'Y', ''),
 (1, 0, 'Setari', '', 1, 'N', 'setari'),
@@ -90,9 +74,7 @@ INSERT INTO `login_menu` (`id`, `id_tata`, `denum`, `link`, `ordine`, `right`, `
 (5, 1, 'Scurtaturi', 'tabel-shortcuts', 40, 'N', 'empty'),
 (6, 1, '-', '', 25, 'Y', 'empty'),
 (7, 1, 'Agenda', 'tabel-agenda', 50, 'N', 'empty');
-
 DROP TABLE IF EXISTS `login_rights`;
-
 CREATE TABLE IF NOT EXISTS `login_rights` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_menu` int(11) NOT NULL DEFAULT 0,
@@ -110,9 +92,7 @@ CREATE TABLE IF NOT EXISTS `login_rights` (
   KEY `id_menu` (`id_menu`),
   KEY `id_role` (`id_role`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
 TRUNCATE TABLE `login_rights`;
-
 INSERT INTO `login_rights` (`id`, `id_menu`, `id_role`, `view_right`, `add_right`, `modify_right`, `delete_right`, `details_v`, `details_a`, `details_m`, `details_d`, `details_e`) VALUES
 (1, 2, 1, 'Y', 'Y', 'Y', 'Y', 'rights', 'rights', 'rights', 'rights', ''),
 (2, 3, 1, 'Y', 'Y', 'Y', 'Y', 'key', 'key', 'key', 'key', ''),
@@ -121,22 +101,16 @@ INSERT INTO `login_rights` (`id`, `id_menu`, `id_role`, `view_right`, `add_right
 (5, 4, 1, 'Y', 'Y', 'Y', 'Y', '', '', '', '', ''),
 (6, 5, 1, 'Y', 'Y', 'Y', 'Y', '', '', '', '', ''),
 (7, 7, 1, 'Y', 'Y', 'Y', 'Y', 'details', 'details', 'details', 'details', '');
-
 DROP TABLE IF EXISTS `login_roles`;
-
 CREATE TABLE IF NOT EXISTS `login_roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `rolename` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
 TRUNCATE TABLE `login_roles`;
-
 INSERT INTO `login_roles` (`id`, `rolename`) VALUES
 (1, 'Developer - Full access');
-
 DROP TABLE IF EXISTS `login_shortcuts`;
-
 CREATE TABLE IF NOT EXISTS `login_shortcuts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL DEFAULT 0,
@@ -152,11 +126,8 @@ CREATE TABLE IF NOT EXISTS `login_shortcuts` (
   `newtab` varchar(1) CHARACTER SET utf8 NOT NULL DEFAULT 'N',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 TRUNCATE TABLE `login_shortcuts`;
-
 DROP TABLE IF EXISTS `login_users`;
-
 CREATE TABLE IF NOT EXISTS `login_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` varchar(32) CHARACTER SET utf8 NOT NULL DEFAULT '',
@@ -181,28 +152,16 @@ CREATE TABLE IF NOT EXISTS `login_users` (
   KEY `role` (`role`),
   KEY `id_firma` (`id_firma`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
 TRUNCATE TABLE `login_users`;
-
 INSERT INTO `login_users` (`id`, `user`, `pass`, `nume`, `role`, `cnp`, `ci`, `telefon`, `fax`, `email`, `functie`, `details`, `mobil`, `sex`, `yahooid`, `id_firma`, `logtime`, `chattime`, `chatroomtime`) VALUES
 (1, '[[USER]]', '[[PASS]]', '[[USER]]', 1, '', '', '', '', '', '', '', '', 'M', '', 2, '2022-01-25 10:07:37', '2022-01-25 12:06:01', '2022-01-25 12:06:01');
-
 ALTER TABLE `login_rights` ADD FULLTEXT KEY `view_right` (`view_right`);
-
 ALTER TABLE `login_rights` ADD FULLTEXT KEY `add_right` (`add_right`);
-
 ALTER TABLE `login_rights` ADD FULLTEXT KEY `modify_right` (`modify_right`);
-
 ALTER TABLE `login_rights` ADD FULLTEXT KEY `delete_right` (`delete_right`);
-
 ALTER TABLE `login_rights` ADD FULLTEXT KEY `details_v` (`details_v`);
-
 ALTER TABLE `login_rights` ADD FULLTEXT KEY `details_a` (`details_a`);
-
 ALTER TABLE `login_rights` ADD FULLTEXT KEY `details_m` (`details_m`);
-
 ALTER TABLE `login_rights` ADD FULLTEXT KEY `details_d` (`details_d`);
-
 ALTER TABLE `login_roles` ADD FULLTEXT KEY `rolename` (`rolename`);
-
 ALTER TABLE `login_users` ADD FULLTEXT KEY `user` (`user`);

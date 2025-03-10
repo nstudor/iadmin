@@ -1,5 +1,4 @@
 <?php
-
 $tabel = "login_shortcuts";
 $fields = array(
     'id_user' => array(
@@ -49,7 +48,6 @@ $fields = array(
         'fatype' => 'r,r'
     ),
 );
-
 $order = "";
 $title = "Scurtaturi";
 ?>

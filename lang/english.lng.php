@@ -1,5 +1,4 @@
 <?php
-
 $_LNG = [
     'language' => 'English',
     'sign_in_title' => 'Sign in',

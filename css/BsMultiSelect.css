@@ -39,7 +39,6 @@ ul.form-control.form-control-lg {
 ul.form-control.form-control-lg input {
   font-size: 1.25rem;
 }
-
 .was-validated ul.form-control:valid, ul.form-control.is-valid {
   border-color: #28a745;
 }
@@ -47,7 +46,6 @@ ul.form-control.form-control-lg input {
   border-color: #28a745;
   box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
-
 .was-validated ul.form-control:invalid, ul.form-control.is-invalid {
   border-color: #dc3545;
 }
@@ -55,9 +53,7 @@ ul.form-control.form-control-lg input {
   border-color: #dc3545;
   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
 }
-
 ul.dropdown-menu li .custom-control-input.disabled ~ .custom-control-label {
   color: #6c757d;
 }
-
 /*# sourceMappingURL=BsMultiSelect.css.map */

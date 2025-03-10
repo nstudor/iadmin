@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Parameters 
  * values : Values of the case / switch Ex: array('Y','N'); (or comma separated string : 'Y,N')
@@ -11,24 +12,22 @@
  *          YesNoCircleCheck
  *          YesNoSquareCheck
  * fatype : Fontawesome type (s - Solid, r - reversed ,l - light *PRO)
-*/
+ */
+if (!empty($fieldDef['template'])) include('awesomecase/' . $fieldDef['template'] . '.tpl.type.php');
 
-    if(!empty($fieldDef['template'])) include('awesomecase/'.$fieldDef['template'].'.tpl.type.php');
-    
-    if(!is_array($fieldDef['values'])) $fieldDef['values'] = explode(',', $fieldDef['values']);
-    if(!is_array($fieldDef['chars'])) $fieldDef['chars'] = explode(',', $fieldDef['chars']);
-    if(!is_array($fieldDef['colors'])) $fieldDef['colors'] = explode(',', $fieldDef['colors']);
-    if(!is_array($fieldDef['classes'])) $fieldDef['classes'] = explode(',', $fieldDef['classes']);
-    if(!is_array($fieldDef['fatype'])) $fieldDef['fatype'] = explode(',', $fieldDef['fatype']);
-        
-    foreach($fieldDef['values'] as $k=>$v) {
-        $fieldDef['t'][$v]=$fieldDef['chars'][$k];
-        $fieldDef['c'][$v]=$fieldDef['colors'][$k];
-        $fieldDef['s'][$v]=$fieldDef['classes'][$k];
-        $fieldDef['f'][$v]=$fieldDef['fatype'][$k];
-    }
-    
-    echo '<i class="fa'.$fieldDef['f'][$fieldValue].' fa-'.$fieldDef['t'][$fieldValue].' '.$fieldDef['s'][$fieldValue].'" '.
-            (empty($fieldDef['c'][$fieldValue])?'':' style="color: '.$fieldDef['c'][$fieldValue].'"').
-            '></i>';
-?>
+if (!is_array($fieldDef['values'])) $fieldDef['values'] = explode(',', $fieldDef['values']);
+if (!is_array($fieldDef['chars'])) $fieldDef['chars'] = explode(',', $fieldDef['chars']);
+if (!is_array($fieldDef['colors'])) $fieldDef['colors'] = explode(',', $fieldDef['colors']);
+if (!is_array($fieldDef['classes'])) $fieldDef['classes'] = explode(',', $fieldDef['classes']);
+if (!is_array($fieldDef['fatype'])) $fieldDef['fatype'] = explode(',', $fieldDef['fatype']);
+
+foreach ($fieldDef['values'] as $k => $v) {
+    $fieldDef['t'][$v] = $fieldDef['chars'][$k];
+    $fieldDef['c'][$v] = $fieldDef['colors'][$k];
+    $fieldDef['s'][$v] = $fieldDef['classes'][$k];
+    $fieldDef['f'][$v] = $fieldDef['fatype'][$k];
+}
+
+echo '<i class="fa' . $fieldDef['f'][$fieldValue] . ' fa-' . $fieldDef['t'][$fieldValue] . ' ' . $fieldDef['s'][$fieldValue] . '" ' .
+    (empty($fieldDef['c'][$fieldValue]) ? '' : ' style="color: ' . $fieldDef['c'][$fieldValue] . '"') .
+    '></i>';

@@ -22,8 +22,6 @@
 <?php } ?>
 </div>
 <?php } ?>
-
-
 <script type="text/javascript">
 $('.dashboard i').click(function() {
     x=$(this).parent().parent();

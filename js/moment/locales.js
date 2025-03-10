@@ -4,9 +4,7 @@
    typeof define === 'function' && define.amd ? define(['../moment'], factory) :
    factory(global.moment)
 }(this, (function (moment) { 'use strict';
-
     //! moment.js locale configuration
-
     moment.defineLocale('af', {
         months : 'Januarie_Februarie_Maart_April_Mei_Junie_Julie_Augustus_September_Oktober_November_Desember'.split('_'),
         monthsShort : 'Jan_Feb_Mrt_Apr_Mei_Jun_Jul_Aug_Sep_Okt_Nov_Des'.split('_'),
@@ -65,9 +63,7 @@
             doy : 4  // Die week wat die 4de Januarie bevat is die eerste week van die jaar.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('ar-dz', {
         months : 'جانفي_فيفري_مارس_أفريل_ماي_جوان_جويلية_أوت_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
         monthsShort : 'جانفي_فيفري_مارس_أفريل_ماي_جوان_جويلية_أوت_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
@@ -112,9 +108,7 @@
             doy : 4  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('ar-kw', {
         months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
         monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
@@ -159,9 +153,7 @@
             doy : 12  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var symbolMap = {
         '1': '1',
         '2': '2',
@@ -205,7 +197,6 @@
         'نوفمبر',
         'ديسمبر'
     ];
-
     moment.defineLocale('ar-ly', {
         months : months,
         monthsShort : months,
@@ -269,9 +260,7 @@
             doy : 12  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('ar-ma', {
         months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
         monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
@@ -316,9 +305,7 @@
             doy : 12  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var symbolMap$1 = {
         '1': '١',
         '2': '٢',
@@ -342,7 +329,6 @@
         '٩': '9',
         '٠': '0'
     };
-
     moment.defineLocale('ar-sa', {
         months : 'يناير_فبراير_مارس_أبريل_مايو_يونيو_يوليو_أغسطس_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
         monthsShort : 'يناير_فبراير_مارس_أبريل_مايو_يونيو_يوليو_أغسطس_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
@@ -408,9 +394,7 @@
             doy : 6  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('ar-tn', {
         months: 'جانفي_فيفري_مارس_أفريل_ماي_جوان_جويلية_أوت_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
         monthsShort: 'جانفي_فيفري_مارس_أفريل_ماي_جوان_جويلية_أوت_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
@@ -455,9 +439,7 @@
             doy: 4 // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var symbolMap$2 = {
         '1': '١',
         '2': '٢',
@@ -512,7 +494,6 @@
         'نوفمبر',
         'ديسمبر'
     ];
-
     moment.defineLocale('ar', {
         months : months$1,
         monthsShort : months$1,
@@ -578,9 +559,7 @@
             doy : 12  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var suffixes = {
         1: '-inci',
         5: '-inci',
@@ -601,7 +580,6 @@
         60: '-ıncı',
         90: '-ıncı'
     };
-
     moment.defineLocale('az', {
         months : 'yanvar_fevral_mart_aprel_may_iyun_iyul_avqust_sentyabr_oktyabr_noyabr_dekabr'.split('_'),
         monthsShort : 'yan_fev_mar_apr_may_iyn_iyl_avq_sen_okt_noy_dek'.split('_'),
@@ -671,9 +649,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     function plural(word, num) {
         var forms = word.split('_');
         return num % 10 === 1 && num % 100 !== 11 ? forms[0] : (num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20) ? forms[1] : forms[2]);
@@ -697,7 +673,6 @@
             return number + ' ' + plural(format[key], +number);
         }
     }
-
     moment.defineLocale('be', {
         months : {
             format: 'студзеня_лютага_сакавіка_красавіка_траўня_чэрвеня_ліпеня_жніўня_верасня_кастрычніка_лістапада_снежня'.split('_'),
@@ -791,9 +766,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('bg', {
         months : 'януари_февруари_март_април_май_юни_юли_август_септември_октомври_ноември_декември'.split('_'),
         monthsShort : 'янр_фев_мар_апр_май_юни_юли_авг_сеп_окт_ное_дек'.split('_'),
@@ -869,9 +842,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('bm', {
         months : 'Zanwuyekalo_Fewuruyekalo_Marisikalo_Awirilikalo_Mɛkalo_Zuwɛnkalo_Zuluyekalo_Utikalo_Sɛtanburukalo_ɔkutɔburukalo_Nowanburukalo_Desanburukalo'.split('_'),
         monthsShort : 'Zan_Few_Mar_Awi_Mɛ_Zuw_Zul_Uti_Sɛt_ɔku_Now_Des'.split('_'),
@@ -915,9 +886,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var symbolMap$3 = {
         '1': '১',
         '2': '২',
@@ -942,7 +911,6 @@
         '৯': '9',
         '০': '0'
     };
-
     moment.defineLocale('bn', {
         months : 'জানুয়ারী_ফেব্রুয়ারি_মার্চ_এপ্রিল_মে_জুন_জুলাই_আগস্ট_সেপ্টেম্বর_অক্টোবর_নভেম্বর_ডিসেম্বর'.split('_'),
         monthsShort : 'জানু_ফেব_মার্চ_এপ্র_মে_জুন_জুল_আগ_সেপ্ট_অক্টো_নভে_ডিসে'.split('_'),
@@ -1022,9 +990,7 @@
             doy : 6  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var symbolMap$4 = {
         '1': '༡',
         '2': '༢',
@@ -1049,7 +1015,6 @@
         '༩': '9',
         '༠': '0'
     };
-
     moment.defineLocale('bo', {
         months : 'ཟླ་བ་དང་པོ_ཟླ་བ་གཉིས་པ_ཟླ་བ་གསུམ་པ_ཟླ་བ་བཞི་པ_ཟླ་བ་ལྔ་པ_ཟླ་བ་དྲུག་པ_ཟླ་བ་བདུན་པ_ཟླ་བ་བརྒྱད་པ_ཟླ་བ་དགུ་པ_ཟླ་བ་བཅུ་པ_ཟླ་བ་བཅུ་གཅིག་པ_ཟླ་བ་བཅུ་གཉིས་པ'.split('_'),
         monthsShort : 'ཟླ་བ་དང་པོ_ཟླ་བ་གཉིས་པ_ཟླ་བ་གསུམ་པ_ཟླ་བ་བཞི་པ_ཟླ་བ་ལྔ་པ_ཟླ་བ་དྲུག་པ_ཟླ་བ་བདུན་པ_ཟླ་བ་བརྒྱད་པ_ཟླ་བ་དགུ་པ_ཟླ་བ་བཅུ་པ_ཟླ་བ་བཅུ་གཅིག་པ_ཟླ་བ་བཅུ་གཉིས་པ'.split('_'),
@@ -1129,9 +1094,7 @@
             doy : 6  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     function relativeTimeWithMutation(number, withoutSuffix, key) {
         var format = {
             'mm': 'munutenn',
@@ -1175,7 +1138,6 @@
         }
         return mutationTable[text.charAt(0)] + text.substring(1);
     }
-
     moment.defineLocale('br', {
         months : 'Genver_C\'hwevrer_Meurzh_Ebrel_Mae_Mezheven_Gouere_Eost_Gwengolo_Here_Du_Kerzu'.split('_'),
         monthsShort : 'Gen_C\'hwe_Meu_Ebr_Mae_Eve_Gou_Eos_Gwe_Her_Du_Ker'.split('_'),
@@ -1225,9 +1187,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     function translate(number, withoutSuffix, key) {
         var result = number + ' ';
         switch (key) {
@@ -1289,7 +1249,6 @@
                 return result;
         }
     }
-
     moment.defineLocale('bs', {
         months : 'januar_februar_mart_april_maj_juni_juli_august_septembar_oktobar_novembar_decembar'.split('_'),
         monthsShort : 'jan._feb._mar._apr._maj._jun._jul._aug._sep._okt._nov._dec.'.split('_'),
@@ -1364,9 +1323,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('ca', {
         months : {
             standalone: 'gener_febrer_març_abril_maig_juny_juliol_agost_setembre_octubre_novembre_desembre'.split('_'),
@@ -1440,9 +1397,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var months$2 = 'leden_únor_březen_duben_květen_červen_červenec_srpen_září_říjen_listopad_prosinec'.split('_'),
         monthsShort = 'led_úno_bře_dub_kvě_čvn_čvc_srp_zář_říj_lis_pro'.split('_');
     function plural$1(n) {
@@ -1507,7 +1462,6 @@
                 break;
         }
     }
-
     moment.defineLocale('cs', {
         months : months$2,
         monthsShort : monthsShort,
@@ -1607,9 +1561,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('cv', {
         months : 'кӑрлач_нарӑс_пуш_ака_май_ҫӗртме_утӑ_ҫурла_авӑн_юпа_чӳк_раштав'.split('_'),
         monthsShort : 'кӑр_нар_пуш_ака_май_ҫӗр_утӑ_ҫур_авн_юпа_чӳк_раш'.split('_'),
@@ -1658,9 +1610,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('cy', {
         months: 'Ionawr_Chwefror_Mawrth_Ebrill_Mai_Mehefin_Gorffennaf_Awst_Medi_Hydref_Tachwedd_Rhagfyr'.split('_'),
         monthsShort: 'Ion_Chwe_Maw_Ebr_Mai_Meh_Gor_Aws_Med_Hyd_Tach_Rhag'.split('_'),
@@ -1726,9 +1676,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('da', {
         months : 'januar_februar_marts_april_maj_juni_juli_august_september_oktober_november_december'.split('_'),
         monthsShort : 'jan_feb_mar_apr_maj_jun_jul_aug_sep_okt_nov_dec'.split('_'),
@@ -1774,9 +1722,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     function processRelativeTime(number, withoutSuffix, key, isFuture) {
         var format = {
             'm': ['eine Minute', 'einer Minute'],
@@ -1790,7 +1736,6 @@
         };
         return withoutSuffix ? format[key][0] : format[key][1];
     }
-
     moment.defineLocale('de-at', {
         months : 'Jänner_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
         monthsShort : 'Jän._Feb._März_Apr._Mai_Juni_Juli_Aug._Sep._Okt._Nov._Dez.'.split('_'),
@@ -1838,9 +1783,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     function processRelativeTime$1(number, withoutSuffix, key, isFuture) {
         var format = {
             'm': ['eine Minute', 'einer Minute'],
@@ -1854,7 +1797,6 @@
         };
         return withoutSuffix ? format[key][0] : format[key][1];
     }
-
     moment.defineLocale('de-ch', {
         months : 'Januar_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
         monthsShort : 'Jan._Feb._März_Apr._Mai_Juni_Juli_Aug._Sep._Okt._Nov._Dez.'.split('_'),
@@ -1902,9 +1844,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     function processRelativeTime$2(number, withoutSuffix, key, isFuture) {
         var format = {
             'm': ['eine Minute', 'einer Minute'],
@@ -1918,7 +1858,6 @@
         };
         return withoutSuffix ? format[key][0] : format[key][1];
     }
-
     moment.defineLocale('de', {
         months : 'Januar_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
         monthsShort : 'Jan._Feb._März_Apr._Mai_Juni_Juli_Aug._Sep._Okt._Nov._Dez.'.split('_'),
@@ -1966,9 +1905,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var months$3 = [
         'ޖެނުއަރީ',
         'ފެބްރުއަރީ',
@@ -1991,7 +1928,6 @@
         'ހުކުރު',
         'ހޮނިހިރު'
     ];
-
     moment.defineLocale('dv', {
         months : months$3,
         monthsShort : months$3,
@@ -1999,7 +1935,6 @@
         weekdaysShort : weekdays,
         weekdaysMin : 'އާދި_ހޯމަ_އަން_ބުދަ_ބުރާ_ހުކު_ހޮނި'.split('_'),
         longDateFormat : {
-
             LT : 'HH:mm',
             LTS : 'HH:mm:ss',
             L : 'D/M/YYYY',
@@ -2053,13 +1988,10 @@
             doy : 12  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     function isFunction(input) {
         return input instanceof Function || Object.prototype.toString.call(input) === '[object Function]';
     }
-
     //! moment.js locale configuration
-
     moment.defineLocale('el', {
         monthsNominativeEl : 'Ιανουάριος_Φεβρουάριος_Μάρτιος_Απρίλιος_Μάιος_Ιούνιος_Ιούλιος_Αύγουστος_Σεπτέμβριος_Οκτώβριος_Νοέμβριος_Δεκέμβριος'.split('_'),
         monthsGenitiveEl : 'Ιανουαρίου_Φεβρουαρίου_Μαρτίου_Απριλίου_Μαΐου_Ιουνίου_Ιουλίου_Αυγούστου_Σεπτεμβρίου_Οκτωβρίου_Νοεμβρίου_Δεκεμβρίου'.split('_'),
@@ -2141,9 +2073,7 @@
             doy : 4  // The week that contains Jan 4st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('en-au', {
         months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
         monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -2196,9 +2126,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('en-ca', {
         months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
         monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -2247,9 +2175,7 @@
             return number + output;
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('en-gb', {
         months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
         monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -2302,9 +2228,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('en-ie', {
         months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
         monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -2357,9 +2281,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('en-il', {
         months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
         monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -2407,9 +2329,7 @@
             return number + output;
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('en-nz', {
         months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
         monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -2462,9 +2382,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('eo', {
         months : 'januaro_februaro_marto_aprilo_majo_junio_julio_aŭgusto_septembro_oktobro_novembro_decembro'.split('_'),
         monthsShort : 'jan_feb_mar_apr_maj_jun_jul_aŭg_sep_okt_nov_dec'.split('_'),
@@ -2521,15 +2439,11 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_'),
         monthsShort$1 = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
-
     var monthsParse = [/^ene/i, /^feb/i, /^mar/i, /^abr/i, /^may/i, /^jun/i, /^jul/i, /^ago/i, /^sep/i, /^oct/i, /^nov/i, /^dic/i];
     var monthsRegex = /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre|ene\.?|feb\.?|mar\.?|abr\.?|may\.?|jun\.?|jul\.?|ago\.?|sep\.?|oct\.?|nov\.?|dic\.?)/i;
-
     moment.defineLocale('es-do', {
         months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
         monthsShort : function (m, format) {
@@ -2601,12 +2515,9 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var monthsShortDot$1 = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_'),
         monthsShort$2 = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
-
     moment.defineLocale('es-us', {
         months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
         monthsShort : function (m, format) {
@@ -2672,15 +2583,11 @@
             doy : 6  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var monthsShortDot$2 = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_'),
         monthsShort$3 = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
-
     var monthsParse$1 = [/^ene/i, /^feb/i, /^mar/i, /^abr/i, /^may/i, /^jun/i, /^jul/i, /^ago/i, /^sep/i, /^oct/i, /^nov/i, /^dic/i];
     var monthsRegex$1 = /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre|ene\.?|feb\.?|mar\.?|abr\.?|may\.?|jun\.?|jul\.?|ago\.?|sep\.?|oct\.?|nov\.?|dic\.?)/i;
-
     moment.defineLocale('es', {
         months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
         monthsShort : function (m, format) {
@@ -2752,9 +2659,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     function processRelativeTime$3(number, withoutSuffix, key, isFuture) {
         var format = {
             's' : ['mõne sekundi', 'mõni sekund', 'paar sekundit'],
@@ -2774,7 +2679,6 @@
         }
         return isFuture ? format[key][0] : format[key][1];
     }
-
     moment.defineLocale('et', {
         months        : 'jaanuar_veebruar_märts_aprill_mai_juuni_juuli_august_september_oktoober_november_detsember'.split('_'),
         monthsShort   : 'jaan_veebr_märts_apr_mai_juuni_juuli_aug_sept_okt_nov_dets'.split('_'),
@@ -2820,9 +2724,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('eu', {
         months : 'urtarrila_otsaila_martxoa_apirila_maiatza_ekaina_uztaila_abuztua_iraila_urria_azaroa_abendua'.split('_'),
         monthsShort : 'urt._ots._mar._api._mai._eka._uzt._abu._ira._urr._aza._abe.'.split('_'),
@@ -2874,9 +2776,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var symbolMap$5 = {
         '1': '۱',
         '2': '۲',
@@ -2900,7 +2800,6 @@
         '۹': '9',
         '۰': '0'
     };
-
     moment.defineLocale('fa', {
         months : 'ژانویه_فوریه_مارس_آوریل_مه_ژوئن_ژوئیه_اوت_سپتامبر_اکتبر_نوامبر_دسامبر'.split('_'),
         monthsShort : 'ژانویه_فوریه_مارس_آوریل_مه_ژوئن_ژوئیه_اوت_سپتامبر_اکتبر_نوامبر_دسامبر'.split('_'),
@@ -2968,9 +2867,7 @@
             doy : 12 // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var numbersPast = 'nolla yksi kaksi kolme neljä viisi kuusi seitsemän kahdeksan yhdeksän'.split(' '),
         numbersFuture = [
             'nolla', 'yhden', 'kahden', 'kolmen', 'neljän', 'viiden', 'kuuden',
@@ -3015,7 +2912,6 @@
     function verbalNumber(number, isFuture) {
         return number < 10 ? (isFuture ? numbersFuture[number] : numbersPast[number]) : number;
     }
-
     moment.defineLocale('fi', {
         months : 'tammikuu_helmikuu_maaliskuu_huhtikuu_toukokuu_kesäkuu_heinäkuu_elokuu_syyskuu_lokakuu_marraskuu_joulukuu'.split('_'),
         monthsShort : 'tammi_helmi_maalis_huhti_touko_kesä_heinä_elo_syys_loka_marras_joulu'.split('_'),
@@ -3065,9 +2961,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('fo', {
         months : 'januar_februar_mars_apríl_mai_juni_juli_august_september_oktober_november_desember'.split('_'),
         monthsShort : 'jan_feb_mar_apr_mai_jun_jul_aug_sep_okt_nov_des'.split('_'),
@@ -3113,9 +3007,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('fr-ca', {
         months : 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
         monthsShort : 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
@@ -3167,7 +3059,6 @@
                 case 'DDD':
                 case 'd':
                     return number + (number === 1 ? 'er' : 'e');
-
                 // Words with feminine grammatical gender: semaine
                 case 'w':
                 case 'W':
@@ -3175,9 +3066,7 @@
             }
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('fr-ch', {
         months : 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
         monthsShort : 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
@@ -3229,7 +3118,6 @@
                 case 'DDD':
                 case 'd':
                     return number + (number === 1 ? 'er' : 'e');
-
                 // Words with feminine grammatical gender: semaine
                 case 'w':
                 case 'W':
@@ -3241,9 +3129,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('fr', {
         months : 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
         monthsShort : 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
@@ -3292,7 +3178,6 @@
                 // See https://github.com/moment/moment/issues/3375
                 case 'D':
                     return number + (number === 1 ? 'er' : '');
-
                 // Words with masculine grammatical gender: mois, trimestre, jour
                 default:
                 case 'M':
@@ -3300,7 +3185,6 @@
                 case 'DDD':
                 case 'd':
                     return number + (number === 1 ? 'er' : 'e');
-
                 // Words with feminine grammatical gender: semaine
                 case 'w':
                 case 'W':
@@ -3312,12 +3196,9 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var monthsShortWithDots = 'jan._feb._mrt._apr._mai_jun._jul._aug._sep._okt._nov._des.'.split('_'),
         monthsShortWithoutDots = 'jan_feb_mrt_apr_mai_jun_jul_aug_sep_okt_nov_des'.split('_');
-
     moment.defineLocale('fy', {
         months : 'jannewaris_febrewaris_maart_april_maaie_juny_july_augustus_septimber_oktober_novimber_desimber'.split('_'),
         monthsShort : function (m, format) {
@@ -3375,21 +3256,14 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var months$4 = [
         'Am Faoilleach', 'An Gearran', 'Am Màrt', 'An Giblean', 'An Cèitean', 'An t-Ògmhios', 'An t-Iuchar', 'An Lùnastal', 'An t-Sultain', 'An Dàmhair', 'An t-Samhain', 'An Dùbhlachd'
     ];
-
     var monthsShort$4 = ['Faoi', 'Gear', 'Màrt', 'Gibl', 'Cèit', 'Ògmh', 'Iuch', 'Lùn', 'Sult', 'Dàmh', 'Samh', 'Dùbh'];
-
     var weekdays$1 = ['Didòmhnaich', 'Diluain', 'Dimàirt', 'Diciadain', 'Diardaoin', 'Dihaoine', 'Disathairne'];
-
     var weekdaysShort = ['Did', 'Dil', 'Dim', 'Dic', 'Dia', 'Dih', 'Dis'];
-
     var weekdaysMin = ['Dò', 'Lu', 'Mà', 'Ci', 'Ar', 'Ha', 'Sa'];
-
     moment.defineLocale('gd', {
         months : months$4,
         monthsShort : monthsShort$4,
@@ -3439,9 +3313,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('gl', {
         months : 'xaneiro_febreiro_marzo_abril_maio_xuño_xullo_agosto_setembro_outubro_novembro_decembro'.split('_'),
         monthsShort : 'xan._feb._mar._abr._mai._xuñ._xul._ago._set._out._nov._dec.'.split('_'),
@@ -3504,9 +3376,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     function processRelativeTime$4(number, withoutSuffix, key, isFuture) {
         var format = {
             's': ['thodde secondanim', 'thodde second'],
@@ -3524,7 +3394,6 @@
         };
         return withoutSuffix ? format[key][0] : format[key][1];
     }
-
     moment.defineLocale('gom-latn', {
         months : 'Janer_Febrer_Mars_Abril_Mai_Jun_Julai_Agost_Setembr_Otubr_Novembr_Dezembr'.split('_'),
         monthsShort : 'Jan._Feb._Mars_Abr._Mai_Jun_Jul._Ago._Set._Otu._Nov._Dez.'.split('_'),
@@ -3615,9 +3484,7 @@
             }
         }
     });
-
     //! moment.js locale configuration
-
     var symbolMap$6 = {
             '1': '૧',
             '2': '૨',
@@ -3642,7 +3509,6 @@
             '૯': '9',
             '૦': '0'
         };
-
     moment.defineLocale('gu', {
         months: 'જાન્યુઆરી_ફેબ્રુઆરી_માર્ચ_એપ્રિલ_મે_જૂન_જુલાઈ_ઑગસ્ટ_સપ્ટેમ્બર_ઑક્ટ્બર_નવેમ્બર_ડિસેમ્બર'.split('_'),
         monthsShort: 'જાન્યુ._ફેબ્રુ._માર્ચ_એપ્રિ._મે_જૂન_જુલા._ઑગ._સપ્ટે._ઑક્ટ્._નવે._ડિસે.'.split('_'),
@@ -3727,9 +3593,7 @@
             doy: 6 // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('he', {
         months : 'ינואר_פברואר_מרץ_אפריל_מאי_יוני_יולי_אוגוסט_ספטמבר_אוקטובר_נובמבר_דצמבר'.split('_'),
         monthsShort : 'ינו׳_פבר׳_מרץ_אפר׳_מאי_יוני_יולי_אוג׳_ספט׳_אוק׳_נוב׳_דצמ׳'.split('_'),
@@ -3812,9 +3676,7 @@
             }
         }
     });
-
     //! moment.js locale configuration
-
     var symbolMap$7 = {
         '1': '१',
         '2': '२',
@@ -3839,7 +3701,6 @@
         '९': '9',
         '०': '0'
     };
-
     moment.defineLocale('hi', {
         months : 'जनवरी_फ़रवरी_मार्च_अप्रैल_मई_जून_जुलाई_अगस्त_सितम्बर_अक्टूबर_नवम्बर_दिसम्बर'.split('_'),
         monthsShort : 'जन._फ़र._मार्च_अप्रै._मई_जून_जुल._अग._सित._अक्टू._नव._दिस.'.split('_'),
@@ -3924,9 +3785,7 @@
             doy : 6  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     function translate$3(number, withoutSuffix, key) {
         var result = number + ' ';
         switch (key) {
@@ -3988,7 +3847,6 @@
                 return result;
         }
     }
-
     moment.defineLocale('hr', {
         months : {
             format: 'siječnja_veljače_ožujka_travnja_svibnja_lipnja_srpnja_kolovoza_rujna_listopada_studenoga_prosinca'.split('_'),
@@ -4066,9 +3924,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var weekEndings = 'vasárnap hétfőn kedden szerdán csütörtökön pénteken szombaton'.split(' ');
     function translate$4(number, withoutSuffix, key, isFuture) {
         var num = number;
@@ -4103,7 +3959,6 @@
     function week(isFuture) {
         return (isFuture ? '' : '[múlt] ') + '[' + weekEndings[this.day()] + '] LT[-kor]';
     }
-
     moment.defineLocale('hu', {
         months : 'január_február_március_április_május_június_július_augusztus_szeptember_október_november_december'.split('_'),
         monthsShort : 'jan_feb_márc_ápr_máj_jún_júl_aug_szept_okt_nov_dec'.split('_'),
@@ -4164,9 +4019,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('hy-am', {
         months : {
             format: 'հունվարի_փետրվարի_մարտի_ապրիլի_մայիսի_հունիսի_հուլիսի_օգոստոսի_սեպտեմբերի_հոկտեմբերի_նոյեմբերի_դեկտեմբերի'.split('_'),
@@ -4247,9 +4100,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('id', {
         months : 'Januari_Februari_Maret_April_Mei_Juni_Juli_Agustus_September_Oktober_November_Desember'.split('_'),
         monthsShort : 'Jan_Feb_Mar_Apr_Mei_Jun_Jul_Agt_Sep_Okt_Nov_Des'.split('_'),
@@ -4317,9 +4168,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     function plural$2(n) {
         if (n % 100 === 11) {
             return true;
@@ -4391,7 +4240,6 @@
                 return result + (withoutSuffix || isFuture ? 'ár' : 'ári');
         }
     }
-
     moment.defineLocale('is', {
         months : 'janúar_febrúar_mars_apríl_maí_júní_júlí_ágúst_september_október_nóvember_desember'.split('_'),
         monthsShort : 'jan_feb_mar_apr_maí_jún_júl_ágú_sep_okt_nóv_des'.split('_'),
@@ -4437,9 +4285,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('it', {
         months : 'gennaio_febbraio_marzo_aprile_maggio_giugno_luglio_agosto_settembre_ottobre_novembre_dicembre'.split('_'),
         monthsShort : 'gen_feb_mar_apr_mag_giu_lug_ago_set_ott_nov_dic'.split('_'),
@@ -4494,9 +4340,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('ja', {
         months : '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
         monthsShort : '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
@@ -4574,9 +4418,7 @@
             yy : '%d年'
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('jv', {
         months : 'Januari_Februari_Maret_April_Mei_Juni_Juli_Agustus_September_Oktober_Nopember_Desember'.split('_'),
         monthsShort : 'Jan_Feb_Mar_Apr_Mei_Jun_Jul_Ags_Sep_Okt_Nop_Des'.split('_'),
@@ -4644,9 +4486,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('ka', {
         months : {
             standalone: 'იანვარი_თებერვალი_მარტი_აპრილი_მაისი_ივნისი_ივლისი_აგვისტო_სექტემბერი_ოქტომბერი_ნოემბერი_დეკემბერი'.split('_'),
@@ -4721,9 +4561,7 @@
             doy : 7
         }
     });
-
     //! moment.js locale configuration
-
     var suffixes$1 = {
         0: '-ші',
         1: '-ші',
@@ -4746,7 +4584,6 @@
         90: '-шы',
         100: '-ші'
     };
-
     moment.defineLocale('kk', {
         months : 'қаңтар_ақпан_наурыз_сәуір_мамыр_маусым_шілде_тамыз_қыркүйек_қазан_қараша_желтоқсан'.split('_'),
         monthsShort : 'қаң_ақп_нау_сәу_мам_мау_шіл_там_қыр_қаз_қар_жел'.split('_'),
@@ -4796,9 +4633,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var symbolMap$8 = {
         '1': '១',
         '2': '២',
@@ -4822,7 +4657,6 @@
         '៩': '9',
         '០': '0'
     };
-
     moment.defineLocale('km', {
         months: 'មករា_កុម្ភៈ_មីនា_មេសា_ឧសភា_មិថុនា_កក្កដា_សីហា_កញ្ញា_តុលា_វិច្ឆិកា_ធ្នូ'.split(
             '_'
@@ -4894,9 +4728,7 @@
             doy: 4 // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var symbolMap$9 = {
         '1': '೧',
         '2': '೨',
@@ -4921,7 +4753,6 @@
         '೯': '9',
         '೦': '0'
     };
-
     moment.defineLocale('kn', {
         months : 'ಜನವರಿ_ಫೆಬ್ರವರಿ_ಮಾರ್ಚ್_ಏಪ್ರಿಲ್_ಮೇ_ಜೂನ್_ಜುಲೈ_ಆಗಸ್ಟ್_ಸೆಪ್ಟೆಂಬರ್_ಅಕ್ಟೋಬರ್_ನವೆಂಬರ್_ಡಿಸೆಂಬರ್'.split('_'),
         monthsShort : 'ಜನ_ಫೆಬ್ರ_ಮಾರ್ಚ್_ಏಪ್ರಿಲ್_ಮೇ_ಜೂನ್_ಜುಲೈ_ಆಗಸ್ಟ್_ಸೆಪ್ಟೆಂ_ಅಕ್ಟೋ_ನವೆಂ_ಡಿಸೆಂ'.split('_'),
@@ -5008,9 +4839,7 @@
             doy : 6  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('ko', {
         months : '1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월'.split('_'),
         monthsShort : '1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월'.split('_'),
@@ -5077,9 +4906,7 @@
             return hour < 12 ? '오전' : '오후';
         }
     });
-
     //! moment.js locale configuration
-
     var suffixes$2 = {
         0: '-чү',
         1: '-чи',
@@ -5102,7 +4929,6 @@
         90: '-чу',
         100: '-чү'
     };
-
     moment.defineLocale('ky', {
         months : 'январь_февраль_март_апрель_май_июнь_июль_август_сентябрь_октябрь_ноябрь_декабрь'.split('_'),
         monthsShort : 'янв_фев_март_апр_май_июнь_июль_авг_сен_окт_ноя_дек'.split('_'),
@@ -5152,9 +4978,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     function processRelativeTime$5(number, withoutSuffix, key, isFuture) {
         var format = {
             'm': ['eng Minutt', 'enger Minutt'],
@@ -5219,7 +5043,6 @@
             return eifelerRegelAppliesToNumber(number);
         }
     }
-
     moment.defineLocale('lb', {
         months: 'Januar_Februar_Mäerz_Abrëll_Mee_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
         monthsShort: 'Jan._Febr._Mrz._Abr._Mee_Jun._Jul._Aug._Sept._Okt._Nov._Dez.'.split('_'),
@@ -5276,9 +5099,7 @@
             doy: 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('lo', {
         months : 'ມັງກອນ_ກຸມພາ_ມີນາ_ເມສາ_ພຶດສະພາ_ມິຖຸນາ_ກໍລະກົດ_ສິງຫາ_ກັນຍາ_ຕຸລາ_ພະຈິກ_ທັນວາ'.split('_'),
         monthsShort : 'ມັງກອນ_ກຸມພາ_ມີນາ_ເມສາ_ພຶດສະພາ_ມິຖຸນາ_ກໍລະກົດ_ສິງຫາ_ກັນຍາ_ຕຸລາ_ພະຈິກ_ທັນວາ'.split('_'),
@@ -5334,9 +5155,7 @@
             return 'ທີ່' + number;
         }
     });
-
     //! moment.js locale configuration
-
     var units = {
         'ss' : 'sekundė_sekundžių_sekundes',
         'm' : 'minutė_minutės_minutę',
@@ -5440,9 +5259,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var units$1 = {
         'ss': 'sekundes_sekundēm_sekunde_sekundes'.split('_'),
         'm': 'minūtes_minūtēm_minūte_minūtes'.split('_'),
@@ -5478,7 +5295,6 @@
     function relativeSeconds(number, withoutSuffix) {
         return withoutSuffix ? 'dažas sekundes' : 'dažām sekundēm';
     }
-
     moment.defineLocale('lv', {
         months : 'janvāris_februāris_marts_aprīlis_maijs_jūnijs_jūlijs_augusts_septembris_oktobris_novembris_decembris'.split('_'),
         monthsShort : 'jan_feb_mar_apr_mai_jūn_jūl_aug_sep_okt_nov_dec'.split('_'),
@@ -5525,9 +5341,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var translator = {
         words: { //Different grammatical cases
             ss: ['sekund', 'sekunda', 'sekundi'],
@@ -5551,7 +5365,6 @@
             }
         }
     };
-
     moment.defineLocale('me', {
         months: 'januar_februar_mart_april_maj_jun_jul_avgust_septembar_oktobar_novembar_decembar'.split('_'),
         monthsShort: 'jan._feb._mar._apr._maj_jun_jul_avg._sep._okt._nov._dec.'.split('_'),
@@ -5571,7 +5384,6 @@
         calendar: {
             sameDay: '[danas u] LT',
             nextDay: '[sjutra u] LT',
-
             nextWeek: function () {
                 switch (this.day()) {
                     case 0:
@@ -5625,9 +5437,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('mi', {
         months: 'Kohi-tāte_Hui-tanguru_Poutū-te-rangi_Paenga-whāwhā_Haratua_Pipiri_Hōngoingoi_Here-turi-kōkā_Mahuru_Whiringa-ā-nuku_Whiringa-ā-rangi_Hakihea'.split('_'),
         monthsShort: 'Kohi_Hui_Pou_Pae_Hara_Pipi_Hōngoi_Here_Mahu_Whi-nu_Whi-ra_Haki'.split('_'),
@@ -5677,9 +5487,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('mk', {
         months : 'јануари_февруари_март_април_мај_јуни_јули_август_септември_октомври_ноември_декември'.split('_'),
         monthsShort : 'јан_фев_мар_апр_мај_јун_јул_авг_сеп_окт_ное_дек'.split('_'),
@@ -5755,9 +5563,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('ml', {
         months : 'ജനുവരി_ഫെബ്രുവരി_മാർച്ച്_ഏപ്രിൽ_മേയ്_ജൂൺ_ജൂലൈ_ഓഗസ്റ്റ്_സെപ്റ്റംബർ_ഒക്ടോബർ_നവംബർ_ഡിസംബർ'.split('_'),
         monthsShort : 'ജനു._ഫെബ്രു._മാർ._ഏപ്രി._മേയ്_ജൂൺ_ജൂലൈ._ഓഗ._സെപ്റ്റ._ഒക്ടോ._നവം._ഡിസം.'.split('_'),
@@ -5824,9 +5630,7 @@
             }
         }
     });
-
     //! moment.js locale configuration
-
     function translate$7(number, withoutSuffix, key, isFuture) {
         switch (key) {
             case 's':
@@ -5852,7 +5656,6 @@
                 return number;
         }
     }
-
     moment.defineLocale('mn', {
         months : 'Нэгдүгээр сар_Хоёрдугаар сар_Гуравдугаар сар_Дөрөвдүгээр сар_Тавдугаар сар_Зургадугаар сар_Долдугаар сар_Наймдугаар сар_Есдүгээр сар_Аравдугаар сар_Арван нэгдүгээр сар_Арван хоёрдугаар сар'.split('_'),
         monthsShort : '1 сар_2 сар_3 сар_4 сар_5 сар_6 сар_7 сар_8 сар_9 сар_10 сар_11 сар_12 сар'.split('_'),
@@ -5916,9 +5719,7 @@
             }
         }
     });
-
     //! moment.js locale configuration
-
     var symbolMap$a = {
         '1': '१',
         '2': '२',
@@ -5943,7 +5744,6 @@
         '९': '9',
         '०': '0'
     };
-
     function relativeTimeMr(number, withoutSuffix, string, isFuture)
     {
         var output = '';
@@ -5981,7 +5781,6 @@
         }
         return output.replace(/%d/i, number);
     }
-
     moment.defineLocale('mr', {
         months : 'जानेवारी_फेब्रुवारी_मार्च_एप्रिल_मे_जून_जुलै_ऑगस्ट_सप्टेंबर_ऑक्टोबर_नोव्हेंबर_डिसेंबर'.split('_'),
         monthsShort: 'जाने._फेब्रु._मार्च._एप्रि._मे._जून._जुलै._ऑग._सप्टें._ऑक्टो._नोव्हें._डिसें.'.split('_'),
@@ -6064,9 +5863,7 @@
             doy : 6  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('ms-my', {
         months : 'Januari_Februari_Mac_April_Mei_Jun_Julai_Ogos_September_Oktober_November_Disember'.split('_'),
         monthsShort : 'Jan_Feb_Mac_Apr_Mei_Jun_Jul_Ogs_Sep_Okt_Nov_Dis'.split('_'),
@@ -6134,9 +5931,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('ms', {
         months : 'Januari_Februari_Mac_April_Mei_Jun_Julai_Ogos_September_Oktober_November_Disember'.split('_'),
         monthsShort : 'Jan_Feb_Mac_Apr_Mei_Jun_Jul_Ogs_Sep_Okt_Nov_Dis'.split('_'),
@@ -6204,9 +5999,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('mt', {
         months : 'Jannar_Frar_Marzu_April_Mejju_Ġunju_Lulju_Awwissu_Settembru_Ottubru_Novembru_Diċembru'.split('_'),
         monthsShort : 'Jan_Fra_Mar_Apr_Mej_Ġun_Lul_Aww_Set_Ott_Nov_Diċ'.split('_'),
@@ -6252,9 +6045,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var symbolMap$b = {
         '1': '၁',
         '2': '၂',
@@ -6278,14 +6069,12 @@
         '၉': '9',
         '၀': '0'
     };
-
     moment.defineLocale('my', {
         months: 'ဇန်နဝါရီ_ဖေဖော်ဝါရီ_မတ်_ဧပြီ_မေ_ဇွန်_ဇူလိုင်_သြဂုတ်_စက်တင်ဘာ_အောက်တိုဘာ_နိုဝင်ဘာ_ဒီဇင်ဘာ'.split('_'),
         monthsShort: 'ဇန်_ဖေ_မတ်_ပြီ_မေ_ဇွန်_လိုင်_သြ_စက်_အောက်_နို_ဒီ'.split('_'),
         weekdays: 'တနင်္ဂနွေ_တနင်္လာ_အင်္ဂါ_ဗုဒ္ဓဟူး_ကြာသပတေး_သောကြာ_စနေ'.split('_'),
         weekdaysShort: 'နွေ_လာ_ဂါ_ဟူး_ကြာ_သော_နေ'.split('_'),
         weekdaysMin: 'နွေ_လာ_ဂါ_ဟူး_ကြာ_သော_နေ'.split('_'),
-
         longDateFormat: {
             LT: 'HH:mm',
             LTS: 'HH:mm:ss',
@@ -6333,9 +6122,7 @@
             doy: 4 // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('nb', {
         months : 'januar_februar_mars_april_mai_juni_juli_august_september_oktober_november_desember'.split('_'),
         monthsShort : 'jan._feb._mars_april_mai_juni_juli_aug._sep._okt._nov._des.'.split('_'),
@@ -6383,9 +6170,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var symbolMap$c = {
         '1': '१',
         '2': '२',
@@ -6410,7 +6195,6 @@
         '९': '9',
         '०': '0'
     };
-
     moment.defineLocale('ne', {
         months : 'जनवरी_फेब्रुवरी_मार्च_अप्रिल_मई_जुन_जुलाई_अगष्ट_सेप्टेम्बर_अक्टोबर_नोभेम्बर_डिसेम्बर'.split('_'),
         monthsShort : 'जन._फेब्रु._मार्च_अप्रि._मई_जुन_जुलाई._अग._सेप्ट._अक्टो._नोभे._डिसे.'.split('_'),
@@ -6494,15 +6278,11 @@
             doy : 6  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var monthsShortWithDots$1 = 'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_'),
         monthsShortWithoutDots$1 = 'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_');
-
     var monthsParse$2 = [/^jan/i, /^feb/i, /^maart|mrt.?$/i, /^apr/i, /^mei$/i, /^jun[i.]?$/i, /^jul[i.]?$/i, /^aug/i, /^sep/i, /^okt/i, /^nov/i, /^dec/i];
     var monthsRegex$2 = /^(januari|februari|maart|april|mei|april|ju[nl]i|augustus|september|oktober|november|december|jan\.?|feb\.?|mrt\.?|apr\.?|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i;
-
     moment.defineLocale('nl-be', {
         months : 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split('_'),
         monthsShort : function (m, format) {
@@ -6514,16 +6294,13 @@
                 return monthsShortWithDots$1[m.month()];
             }
         },
-
         monthsRegex: monthsRegex$2,
         monthsShortRegex: monthsRegex$2,
         monthsStrictRegex: /^(januari|februari|maart|mei|ju[nl]i|april|augustus|september|oktober|november|december)/i,
         monthsShortStrictRegex: /^(jan\.?|feb\.?|mrt\.?|apr\.?|mei|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i,
-
         monthsParse : monthsParse$2,
         longMonthsParse : monthsParse$2,
         shortMonthsParse : monthsParse$2,
-
         weekdays : 'zondag_maandag_dinsdag_woensdag_donderdag_vrijdag_zaterdag'.split('_'),
         weekdaysShort : 'zo._ma._di._wo._do._vr._za.'.split('_'),
         weekdaysMin : 'zo_ma_di_wo_do_vr_za'.split('_'),
@@ -6569,15 +6346,11 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var monthsShortWithDots$2 = 'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_'),
         monthsShortWithoutDots$2 = 'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_');
-
     var monthsParse$3 = [/^jan/i, /^feb/i, /^maart|mrt.?$/i, /^apr/i, /^mei$/i, /^jun[i.]?$/i, /^jul[i.]?$/i, /^aug/i, /^sep/i, /^okt/i, /^nov/i, /^dec/i];
     var monthsRegex$3 = /^(januari|februari|maart|april|mei|april|ju[nl]i|augustus|september|oktober|november|december|jan\.?|feb\.?|mrt\.?|apr\.?|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i;
-
     moment.defineLocale('nl', {
         months : 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split('_'),
         monthsShort : function (m, format) {
@@ -6589,16 +6362,13 @@
                 return monthsShortWithDots$2[m.month()];
             }
         },
-
         monthsRegex: monthsRegex$3,
         monthsShortRegex: monthsRegex$3,
         monthsStrictRegex: /^(januari|februari|maart|mei|ju[nl]i|april|augustus|september|oktober|november|december)/i,
         monthsShortStrictRegex: /^(jan\.?|feb\.?|mrt\.?|apr\.?|mei|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i,
-
         monthsParse : monthsParse$3,
         longMonthsParse : monthsParse$3,
         shortMonthsParse : monthsParse$3,
-
         weekdays : 'zondag_maandag_dinsdag_woensdag_donderdag_vrijdag_zaterdag'.split('_'),
         weekdaysShort : 'zo._ma._di._wo._do._vr._za.'.split('_'),
         weekdaysMin : 'zo_ma_di_wo_do_vr_za'.split('_'),
@@ -6644,9 +6414,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('nn', {
         months : 'januar_februar_mars_april_mai_juni_juli_august_september_oktober_november_desember'.split('_'),
         monthsShort : 'jan_feb_mar_apr_mai_jun_jul_aug_sep_okt_nov_des'.split('_'),
@@ -6692,9 +6460,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var symbolMap$d = {
         '1': '੧',
         '2': '੨',
@@ -6719,7 +6485,6 @@
         '੯': '9',
         '੦': '0'
     };
-
     moment.defineLocale('pa-in', {
         // There are months name as per Nanakshahi Calender but they are not used as rigidly in modern Punjabi.
         months : 'ਜਨਵਰੀ_ਫ਼ਰਵਰੀ_ਮਾਰਚ_ਅਪ੍ਰੈਲ_ਮਈ_ਜੂਨ_ਜੁਲਾਈ_ਅਗਸਤ_ਸਤੰਬਰ_ਅਕਤੂਬਰ_ਨਵੰਬਰ_ਦਸੰਬਰ'.split('_'),
@@ -6804,9 +6569,7 @@
             doy : 6  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var monthsNominative = 'styczeń_luty_marzec_kwiecień_maj_czerwiec_lipiec_sierpień_wrzesień_październik_listopad_grudzień'.split('_'),
         monthsSubjective = 'stycznia_lutego_marca_kwietnia_maja_czerwca_lipca_sierpnia_września_października_listopada_grudnia'.split('_');
     function plural$3(n) {
@@ -6831,7 +6594,6 @@
                 return result + (plural$3(number) ? 'lata' : 'lat');
         }
     }
-
     moment.defineLocale('pl', {
         months : function (momentToFormat, format) {
             if (!momentToFormat) {
@@ -6866,16 +6628,12 @@
                 switch (this.day()) {
                     case 0:
                         return '[W niedzielę o] LT';
-
                     case 2:
                         return '[We wtorek o] LT';
-
                     case 3:
                         return '[W środę o] LT';
-
                     case 6:
                         return '[W sobotę o] LT';
-
                     default:
                         return '[W] dddd [o] LT';
                 }
@@ -6918,9 +6676,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('pt-br', {
         months : 'janeiro_fevereiro_março_abril_maio_junho_julho_agosto_setembro_outubro_novembro_dezembro'.split('_'),
         monthsShort : 'jan_fev_mar_abr_mai_jun_jul_ago_set_out_nov_dez'.split('_'),
@@ -6967,9 +6723,7 @@
         dayOfMonthOrdinalParse: /\d{1,2}º/,
         ordinal : '%dº'
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('pt', {
         months : 'janeiro_fevereiro_março_abril_maio_junho_julho_agosto_setembro_outubro_novembro_dezembro'.split('_'),
         monthsShort : 'jan_fev_mar_abr_mai_jun_jul_ago_set_out_nov_dez'.split('_'),
@@ -7020,9 +6774,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     function relativeTimeWithPlural$2(number, withoutSuffix, key) {
         var format = {
                 'ss': 'secunde',
@@ -7038,7 +6790,6 @@
         }
         return number + separator + format[key];
     }
-
     moment.defineLocale('ro', {
         months : 'ianuarie_februarie_martie_aprilie_mai_iunie_iulie_august_septembrie_octombrie_noiembrie_decembrie'.split('_'),
         monthsShort : 'ian._febr._mart._apr._mai_iun._iul._aug._sept._oct._nov._dec.'.split('_'),
@@ -7083,9 +6834,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     function plural$4(word, num) {
         var forms = word.split('_');
         return num % 10 === 1 && num % 100 !== 11 ? forms[0] : (num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20) ? forms[1] : forms[2]);
@@ -7107,7 +6856,6 @@
         }
     }
     var monthsParse$4 = [/^янв/i, /^фев/i, /^мар/i, /^апр/i, /^ма[йя]/i, /^июн/i, /^июл/i, /^авг/i, /^сен/i, /^окт/i, /^ноя/i, /^дек/i];
-
     // http://new.gramota.ru/spravka/rules/139-prop : § 103
     // Сокращения месяцев: http://new.gramota.ru/spravka/buro/search-answer?s=242637
     // CLDR data:          http://www.unicode.org/cldr/charts/28/summary/ru.html#1753
@@ -7131,16 +6879,12 @@
         monthsParse : monthsParse$4,
         longMonthsParse : monthsParse$4,
         shortMonthsParse : monthsParse$4,
-
         // полные названия с падежами, по три буквы, для некоторых, по 4 буквы, сокращения с точкой и без точки
         monthsRegex: /^(январ[ья]|янв\.?|феврал[ья]|февр?\.?|марта?|мар\.?|апрел[ья]|апр\.?|ма[йя]|июн[ья]|июн\.?|июл[ья]|июл\.?|августа?|авг\.?|сентябр[ья]|сент?\.?|октябр[ья]|окт\.?|ноябр[ья]|нояб?\.?|декабр[ья]|дек\.?)/i,
-
         // копия предыдущего
         monthsShortRegex: /^(январ[ья]|янв\.?|феврал[ья]|февр?\.?|марта?|мар\.?|апрел[ья]|апр\.?|ма[йя]|июн[ья]|июн\.?|июл[ья]|июл\.?|августа?|авг\.?|сентябр[ья]|сент?\.?|октябр[ья]|окт\.?|ноябр[ья]|нояб?\.?|декабр[ья]|дек\.?)/i,
-
         // полные названия с падежами
         monthsStrictRegex: /^(январ[яь]|феврал[яь]|марта?|апрел[яь]|ма[яй]|июн[яь]|июл[яь]|августа?|сентябр[яь]|октябр[яь]|ноябр[яь]|декабр[яь])/i,
-
         // Выражение, которое соотвествует только сокращённым формам
         monthsShortStrictRegex: /^(янв\.|февр?\.|мар[т.]|апр\.|ма[яй]|июн[ья.]|июл[ья.]|авг\.|сент?\.|окт\.|нояб?\.|дек\.)/i,
         longDateFormat : {
@@ -7253,9 +6997,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var months$5 = [
         'جنوري',
         'فيبروري',
@@ -7279,7 +7021,6 @@
         'جمع',
         'ڇنڇر'
     ];
-
     moment.defineLocale('sd', {
         months : months$5,
         monthsShort : months$5,
@@ -7339,9 +7080,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('se', {
         months : 'ođđajagemánnu_guovvamánnu_njukčamánnu_cuoŋománnu_miessemánnu_geassemánnu_suoidnemánnu_borgemánnu_čakčamánnu_golggotmánnu_skábmamánnu_juovlamánnu'.split('_'),
         monthsShort : 'ođđj_guov_njuk_cuo_mies_geas_suoi_borg_čakč_golg_skáb_juov'.split('_'),
@@ -7387,9 +7126,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     /*jshint -W100*/
     moment.defineLocale('si', {
         months : 'ජනවාරි_පෙබරවාරි_මාර්තු_අප්‍රේල්_මැයි_ජූනි_ජූලි_අගෝස්තු_සැප්තැම්බර්_ඔක්තෝබර්_නොවැම්බර්_දෙසැම්බර්'.split('_'),
@@ -7446,9 +7183,7 @@
             }
         }
     });
-
     //! moment.js locale configuration
-
     var months$6 = 'január_február_marec_apríl_máj_jún_júl_august_september_október_november_december'.split('_'),
         monthsShort$5 = 'jan_feb_mar_apr_máj_jún_júl_aug_sep_okt_nov_dec'.split('_');
     function plural$5(n) {
@@ -7513,7 +7248,6 @@
                 break;
         }
     }
-
     moment.defineLocale('sk', {
         months : months$6,
         monthsShort : monthsShort$5,
@@ -7590,9 +7324,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     function processRelativeTime$6(number, withoutSuffix, key, isFuture) {
         var result = number + ' ';
         switch (key) {
@@ -7674,7 +7406,6 @@
                 return result;
         }
     }
-
     moment.defineLocale('sl', {
         months : 'januar_februar_marec_april_maj_junij_julij_avgust_september_oktober_november_december'.split('_'),
         monthsShort : 'jan._feb._mar._apr._maj._jun._jul._avg._sep._okt._nov._dec.'.split('_'),
@@ -7694,7 +7425,6 @@
         calendar : {
             sameDay  : '[danes ob] LT',
             nextDay  : '[jutri ob] LT',
-
             nextWeek : function () {
                 switch (this.day()) {
                     case 0:
@@ -7751,9 +7481,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('sq', {
         months : 'Janar_Shkurt_Mars_Prill_Maj_Qershor_Korrik_Gusht_Shtator_Tetor_Nëntor_Dhjetor'.split('_'),
         monthsShort : 'Jan_Shk_Mar_Pri_Maj_Qer_Kor_Gus_Sht_Tet_Nën_Dhj'.split('_'),
@@ -7807,9 +7535,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var translator$1 = {
         words: { //Different grammatical cases
             ss: ['секунда', 'секунде', 'секунди'],
@@ -7833,7 +7559,6 @@
             }
         }
     };
-
     moment.defineLocale('sr-cyrl', {
         months: 'јануар_фебруар_март_април_мај_јун_јул_август_септембар_октобар_новембар_децембар'.split('_'),
         monthsShort: 'јан._феб._мар._апр._мај_јун_јул_авг._сеп._окт._нов._дец.'.split('_'),
@@ -7906,9 +7631,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var translator$2 = {
         words: { //Different grammatical cases
             ss: ['sekunda', 'sekunde', 'sekundi'],
@@ -7932,7 +7655,6 @@
             }
         }
     };
-
     moment.defineLocale('sr', {
         months: 'januar_februar_mart_april_maj_jun_jul_avgust_septembar_oktobar_novembar_decembar'.split('_'),
         monthsShort: 'jan._feb._mar._apr._maj_jun_jul_avg._sep._okt._nov._dec.'.split('_'),
@@ -8005,9 +7727,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('ss', {
         months : "Bhimbidvwane_Indlovana_Indlov'lenkhulu_Mabasa_Inkhwekhweti_Inhlaba_Kholwane_Ingci_Inyoni_Imphala_Lweti_Ingongoni".split('_'),
         monthsShort : 'Bhi_Ina_Inu_Mab_Ink_Inh_Kho_Igc_Iny_Imp_Lwe_Igo'.split('_'),
@@ -8081,9 +7801,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('sv', {
         months : 'januari_februari_mars_april_maj_juni_juli_augusti_september_oktober_november_december'.split('_'),
         monthsShort : 'jan_feb_mar_apr_maj_jun_jul_aug_sep_okt_nov_dec'.split('_'),
@@ -8138,9 +7856,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('sw', {
         months : 'Januari_Februari_Machi_Aprili_Mei_Juni_Julai_Agosti_Septemba_Oktoba_Novemba_Desemba'.split('_'),
         monthsShort : 'Jan_Feb_Mac_Apr_Mei_Jun_Jul_Ago_Sep_Okt_Nov_Des'.split('_'),
@@ -8185,9 +7901,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var symbolMap$e = {
         '1': '௧',
         '2': '௨',
@@ -8211,7 +7925,6 @@
         '௯': '9',
         '௦': '0'
     };
-
     moment.defineLocale('ta', {
         months : 'ஜனவரி_பிப்ரவரி_மார்ச்_ஏப்ரல்_மே_ஜூன்_ஜூலை_ஆகஸ்ட்_செப்டெம்பர்_அக்டோபர்_நவம்பர்_டிசம்பர்'.split('_'),
         monthsShort : 'ஜனவரி_பிப்ரவரி_மார்ச்_ஏப்ரல்_மே_ஜூன்_ஜூலை_ஆகஸ்ட்_செப்டெம்பர்_அக்டோபர்_நவம்பர்_டிசம்பர்'.split('_'),
@@ -8302,9 +8015,7 @@
             doy : 6  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('te', {
         months : 'జనవరి_ఫిబ్రవరి_మార్చి_ఏప్రిల్_మే_జూన్_జూలై_ఆగస్టు_సెప్టెంబర్_అక్టోబర్_నవంబర్_డిసెంబర్'.split('_'),
         monthsShort : 'జన._ఫిబ్ర._మార్చి_ఏప్రి._మే_జూన్_జూలై_ఆగ._సెప్._అక్టో._నవ._డిసె.'.split('_'),
@@ -8379,9 +8090,7 @@
             doy : 6  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('tet', {
         months : 'Janeiru_Fevereiru_Marsu_Abril_Maiu_Juñu_Jullu_Agustu_Setembru_Outubru_Novembru_Dezembru'.split('_'),
         monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
@@ -8434,9 +8143,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var suffixes$3 = {
         0: '-ум',
         1: '-ум',
@@ -8461,7 +8168,6 @@
         90: '-ум',
         100: '-ум'
     };
-
     moment.defineLocale('tg', {
         months : 'январ_феврал_март_апрел_май_июн_июл_август_сентябр_октябр_ноябр_декабр'.split('_'),
         monthsShort : 'янв_фев_мар_апр_май_июн_июл_авг_сен_окт_ноя_дек'.split('_'),
@@ -8538,9 +8244,7 @@
             doy : 7  // The week that contains Jan 1th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('th', {
         months : 'มกราคม_กุมภาพันธ์_มีนาคม_เมษายน_พฤษภาคม_มิถุนายน_กรกฎาคม_สิงหาคม_กันยายน_ตุลาคม_พฤศจิกายน_ธันวาคม'.split('_'),
         monthsShort : 'ม.ค._ก.พ._มี.ค._เม.ย._พ.ค._มิ.ย._ก.ค._ส.ค._ก.ย._ต.ค._พ.ย._ธ.ค.'.split('_'),
@@ -8593,9 +8297,7 @@
             yy : '%d ปี'
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('tl-ph', {
         months : 'Enero_Pebrero_Marso_Abril_Mayo_Hunyo_Hulyo_Agosto_Setyembre_Oktubre_Nobyembre_Disyembre'.split('_'),
         monthsShort : 'Ene_Peb_Mar_Abr_May_Hun_Hul_Ago_Set_Okt_Nob_Dis'.split('_'),
@@ -8643,11 +8345,8 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var numbersNouns = 'pagh_wa’_cha’_wej_loS_vagh_jav_Soch_chorgh_Hut'.split('_');
-
     function translateFuture(output) {
         var time = output;
         time = (output.indexOf('jaj') !== -1) ?
@@ -8659,7 +8358,6 @@
         time + ' pIq';
         return time;
     }
-
     function translatePast(output) {
         var time = output;
         time = (output.indexOf('jaj') !== -1) ?
@@ -8671,7 +8369,6 @@
         time + ' ret';
         return time;
     }
-
     function translate$a(number, withoutSuffix, string, isFuture) {
         var numberNoun = numberAsNoun(number);
         switch (string) {
@@ -8689,7 +8386,6 @@
                 return numberNoun + ' DIS';
         }
     }
-
     function numberAsNoun(number) {
         var hundred = Math.floor((number % 1000) / 100),
         ten = Math.floor((number % 100) / 10),
@@ -8706,7 +8402,6 @@
         }
         return (word === '') ? 'pagh' : word;
     }
-
     moment.defineLocale('tlh', {
         months : 'tera’ jar wa’_tera’ jar cha’_tera’ jar wej_tera’ jar loS_tera’ jar vagh_tera’ jar jav_tera’ jar Soch_tera’ jar chorgh_tera’ jar Hut_tera’ jar wa’maH_tera’ jar wa’maH wa’_tera’ jar wa’maH cha’'.split('_'),
         monthsShort : 'jar wa’_jar cha’_jar wej_jar loS_jar vagh_jar jav_jar Soch_jar chorgh_jar Hut_jar wa’maH_jar wa’maH wa’_jar wa’maH cha’'.split('_'),
@@ -8753,7 +8448,6 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     var suffixes$4 = {
         1: '\'inci',
         5: '\'inci',
@@ -8774,7 +8468,6 @@
         60: '\'ıncı',
         90: '\'ıncı'
     };
-
     moment.defineLocale('tr', {
         months : 'Ocak_Şubat_Mart_Nisan_Mayıs_Haziran_Temmuz_Ağustos_Eylül_Ekim_Kasım_Aralık'.split('_'),
         monthsShort : 'Oca_Şub_Mar_Nis_May_Haz_Tem_Ağu_Eyl_Eki_Kas_Ara'.split('_'),
@@ -8835,9 +8528,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     // After the year there should be a slash and the amount of years since December 26, 1979 in Roman numerals.
     // This is currently too difficult (maybe even impossible) to add.
     moment.defineLocale('tzl', {
@@ -8896,7 +8587,6 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     function processRelativeTime$7(number, withoutSuffix, key, isFuture) {
         var format = {
             's': ['viensas secunds', '\'iensas secunds'],
@@ -8914,9 +8604,7 @@
         };
         return isFuture ? format[key][0] : (withoutSuffix ? format[key][0] : format[key][1]);
     }
-
     //! moment.js locale configuration
-
     moment.defineLocale('tzm-latn', {
         months : 'innayr_brˤayrˤ_marˤsˤ_ibrir_mayyw_ywnyw_ywlywz_ɣwšt_šwtanbir_ktˤwbrˤ_nwwanbir_dwjnbir'.split('_'),
         monthsShort : 'innayr_brˤayrˤ_marˤsˤ_ibrir_mayyw_ywnyw_ywlywz_ɣwšt_šwtanbir_ktˤwbrˤ_nwwanbir_dwjnbir'.split('_'),
@@ -8960,9 +8648,7 @@
             doy : 12  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('tzm', {
         months : 'ⵉⵏⵏⴰⵢⵔ_ⴱⵕⴰⵢⵕ_ⵎⴰⵕⵚ_ⵉⴱⵔⵉⵔ_ⵎⴰⵢⵢⵓ_ⵢⵓⵏⵢⵓ_ⵢⵓⵍⵢⵓⵣ_ⵖⵓⵛⵜ_ⵛⵓⵜⴰⵏⴱⵉⵔ_ⴽⵟⵓⴱⵕ_ⵏⵓⵡⴰⵏⴱⵉⵔ_ⴷⵓⵊⵏⴱⵉⵔ'.split('_'),
         monthsShort : 'ⵉⵏⵏⴰⵢⵔ_ⴱⵕⴰⵢⵕ_ⵎⴰⵕⵚ_ⵉⴱⵔⵉⵔ_ⵎⴰⵢⵢⵓ_ⵢⵓⵏⵢⵓ_ⵢⵓⵍⵢⵓⵣ_ⵖⵓⵛⵜ_ⵛⵓⵜⴰⵏⴱⵉⵔ_ⴽⵟⵓⴱⵕ_ⵏⵓⵡⴰⵏⴱⵉⵔ_ⴷⵓⵊⵏⴱⵉⵔ'.split('_'),
@@ -9006,9 +8692,7 @@
             doy : 12  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js language configuration
-
     moment.defineLocale('ug-cn', {
         months: 'يانۋار_فېۋرال_مارت_ئاپرېل_ماي_ئىيۇن_ئىيۇل_ئاۋغۇست_سېنتەبىر_ئۆكتەبىر_نويابىر_دېكابىر'.split(
             '_'
@@ -9086,7 +8770,6 @@
             y: 'بىر يىل',
             yy: '%d يىل'
         },
-
         dayOfMonthOrdinalParse: /\d{1,2}(-كۈنى|-ئاي|-ھەپتە)/,
         ordinal: function (number, period) {
             switch (period) {
@@ -9113,9 +8796,7 @@
             doy: 7 // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     function plural$6(word, num) {
         var forms = word.split('_');
         return num % 10 === 1 && num % 100 !== 11 ? forms[0] : (num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20) ? forms[1] : forms[2]);
@@ -9145,11 +8826,9 @@
             'accusative': 'неділю_понеділок_вівторок_середу_четвер_п’ятницю_суботу'.split('_'),
             'genitive': 'неділі_понеділка_вівторка_середи_четверга_п’ятниці_суботи'.split('_')
         };
-
         if (!m) {
             return weekdays['nominative'];
         }
-
         var nounCase = (/(\[[ВвУу]\]) ?dddd/).test(format) ?
             'accusative' :
             ((/\[?(?:минулої|наступної)? ?\] ?dddd/).test(format) ?
@@ -9162,7 +8841,6 @@
             return str + 'о' + (this.hours() === 11 ? 'б' : '') + '] LT';
         };
     }
-
     moment.defineLocale('uk', {
         months : {
             'format': 'січня_лютого_березня_квітня_травня_червня_липня_серпня_вересня_жовтня_листопада_грудня'.split('_'),
@@ -9252,9 +8930,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     var months$7 = [
         'جنوری',
         'فروری',
@@ -9278,7 +8954,6 @@
         'جمعہ',
         'ہفتہ'
     ];
-
     moment.defineLocale('ur', {
         months : months$7,
         monthsShort : months$7,
@@ -9338,9 +9013,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('uz-latn', {
         months : 'Yanvar_Fevral_Mart_Aprel_May_Iyun_Iyul_Avgust_Sentabr_Oktabr_Noyabr_Dekabr'.split('_'),
         monthsShort : 'Yan_Fev_Mar_Apr_May_Iyun_Iyul_Avg_Sen_Okt_Noy_Dek'.split('_'),
@@ -9384,9 +9057,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('uz', {
         months : 'январ_феврал_март_апрел_май_июн_июл_август_сентябр_октябр_ноябр_декабр'.split('_'),
         monthsShort : 'янв_фев_мар_апр_май_июн_июл_авг_сен_окт_ноя_дек'.split('_'),
@@ -9430,9 +9101,7 @@
             doy : 7  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('vi', {
         months : 'tháng 1_tháng 2_tháng 3_tháng 4_tháng 5_tháng 6_tháng 7_tháng 8_tháng 9_tháng 10_tháng 11_tháng 12'.split('_'),
         monthsShort : 'Th01_Th02_Th03_Th04_Th05_Th06_Th07_Th08_Th09_Th10_Th11_Th12'.split('_'),
@@ -9497,9 +9166,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('x-pseudo', {
         months : 'J~áñúá~rý_F~ébrú~árý_~Márc~h_Áp~ríl_~Máý_~Júñé~_Júl~ý_Áú~gúst~_Sép~témb~ér_Ó~ctób~ér_Ñ~óvém~bér_~Décé~mbér'.split('_'),
         monthsShort : 'J~áñ_~Féb_~Már_~Ápr_~Máý_~Júñ_~Júl_~Áúg_~Sép_~Óct_~Ñóv_~Déc'.split('_'),
@@ -9553,9 +9220,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('yo', {
         months : 'Sẹ́rẹ́_Èrèlè_Ẹrẹ̀nà_Ìgbé_Èbibi_Òkùdu_Agẹmo_Ògún_Owewe_Ọ̀wàrà_Bélú_Ọ̀pẹ̀̀'.split('_'),
         monthsShort : 'Sẹ́r_Èrl_Ẹrn_Ìgb_Èbi_Òkù_Agẹ_Ògú_Owe_Ọ̀wà_Bél_Ọ̀pẹ̀̀'.split('_'),
@@ -9601,9 +9266,7 @@
             doy : 4 // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('zh-cn', {
         months : '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
         monthsShort : '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
@@ -9699,9 +9362,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('zh-hk', {
         months : '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
         monthsShort : '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
@@ -9790,9 +9451,7 @@
             yy : '%d 年'
         }
     });
-
     //! moment.js locale configuration
-
     moment.defineLocale('zh-tw', {
         months : '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
         monthsShort : '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
@@ -9881,9 +9540,6 @@
             yy : '%d 年'
         }
     });
-
     moment.locale('en');
-
     return moment;
-
 })));

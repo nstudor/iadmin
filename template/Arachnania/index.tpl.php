@@ -11,8 +11,6 @@ if($m1['link']=='') submeniu($m1, $menu); else { ?>
                             </li>
 						
 <?php }
-
-
 $specials=array();
 $_SESSION['link']=$_GET['p'];
 $link=explode("-",$_GET['p']);
@@ -20,7 +18,6 @@ if(isset($link[3])) $link[2]='0';
 	else if(isset($link[2])) unset($link[2]);
 $link=implode("-",$link);
 mysql_query('SET NAMES utf8');
-
 $ruser=mysql_fetch_array(mysql_query("SELECT * FROM login_users WHERE id=".$_SESSION['userid']));
 $rcmenu=@mysql_fetch_array(@mysql_query("SELECT * FROM login_menu WHERE link='$link'"));
 $rcr=@mysql_fetch_array(@mysql_query("SELECT * FROM login_rights WHERE id_menu=".$rcmenu['id']." AND id_role=".$ruser['role']));
@@ -119,8 +116,6 @@ if($m2['link']=='') submeniu($m2, $menu); else { ?>
 		if(isset($_GET['id'])) $item=mysql_fetch_array(mysql_query("SELECT * FROM $tabel WHERE $id=".$_GET['id']));
 		include($param[0].'.php');
 	} else include('first.php'); ?>
-
-
 <div class="bottom navbar navbar-default">
 <div style="float:right; margin-right:10px;" id="clock">0:00</div>
 </div>
@@ -138,7 +133,6 @@ $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
     }
     menu.css({ left:newpos });
 });
-
 function clock() {
 	$.ajax({
 	  url: "ajaxtime.php",

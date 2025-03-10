@@ -1,6 +1,5 @@
 <?php 
     $items_per_page=25;
-
     if($dontshowpages) { $st=0; $items_per_page=1000000000; }
     
     if (!isset($id)) $id='id';
@@ -9,7 +8,6 @@
         unset($_SESSION['order'][$_POST['order']]);
        if(strlen($_POST['ordertype'])==2) $_SESSION['order'][$_POST['order']]=$_POST['ordertype'];    
     }
-
     if (isset($param[2])) $st=$param[2]; else $st=$_SESSION['st']*1;
     
     $pag=$param[1];
@@ -28,7 +26,6 @@
             $_SESSION['page']=$pag;
             $st=0;
         }
-
         
 if(($_POST['multi']=='yes')&&(count($_POST['d'])>0))
 		{
@@ -54,12 +51,10 @@ window.onload = function() {
             $order="$order $id";
 	}
         if(isset($defaultOrder)) $order=$defaultOrder;
-
         $flt="1";	
         if(isset($param[3]))
             if($param[3]=='filtru')
                 $flt=$param[4]."='".$param[5]."'";
-
 
         if(isset($_POST['fld']))
             if($_POST['fv']!=5)
@@ -68,7 +63,6 @@ window.onload = function() {
                     $_SESSION['filtertype'][$_POST['fld']]=$_POST['fv'];		
             } else unset($_SESSION['filter'][$_POST['fld']], $_SESSION['filtertype'][$_POST['fld']]);
 	if($_POST['fv']==999) unset($_SESSION['filter'],$_SESSION['filtertype']); // clear all filters
-
         if(is_array($_SESSION['filter']))
             foreach($_SESSION['filter'] as $k=>$v)
                 switch($_SESSION['filtertype'][$k])
@@ -84,22 +78,17 @@ window.onload = function() {
                         echo $flt;
                     break;
                     case 9:$flt.=" AND `$k` LIKE '$v'";break;
-
                     case 11:$flt.=" AND `$k`>'$v'";break;
                     case 12:$flt.=" AND `$k`<'$v'";break;
                     case 13:$flt.=" AND `$k`>='$v'";break;
                     case 14:$flt.=" AND `$k`<='$v'";break;
-
                 }
-
         $filtersExists=0;
         foreach($fields as $k=>$v) if(isset($_SESSION['filter'][$k])) $filtersExists++;
-
         $rn=db_select('count(*) nr', $tabel, $flt)[0];    
         $np=($rn==0?0:floor(($rn['nr']-1)/$items_per_page));
         if($st>$np) $st=$np;    
         if($st<0) $st=0;    
-
 //        echo $flt;
         
         $rows=db_select('*', $tabel, $flt, $order, ($st*$items_per_page).', '.$items_per_page);
@@ -108,7 +97,6 @@ window.onload = function() {
     } else {
         $MESSAGE='Config file missing';
     }
-
 /*
  * 
  * 
@@ -128,10 +116,7 @@ window.onload = function() {
 	
 	if(isset($_GET['pag'])) $st=$_GET['pag']; else $st=$_SESSION['st'];
 
-
-
 	
-
 	if($_POST['fv']==999) unset($_SESSION['filter'],$_SESSION['filtertype']); // clear all filters
 / * 	if(($_POST['multi']=='yes')&&(count($_POST['d'])>0))
 		{
@@ -149,7 +134,6 @@ window.onload = function() {
 }
 </script>
 <?php } * /
-
 	
 	if(isset($param[3]))
 		if($param[3]=='filtru')
@@ -162,7 +146,6 @@ window.onload = function() {
 		$_SESSION['order'][$_POST['order']]=$_POST['ordertype'];
 		}
 //	foreach($_SESSION as $k=>$v)	unset($_SESSION[$k]);
-
 / *
 	if(!isset($_SESSION['filter']))
 		{
@@ -185,14 +168,12 @@ if(isset($param[3]))
 	if($param[3]=='filtru')
 		$flt=$param[4]."='".$param[5]."'";
 
-
 if(isset($_POST['fld']))
 	if($_POST['fv']!=5)
 	{
 		$_SESSION['filter'][$_POST['fld']]=$_POST[$_POST['fld']];
 		$_SESSION['filtertype'][$_POST['fld']]=$_POST['fv'];		
 	} else unset($_SESSION['filter'][$_POST['fld']], $_SESSION['filtertype'][$_POST['fld']]);
-
 if(is_array($_SESSION['filter']))
 	foreach($_SESSION['filter'] as $k=>$v)
 		switch($_SESSION['filtertype'][$k])
@@ -210,11 +191,9 @@ if(is_array($_SESSION['filter']))
 			case 9:$flt.=" AND `$k` LIKE '$v'";break;
 		}
 
-
 $filtersExists=0;
 foreach($fields as $k=>$v) if(isset($_SESSION['filter'][$k])) $filtersExists++;
 		
-
 $rn=mysql_fetch_array(mysql_query("SELECT count(*) nr FROM $tabel WHERE $flt")) or die(mysql_error()."<br />SELECT count(*) nr FROM $tabel WHERE $flt");
 $np=floor(($rn['nr']-1)/$items_per_page)+1;
 if($st>$np) $st=$np;

@@ -1,5 +1,4 @@
 <?php
-
 $boxData = [
     [
         'type' => 'primary',

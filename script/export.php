@@ -1,16 +1,12 @@
 <?php
-
 ini_set('display_errors', 0);
 session_start();
 require '../vendor/autoload.php';
-
 use PhpOffice\PhpSpreadsheet\Helper\Sample;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-
 chdir('..');
 include("utils.php");
-
 $param = ['tabel', $_POST['oper']];
 $pag = $_POST['oper'];
 include('settings.ini');
@@ -22,16 +18,12 @@ if (file_exists('lang/' . $APP_LANGUAGE . '.lng.php')) {
 include('connector/' . $APP_DB_TYPE . '.con.php');
 db_connect();
 $dontshowpages = 1;
-
 include('script/tabel.scr.php');
-
 $expArr = [];
-
 $arr = [];
 foreach ($_POST['fields'] as $v)
     $arr[] = is_array($fields[$v]) ? $fields[$v]['name'] : $fields[$v];
 $expArr[] = $arr;
-
 foreach ($rows as $r) {
     $arr = [];
     foreach ($_POST['fields'] as $k) {
@@ -48,17 +40,13 @@ foreach ($rows as $r) {
     $expArr[] = $arr;
 }
 
-
 chdir('script');
-
-
 
 $spreadsheet = new Spreadsheet();
 $spreadsheet->setActiveSheetIndex(0);
 $workSheet = $spreadsheet->getActiveSheet();
 $workSheet->fromArray($expArr);
 $spreadsheet->setActiveSheetIndex(0);
-
 switch ($_POST['type']) {
     case 'xls':
         header('Content-Type: application/vnd.ms-excel');

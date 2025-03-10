@@ -7,19 +7,15 @@
  */
 /*
  The MIT License (MIT)
-
  Copyright (c) 2015 Jonathan Peterson
-
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
-
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
-
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -55,7 +51,6 @@
     if (!moment) {
         throw new Error('bootstrap-datetimepicker requires Moment.js to be loaded first');
     }
-
     var dateTimePicker = function (element, options) {
         var picker = {},
             date,
@@ -126,20 +121,16 @@
                 46: 'delete'
             },
             keyState = {},
-
             /********************************************************************************
              *
              * Private functions
              *
              ********************************************************************************/
-
             hasTimeZone = function () {
                 return moment.tz !== undefined && options.timeZone !== undefined && options.timeZone !== null && options.timeZone !== '';
             },
-
             getMoment = function (d) {
                 var returnMoment;
-
                 if (d === undefined || d === null) {
                     returnMoment = moment(); //TODO should this use format? and locale?
                 } else if (moment.isDate(d) || moment.isMoment(d)) {
@@ -152,14 +143,11 @@
                 } else {
                     returnMoment = moment(d, parseFormats, options.useStrict);
                 }
-
                 if (hasTimeZone()) {
                     returnMoment.tz(options.timeZone);
                 }
-
                 return returnMoment;
             },
-
             isEnabled = function (granularity) {
                 if (typeof granularity !== 'string' || granularity.length > 1) {
                     throw new TypeError('isEnabled expects a single character string parameter');
@@ -182,15 +170,12 @@
                         return false;
                 }
             },
-
             hasTime = function () {
                 return (isEnabled('h') || isEnabled('m') || isEnabled('s'));
             },
-
             hasDate = function () {
                 return (isEnabled('y') || isEnabled('M') || isEnabled('d'));
             },
-
             getDatePickerTemplate = function () {
                 var headTemplate = $('<thead>')
                         .append($('<tr>')
@@ -206,7 +191,6 @@
                         .append($('<tr>')
                             .append($('<td>').attr('colspan', (options.calendarWeeks ? '8' : '7')))
                             );
-
                 return [
                     $('<div>').addClass('datepicker-days')
                         .append($('<table>').addClass('table-condensed')
@@ -230,12 +214,10 @@
                             )
                 ];
             },
-
             getTimePickerMainTemplate = function () {
                 var topRow = $('<tr>'),
                     middleRow = $('<tr>'),
                     bottomRow = $('<tr>');
-
                 if (isEnabled('h')) {
                     topRow.append($('<td>')
                         .append($('<a>').attr({ href: '#', tabindex: '-1', 'title': options.tooltips.incrementHour }).addClass('btn').attr('data-action', 'incrementHours').append($('<i>').addClass(options.icons.up))));
@@ -274,19 +256,16 @@
                         .append($('<a>').attr({ href: '#', tabindex: '-1', 'title': options.tooltips.decrementSecond }).addClass('btn').attr('data-action', 'decrementSeconds')
                             .append($('<i>').addClass(options.icons.down))));
                 }
-
                 if (!use24Hours) {
                     topRow.append($('<td>').addClass('separator'));
                     middleRow.append($('<td>')
                         .append($('<button>').addClass('btn btn-primary').attr({ 'data-action': 'togglePeriod', tabindex: '-1', 'title': options.tooltips.togglePeriod })));
                     bottomRow.append($('<td>').addClass('separator'));
                 }
-
                 return $('<div>').addClass('timepicker-picker')
                     .append($('<table>').addClass('table-condensed')
                         .append([topRow, middleRow, bottomRow]));
             },
-
             getTimePickerTemplate = function () {
                 var hoursView = $('<div>').addClass('timepicker-hours')
                         .append($('<table>').addClass('table-condensed')),
@@ -295,7 +274,6 @@
                     secondsView = $('<div>').addClass('timepicker-seconds')
                         .append($('<table>').addClass('table-condensed')),
                     ret = [getTimePickerMainTemplate()];
-
                 if (isEnabled('h')) {
                     ret.push(hoursView);
                 }
@@ -305,10 +283,8 @@
                 if (isEnabled('s')) {
                     ret.push(secondsView);
                 }
-
                 return ret;
             },
-
             getToolbar = function () {
                 var row = [];
                 if (options.showTodayButton) {
@@ -325,26 +301,21 @@
                 }
                 return $('<table>').addClass('table-condensed').append($('<tbody>').append($('<tr>').append(row)));
             },
-
             getTemplate = function () {
                 var template = $('<div>').addClass('bootstrap-datetimepicker-widget dropdown-menu'),
                     dateView = $('<div>').addClass('datepicker').append(getDatePickerTemplate()),
                     timeView = $('<div>').addClass('timepicker').append(getTimePickerTemplate()),
                     content = $('<ul>').addClass('list-unstyled'),
                     toolbar = $('<li>').addClass('picker-switch' + (options.collapse ? ' accordion-toggle' : '')).append(getToolbar());
-
                 if (options.inline) {
                     template.removeClass('dropdown-menu');
                 }
-
                 if (use24Hours) {
                     template.addClass('usetwentyfour');
                 }
-
                 if (isEnabled('s') && !use24Hours) {
                     template.addClass('wider');
                 }
-
                 if (options.sideBySide && hasDate() && hasTime()) {
                     template.addClass('timepicker-sbs');
                     if (options.toolbarPlacement === 'top') {
@@ -360,7 +331,6 @@
                     }
                     return template;
                 }
-
                 if (options.toolbarPlacement === 'top') {
                     content.append(toolbar);
                 }
@@ -378,21 +348,17 @@
                 }
                 return template.append(content);
             },
-
             dataToOptions = function () {
                 var eData,
                     dataOptions = {};
-
                 if (element.is('input') || options.inline) {
                     eData = element.data();
                 } else {
                     eData = element.find('input').data();
                 }
-
                 if (eData.dateOptions && eData.dateOptions instanceof Object) {
                     dataOptions = $.extend(true, dataOptions, eData.dateOptions);
                 }
-
                 $.each(options, function (key) {
                     var attributeName = 'date' + key.charAt(0).toUpperCase() + key.slice(1);
                     if (eData[attributeName] !== undefined) {
@@ -401,14 +367,12 @@
                 });
                 return dataOptions;
             },
-
             place = function () {
                 var position = (component || element).position(),
                     offset = (component || element).offset(),
                     vertical = options.widgetPositioning.vertical,
                     horizontal = options.widgetPositioning.horizontal,
                     parent;
-
                 if (options.widgetParent) {
                     parent = options.widgetParent.append(widget);
                 } else if (element.is('input')) {
@@ -420,7 +384,6 @@
                     parent = element;
                     element.children().first().after(widget);
                 }
-
                 // Top and bottom logic
                 if (vertical === 'auto') {
                     if (offset.top + widget.height() * 1.5 >= $(window).height() + $(window).scrollTop() &&
@@ -430,7 +393,6 @@
                         vertical = 'bottom';
                     }
                 }
-
                 // Left and right logic
                 if (horizontal === 'auto') {
                     if (parent.width() < offset.left + widget.outerWidth() / 2 &&
@@ -440,30 +402,25 @@
                         horizontal = 'left';
                     }
                 }
-
                 if (vertical === 'top') {
                     widget.addClass('top').removeClass('bottom');
                 } else {
                     widget.addClass('bottom').removeClass('top');
                 }
-
                 if (horizontal === 'right') {
                     widget.addClass('pull-right');
                 } else {
                     widget.removeClass('pull-right');
                 }
-
                 // find the first parent element that has a non-static css positioning
                 if (parent.css('position') === 'static') {
                     parent = parent.parents().filter(function () {
                         return $(this).css('position') !== 'static';
                     }).first();
                 }
-
                 if (parent.length === 0) {
                     throw new Error('datetimepicker component should be placed within a non-static positioned container');
                 }
-
                 widget.css({
                     top: vertical === 'top' ? 'auto' : position.top + element.outerHeight(),
                     bottom: vertical === 'top' ? parent.outerHeight() - (parent === element ? 0 : position.top) : 'auto',
@@ -471,14 +428,12 @@
                     right: horizontal === 'left' ? 'auto' : parent.outerWidth() - element.outerWidth() - (parent === element ? 0 : position.left)
                 });
             },
-
             notifyEvent = function (e) {
                 if (e.type === 'dp.change' && ((e.date && e.date.isSame(e.oldDate)) || (!e.date && !e.oldDate))) {
                     return;
                 }
                 element.trigger(e);
             },
-
             viewUpdate = function (e) {
                 if (e === 'y') {
                     e = 'YYYY';
@@ -489,7 +444,6 @@
                     viewDate: viewDate.clone()
                 });
             },
-
             showMode = function (dir) {
                 if (!widget) {
                     return;
@@ -499,38 +453,30 @@
                 }
                 widget.find('.datepicker > div').hide().filter('.datepicker-' + datePickerModes[currentViewMode].clsName).show();
             },
-
             fillDow = function () {
                 var row = $('<tr>'),
                     currentDate = viewDate.clone().startOf('w').startOf('d');
-
                 if (options.calendarWeeks === true) {
                     row.append($('<th>').addClass('cw').text('#'));
                 }
-
                 while (currentDate.isBefore(viewDate.clone().endOf('w'))) {
                     row.append($('<th>').addClass('dow').text(currentDate.format('dd')));
                     currentDate.add(1, 'd');
                 }
                 widget.find('.datepicker-days thead').append(row);
             },
-
             isInDisabledDates = function (testDate) {
                 return options.disabledDates[testDate.format('YYYY-MM-DD')] === true;
             },
-
             isInEnabledDates = function (testDate) {
                 return options.enabledDates[testDate.format('YYYY-MM-DD')] === true;
             },
-
             isInDisabledHours = function (testDate) {
                 return options.disabledHours[testDate.format('H')] === true;
             },
-
             isInEnabledHours = function (testDate) {
                 return options.enabledHours[testDate.format('H')] === true;
             },
-
             isValid = function (targetMoment, granularity) {
                 if (!targetMoment.isValid()) {
                     return false;
@@ -570,7 +516,6 @@
                 }
                 return true;
             },
-
             fillMonths = function () {
                 var spans = [],
                     monthsShort = viewDate.clone().startOf('y').startOf('d');
@@ -580,71 +525,54 @@
                 }
                 widget.find('.datepicker-months td').empty().append(spans);
             },
-
             updateMonths = function () {
                 var monthsView = widget.find('.datepicker-months'),
                     monthsViewHeader = monthsView.find('th'),
                     months = monthsView.find('tbody').find('span');
-
                 monthsViewHeader.eq(0).find('span').attr('title', options.tooltips.prevYear);
                 monthsViewHeader.eq(1).attr('title', options.tooltips.selectYear);
                 monthsViewHeader.eq(2).find('span').attr('title', options.tooltips.nextYear);
-
                 monthsView.find('.disabled').removeClass('disabled');
-
                 if (!isValid(viewDate.clone().subtract(1, 'y'), 'y')) {
                     monthsViewHeader.eq(0).addClass('disabled');
                 }
-
                 monthsViewHeader.eq(1).text(viewDate.year());
-
                 if (!isValid(viewDate.clone().add(1, 'y'), 'y')) {
                     monthsViewHeader.eq(2).addClass('disabled');
                 }
-
                 months.removeClass('active');
                 if (date.isSame(viewDate, 'y') && !unset) {
                     months.eq(date.month()).addClass('active');
                 }
-
                 months.each(function (index) {
                     if (!isValid(viewDate.clone().month(index), 'M')) {
                         $(this).addClass('disabled');
                     }
                 });
             },
-
             updateYears = function () {
                 var yearsView = widget.find('.datepicker-years'),
                     yearsViewHeader = yearsView.find('th'),
                     startYear = viewDate.clone().subtract(5, 'y'),
                     endYear = viewDate.clone().add(6, 'y'),
                     html = '';
-
                 yearsViewHeader.eq(0).find('span').attr('title', options.tooltips.prevDecade);
                 yearsViewHeader.eq(1).attr('title', options.tooltips.selectDecade);
                 yearsViewHeader.eq(2).find('span').attr('title', options.tooltips.nextDecade);
-
                 yearsView.find('.disabled').removeClass('disabled');
-
                 if (options.minDate && options.minDate.isAfter(startYear, 'y')) {
                     yearsViewHeader.eq(0).addClass('disabled');
                 }
-
                 yearsViewHeader.eq(1).text(startYear.year() + '-' + endYear.year());
-
                 if (options.maxDate && options.maxDate.isBefore(endYear, 'y')) {
                     yearsViewHeader.eq(2).addClass('disabled');
                 }
-
                 while (!startYear.isAfter(endYear, 'y')) {
                     html += '<span data-action="selectYear" class="year' + (startYear.isSame(date, 'y') && !unset ? ' active' : '') + (!isValid(startYear, 'y') ? ' disabled' : '') + '">' + startYear.year() + '</span>';
                     startYear.add(1, 'y');
                 }
-
                 yearsView.find('td').html(html);
             },
-
             updateDecades = function () {
                 var decadesView = widget.find('.datepicker-decades'),
                     decadesViewHeader = decadesView.find('th'),
@@ -655,22 +583,16 @@
                     maxDateDecade = false,
                     endDecadeYear,
                     html = '';
-
                 decadesViewHeader.eq(0).find('span').attr('title', options.tooltips.prevCentury);
                 decadesViewHeader.eq(2).find('span').attr('title', options.tooltips.nextCentury);
-
                 decadesView.find('.disabled').removeClass('disabled');
-
                 if (startDecade.isSame(moment({ y: 1900 })) || (options.minDate && options.minDate.isAfter(startDecade, 'y'))) {
                     decadesViewHeader.eq(0).addClass('disabled');
                 }
-
                 decadesViewHeader.eq(1).text(startDecade.year() + '-' + endDecade.year());
-
                 if (startDecade.isSame(moment({ y: 2000 })) || (options.maxDate && options.maxDate.isBefore(endDecade, 'y'))) {
                     decadesViewHeader.eq(2).addClass('disabled');
                 }
-
                 while (!startDecade.isAfter(endDecade, 'y')) {
                     endDecadeYear = startDecade.year() + 12;
                     minDateDecade = options.minDate && options.minDate.isAfter(startDecade, 'y') && options.minDate.year() <= endDecadeYear;
@@ -680,11 +602,9 @@
                     startDecade.add(12, 'y');
                 }
                 html += '<span></span><span></span><span></span>'; //push the dangling block over, at least this way it's even
-
                 decadesView.find('td').html(html);
                 decadesViewHeader.eq(1).text((startedAt.year() + 1) + '-' + (startDecade.year()));
             },
-
             fillDate = function () {
                 var daysView = widget.find('.datepicker-days'),
                     daysViewHeader = daysView.find('th'),
@@ -693,27 +613,21 @@
                     row,
                     clsNames = [],
                     i;
-
                 if (!hasDate()) {
                     return;
                 }
-
                 daysViewHeader.eq(0).find('span').attr('title', options.tooltips.prevMonth);
                 daysViewHeader.eq(1).attr('title', options.tooltips.selectMonth);
                 daysViewHeader.eq(2).find('span').attr('title', options.tooltips.nextMonth);
-
                 daysView.find('.disabled').removeClass('disabled');
                 daysViewHeader.eq(1).text(viewDate.format(options.dayViewHeaderFormat));
-
                 if (!isValid(viewDate.clone().subtract(1, 'M'), 'M')) {
                     daysViewHeader.eq(0).addClass('disabled');
                 }
                 if (!isValid(viewDate.clone().add(1, 'M'), 'M')) {
                     daysViewHeader.eq(2).addClass('disabled');
                 }
-
                 currentDate = viewDate.clone().startOf('M').startOf('w').startOf('d');
-
                 for (i = 0; i < 42; i++) { //always display 42 days (should show 6 weeks)
                     if (currentDate.weekday() === 0) {
                         row = $('<tr>');
@@ -749,22 +663,16 @@
                     row.append('<td data-action="selectDay" data-day="' + currentDate.format('L') + '" class="' + clsNames.join(' ') + '">' + currentDate.date() + '</td>');
                     currentDate.add(1, 'd');
                 }
-
                 daysView.find('tbody').empty().append(html);
-
                 updateMonths();
-
                 updateYears();
-
                 updateDecades();
             },
-
             fillHours = function () {
                 var table = widget.find('.timepicker-hours table'),
                     currentHour = viewDate.clone().startOf('d'),
                     html = [],
                     row = $('<tr>');
-
                 if (viewDate.hour() > 11 && !use24Hours) {
                     currentHour.hour(12);
                 }
@@ -778,14 +686,12 @@
                 }
                 table.empty().append(html);
             },
-
             fillMinutes = function () {
                 var table = widget.find('.timepicker-minutes table'),
                     currentMinute = viewDate.clone().startOf('h'),
                     html = [],
                     row = $('<tr>'),
                     step = options.stepping === 1 ? 5 : options.stepping;
-
                 while (viewDate.isSame(currentMinute, 'h')) {
                     if (currentMinute.minute() % (step * 4) === 0) {
                         row = $('<tr>');
@@ -796,13 +702,11 @@
                 }
                 table.empty().append(html);
             },
-
             fillSeconds = function () {
                 var table = widget.find('.timepicker-seconds table'),
                     currentSecond = viewDate.clone().startOf('m'),
                     html = [],
                     row = $('<tr>');
-
                 while (viewDate.isSame(currentSecond, 'm')) {
                     if (currentSecond.second() % 20 === 0) {
                         row = $('<tr>');
@@ -811,19 +715,14 @@
                     row.append('<td data-action="selectSecond" class="second' + (!isValid(currentSecond, 's') ? ' disabled' : '') + '">' + currentSecond.format('ss') + '</td>');
                     currentSecond.add(5, 's');
                 }
-
                 table.empty().append(html);
             },
-
             fillTime = function () {
                 var toggle, newDate, timeComponents = widget.find('.timepicker span[data-time-component]');
-
                 if (!use24Hours) {
                     toggle = widget.find('.timepicker [data-action=togglePeriod]');
                     newDate = date.clone().add((date.hours() >= 12) ? -12 : 12, 'h');
-
                     toggle.text(date.format('A'));
-
                     if (isValid(newDate, 'h')) {
                         toggle.removeClass('disabled');
                     } else {
@@ -833,12 +732,10 @@
                 timeComponents.filter('[data-time-component=hours]').text(date.format(use24Hours ? 'HH' : 'hh'));
                 timeComponents.filter('[data-time-component=minutes]').text(date.format('mm'));
                 timeComponents.filter('[data-time-component=seconds]').text(date.format('ss'));
-
                 fillHours();
                 fillMinutes();
                 fillSeconds();
             },
-
             update = function () {
                 if (!widget) {
                     return;
@@ -846,10 +743,8 @@
                 fillDate();
                 fillTime();
             },
-
             setValue = function (targetMoment) {
                 var oldDate = unset ? null : date;
-
                 // case of calling setValue(null or false)
                 if (!targetMoment) {
                     unset = true;
@@ -863,21 +758,16 @@
                     update();
                     return;
                 }
-
                 targetMoment = targetMoment.clone().locale(options.locale);
-
                 if (hasTimeZone()) {
                     targetMoment.tz(options.timeZone);
                 }
-
                 if (options.stepping !== 1) {
                     targetMoment.minutes((Math.round(targetMoment.minutes() / options.stepping) * options.stepping)).seconds(0);
-
                     while (options.minDate && targetMoment.isBefore(options.minDate)) {
                         targetMoment.add(options.stepping, 'minutes');
                     }
                 }
-
                 if (isValid(targetMoment)) {
                     date = targetMoment;
                     viewDate = date.clone();
@@ -907,7 +797,6 @@
                     });
                 }
             },
-
             /**
              * Hides the widget. Possibly will emit dp.hide
              */
@@ -932,30 +821,22 @@
                     component.toggleClass('active');
                 }
                 widget.hide();
-
                 $(window).off('resize', place);
                 widget.off('click', '[data-action]');
                 widget.off('mousedown', false);
-
                 widget.remove();
                 widget = false;
-
                 notifyEvent({
                     type: 'dp.hide',
                     date: date.clone()
                 });
-
                 input.blur();
-
                 viewDate = date.clone();
-
                 return picker;
             },
-
             clear = function () {
                 setValue(null);
             },
-
             parseInputDate = function (inputDate) {
                 if (options.parseInputDate === undefined) {
                     if (!moment.isMoment(inputDate) || inputDate instanceof Date) {
@@ -967,7 +848,6 @@
                 //inputDate.locale(options.locale);
                 return inputDate;
             },
-
             /********************************************************************************
              *
              * Widget UI interaction functions
@@ -980,18 +860,15 @@
                     fillDate();
                     viewUpdate(navFnc);
                 },
-
                 previous: function () {
                     var navFnc = datePickerModes[currentViewMode].navFnc;
                     viewDate.subtract(datePickerModes[currentViewMode].navStep, navFnc);
                     fillDate();
                     viewUpdate(navFnc);
                 },
-
                 pickerSwitch: function () {
                     showMode(1);
                 },
-
                 selectMonth: function (e) {
                     var month = $(e.target).closest('tbody').find('span').index($(e.target));
                     viewDate.month(month);
@@ -1006,7 +883,6 @@
                     }
                     viewUpdate('M');
                 },
-
                 selectYear: function (e) {
                     var year = parseInt($(e.target).text(), 10) || 0;
                     viewDate.year(year);
@@ -1021,7 +897,6 @@
                     }
                     viewUpdate('YYYY');
                 },
-
                 selectDecade: function (e) {
                     var year = parseInt($(e.target).data('selection'), 10) || 0;
                     viewDate.year(year);
@@ -1036,7 +911,6 @@
                     }
                     viewUpdate('YYYY');
                 },
-
                 selectDay: function (e) {
                     var day = viewDate.clone();
                     if ($(e.target).is('.old')) {
@@ -1050,60 +924,51 @@
                         hide();
                     }
                 },
-
                 incrementHours: function () {
                     var newDate = date.clone().add(1, 'h');
                     if (isValid(newDate, 'h')) {
                         setValue(newDate);
                     }
                 },
-
                 incrementMinutes: function () {
                     var newDate = date.clone().add(options.stepping, 'm');
                     if (isValid(newDate, 'm')) {
                         setValue(newDate);
                     }
                 },
-
                 incrementSeconds: function () {
                     var newDate = date.clone().add(1, 's');
                     if (isValid(newDate, 's')) {
                         setValue(newDate);
                     }
                 },
-
                 decrementHours: function () {
                     var newDate = date.clone().subtract(1, 'h');
                     if (isValid(newDate, 'h')) {
                         setValue(newDate);
                     }
                 },
-
                 decrementMinutes: function () {
                     var newDate = date.clone().subtract(options.stepping, 'm');
                     if (isValid(newDate, 'm')) {
                         setValue(newDate);
                     }
                 },
-
                 decrementSeconds: function () {
                     var newDate = date.clone().subtract(1, 's');
                     if (isValid(newDate, 's')) {
                         setValue(newDate);
                     }
                 },
-
                 togglePeriod: function () {
                     setValue(date.clone().add((date.hours() >= 12) ? -12 : 12, 'h'));
                 },
-
                 togglePicker: function (e) {
                     var $this = $(e.target),
                         $parent = $this.closest('ul'),
                         expanded = $parent.find('.show'),
                         closed = $parent.find('.collapse:not(.show)'),
                         collapseData;
-
                     if (expanded && expanded.length) {
                         collapseData = expanded.data('collapse');
                         if (collapseData && collapseData.transitioning) {
@@ -1121,37 +986,30 @@
                         } else {
                             $this.find('i').toggleClass(options.icons.time + ' ' + options.icons.date);
                         }
-
                         // NOTE: uncomment if toggled state will be restored in show()
                         //if (component) {
                         //    component.find('span').toggleClass(options.icons.time + ' ' + options.icons.date);
                         //}
                     }
                 },
-
                 showPicker: function () {
                     widget.find('.timepicker > div:not(.timepicker-picker)').hide();
                     widget.find('.timepicker .timepicker-picker').show();
                 },
-
                 showHours: function () {
                     widget.find('.timepicker .timepicker-picker').hide();
                     widget.find('.timepicker .timepicker-hours').show();
                 },
-
                 showMinutes: function () {
                     widget.find('.timepicker .timepicker-picker').hide();
                     widget.find('.timepicker .timepicker-minutes').show();
                 },
-
                 showSeconds: function () {
                     widget.find('.timepicker .timepicker-picker').hide();
                     widget.find('.timepicker .timepicker-seconds').show();
                 },
-
                 selectHour: function (e) {
                     var hour = parseInt($(e.target).text(), 10);
-
                     if (!use24Hours) {
                         if (date.hours() >= 12) {
                             if (hour !== 12) {
@@ -1166,29 +1024,23 @@
                     setValue(date.clone().hours(hour));
                     actions.showPicker.call(picker);
                 },
-
                 selectMinute: function (e) {
                     setValue(date.clone().minutes(parseInt($(e.target).text(), 10)));
                     actions.showPicker.call(picker);
                 },
-
                 selectSecond: function (e) {
                     setValue(date.clone().seconds(parseInt($(e.target).text(), 10)));
                     actions.showPicker.call(picker);
                 },
-
                 clear: clear,
-
                 today: function () {
                     var todaysDate = getMoment();
                     if (isValid(todaysDate, 'd')) {
                         setValue(todaysDate);
                     }
                 },
-
                 close: hide
             },
-
             doAction = function (e) {
                 if ($(e.currentTarget).is('.disabled')) {
                     return false;
@@ -1196,7 +1048,6 @@
                 actions[$(e.currentTarget).data('action')].apply(picker, arguments);
                 return false;
             },
-
             /**
              * Shows the widget. Possibly will emit dp.show and dp.change
              */
@@ -1219,7 +1070,6 @@
                             return m.seconds(0);
                         }
                     };
-
                 if (input.prop('disabled') || (!options.ignoreReadonly && input.prop('readonly')) || widget) {
                     return picker;
                 }
@@ -1233,21 +1083,16 @@
                     setValue(currentMoment);
                 }
                 widget = getTemplate();
-
                 fillDow();
                 fillMonths();
-
                 widget.find('.timepicker-hours').hide();
                 widget.find('.timepicker-minutes').hide();
                 widget.find('.timepicker-seconds').hide();
-
                 update();
                 showMode();
-
                 $(window).on('resize', place);
                 widget.on('click', '[data-action]', doAction); // this handles clicks on the widget
                 widget.on('mousedown', false);
-
                 if (component && component.hasClass('btn')) {
                     component.toggleClass('active');
                 }
@@ -1256,20 +1101,17 @@
                 if (options.focusOnShow && !input.is(':focus')) {
                     input.focus();
                 }
-
                 notifyEvent({
                     type: 'dp.show'
                 });
                 return picker;
             },
-
             /**
              * Shows or hides the widget
              */
             toggle = function () {
                 return (widget ? hide() : show());
             },
-
             keydown = function (e) {
                 var handler = null,
                     index,
@@ -1280,9 +1122,7 @@
                     keyBindKeys,
                     allModifiersPressed,
                     pressed = 'p';
-
                 keyState[currentKey] = pressed;
-
                 for (index in keyState) {
                     if (keyState.hasOwnProperty(index) && keyState[index] === pressed) {
                         pressedKeys.push(index);
@@ -1291,7 +1131,6 @@
                         }
                     }
                 }
-
                 for (index in options.keyBinds) {
                     if (options.keyBinds.hasOwnProperty(index) && typeof (options.keyBinds[index]) === 'function') {
                         keyBindKeys = index.split(' ');
@@ -1310,20 +1149,17 @@
                         }
                     }
                 }
-
                 if (handler) {
                     handler.call(picker, widget);
                     e.stopPropagation();
                     e.preventDefault();
                 }
             },
-
             keyup = function (e) {
                 keyState[e.which] = 'r';
                 e.stopPropagation();
                 e.preventDefault();
             },
-
             change = function (e) {
                 var val = $(e.target).val().trim(),
                     parsedDate = val ? parseInputDate(val) : null;
@@ -1331,7 +1167,6 @@
                 e.stopImmediatePropagation();
                 return false;
             },
-
             attachDatePickerElementEvents = function () {
                 input.on({
                     'change': change,
@@ -1340,7 +1175,6 @@
                     'keyup': keyup,
                     'focus': options.allowInputToggle ? show : ''
                 });
-
                 if (element.is('input')) {
                     input.on({
                         'focus': show
@@ -1350,7 +1184,6 @@
                     component.on('mousedown', false);
                 }
             },
-
             detachDatePickerElementEvents = function () {
                 input.off({
                     'change': change,
@@ -1359,7 +1192,6 @@
                     'keyup': keyup,
                     'focus': options.allowInputToggle ? hide : ''
                 });
-
                 if (element.is('input')) {
                     input.off({
                         'focus': show
@@ -1369,7 +1201,6 @@
                     component.off('mousedown', false);
                 }
             },
-
             indexGivenDates = function (givenDatesArray) {
                 // Store given enabledDates and disabledDates as keys.
                 // This way we can check their existence in O(1) time instead of looping through whole array.
@@ -1383,7 +1214,6 @@
                 });
                 return (Object.keys(givenDatesIndexed).length) ? givenDatesIndexed : false;
             },
-
             indexGivenHours = function (givenHoursArray) {
                 // Store given enabledHours and disabledHours as keys.
                 // This way we can check their existence in O(1) time instead of looping through whole array.
@@ -1394,10 +1224,8 @@
                 });
                 return (Object.keys(givenHoursIndexed).length) ? givenHoursIndexed : false;
             },
-
             initFormatting = function () {
                 var format = options.format || 'L LT';
-
                 actualFormat = format.replace(/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, function (formatInput) {
                     var newinput = date.localeData().longDateFormat(formatInput) || formatInput;
                     return newinput.replace(/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, function (formatInput2) { //temp fix for #740
@@ -1405,14 +1233,11 @@
                     });
                 });
 
-
                 parseFormats = options.extraFormats ? options.extraFormats.slice() : [];
                 if (parseFormats.indexOf(format) < 0 && parseFormats.indexOf(actualFormat) < 0) {
                     parseFormats.push(actualFormat);
                 }
-
                 use24Hours = (actualFormat.toLowerCase().indexOf('a') < 1 && actualFormat.replace(/\[.*?\]/g, '').indexOf('h') < 1);
-
                 if (isEnabled('y')) {
                     minViewModeNumber = 2;
                 }
@@ -1422,14 +1247,11 @@
                 if (isEnabled('d')) {
                     minViewModeNumber = 0;
                 }
-
                 currentViewMode = Math.max(minViewModeNumber, currentViewMode);
-
                 if (!unset) {
                     setValue(date);
                 }
             };
-
         /********************************************************************************
          *
          * Public API functions
@@ -1447,13 +1269,9 @@
             element.removeData('DateTimePicker');
             element.removeData('date');
         };
-
         picker.toggle = toggle;
-
         picker.show = show;
-
         picker.hide = hide;
-
         picker.disable = function () {
             ///<summary>Disables the input element, the component is attached to, by adding a disabled="true" attribute to it.
             ///If the widget was visible before that call it is hidden. Possibly emits dp.hide</summary>
@@ -1464,7 +1282,6 @@
             input.prop('disabled', true);
             return picker;
         };
-
         picker.enable = function () {
             ///<summary>Enables the input element, the component is attached to, by removing disabled attribute from it.</summary>
             if (component && component.hasClass('btn')) {
@@ -1473,7 +1290,6 @@
             input.prop('disabled', false);
             return picker;
         };
-
         picker.ignoreReadonly = function (ignoreReadonly) {
             if (arguments.length === 0) {
                 return options.ignoreReadonly;
@@ -1484,12 +1300,10 @@
             options.ignoreReadonly = ignoreReadonly;
             return picker;
         };
-
         picker.options = function (newOptions) {
             if (arguments.length === 0) {
                 return $.extend(true, {}, options);
             }
-
             if (!(newOptions instanceof Object)) {
                 throw new TypeError('options() options parameter should be an object');
             }
@@ -1503,7 +1317,6 @@
             });
             return picker;
         };
-
         picker.date = function (newDate) {
             ///<signature helpKeyword="$.fn.datetimepicker.date">
             ///<summary>Returns the component's model current date, a moment object or null if not set.</summary>
@@ -1519,15 +1332,12 @@
                 }
                 return date.clone();
             }
-
             if (newDate !== null && typeof newDate !== 'string' && !moment.isMoment(newDate) && !(newDate instanceof Date)) {
                 throw new TypeError('date() parameter must be one of [null, string, moment or Date]');
             }
-
             setValue(newDate === null ? null : parseInputDate(newDate));
             return picker;
         };
-
         picker.format = function (newFormat) {
             ///<summary>test su</summary>
             ///<param name="newFormat">info about para</param>
@@ -1535,61 +1345,48 @@
             if (arguments.length === 0) {
                 return options.format;
             }
-
             if ((typeof newFormat !== 'string') && ((typeof newFormat !== 'boolean') || (newFormat !== false))) {
                 throw new TypeError('format() expects a string or boolean:false parameter ' + newFormat);
             }
-
             options.format = newFormat;
             if (actualFormat) {
                 initFormatting(); // reinit formatting
             }
             return picker;
         };
-
         picker.timeZone = function (newZone) {
             if (arguments.length === 0) {
                 return options.timeZone;
             }
-
             if (typeof newZone !== 'string') {
                 throw new TypeError('newZone() expects a string parameter');
             }
-
             options.timeZone = newZone;
-
             return picker;
         };
-
         picker.dayViewHeaderFormat = function (newFormat) {
             if (arguments.length === 0) {
                 return options.dayViewHeaderFormat;
             }
-
             if (typeof newFormat !== 'string') {
                 throw new TypeError('dayViewHeaderFormat() expects a string parameter');
             }
-
             options.dayViewHeaderFormat = newFormat;
             return picker;
         };
-
         picker.extraFormats = function (formats) {
             if (arguments.length === 0) {
                 return options.extraFormats;
             }
-
             if (formats !== false && !(formats instanceof Array)) {
                 throw new TypeError('extraFormats() expects an array or false parameter');
             }
-
             options.extraFormats = formats;
             if (parseFormats) {
                 initFormatting(); // reinit formatting
             }
             return picker;
         };
-
         picker.disabledDates = function (dates) {
             ///<signature helpKeyword="$.fn.datetimepicker.disabledDates">
             ///<summary>Returns an array with the currently set disabled dates on the component.</summary>
@@ -1603,7 +1400,6 @@
             if (arguments.length === 0) {
                 return (options.disabledDates ? $.extend({}, options.disabledDates) : options.disabledDates);
             }
-
             if (!dates) {
                 options.disabledDates = false;
                 update();
@@ -1617,7 +1413,6 @@
             update();
             return picker;
         };
-
         picker.enabledDates = function (dates) {
             ///<signature helpKeyword="$.fn.datetimepicker.enabledDates">
             ///<summary>Returns an array with the currently set enabled dates on the component.</summary>
@@ -1630,7 +1425,6 @@
             if (arguments.length === 0) {
                 return (options.enabledDates ? $.extend({}, options.enabledDates) : options.enabledDates);
             }
-
             if (!dates) {
                 options.enabledDates = false;
                 update();
@@ -1644,18 +1438,15 @@
             update();
             return picker;
         };
-
         picker.daysOfWeekDisabled = function (daysOfWeekDisabled) {
             if (arguments.length === 0) {
                 return options.daysOfWeekDisabled.splice(0);
             }
-
             if ((typeof daysOfWeekDisabled === 'boolean') && !daysOfWeekDisabled) {
                 options.daysOfWeekDisabled = false;
                 update();
                 return picker;
             }
-
             if (!(daysOfWeekDisabled instanceof Array)) {
                 throw new TypeError('daysOfWeekDisabled() expects an array parameter');
             }
@@ -1683,26 +1474,21 @@
             update();
             return picker;
         };
-
         picker.maxDate = function (maxDate) {
             if (arguments.length === 0) {
                 return options.maxDate ? options.maxDate.clone() : options.maxDate;
             }
-
             if ((typeof maxDate === 'boolean') && maxDate === false) {
                 options.maxDate = false;
                 update();
                 return picker;
             }
-
             if (typeof maxDate === 'string') {
                 if (maxDate === 'now' || maxDate === 'moment') {
                     maxDate = getMoment();
                 }
             }
-
             var parsedDate = parseInputDate(maxDate);
-
             if (!parsedDate.isValid()) {
                 throw new TypeError('maxDate() Could not parse date parameter: ' + maxDate);
             }
@@ -1719,26 +1505,21 @@
             update();
             return picker;
         };
-
         picker.minDate = function (minDate) {
             if (arguments.length === 0) {
                 return options.minDate ? options.minDate.clone() : options.minDate;
             }
-
             if ((typeof minDate === 'boolean') && minDate === false) {
                 options.minDate = false;
                 update();
                 return picker;
             }
-
             if (typeof minDate === 'string') {
                 if (minDate === 'now' || minDate === 'moment') {
                     minDate = getMoment();
                 }
             }
-
             var parsedDate = parseInputDate(minDate);
-
             if (!parsedDate.isValid()) {
                 throw new TypeError('minDate() Could not parse date parameter: ' + minDate);
             }
@@ -1755,7 +1536,6 @@
             update();
             return picker;
         };
-
         picker.defaultDate = function (defaultDate) {
             ///<signature helpKeyword="$.fn.datetimepicker.defaultDate">
             ///<summary>Returns a moment with the options.defaultDate option configuration or false if not set</summary>
@@ -1772,7 +1552,6 @@
                 options.defaultDate = false;
                 return picker;
             }
-
             if (typeof defaultDate === 'string') {
                 if (defaultDate === 'now' || defaultDate === 'moment') {
                     defaultDate = getMoment();
@@ -1780,7 +1559,6 @@
                     defaultDate = getMoment(defaultDate);
                 }
             }
-
             var parsedDate = parseInputDate(defaultDate);
             if (!parsedDate.isValid()) {
                 throw new TypeError('defaultDate() Could not parse date parameter: ' + defaultDate);
@@ -1788,28 +1566,22 @@
             if (!isValid(parsedDate)) {
                 throw new TypeError('defaultDate() date passed is invalid according to component setup validations');
             }
-
             options.defaultDate = parsedDate;
-
             if ((options.defaultDate && options.inline) || input.val().trim() === '') {
                 setValue(options.defaultDate);
             }
             return picker;
         };
-
         picker.locale = function (locale) {
             if (arguments.length === 0) {
                 return options.locale;
             }
-
             if (!moment.localeData(locale)) {
                 throw new TypeError('locale() locale ' + locale + ' is not loaded from moment locales!');
             }
-
             options.locale = locale;
             date.locale(options.locale);
             viewDate.locale(options.locale);
-
             if (actualFormat) {
                 initFormatting(); // reinit formatting
             }
@@ -1819,12 +1591,10 @@
             }
             return picker;
         };
-
         picker.stepping = function (stepping) {
             if (arguments.length === 0) {
                 return options.stepping;
             }
-
             stepping = parseInt(stepping, 10);
             if (isNaN(stepping) || stepping < 1) {
                 stepping = 1;
@@ -1832,13 +1602,11 @@
             options.stepping = stepping;
             return picker;
         };
-
         picker.useCurrent = function (useCurrent) {
             var useCurrentOptions = ['year', 'month', 'day', 'hour', 'minute'];
             if (arguments.length === 0) {
                 return options.useCurrent;
             }
-
             if ((typeof useCurrent !== 'boolean') && (typeof useCurrent !== 'string')) {
                 throw new TypeError('useCurrent() expects a boolean or string parameter');
             }
@@ -1848,12 +1616,10 @@
             options.useCurrent = useCurrent;
             return picker;
         };
-
         picker.collapse = function (collapse) {
             if (arguments.length === 0) {
                 return options.collapse;
             }
-
             if (typeof collapse !== 'boolean') {
                 throw new TypeError('collapse() expects a boolean parameter');
             }
@@ -1867,12 +1633,10 @@
             }
             return picker;
         };
-
         picker.icons = function (icons) {
             if (arguments.length === 0) {
                 return $.extend({}, options.icons);
             }
-
             if (!(icons instanceof Object)) {
                 throw new TypeError('icons() expects parameter to be an Object');
             }
@@ -1883,12 +1647,10 @@
             }
             return picker;
         };
-
         picker.tooltips = function (tooltips) {
             if (arguments.length === 0) {
                 return $.extend({}, options.tooltips);
             }
-
             if (!(tooltips instanceof Object)) {
                 throw new TypeError('tooltips() expects parameter to be an Object');
             }
@@ -1899,24 +1661,20 @@
             }
             return picker;
         };
-
         picker.useStrict = function (useStrict) {
             if (arguments.length === 0) {
                 return options.useStrict;
             }
-
             if (typeof useStrict !== 'boolean') {
                 throw new TypeError('useStrict() expects a boolean parameter');
             }
             options.useStrict = useStrict;
             return picker;
         };
-
         picker.sideBySide = function (sideBySide) {
             if (arguments.length === 0) {
                 return options.sideBySide;
             }
-
             if (typeof sideBySide !== 'boolean') {
                 throw new TypeError('sideBySide() expects a boolean parameter');
             }
@@ -1927,32 +1685,25 @@
             }
             return picker;
         };
-
         picker.viewMode = function (viewMode) {
             if (arguments.length === 0) {
                 return options.viewMode;
             }
-
             if (typeof viewMode !== 'string') {
                 throw new TypeError('viewMode() expects a string parameter');
             }
-
             if (viewModes.indexOf(viewMode) === -1) {
                 throw new TypeError('viewMode() parameter must be one of (' + viewModes.join(', ') + ') value');
             }
-
             options.viewMode = viewMode;
             currentViewMode = Math.max(viewModes.indexOf(viewMode), minViewModeNumber);
-
             showMode();
             return picker;
         };
-
         picker.toolbarPlacement = function (toolbarPlacement) {
             if (arguments.length === 0) {
                 return options.toolbarPlacement;
             }
-
             if (typeof toolbarPlacement !== 'string') {
                 throw new TypeError('toolbarPlacement() expects a string parameter');
             }
@@ -1960,19 +1711,16 @@
                 throw new TypeError('toolbarPlacement() parameter must be one of (' + toolbarPlacements.join(', ') + ') value');
             }
             options.toolbarPlacement = toolbarPlacement;
-
             if (widget) {
                 hide();
                 show();
             }
             return picker;
         };
-
         picker.widgetPositioning = function (widgetPositioning) {
             if (arguments.length === 0) {
                 return $.extend({}, options.widgetPositioning);
             }
-
             if (({}).toString.call(widgetPositioning) !== '[object Object]') {
                 throw new TypeError('widgetPositioning() expects an object variable');
             }
@@ -1999,30 +1747,24 @@
             update();
             return picker;
         };
-
         picker.calendarWeeks = function (calendarWeeks) {
             if (arguments.length === 0) {
                 return options.calendarWeeks;
             }
-
             if (typeof calendarWeeks !== 'boolean') {
                 throw new TypeError('calendarWeeks() expects parameter to be a boolean value');
             }
-
             options.calendarWeeks = calendarWeeks;
             update();
             return picker;
         };
-
         picker.showTodayButton = function (showTodayButton) {
             if (arguments.length === 0) {
                 return options.showTodayButton;
             }
-
             if (typeof showTodayButton !== 'boolean') {
                 throw new TypeError('showTodayButton() expects a boolean parameter');
             }
-
             options.showTodayButton = showTodayButton;
             if (widget) {
                 hide();
@@ -2030,16 +1772,13 @@
             }
             return picker;
         };
-
         picker.showClear = function (showClear) {
             if (arguments.length === 0) {
                 return options.showClear;
             }
-
             if (typeof showClear !== 'boolean') {
                 throw new TypeError('showClear() expects a boolean parameter');
             }
-
             options.showClear = showClear;
             if (widget) {
                 hide();
@@ -2047,20 +1786,16 @@
             }
             return picker;
         };
-
         picker.widgetParent = function (widgetParent) {
             if (arguments.length === 0) {
                 return options.widgetParent;
             }
-
             if (typeof widgetParent === 'string') {
                 widgetParent = $(widgetParent);
             }
-
             if (widgetParent !== null && (typeof widgetParent !== 'string' && !(widgetParent instanceof $))) {
                 throw new TypeError('widgetParent() expects a string or a jQuery object parameter');
             }
-
             options.widgetParent = widgetParent;
             if (widget) {
                 hide();
@@ -2068,138 +1803,107 @@
             }
             return picker;
         };
-
         picker.keepOpen = function (keepOpen) {
             if (arguments.length === 0) {
                 return options.keepOpen;
             }
-
             if (typeof keepOpen !== 'boolean') {
                 throw new TypeError('keepOpen() expects a boolean parameter');
             }
-
             options.keepOpen = keepOpen;
             return picker;
         };
-
         picker.focusOnShow = function (focusOnShow) {
             if (arguments.length === 0) {
                 return options.focusOnShow;
             }
-
             if (typeof focusOnShow !== 'boolean') {
                 throw new TypeError('focusOnShow() expects a boolean parameter');
             }
-
             options.focusOnShow = focusOnShow;
             return picker;
         };
-
         picker.inline = function (inline) {
             if (arguments.length === 0) {
                 return options.inline;
             }
-
             if (typeof inline !== 'boolean') {
                 throw new TypeError('inline() expects a boolean parameter');
             }
-
             options.inline = inline;
             return picker;
         };
-
         picker.clear = function () {
             clear();
             return picker;
         };
-
         picker.keyBinds = function (keyBinds) {
             if (arguments.length === 0) {
                 return options.keyBinds;
             }
-
             options.keyBinds = keyBinds;
             return picker;
         };
-
         picker.getMoment = function (d) {
             return getMoment(d);
         };
-
         picker.debug = function (debug) {
             if (typeof debug !== 'boolean') {
                 throw new TypeError('debug() expects a boolean parameter');
             }
-
             options.debug = debug;
             return picker;
         };
-
         picker.allowInputToggle = function (allowInputToggle) {
             if (arguments.length === 0) {
                 return options.allowInputToggle;
             }
-
             if (typeof allowInputToggle !== 'boolean') {
                 throw new TypeError('allowInputToggle() expects a boolean parameter');
             }
-
             options.allowInputToggle = allowInputToggle;
             return picker;
         };
-
         picker.showClose = function (showClose) {
             if (arguments.length === 0) {
                 return options.showClose;
             }
-
             if (typeof showClose !== 'boolean') {
                 throw new TypeError('showClose() expects a boolean parameter');
             }
-
             options.showClose = showClose;
             return picker;
         };
-
         picker.keepInvalid = function (keepInvalid) {
             if (arguments.length === 0) {
                 return options.keepInvalid;
             }
-
             if (typeof keepInvalid !== 'boolean') {
                 throw new TypeError('keepInvalid() expects a boolean parameter');
             }
             options.keepInvalid = keepInvalid;
             return picker;
         };
-
         picker.datepickerInput = function (datepickerInput) {
             if (arguments.length === 0) {
                 return options.datepickerInput;
             }
-
             if (typeof datepickerInput !== 'string') {
                 throw new TypeError('datepickerInput() expects a string parameter');
             }
-
             options.datepickerInput = datepickerInput;
             return picker;
         };
-
         picker.parseInputDate = function (parseInputDate) {
             if (arguments.length === 0) {
                 return options.parseInputDate;
             }
-
             if (typeof parseInputDate !== 'function') {
                 throw new TypeError('parseInputDate() sholud be as function');
             }
-
             options.parseInputDate = parseInputDate;
-
             return picker;
         };
-
         picker.disabledTimeIntervals = function (disabledTimeIntervals) {
             ///<signature helpKeyword="$.fn.datetimepicker.disabledTimeIntervals">
             ///<summary>Returns an array with the currently set disabled dates on the component.</summary>
@@ -2213,7 +1917,6 @@
             if (arguments.length === 0) {
                 return (options.disabledTimeIntervals ? $.extend({}, options.disabledTimeIntervals) : options.disabledTimeIntervals);
             }
-
             if (!disabledTimeIntervals) {
                 options.disabledTimeIntervals = false;
                 update();
@@ -2226,7 +1929,6 @@
             update();
             return picker;
         };
-
         picker.disabledHours = function (hours) {
             ///<signature helpKeyword="$.fn.datetimepicker.disabledHours">
             ///<summary>Returns an array with the currently set disabled hours on the component.</summary>
@@ -2240,7 +1942,6 @@
             if (arguments.length === 0) {
                 return (options.disabledHours ? $.extend({}, options.disabledHours) : options.disabledHours);
             }
-
             if (!hours) {
                 options.disabledHours = false;
                 update();
@@ -2265,7 +1966,6 @@
             update();
             return picker;
         };
-
         picker.enabledHours = function (hours) {
             ///<signature helpKeyword="$.fn.datetimepicker.enabledHours">
             ///<summary>Returns an array with the currently set enabled hours on the component.</summary>
@@ -2278,7 +1978,6 @@
             if (arguments.length === 0) {
                 return (options.enabledHours ? $.extend({}, options.enabledHours) : options.enabledHours);
             }
-
             if (!hours) {
                 options.enabledHours = false;
                 update();
@@ -2312,21 +2011,17 @@
             if (arguments.length === 0) {
                 return viewDate.clone();
             }
-
             if (!newDate) {
                 viewDate = date.clone();
                 return picker;
             }
-
             if (typeof newDate !== 'string' && !moment.isMoment(newDate) && !(newDate instanceof Date)) {
                 throw new TypeError('viewDate() parameter must be one of [string, moment or Date]');
             }
-
             viewDate = parseInputDate(newDate);
             viewUpdate();
             return picker;
         };
-
         // initializing element and component attributes
         if (element.is('input')) {
             input = element;
@@ -2338,7 +2033,6 @@
                 throw new Error('CSS class "' + options.datepickerInput + '" cannot be applied to non input element');
             }
         }
-
         if (element.hasClass('input-group')) {
             // in case there is more then one 'input-group-addon' Issue #48
             if (element.find('.datepickerbutton').length === 0) {
@@ -2347,23 +2041,16 @@
                 component = element.find('.datepickerbutton');
             }
         }
-
         if (!options.inline && !input.is('input')) {
             throw new Error('Could not initialize DateTimePicker without an input element');
         }
-
         // Set defaults for date here now instead of in var declaration
         date = getMoment();
         viewDate = date.clone();
-
         $.extend(true, options, dataToOptions());
-
         picker.options(options);
-
         initFormatting();
-
         attachDatePickerElementEvents();
-
         if (input.prop('disabled')) {
             picker.disable();
         }
@@ -2378,13 +2065,11 @@
         }
         return picker;
     };
-
     /********************************************************************************
      *
      * jQuery plugin constructor and defaults object
      *
      ********************************************************************************/
-
     /**
     * See (http://jquery.com/).
     * @name jQuery
@@ -2407,12 +2092,10 @@
      */
     $.fn.datetimepicker = function (options) {
         options = options || {};
-
         var args = Array.prototype.slice.call(arguments, 1),
             isInstance = true,
             thisMethods = ['destroy', 'hide', 'show', 'toggle'],
             returnValue;
-
         if (typeof options === 'object') {
             return this.each(function () {
                 var $this = $(this),
@@ -2430,21 +2113,16 @@
                 if (!instance) {
                     throw new Error('bootstrap-datetimepicker("' + options + '") method was called on an element that is not using DateTimePicker');
                 }
-
                 returnValue = instance[options].apply(instance, args);
                 isInstance = returnValue === instance;
             });
-
             if (isInstance || $.inArray(options, thisMethods) > -1) {
                 return this;
             }
-
             return returnValue;
         }
-
         throw new TypeError('Invalid arguments for DateTimePicker: ' + options);
     };
-
     $.fn.datetimepicker.defaults = {
         timeZone: '',
         format: false,
@@ -2631,6 +2309,5 @@
         enabledHours: false,
         viewDate: false
     };
-
     return $.fn.datetimepicker;
 }));

@@ -1,5 +1,4 @@
 <?php
-
 unset($_SESSION['filter']);
 unset($_SESSION['filtertype']);
 $panelRows = db_select('DISTINCT rand', 'login_dashboard', 'id_user IN (0,' . $ruser['id'] . ')', 'rand');

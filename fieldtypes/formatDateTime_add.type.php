@@ -21,7 +21,7 @@
             defaultDate: '<?= date('Y-m-d H:i:s', strtotime('NOW')) ?>',
             hooks: {
                 inputFormat: (context, date) => {
-                    d = date.getFullYear() + '-' + (1+date.getMonth()) + '-' + date.getDate()  + ' ' + date.getHours()  + ':' + date.getMinutes()  + ':' + date.getSeconds();
+                    d = date.getFullYear() + '-' + (1 + date.getMonth()) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
                     $('#<?= $fieldId ?>DateTimePicker .iteminput').val(d);
                     return d;
                 }

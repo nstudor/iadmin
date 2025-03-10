@@ -56,7 +56,6 @@
     <i class="fa fa-times text-white"></i>
     </button>
 </div>
-
 </div>
 <script>
     setTimeout(

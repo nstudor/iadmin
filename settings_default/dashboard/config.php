@@ -20,12 +20,8 @@ $fields=array(
         'fatype'=>'r,r'      
     ),
 );
-
 $title="Dashboard";
-
 //$_SESSION['filter']['id_user']=$_SESSION['userid'];
 //$_SESSION['filtertype']['id_user']=1;
-
 //$defaults=array( 'id_user'=>$_SESSION['userid'] );
-
 ?>

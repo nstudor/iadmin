@@ -7,7 +7,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  */
-
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module unless amdModuleId is set
@@ -43,20 +42,13 @@
         fallbackColor
       ) :
       null;
-
     this.fallbackFormat = fallbackFormat ? fallbackFormat : 'rgba';
-
     this.hexNumberSignPrefix = hexNumberSignPrefix === true;
-
     this.value = this.fallbackValue;
-
     this.origFormat = null; // original string format
-
     this.predefinedColors = predefinedColors ? predefinedColors : {};
-
     // We don't want to share aliases across instances so we extend new object
     this.colors = $.extend({}, Color.webColors, this.predefinedColors);
-
     if (val) {
       if (typeof val.h !== 'undefined') {
         this.value = val;
@@ -64,7 +56,6 @@
         this.setColor(String(val));
       }
     }
-
     if (!this.value) {
       // Initial value is always black if no arguments are passed or val is empty
       this.value = {
@@ -75,7 +66,6 @@
       };
     }
   };
-
   Color.webColors = { // 140 predefined colors from the HTML Colors spec
     "aliceblue": "f0f8ff",
     "antiquewhite": "faebd7",
@@ -219,7 +209,6 @@
     "yellowgreen": "9acd32",
     "transparent": "transparent"
   };
-
   Color.prototype = {
     constructor: Color,
     colors: {}, // merged web and predefined colors
@@ -320,19 +309,16 @@
         b = this.value.b;
         a = this.value.a;
       }
-
       h *= 360;
       var R, G, B, X, C;
       h = (h % 360) / 60;
       C = b * s;
       X = C * (1 - Math.abs(h % 2 - 1));
       R = G = B = b - C;
-
       h = ~~h;
       R += [C, X, 0, 0, X, C][h];
       G += [X, C, C, X, 0, 0][h];
       B += [0, 0, X, C, C, X][h];
-
       return {
         r: Math.round(R * 255),
         g: Math.round(G * 255),
@@ -347,18 +333,14 @@
         b = this.value.b;
         a = this.value.a;
       }
-
       var prefix = '#';
       var rgb = this.toRGB(h, s, b, a);
-
       if (this.rgbaIsTransparent(rgb)) {
         return 'transparent';
       }
-
       if (!ignoreFormat) {
         prefix = (this.hexNumberSignPrefix ? '#' : '');
       }
-
       var hexStr = prefix + (
           (1 << 24) +
           (parseInt(rgb.r) << 16) +
@@ -366,7 +348,6 @@
           parseInt(rgb.b))
         .toString(16)
         .slice(1);
-
       return hexStr;
     },
     toHSL: function(h, s, b, a) {
@@ -376,7 +357,6 @@
         b = this.value.b;
         a = this.value.a;
       }
-
       var H = h,
         L = (2 - s) * b,
         S = s * b;
@@ -398,10 +378,8 @@
     },
     toAlias: function(r, g, b, a) {
       var c, rgb = (arguments.length === 0) ? this.toHex(true) : this.toHex(true, r, g, b, a);
-
       // support predef. colors in non-hex format too, as defined in the alias itself
       var original = this.origFormat === 'alias' ? rgb : this.toString(false, this.origFormat);
-
       for (var alias in this.colors) {
         c = this.colors[alias].toLowerCase().trim();
         if ((c === rgb) || (c === original)) {
@@ -414,7 +392,6 @@
       r /= 255;
       g /= 255;
       b /= 255;
-
       var H, S, V, C;
       V = Math.max(r, g, b);
       C = V - Math.min(r, g, b);
@@ -458,13 +435,10 @@
       } else {
         q = l + s - (l * s);
       }
-
       var p = 2 * l - q;
-
       var tr = h + (1 / 3);
       var tg = h;
       var tb = h - (1 / 3);
-
       var r = Math.round(this.HueToRGB(p, q, tr) * 255);
       var g = Math.round(this.HueToRGB(p, q, tg) * 255);
       var b = Math.round(this.HueToRGB(p, q, tb) * 255);
@@ -481,16 +455,13 @@
       if (arguments.length === 0) {
         return false;
       }
-
       var that = this,
         result = false,
         isAlias = (typeof this.colors[strVal] !== 'undefined'),
         values, format;
-
       if (isAlias) {
         strVal = this.colors[strVal].toLowerCase().trim();
       }
-
       $.each(this.stringParsers, function(i, parser) {
         var match = parser.re.exec(strVal);
         values = match && parser.parse.apply(that, [match]);
@@ -521,7 +492,6 @@
       if (this.fallbackFormat && (formats.indexOf(this.fallbackFormat) !== -1)) {
         return this.fallbackFormat;
       }
-
       return 'rgba'; // By default, return a format that will not lose the alpha info
     },
     /**
@@ -534,9 +504,7 @@
     toString: function(forceRawValue, format, translateAlias) {
       format = format || this.origFormat || this.fallbackFormat;
       translateAlias = translateAlias || false;
-
       var c = false;
-
       switch (format) {
         case 'rgb':
           {
@@ -573,15 +541,12 @@
         case 'alias':
           {
             c = this.toAlias();
-
             if (c === false) {
               return this.toString(forceRawValue, this.getValidFallbackFormat());
             }
-
             if (translateAlias && !(c in Color.webColors) && (c in this.predefinedColors)) {
               return this.predefinedColors[c];
             }
-
             return c;
           }
         default:
@@ -690,7 +655,6 @@
       return false;
     }
   };
-
   /*
    * Default plugin options
    */
@@ -756,7 +720,6 @@
     customClass: null, // custom class added to the colorpicker element
     colorSelectors: null // custom color aliases
   };
-
   /**
    * Colorpicker component class
    *
@@ -774,7 +737,6 @@
     }
     this.container = (this.options.container === true) ? this.element : this.options.container;
     this.container = (this.container !== false) ? $(this.container) : false;
-
     // Is the element an input? Should we search inside for any input?
     this.input = this.element.is('input') ? this.element : (this.options.input ?
       this.element.find(this.options.input) : false);
@@ -783,16 +745,12 @@
     }
     // Set HSB color
     this.color = this.createColor(this.options.color !== false ? this.options.color : this.getValue());
-
     this.format = this.options.format !== false ? this.options.format : this.color.origFormat;
-
     if (this.options.color !== false) {
       this.updateInput(this.color);
       this.updateData(this.color);
     }
-
     this.disabled = false;
-
     // Setup picker
     var $picker = this.picker = $(this.options.template);
     if (this.options.customClass) {
@@ -822,14 +780,12 @@
     if (this.options.colorSelectors) {
       var colorpicker = this,
         selectorsContainer = colorpicker.picker.find('.colorpicker-selectors');
-
       if (selectorsContainer.length > 0) {
         $.each(this.options.colorSelectors, function(name, color) {
           var $btn = $('<i />')
             .addClass('colorpicker-selectors-color')
             .css('background-color', color)
             .data('class', name).data('alias', name);
-
           $btn.on('mousedown.colorpicker touchstart.colorpicker', function(event) {
             event.preventDefault();
             colorpicker.setValue(
@@ -841,20 +797,16 @@
         selectorsContainer.show().addClass('colorpicker-visible');
       }
     }
-
     // Prevent closing the colorpicker when clicking on itself
     $picker.on('mousedown.colorpicker touchstart.colorpicker', $.proxy(function(e) {
       if (e.target === e.currentTarget) {
         e.preventDefault();
       }
     }, this));
-
     // Bind click/tap events on the sliders
     $picker.find('.colorpicker-saturation, .colorpicker-hue, .colorpicker-alpha')
       .on('mousedown.colorpicker touchstart.colorpicker', $.proxy(this.mousedown, this));
-
     $picker.appendTo(this.container ? this.container : $('body'));
-
     // Bind other events
     if (this.input !== false) {
       this.input.on({
@@ -874,36 +826,29 @@
         });
       }
     }
-
     if (this.component !== false) {
       this.component.on({
         'click.colorpicker': $.proxy(this.show, this)
       });
     }
-
     if ((this.input === false) && (this.component === false)) {
       this.element.on({
         'click.colorpicker': $.proxy(this.show, this)
       });
     }
-
     // for HTML5 input[type='color']
     if ((this.input !== false) && (this.component !== false) && (this.input.attr('type') === 'color')) {
-
       this.input.on({
         'click.colorpicker': $.proxy(this.show, this),
         'focus.colorpicker': $.proxy(this.show, this)
       });
     }
     this.update();
-
     $($.proxy(function() {
       this.element.trigger('create');
     }, this));
   };
-
   Colorpicker.Color = Color;
-
   Colorpicker.prototype = {
     constructor: Colorpicker,
     destroy: function() {
@@ -1015,27 +960,21 @@
         'top': sl.saturation.maxTop - this.color.value.b * sl.saturation.maxTop,
         'left': this.color.value.s * sl.saturation.maxLeft
       });
-
       this.picker.find('.colorpicker-saturation')
         .css('backgroundColor', this.color.toHex(true, this.color.value.h, 1, 1, 1));
-
       this.picker.find('.colorpicker-alpha')
         .css('backgroundColor', this.color.toHex(true));
-
       this.picker.find('.colorpicker-color, .colorpicker-color div')
         .css('backgroundColor', this.color.toString(true, this.format));
-
       return val;
     },
     updateComponent: function(val) {
       var color;
-
       if (typeof val !== 'undefined') {
         color = this.createColor(val);
       } else {
         color = this.color;
       }
-
       if (this.component !== false) {
         var icn = this.component.find('i').eq(0);
         if (icn.length > 0) {
@@ -1048,7 +987,6 @@
           });
         }
       }
-
       return color.toString(false, this.format);
     },
     update: function(force) {
@@ -1061,7 +999,6 @@
         this.updatePicker(); // only update picker if value is not empty
       }
       return val;
-
     },
     setValue: function(val) { // set color manually
       this.color = this.createColor(val);
@@ -1143,9 +1080,7 @@
       }
       e.stopPropagation();
       e.preventDefault();
-
       var target = $(e.target);
-
       //detect the slider and set the limits and callbacks
       var zone = target.closest('div');
       var sl = this.options.horizontal ? this.options.slidersHorz : this.options.sliders;
@@ -1215,13 +1150,11 @@
         (this.currentSlider.callTop === 'setAlpha' ||
           this.currentSlider.callLeft === 'setAlpha')
       ) {
-
         // Converting from hex / rgb to rgba
         if (this.color.value.a !== 1) {
           this.format = 'rgba';
           this.color.origFormat = 'rgba';
         }
-
         // Converting from rgba to hex
         else {
           this.format = 'hex';
@@ -1229,7 +1162,6 @@
         }
       }
       this.update(true);
-
       this.element.trigger({
         type: 'changeColor',
         color: this.color
@@ -1282,24 +1214,19 @@
       });
     }
   };
-
   $.colorpicker = Colorpicker;
-
   $.fn.colorpicker = function(option) {
     var apiArgs = Array.prototype.slice.call(arguments, 1),
       isSingleElement = (this.length === 1),
       returnValue = null;
-
     var $jq = this.each(function() {
       var $this = $(this),
         inst = $this.data('colorpicker'),
         options = ((typeof option === 'object') ? option : {});
-
       if (!inst) {
         inst = new Colorpicker(this, options);
         $this.data('colorpicker', inst);
       }
-
       if (typeof option === 'string') {
         if ($.isFunction(inst[option])) {
           returnValue = inst[option].apply(inst, apiArgs);
@@ -1316,7 +1243,5 @@
     });
     return isSingleElement ? returnValue : $jq;
   };
-
   $.fn.colorpicker.constructor = Colorpicker;
-
 }));

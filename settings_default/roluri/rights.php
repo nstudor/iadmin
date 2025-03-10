@@ -1,5 +1,4 @@
 <?php 
-
     if(isset($_POST['ch']['v'])) {
         $u['v']=implode(' ', array_slice($_POST['ch']['v'],1));
         $u['a']=implode(' ', array_slice($_POST['ch']['a'],1));
@@ -7,21 +6,18 @@
         $u['d']=implode(' ', array_slice($_POST['ch']['d'],1));
         db_update(
             [
-                'details_v'=>$u[v],
-                'details_a'=>$u[a],
-                'details_m'=>$u[m], 
-                'details_d'=>$u[d]
+                'details_v'=>$u["v"],
+                'details_a'=>$u["a"],
+                'details_m'=>$u["m"], 
+                'details_d'=>$u["d"]
             ], 'login_rights', "id_role=$get[id] AND id_menu=$_POST[id]");
     }
-
-
     $rr= db_select('*', 'login_menu', 'id!=0', 'ordine');
         
     function afiseaza($rr, $level, $spc, $role) {
         foreach($rr as $r)
             if($r['id_tata']==$level) {
                 $dr=db_select('*', 'login_rights', "id_menu=$r[id] AND id_role=$role")[0];
-
     if($r['link']!="") {
         $x=explode('-',$r['link']);
         $specials=array();
@@ -157,7 +153,6 @@
 	});
     }
 </script>
-
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">

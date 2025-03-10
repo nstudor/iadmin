@@ -5,22 +5,18 @@ if ($_SESSION['rights']['modify_right'] != 'Y') {
     }
 }
 $err = '';
-
 if (isset($_POST['pass0'])) {
     if (md5($_POST['pass0']) != $item['pass']) {
         $err = '<div role="alert" class="alert alert-warning">Wrong password</div>';
     }
 }
 if (isset($_POST['pass1']) && $err == '') {
-
     if ($_POST['pass1'] != $_POST['pass2']) {
         $err = '<div role="alert" class="alert alert-warning">Passwords do not match !</div>';
     }
-
     if (strlen(trim($_POST['pass1'])) < 6) {
         $err = '<div role="alert" class="alert alert-warning">Password too short !</div>';
     }
-
     if ($err == '') {
         db_update(['pass' => md5($_POST['pass1'])], 'login_users', 'id=' . $item['id']);
         $err = '<div role="alert" class="alert alert-info">Password changed !</div>';
@@ -80,8 +76,6 @@ if (isset($_POST['pass1']) && $err == '') {
         document.getElementById("passgen").innerHTML = '<div role="alert" class="alert alert-info">Generated password: <tt><strong>' + pa + '</strong></tt></div>';
     }
 </script>
-
-
 <?php
 /*
 $err='NO';
@@ -90,19 +84,15 @@ if(isset($_POST['pass1'])) {
 	if(strlen($_POST['pass1'])<6) $err='Parola este prea scurta (minim 6 caractere)!';
 	if($_POST['pass1']!=$_POST['pass2']) $err='Parolele nu coincid !';
 }
-
 if($err=='') { 
 mysql_query("UPDATE login_users SET pass=md5('".$_POST['pass2']."') WHERE id=".$_GET['id']);
 ?><div role="alert" class="alert alert-success"><a href="./?p=tabel-<?php echo $pag ?>" class="btn btn-<?php echo $theme ?>" style="float:right">OK</a> Parola schimbata cu succes ! </div><?php
 } else {
 $title="Schimbare parola";
 ?>
-
 <?php if($err!='NO') { ?><?php } ?>
-
 <h3>Schimbare parola pentru userul <tt><?php echo $item['user'] ?></tt></h3>
 <div class="col-xs-1 col-sm-2 col-lg-3">&nbsp;</div>
-
 <div class="col-xs-10 col-sm-8 col-lg-6">
 <div class="row spc">
 <div class="col-xs-4 col-sm-4 col-lg-4">Parola noua</div>
@@ -112,8 +102,6 @@ $title="Schimbare parola";
 <div class="col-xs-4 col-sm-4 col-lg-4">Confirmare parola</div>
 <div class="col-xs-8 col-sm-8 col-lg-8"><input type="password" name="pass2" class="form-control" /></div>
 </div>
-
-
 <div class="row spc">
 <div class="col-xs-3 col-sm-3 col-lg-3"><button class="btn btn-<?php echo $theme ?> spc" type="button" onclick="generate()">Generare</button></div>
 <div class="col-xs-3 col-sm-3 col-lg-3">&nbsp;</div>

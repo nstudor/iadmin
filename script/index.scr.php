@@ -5,25 +5,20 @@ if (isset($_SESSION['userid'])) {
     if (!empty($param[1])) {
         $link .= "-$param[1]";
     }
-
     $rlink = $param[0];
     if ($rlink == 'toper') {
         $rlink = 'tabel';
     }
-
     if (!empty($param[1])) {
         $rlink .= "-$param[1]";
     }
-
     $rcmenu = db_select('*', 'login_menu', "link='$rlink'")[0];
-
     $rcr = db_select('*', 'login_rights', 'id_menu=' . ($rcmenu['id'] * 1) . ' AND id_role=' . $ruser['role'])[0];
     $rcr['details_v'] = explode(" ", $rcr['details_v']);
     $rcr['details_a'] = explode(" ", $rcr['details_a']);
     $rcr['details_m'] = explode(" ", $rcr['details_m']);
     $rcr['details_d'] = explode(" ", $rcr['details_d']);
     $_SESSION['rights'] = $rcr;
-
     if (isset($_SESSION['menudata'])) {
         $menu = $_SESSION['menudata'];
     } else {
