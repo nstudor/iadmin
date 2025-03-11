@@ -10,7 +10,7 @@ $stitles=array(
     'rights'=>'Rights'
 );
 $fontawesome=array(
-    'rights'=>'eye text-green shadow-maroon'
+    'rights'=>'eye green shadow-maroon'
 );
-$inlineSpecials=array('rights'=>' bg-navy');
+$inlineSpecials=array('rights'=>'outline-secondary');
 ?>

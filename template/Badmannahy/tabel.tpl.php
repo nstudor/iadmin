@@ -19,7 +19,7 @@
         <thead class="bg-maroon text-white">
             <tr class="text-center">
                 <th width="3%">
-                    <a href="toper-<?php echo $param[1] ?>-add.htm" class="btn btn-default text-white"><i class="fas fa-plus"></i></a>
+                    <a href="<?php echo $param[0] ?>-add.htm" class="btn btn-default text-white"><i class="fas fa-plus"></i></a>
                 </th>
                 <?php foreach ($fields as $f) { ?>
                     <th>
@@ -103,19 +103,19 @@
                                                 if (isset($stitles[$sp]))
                                                     $spd = $stitles[$sp];
                                         ?>
-                                            <a class="dropdown-item" href="./toper-<?= $param[1] ?>-<?= $sp ?>-id-<?= $r[$id] ?>.htm"><i class="fa fa-<?= (isset($fontawesome[$sp]) ? $fontawesome[$sp] : $sp) ?>"></i> <?php echo ucfirst($spd) ?></a>
+                                            <a class="dropdown-item" href="./<?= $param[0] ?>-<?= $sp ?>-id-<?= $r[$id] ?>.htm"><i class="fa fa-<?= (isset($fontawesome[$sp]) ? $fontawesome[$sp] : $sp) ?>"></i> <?php echo ucfirst($spd) ?></a>
                                         <?php } ?>
                                         <?php if ($rcr['modify_right'] == 'Y') { ?>
-                                            <a class="dropdown-item" href="./toper-<?php echo $param[1] ?>-edit-id-<?php echo $r[$id] ?>.htm"><i class="fa fa-pencil-alt text-blue shadow-maroon"></i> Editeaza</a>
+                                            <a class="dropdown-item" href="./<?php echo $param[0] ?>-edit-id-<?php echo $r[$id] ?>.htm"><i class="fa fa-pencil-alt text-blue shadow-maroon"></i> Editeaza</a>
                                         <?php } ?>
                                         <?php if ($rcr['delete_right'] == 'Y') { ?>
-                                            <a class="dropdown-item" href="./toper-<?php echo $param[1] ?>-drop-id-<?php echo $r[$id] ?>.htm"><i class="fa fa-times text-red shadow-maroon"></i> Sterge</a>
+                                            <a class="dropdown-item" href="./<?php echo $param[0] ?>-drop-id-<?php echo $r[$id] ?>.htm"><i class="fa fa-times text-red shadow-maroon"></i> Sterge</a>
                                         <?php } ?>
                                     </div>
                                 </div>
                             </td>
                             <?php foreach ($fields as $k => $v) { ?>
-                                <td<?php if ($rcr['modify_right'] == 'Y') { ?> class="cell <?= $cellClass[$k] ?>" alt="<?php echo $k . '-' . $r[$id] ?>" title="<?= is_array($v) ? $v['name'] : $v ?>" <?php } else { ?> class="<?= $cellClass[$k] ?>" <?php } ?>>
+                                <td<?php if ($rcr["modify_right"] == 'Y') { ?> class="cell <?= $cellClass[$k] ?>" alt="<?php echo $k . '-' . $r[$id] ?>" title="<?= is_array($v) ? $v['name'] : $v ?>" <?php } else { ?> class="<?= $cellClass[$k] ?>" <?php } ?>>
                                     <?php
                                     if (file_exists("settings/$pag/{$k}_show.php")) {
                                         include("settings/$pag/{$k}_show.php");
@@ -127,7 +127,7 @@
                                 <?php if (count($iSpecials) > 0) { ?>
                                     <td class="text-center">
                                         <?php foreach ($iSpecials as $sp => $btn) { ?>
-                                            <a href="./toper-<?= $param[1] ?>-<?= $sp ?>-id-<?= $r[$id] ?>.htm" <?= empty($btn) ? '' : ' class="btn btn-' . $btn . '"' ?>><i class="fa fa-<?= (isset($fontawesome[$sp]) ? $fontawesome[$sp] : $sp) ?>"></i></a>
+                                            <a href="./<?= $param[0] ?>-<?= $sp ?>-id-<?= $r[$id] ?>.htm" <?= empty($btn) ? '' : ' class="btn btn-' . $btn . '"' ?>><i class="fa fa-<?= (isset($fontawesome[$sp]) ? $fontawesome[$sp] : $sp) ?>"></i></a>
                                         <?php } ?>
                                     </td>
                                 <?php } ?>
@@ -161,12 +161,12 @@
 <?php if (!isset($dontshowpages)) { ?>
     <ul class="pagination justify-content-center">
         <li class="page-item">
-            <a class="page-link" href="./tabel-<?= $param[1] . "-0" . (isset($param[3]) ? "-" . implode("-", array_slice($param, 3)) : '') ?>.htm">
+            <a class="page-link" href="./<?= $param[0] . "-0" . (isset($param[2]) ? "-" . implode("-", array_slice($param, 2)) : '') ?>.htm">
                 <i class="fas fa-angle-double-left pb-1 text-maroon"></i>
             </a>
         </li>
         <li class="page-item">
-            <a class="page-link" href="./tabel-<?= $param[1] . ($st == 0 ? '-0' : '-' . ($st - 1)) . (isset($param[3]) ? "-" . implode("-", array_slice($param, 3)) : '') ?>.htm">
+            <a class="page-link" href="./<?= $param[0] . ($st == 0 ? '-0' : '-' . ($st - 1)) . (isset($param[2]) ? "-" . implode("-", array_slice($param, 2)) : '') ?>.htm">
                 <i class="fas fa-angle-left pb-1 text-maroon"></i>
             </a>
         </li>
@@ -178,7 +178,7 @@
             if (($i >= 0) && ($i <= $np)) {
         ?>
             <li class="page-item">
-                <a class="page-link<?= $i == $st ? '  bg-maroon text-white' : ' text-maroon' ?>" href="./tabel-<?= $param[1] . '-' . $i . (isset($param[3]) ? "-" . implode("-", array_slice($param, 3)) : '') ?>.htm">
+                <a class="page-link<?= $i == $st ? '  bg-maroon text-white' : ' text-maroon' ?>" href="./<?= $param[0] . '-' . $i . (isset($param[2]) ? "-" . implode("-", array_slice($param, 2)) : '') ?>.htm">
                     <?= $i + 1 ?>
                 </a>
             </li>
@@ -187,12 +187,12 @@
             <span class="page-link">&nbsp;</span>
         </li>
         <li class="page-item">
-            <a class="page-link" href="./tabel-<?= $param[1] . ($st == $np ? '-' . $np : '-' . ($st + 1)) . (isset($param[3]) ? "-" . implode("-", array_slice($param, 3)) : '') ?>.htm">
+            <a class="page-link" href="./<?= $param[0] . ($st == $np ? '-' . $np : '-' . ($st + 1)) . (isset($param[2]) ? "-" . implode("-", array_slice($param, 2)) : '') ?>.htm">
                 <i class="fas fa-angle-right pb-1 text-maroon"></i>
             </a>
         </li>
         <li class="page-item">
-            <a class="page-link" href="./tabel-<?= $param[1] . '-' . $np . (isset($param[3]) ? "-" . implode("-", array_slice($param, 3)) : '') ?>.htm">
+            <a class="page-link" href="./<?= $param[0] . '-' . $np . (isset($param[2]) ? "-" . implode("-", array_slice($param, 2)) : '') ?>.htm">
                 <i class="fas fa-angle-double-right pb-1 text-maroon"></i>
             </a>
         </li>

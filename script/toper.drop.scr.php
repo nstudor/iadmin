@@ -1,7 +1,7 @@
 <?php
     if($_POST['item']==1) {
-        if(db_drop("$param[3]=$param[4]", $tabel))
-            die("<script>document.location='./tabel-$param[1].htm';</script>");
+        if(db_drop("$param[2]=$param[3]", $tabel))
+            die("<script>document.location='./$param[0].htm';</script>");
         else {
             echo showMessage($MESSAGE, 'danger');
             die;

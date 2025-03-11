@@ -7,5 +7,3 @@ if (in_array($param[1], ['recover','newpass'])) {
     }
 }
 
-
-

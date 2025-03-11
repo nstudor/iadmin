@@ -76,6 +76,7 @@
 	}
 	
 ?>
+<br><br>
 <div class="container">
 <table class="table table-striped table-bordered">
     <thead class="bg-info text-white">

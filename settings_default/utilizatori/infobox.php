@@ -9,7 +9,7 @@ $boxData = [
         'iconClass' => 'fa fa-users text-white',
         'linkLabel' => 'Detalii',
         'linkType' => 'light',
-        'linkURL' => './tabel-utilizatori.htm',
+        'linkURL' => './utilizatori.htm',
     ],
     [
         'type' => 'success',
@@ -20,7 +20,7 @@ $boxData = [
         'iconClass' => 'fa fa-users text-white',
         'linkLabel' => 'Detalii',
         'linkType' => 'light',
-        'linkURL' => './tabel-utilizatori.htm',
+        'linkURL' => './utilizatori.htm',
     ],
     [
         'type' => 'warning',
@@ -31,7 +31,7 @@ $boxData = [
         'iconClass' => 'fa fa-users text-white',
         'linkLabel' => 'Detalii',
         'linkType' => 'light',
-        'linkURL' => './tabel-utilizatori.htm',
+        'linkURL' => './utilizatori.htm',
     ],
     [
         'type' => 'danger',
@@ -42,6 +42,6 @@ $boxData = [
         'iconClass' => 'fa fa-users text-white',
         'linkLabel' => 'Detalii',
         'linkType' => 'light',
-        'linkURL' => './tabel-utilizatori.htm',
+        'linkURL' => './utilizatori.htm',
     ],
 ];

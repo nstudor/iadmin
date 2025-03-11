@@ -79,7 +79,7 @@ if(isset($_SESSION['menudata'])) $menu=$_SESSION['menudata']; else {
           </div>
           <div class="navbar-collapse collapse"><a href="./?p=logout" class="logout"><i class="fa fa-big fa-power-off"></i></a>
 <?php if($ruser['user']=='stefan') { ?>
-	<a href="./?p=tabel-ihelp" class="logout" style="margin-right:20px"><i class="fa fa-big fa-info-circle"></i></a>
+	<a href="./?p=ihelp" class="logout" style="margin-right:20px"><i class="fa fa-big fa-info-circle"></i></a>
 <?php } ?>
             <ul class="nav navbar-nav">
 <?php

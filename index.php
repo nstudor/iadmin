@@ -42,26 +42,28 @@ if (file_exists('settings.ini')) {
         if ($param[0] == 'dashboard')
             $param = array('page', 'login');
         else
-            array_unshift($param , 'page');
+            array_unshift($param, 'page');
     }
 
     include('script/index.scr.php');
 
     $pag = $param[0];
     $settingFile = "settings/$pag/config.php";
-    //print_r($param);die;
+    
     if (!file_exists($settingFile)) $settingFile = "settings_default/$pag/config.php";
 
     if (file_exists($settingFile)) include($settingFile);
 
     if (!$hasNoTable) {
+        $scriptPage = "tabel";
         if (file_exists('script/tabel.scr.php')) {
             include('script/tabel.scr.php');
         }
-        $scriptPage = "tabel";
     }
 
-    if (!file_exists('template/' . $APP_TEMPLATE . '/' . $scriptPage . '.tpl.php')) $scriptPage = "404";
+    if (!file_exists('template/' . $APP_TEMPLATE . '/' . $scriptPage . '.tpl.php'))
+        if (!file_exists($scriptPage))
+            $scriptPage = "404";
 
     include('template/' . $APP_TEMPLATE . '/index.tpl.php');
 } else {

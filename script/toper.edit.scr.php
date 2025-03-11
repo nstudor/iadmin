@@ -12,5 +12,5 @@ if (isset($_POST['item']))
             }
         }
         db_update($_POST['item'], $tabel, "$id=" . $get[$id]);
-        die("<script>document.location='./tabel-$param[1].htm';</script>");
+        die("<script>document.location='./$param[0].htm';</script>");
     }
