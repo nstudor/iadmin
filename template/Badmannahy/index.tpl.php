@@ -23,6 +23,12 @@
   <script src="./js/ckeditor/ckeditor.js"></script>
   <script src="./js/bootstrap-colorpicker.js"></script>
   <script src="./js/BsMultiSelect.js"></script>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Truculenta:opsz,wght@12..72,100..900&display=swap" rel="stylesheet">
+
 </head>
 <?php
 if (file_exists('template/' . $APP_TEMPLATE . '/' . $scriptPage . '.head.php')) {

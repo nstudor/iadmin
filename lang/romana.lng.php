@@ -11,4 +11,7 @@ $_LNG = [
     'sign_in_password' => 'Password',
     'sign_in_button' => 'Conecteaza-te',
     'sign_in_recover' => 'Recuperare parola',
+    "recover_email" => 'E-mail de recuperare',
+    "recover_button" => 'RECUPEREAZA',
+
 ];
