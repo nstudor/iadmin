@@ -1,7 +1,7 @@
 <form enctype="multipart/form-data" method="post" action="">
     <div class="container">
         <div class="card">
-            <div class="card-header bg-maroon text-white">
+            <div class="card-header <?= $tmpBackground ?> <?= $tmpText ?>">
                 <?= $title ?> - Editare
             </div>
             <div class="card-body">

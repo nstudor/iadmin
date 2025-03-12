@@ -79,7 +79,7 @@
 <br><br>
 <div class="container">
 <table class="table table-striped table-bordered">
-    <thead class="bg-info text-white">
+    <thead class="bg-info <?= $tmpText ?>">
         <th colspan="5">Denumire</th>
         <th>Vizualizare</th>
         <th>Adaugare</th>
@@ -157,7 +157,7 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-info text-white">
+      <div class="modal-header bg-info <?= $tmpText ?>">
         <h5 class="modal-title" id="myModalLabel">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>

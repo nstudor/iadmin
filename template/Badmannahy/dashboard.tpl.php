@@ -9,7 +9,7 @@
 <?php if($r2['vizibil']=='Y') { 
     if(!$r2['no_box']) {?>
 <div class="card">
-    <div class="card-header bg-maroon text-light">
+    <div class="card-header <?= $tmpBackground ?> text-light">
         <b><?php echo $r2['denumire'] ?></b>
         <i class="float-right fa fa-chevron-<?php echo ($r2['deschis']=='N'?"down":"up") ?>"></i>
     </div>

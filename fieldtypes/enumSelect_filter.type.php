@@ -13,13 +13,13 @@ $fieldVal = explode(',', $_SESSION['filter'][$k]);
     </div>
     <div class="col-2">
         <button onclick="document.ff.fv.value=6;document.ff.submit()" class='btn btn-secondary col' type="button">
-            <i class="fa fa-check text-white"></i>
+            <i class="fa fa-check <?= $tmpText ?>"></i>
         </button>
         <br>
         <br>
 
         <button onclick="document.ff.fv.value=5;document.ff.submit()" class='btn btn-danger col' type="button">
-            <i class="fa fa-times text-white"></i>
+            <i class="fa fa-times <?= $tmpText ?>"></i>
         </button>
     </div>
 </div>

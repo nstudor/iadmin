@@ -48,12 +48,12 @@
 <input name="<?php echo $k ?>" type="hidden" value="<?= $_SESSION['filter'][$k] ?>" />
 <div class="col">
     <button onclick="document.ff.<?php echo $k ?>.value=(document.ff.fv.value!=8?document.ff.<?php echo $k ?>1.value:document.ff.<?php echo $k ?>1.value+'~'+document.ff.<?php echo $k ?>2.value);document.ff.submit()" class='btn btn-secondary col' type="button">     
-    <i class="fa fa-check text-white"></i>
+    <i class="fa fa-check <?= $tmpText ?>"></i>
     </button>
 </div>
 <div class="col">
     <button onclick="document.ff.fv.value=5;document.ff.submit()" class='btn btn-danger col' type="button">     
-    <i class="fa fa-times text-white"></i>
+    <i class="fa fa-times <?= $tmpText ?>"></i>
     </button>
 </div>
 </div>

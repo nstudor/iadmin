@@ -16,10 +16,10 @@
             $iSpecials[$sp] = $btn;
     ?>
     <table class="table table-striped table-bordered table-sm">
-        <thead class="bg-maroon text-white">
+        <thead class="<?= $tmpBackground ?> <?= $tmpText ?>">
             <tr class="text-center">
                 <th width="3%">
-                    <a href="<?php echo $param[0] ?>-add.htm" class="btn btn-default text-white"><i class="fas fa-plus"></i></a>
+                    <a href="<?php echo $param[0] ?>-add.htm" class="btn btn-default <?= $tmpText ?>"><i class="fas fa-plus"></i></a>
                 </th>
                 <?php foreach ($fields as $f) { ?>
                     <th>
@@ -31,7 +31,7 @@
                 <?php } ?>
                 <th width="2%">&nbsp;</th>
             </tr>
-            <tr class="text-center bg-maroon">
+            <tr class="text-center <?= $tmpBackground ?>">
                 <th>
                     <?php if (($filtersExists != 0) && ($showFilter != 'no')) { ?>
                         <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" name="clearfilters">
@@ -55,7 +55,7 @@
                                 if (!isset($_SESSION['order'][$k])) {
                             ?>
                                     <input name="ordertype" type="hidden" value="up" />
-                                    <i class="fa fa-sort float-right text-white" onclick="$('#ord_<?php echo $k ?>').submit()" style="cursor:pointer"></i>
+                                    <i class="fa fa-sort float-right <?= $tmpText ?>" onclick="$('#ord_<?php echo $k ?>').submit()" style="cursor:pointer"></i>
                                 <?php } else { ?>
                                     <input id="ord_<?php echo $k ?>_type" name="ordertype" type="hidden" value="<?php echo ($_SESSION['order'][$k] == 'up' ? 'dn' : 'up') ?>" />
                                     <i class="fa float-right text-orange shadow-white fa-sort-<?php echo $_SESSION['order'][$k] == "up" ? "up" : "down" ?>" onclick="$('#ord_<?php echo $k ?>').submit()" oncontextmenu="$('#ord_<?php echo $k ?>_type').val('');$('#ord_<?php echo $k ?>').submit(); return false;" style="cursor:pointer"></i>
@@ -146,7 +146,7 @@
                             <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#filterModal" onclick="postModal('multi-<?= $param[1] ?>-<?php echo $k ?>-<?= $id ?>', '<?php echo $v ?>', $('#multiForm').serialize())"><?php echo $v ?></button>
                         <?php } ?>
                         <?php if ($rcr['delete_right'] == 'Y') { ?>
-                            <button class="btn bg-maroon text-white" type="button" data-toggle="modal" data-target="#filterModal" onclick="postModal('multi-<?= $param[1] ?>-delete-<?= $id ?>', 'Sterge', $('#multiForm').serialize())">STERGE</button>
+                            <button class="btn <?= $tmpBackground ?> <?= $tmpText ?>" type="button" data-toggle="modal" data-target="#filterModal" onclick="postModal('multi-<?= $param[1] ?>-delete-<?= $id ?>', 'Sterge', $('#multiForm').serialize())">STERGE</button>
                         <?php };
                         if (($rcr['delete_right'] == 'Y') || (is_array($multiOper))) {
                         ?>
@@ -178,7 +178,7 @@
             if (($i >= 0) && ($i <= $np)) {
         ?>
             <li class="page-item">
-                <a class="page-link<?= $i == $st ? '  bg-maroon text-white' : ' text-maroon' ?>" href="./<?= $param[0] . '-' . $i . (isset($param[2]) ? "-" . implode("-", array_slice($param, 2)) : '') ?>.htm">
+                <a class="page-link<?= $i == $st ? '  <?= $tmpBackground ?> <?= $tmpText ?>' : ' text-maroon' ?>" href="./<?= $param[0] . '-' . $i . (isset($param[2]) ? "-" . implode("-", array_slice($param, 2)) : '') ?>.htm">
                     <?= $i + 1 ?>
                 </a>
             </li>
@@ -202,7 +202,7 @@
 <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-maroon text-white">
+            <div class="modal-header <?= $tmpBackground ?> <?= $tmpText ?>">
                 <h5 class="modal-title" id="filterModalTitle">Modal title</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -214,7 +214,7 @@
     </div>
 </div>
 <div id="contextMenu" class="card clearfix" style="display:none">
-    <div class="card-header bg-secondary text-white">
+    <div class="card-header bg-secondary <?= $tmpText ?>">
         <span class="panel-info"></span>
         <i class="fa fa-times float-right" style="cursor:pointer"></i>
     </div>

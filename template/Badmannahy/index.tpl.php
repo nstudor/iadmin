@@ -40,8 +40,8 @@ if (file_exists('template/' . $APP_TEMPLATE . '/' . $scriptPage . '.head.php')) 
 <body>
 
   <?php if (isset($_SESSION['userid'])) { ?>
-    <nav class="navbar navbar-expand-sm navbar-light bg-maroon fixed-top">
-      <a class="navbar-brand text-white" href="./"><i class="fas fa-home"></i></a>
+    <nav class="navbar navbar-expand-sm navbar-light <?= $tmpBackground ?> fixed-top">
+      <a class="navbar-brand <?= $tmpText ?>" href="./"><i class="fas fa-home"></i></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -57,31 +57,31 @@ if (file_exists('template/' . $APP_TEMPLATE . '/' . $scriptPage . '.head.php')) 
               foreach ($menu2 as $m2) if ($m2['id_tata'] == $m1['id']) $n++;
               if ($n == 0) { ?>
               <li class="nav-item">
-                <a class="nav-link text-white" href="<?= $m1['link'] ?>"><?= $m1['denum'] ?></a>
+                <a class="nav-link <?= $tmpText ?>" href="<?= $m1['link'] ?>"><?= $m1['denum'] ?></a>
               </li>
             <?php } else { ?>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" href="#" id="dropdown<?= $k1 ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $m1['denum'] ?></a>
-                <ul class="dropdown-menu bg-maroon dropright">
+                <a class="nav-link dropdown-toggle <?= $tmpText ?>" href="#" id="dropdown<?= $k1 ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $m1['denum'] ?></a>
+                <ul class="dropdown-menu <?= $tmpBackground ?> dropright">
                   <?php foreach ($menu2 as $k2 => $m2) if ($m2['id_tata'] == $m1['id'])
                     if ($m2['denum'] == '-') { ?>
                     <li class="dropdown-item dropdown-submenu m-0 p-0"><a class="divider" role="separator" href='#'></a></li>
                   <?php } else 
     if ($m2['link'] != '') {    ?>
-                    <li class="dropdown-item dropdown-submenu m-0 p-0"><a class="dropdown-item text-white" href="<?php echo $m2['link'] ?>.htm"><?php echo $m2['denum'] ?></a></li>
+                    <li class="dropdown-item dropdown-submenu m-0 p-0"><a class="dropdown-item <?= $tmpText ?>" href="<?php echo $m2['link'] ?>.htm"><?php echo $m2['denum'] ?></a></li>
                     <?php } else {
                       $n = 0;
                       foreach ($menu3 as $m3) if ($m3['id_tata'] == $m2['id']) $n++;
                       if ($n != 0) {
                     ?>
                       <li class="dropdown-item dropdown-submenu m-0 p-0">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item text-white"><?php echo $m2['denum'] ?></a>
-                        <ul class="dropdown-menu bg-maroon">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item <?= $tmpText ?>"><?php echo $m2['denum'] ?></a>
+                        <ul class="dropdown-menu <?= $tmpBackground ?>">
                           <?php foreach ($menu3 as $k3 => $m3) if ($m3['id_tata'] == $m2['id'])
                             if ($m3['denum'] == '-') { ?>
                             <li class="dropdown-item m-0 p-0"><a class="divider" role="separator" href='#'></a></li>
                           <?php } else { ?>
-                            <li class="dropdown-item m-0 p-0"><a class="dropdown-item text-white" href="<?php echo $m3['link'] ?>.htm"><?php echo $m3['denum'] ?></a></li>
+                            <li class="dropdown-item m-0 p-0"><a class="dropdown-item <?= $tmpText ?>" href="<?php echo $m3['link'] ?>.htm"><?php echo $m3['denum'] ?></a></li>
                           <?php } ?>
                         </ul>
                       </li>
@@ -94,7 +94,7 @@ if (file_exists('template/' . $APP_TEMPLATE . '/' . $scriptPage . '.head.php')) 
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="navbar-brand" href="logout.htm"><i class="fas fa-power-off"></i></a>
+            <a class="navbar-brand aqua" href="logout.htm"><i class="fas fa-power-off"></i></a>
           </li>
         </ul>
       </div>
@@ -113,28 +113,28 @@ if (file_exists('template/' . $APP_TEMPLATE . '/' . $scriptPage . '.head.php')) 
   ?>
   <?php if (isset($_SESSION['userid'])) { ?>
     <br /><br />
-    <nav class="navbar fixed-bottom navbar-expand-sm navbar-light bg-maroon">
+    <nav class="navbar fixed-bottom navbar-expand-sm navbar-light <?= $tmpBackground ?>">
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropup">
-            <a class="nav-link dropdown-toggle text-white" href="#" id="dds1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-            <div class="dropdown-menu bg-maroon" aria-labelledby="dds1">
-              <a class="dropdown-item text-white" href="./toper-utilizatori-key-id-<?= $_SESSION['userid'] ?>.htm">Change password</a>
-              <a class="dropdown-item text-white" href="#">Settings</a>
-              <a class="dropdown-item text-white" href="./logout.htm">Logout</a>
+            <a class="nav-link dropdown-toggle <?= $tmpText ?>" href="#" id="dds1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+            <div class="dropdown-menu <?= $tmpBackground ?>" aria-labelledby="dds1">
+              <a class="dropdown-item <?= $tmpText ?>" href="./toper-utilizatori-key-id-<?= $_SESSION['userid'] ?>.htm">Change password</a>
+              <a class="dropdown-item <?= $tmpText ?>" href="#">Settings</a>
+              <a class="dropdown-item <?= $tmpText ?>" href="./logout.htm">Logout</a>
             </div>
           </li>
           <?php if ($ruser['role'] == 1) { ?>
             <li class="nav-item dropup">
-              <a class="nav-link dropdown-toggle text-white" href="#" id="dds2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Developer</a>
-              <div class="dropdown-menu bg-maroon" aria-labelledby="dds2">
-                <a class="dropdown-item text-white" href="loginmenu.htm">Menu</a>
+              <a class="nav-link dropdown-toggle <?= $tmpText ?>" href="#" id="dds2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Developer</a>
+              <div class="dropdown-menu <?= $tmpBackground ?>" aria-labelledby="dds2">
+                <a class="dropdown-item <?= $tmpText ?>" href="loginmenu.htm">Menu</a>
               </div>
             </li>
           <?php } ?>
         </ul>
         <ul class="navbar-nav my-2 my-md-0">
-          <li class="nav-item text-white" id="clock">-</li>
+          <li class="nav-item <?= $tmpText ?>" id="clock">-</li>
         </ul>
       </div>
     </nav>
