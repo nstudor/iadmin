@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Parameters 
+ * Parameters
  * values : Values of the case / switch Ex: array('Y','N'); (or comma separated string : 'Y,N')
  * chars : FontAwesome chars to be replaced with Ex: array('check','times'); (or comma separated string : 'check,times')
  * colors : Colors of chars Ex: array('#94C11E','#D40000'); (or comma separated string : '#94C11E,#D40000')
@@ -12,22 +12,29 @@
  *          YesNoCircleCheck
  *          YesNoSquareCheck
  * fatype : Fontawesome type (s - Solid, r - reversed ,l - light *PRO)
+ * toggle : true = in lists, click the icon to switch to the next value (needs modify right; saved through ajax/modal.php mdoedit)
+ * onclickchange : name of a JS function called as fn(this) on click in lists (the icon has data-field, data-value, data-id)
  */
-if (!empty($fieldDef['template'])) include('awesomecase/' . $fieldDef['template'] . '.tpl.type.php');
+$fieldDef = awesomecase_def($fieldDef);
+$val = (string)$fieldValue;
+$attr = fn($v) => htmlspecialchars((string)$v, ENT_QUOTES);
 
-if (!is_array($fieldDef['values'] ?? null)) $fieldDef['values'] = explode(',', $fieldDef['values'] ?? '');
-if (!is_array($fieldDef['chars'] ?? null)) $fieldDef['chars'] = explode(',', $fieldDef['chars'] ?? '');
-if (!is_array($fieldDef['colors'] ?? null)) $fieldDef['colors'] = explode(',', $fieldDef['colors'] ?? '');
-if (!is_array($fieldDef['classes'] ?? null)) $fieldDef['classes'] = explode(',', $fieldDef['classes'] ?? '');
-if (!is_array($fieldDef['fatype'] ?? null)) $fieldDef['fatype'] = explode(',', $fieldDef['fatype'] ?? '');
+$classes = 'fa' . ($fieldDef['f'][$val] ?? '') . ' fa-' . ($fieldDef['t'][$val] ?? '') . ' ' . ($fieldDef['s'][$val] ?? '');
+$extra = empty($fieldDef['c'][$val]) ? '' : ' style="color: ' . $attr($fieldDef['c'][$val]) . '"';
 
-foreach ($fieldDef['values'] as $k => $v) {
-    $fieldDef['t'][$v] = $fieldDef['chars'][$k] ?? '';
-    $fieldDef['c'][$v] = $fieldDef['colors'][$k] ?? '';
-    $fieldDef['s'][$v] = $fieldDef['classes'][$k] ?? '';
-    $fieldDef['f'][$v] = $fieldDef['fatype'][$k] ?? '';
+// list cell of an existing row: $uri = module, $rowId = row key
+if ($uri != '' && (string)$rowId !== '' && (string)$rowId !== '0') {
+    if (!empty($fieldDef['toggle']) && (($GLOBALS['rcr']['modify_right'] ?? '') == 'Y')) {
+        $vals = array_values(array_map('strval', $fieldDef['values']));
+        $pos = array_search($val, $vals, true);
+        $next = $vals[$pos === false ? 0 : ($pos + 1) % count($vals)];
+        $classes .= ' ac-toggle';
+        $extra .= ' role="button" title="Click to change" data-pag="' . $attr($uri) . '" data-field="' . $attr($fieldId) .
+            '" data-id="' . $attr($rowId) . '" data-next="' . $attr($next) . '"';
+    } elseif (!empty($fieldDef['onclickchange']) && preg_match('/^[A-Za-z_$][A-Za-z0-9_$.]*$/', $fieldDef['onclickchange'])) {
+        $extra .= ' role="button" onclick="' . $fieldDef['onclickchange'] . '(this)" data-field="' . $attr($fieldId) .
+            '" data-value="' . $attr($val) . '" data-id="' . $attr($rowId) . '"';
+    }
 }
 
-echo '<i class="fa' . $fieldDef['f'][$fieldValue] . ' fa-' . $fieldDef['t'][$fieldValue] . ' ' . $fieldDef['s'][$fieldValue] . '" ' .
-    (empty($fieldDef['c'][$fieldValue]) ? '' : ' style="color: ' . $fieldDef['c'][$fieldValue] . '"') .
-    '></i>';
+echo '<i class="' . $attr(trim($classes)) . '"' . $extra . '></i>';

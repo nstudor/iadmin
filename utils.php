@@ -39,6 +39,30 @@ function t($x) {
     return (isset($_LNG[$x])?$_LNG[$x]:(isset($_DEFLNG[$x])?$_DEFLNG[$x]:"%%$x%%"));
 }
 
+/* ---------- Field types ---------- */
+
+/**
+ * Resolves an awesomecase field definition: applies its preset ('template', see fieldtypes/awesomecase/)
+ * and returns the definition with array 'values' plus per-value maps
+ * t (icon), c (color), s (class) and f (Font Awesome type).
+ */
+function awesomecase_def($fieldDef)
+{
+    $fieldDef = is_array($fieldDef) ? $fieldDef : [];
+    $tpl = (string)($fieldDef['template'] ?? '');
+    if ($tpl !== '' && preg_match('/^[A-Za-z0-9_]+$/', $tpl) && file_exists(__DIR__ . "/fieldtypes/awesomecase/$tpl.tpl.type.php"))
+        include __DIR__ . "/fieldtypes/awesomecase/$tpl.tpl.type.php";
+    foreach (['values', 'chars', 'colors', 'classes', 'fatype'] as $key)
+        if (!is_array($fieldDef[$key] ?? null)) $fieldDef[$key] = explode(',', (string)($fieldDef[$key] ?? ''));
+    foreach ($fieldDef['values'] as $i => $v) {
+        $fieldDef['t'][$v] = $fieldDef['chars'][$i] ?? '';
+        $fieldDef['c'][$v] = $fieldDef['colors'][$i] ?? '';
+        $fieldDef['s'][$v] = $fieldDef['classes'][$i] ?? '';
+        $fieldDef['f'][$v] = $fieldDef['fatype'][$i] ?? '';
+    }
+    return $fieldDef;
+}
+
 /* ---------- Dates ---------- */
 
 /**

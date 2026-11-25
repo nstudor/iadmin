@@ -3,7 +3,7 @@
         <?php
         $fieldDef = $fields[$k];
         $rr = db_select('*', $fieldDef['table'], isset($fieldDef['selectWhere']) ? $fieldDef['selectWhere'] : 1);
-        ?><select name="<?php echo $k ?>" class="form-control">
+        ?><select name="<?php echo $k ?>" class="form-select">
             <?php if (empty($fieldDef['defaultValue'])) { ?>
                 <option value="<?= $fieldDef['defaultValue'] ?>"><?= $fieldDef['defaultResult'] ?></option>
             <?php } ?>

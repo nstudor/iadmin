@@ -16,7 +16,7 @@ $APP_TEMPLATE="Arachnania";
 
 ## Libraries
 
-Loaded from the shared `css/` and `js/` folders (versions in `LIBRARIES.md`):
+Loaded from the shared `css/` and `js/` folders (versions in `docs/libraries.md`):
 Bootstrap 5.3, Font Awesome 6 (+ v4 shims), jQuery 3.7, Popper 2 (global for Tempus Dominus), BsMultiSelect 1.x.
 
 Also loaded from the app root because shared code depends on their APIs:

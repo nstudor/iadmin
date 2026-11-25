@@ -1,4 +1,4 @@
-<select name="item[<?php echo $fieldId ?>]" class="form-control" id="ajaxitem">
+<select name="item[<?php echo $fieldId ?>]" class="form-select" id="ajaxitem">
     <?php if (empty($fieldDef['defaultValue'])) { ?>
         <option value="<?= $fieldDef['defaultValue'] ?? '' ?>"><?= $fieldDef['defaultResult'] ?? '' ?></option>
     <?php } ?>

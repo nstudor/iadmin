@@ -1,4 +1,4 @@
-<select name="item[fisier]" class="form-control" id="ajaxitem">
+<select name="item[fisier]" class="form-select" id="ajaxitem">
 <?php 
  	$ret=scandir('script/dashboard');
 	foreach($ret as $rt) if((strpos($rt,'.php')!==false)&&(strpos($rt,'_')===false)){

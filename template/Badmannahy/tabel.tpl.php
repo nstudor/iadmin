@@ -177,7 +177,7 @@
             if (($i >= 0) && ($i <= $np)) {
         ?>
             <li class="page-item">
-                <a class="page-link<?= $i == $st ? '  <?= $tmpBackground ?> <?= $tmpText ?>' : ' text-maroon' ?>" href="./<?= $param[0] . '-' . $i . (isset($param[2]) ? "-" . implode("-", array_slice($param, 2)) : '') ?>.htm">
+                <a class="page-link<?= $i == $st ? " $tmpBackground $tmpText" : ' text-maroon' ?>" href="./<?= $param[0] . '-' . $i . (isset($param[2]) ? "-" . implode("-", array_slice($param, 2)) : '') ?>.htm">
                     <?= $i + 1 ?>
                 </a>
             </li>

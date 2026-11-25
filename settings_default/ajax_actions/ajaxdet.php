@@ -39,7 +39,7 @@
 <tfoot>
   <tr>
     <td colspan="2">&nbsp;</td>
-    <td colspan="3" align="center"><button class="btn btn-<?php echo $theme ?> spc" type="submit"><strong class="glyphicon glyphicon-ok"></strong> OK</button></td>
+    <td colspan="3" align="center"><button class="btn btn-success spc" type="submit"><i class="fa-solid fa-check"></i> OK</button></td>
     </tr>
  </tfoot>
 </table>

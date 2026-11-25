@@ -18,6 +18,7 @@
   <meta name="csrf-token" content="<?= isset($_SESSION['userid']) ? csrf_token() : '' ?>" />
   <script src="./js/jquery.min.js"></script>
   <script src="./js/csrf.js"></script>
+  <script src="./js/fieldtypes.js"></script>
   <script src="./js/compat-bs4.js"></script>
   <script src="./js/popper.min.js"></script>
   <script src="./js/bootstrap.bundle.min.js"></script>

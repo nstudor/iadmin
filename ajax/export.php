@@ -12,7 +12,7 @@ if (!isset($id)) $id = 'id';
     </select>
     <hr>
     <label for="exportType">Export to</label>
-    <select class="form-control" id='exportType' name="type">
+    <select class="form-select" id='exportType' name="type">
         <?php foreach (($exportTo ?? []) as $v) { ?>
             <option value='<?= $v ?>'><?= t("export_to_$v") ?></option>
         <?php } ?>

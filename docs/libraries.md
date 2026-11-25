@@ -1,6 +1,6 @@
-# Front-end libraries
+# Libraries
 
-Shared by all templates, loaded from the site root (`./css/...`, `./js/...`).
+Front-end libraries shared by all templates, loaded from the site root (`./css/...`, `./js/...`).
 Copied from the npm package dists (jsDelivr). When updating, replace the files and the version below.
 
 | Library | Version | npm package | Files |
@@ -15,11 +15,12 @@ Copied from the npm package dists (jsDelivr). When updating, replace the files a
 | bootstrap-colorpicker | 2.5.2 | `bootstrap-colorpicker` | `js/bootstrap-colorpicker.js`, `css/bootstrap-colorpicker.min.css` |
 
 Own files:
-- `css/colors.css` – 43 named colors (`bg-*`, `text-*`, `btn-*`, ...).
+- `css/colors.css` – 47 named colors (`bg-*`, `text-*`, `btn-*`, ...).
 - `css/compat-bs4.css`, `js/compat-bs4.js` – Bootstrap 4 → 5 compatibility for markup still printed by
   field types, AJAX dialogs, settings pages and the login pages stored in `login__pages`
   (class aliases such as `float-left`, `sr-only`, `btn-block`, `input-group-append`; `data-toggle` → `data-bs-toggle`).
 - `js/csrf.js` – adds the CSRF token to forms and jQuery AJAX requests.
+- `js/fieldtypes.js` – client side of field types (awesomecase `toggle`: click an icon in a list to save the next value).
 
 Notes
 - Font Awesome's CSS loads its fonts from `../webfonts/`: keep `webfonts/` next to `css/`.
