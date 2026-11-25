@@ -2,15 +2,11 @@
     if(!empty($fieldDef['displayLocale'])) {
         setlocale(LC_ALL, $fieldDef['displayLocale']);
     }
-    echo $fieldValue[0]=='0'?(empty($fieldDef['nodate'])?'N/A':$fieldDef['nodate']):
-    (strpos($fieldDef['format'],'%')===false?
-    date(             
-            (empty($fieldDef['format'])?'d.m.Y H:i':$fieldDef['format']),
-            strtotime($fieldValue)
-        ):
-        strftime(
-            $fieldDef['format'],
-            strtotime($fieldValue)
-        )
-    );
+    $fieldValue = (string)($fieldValue ?? '');
+    $format = $fieldDef['format'] ?? '';
+    echo ($fieldValue === '' || $fieldValue[0] == '0') ? (empty($fieldDef['nodate']) ? 'N/A' : $fieldDef['nodate']) :
+        (strpos($format, '%') === false ?
+            date((empty($format) ? 'd.m.Y H:i' : $format), strtotime($fieldValue)) :
+            format_strftime($format, strtotime($fieldValue))
+        );
 ?>

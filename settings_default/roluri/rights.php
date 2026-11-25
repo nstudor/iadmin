@@ -1,29 +1,32 @@
 <?php 
     if(isset($_POST['ch']['v'])) {
-        $u['v']=implode(' ', array_slice($_POST['ch']['v'],1));
-        $u['a']=implode(' ', array_slice($_POST['ch']['a'],1));
-        $u['m']=implode(' ', array_slice($_POST['ch']['m'],1));
-        $u['d']=implode(' ', array_slice($_POST['ch']['d'],1));
-        db_update(
-            [
-                'details_v'=>$u["v"],
-                'details_a'=>$u["a"],
-                'details_m'=>$u["m"], 
-                'details_d'=>$u["d"]
-            ], 'login_rights', "id_role=$get[id] AND id_menu=$_POST[id]");
+        foreach (['v', 'a', 'm', 'd'] as $t)
+            $u[$t] = implode(' ', array_slice((array)($_POST['ch'][$t] ?? []), 1));
+        $details = [
+            'details_v'=>$u["v"],
+            'details_a'=>$u["a"],
+            'details_m'=>$u["m"],
+            'details_d'=>$u["d"]
+        ];
+        $idRole = (int)($get['id'] ?? 0);
+        $idMenu = (int)($_POST['id'] ?? 0);
+        $rWhere = "id_role=$idRole AND id_menu=$idMenu";
+        // no rights row yet for this role / menu item: create it
+        if (db_select('id', 'login__rights', $rWhere)[0] ?? null)
+            db_update($details, 'login__rights', $rWhere);
+        else
+            db_insert($details + ['id_role' => $idRole, 'id_menu' => $idMenu], 'login__rights');
     }
-    $rr= db_select('*', 'login_menu', 'id!=0', 'ordine');
+    $rr= db_select('*', 'login__menu', 'id!=0', 'ordine');
         
     function afiseaza($rr, $level, $spc, $role) {
         foreach($rr as $r)
             if($r['id_tata']==$level) {
-                $dr=db_select('*', 'login_rights', "id_menu=$r[id] AND id_role=$role")[0];
+                $dr=db_select('*', 'login__rights', 'id_menu=' . (int)$r['id'] . ' AND id_role=' . (int)$role)[0] ?? [];
     if($r['link']!="") {
-        $x=explode('-',$r['link']);
-        $specials=array();
-        if($x[0]=='tabel') include("settings/$x[1]/config.php");
+        [$specials] = module_specials($r['link']);
         $y=count($specials);
-        $x=explode(' ',$dr['details_v']);
+        $x=explode(' ',$dr['details_v'] ?? '');
         $z=count($x);
         if($x[0]=='') $z--;
         $d=1;
@@ -33,10 +36,10 @@
     <?= str_repeat('<td width="3%">&nbsp;</td>', $spc) ?>        
     <td colspan="<?= 5-$spc ?>"><?= $r['denum']; ?></td>        
 <?php if($d!=0) {?>                
-    <td id="d_<?php echo $r['id'] ?>_v" class="text-center"><button class="btn btn-<?php echo ($dr['view_right']=='Y'?'success':'danger'); ?>" onclick="butonat(<?php echo $r['id'] ?>,'v')">O</button></td>        
-    <td id="d_<?php echo $r['id'] ?>_a" class="text-center"><button class="btn btn-<?php echo ($dr['add_right']=='Y'?'success':'danger'); ?>" onclick="butonat(<?php echo $r['id'] ?>,'a')">O</button></td>        
-    <td id="d_<?php echo $r['id'] ?>_m" class="text-center"><button class="btn btn-<?php echo ($dr['modify_right']=='Y'?'success':'danger'); ?>" onclick="butonat(<?php echo $r['id'] ?>,'m')">O</button></td>        
-    <td id="d_<?php echo $r['id'] ?>_d" class="text-center"><button class="btn btn-<?php echo ($dr['delete_right']=='Y'?'success':'danger'); ?>" onclick="butonat(<?php echo $r['id'] ?>,'d')">O</button></td>        
+    <td id="d_<?php echo $r['id'] ?>_v" class="text-center"><button class="btn btn-<?php echo (($dr['view_right'] ?? '')=='Y'?'success':'danger'); ?>" onclick="butonat(<?php echo $r['id'] ?>,'v')">O</button></td>        
+    <td id="d_<?php echo $r['id'] ?>_a" class="text-center"><button class="btn btn-<?php echo (($dr['add_right'] ?? '')=='Y'?'success':'danger'); ?>" onclick="butonat(<?php echo $r['id'] ?>,'a')">O</button></td>        
+    <td id="d_<?php echo $r['id'] ?>_m" class="text-center"><button class="btn btn-<?php echo (($dr['modify_right'] ?? '')=='Y'?'success':'danger'); ?>" onclick="butonat(<?php echo $r['id'] ?>,'m')">O</button></td>        
+    <td id="d_<?php echo $r['id'] ?>_d" class="text-center"><button class="btn btn-<?php echo (($dr['delete_right'] ?? '')=='Y'?'success':'danger'); ?>" onclick="butonat(<?php echo $r['id'] ?>,'d')">O</button></td>        
 <?php if($y!=0) {?>            
     <td class="text-center"><button class="btn btn-info spc" data-toggle="modal" data-target="#myModal" onclick="gomodal('<?php echo $r['id'] ?>', 'Drepturi operatii')"><?php echo "$z / $y"; ?></button></td>        
 <?php } else { ?>
@@ -87,7 +90,7 @@
         <th>Stergere</th>
         <th>Extra</th>
     </thead>
-    <tbody><?php afiseaza($rr, 0, 1, $get['id']); ?></tbody>
+    <tbody><?php afiseaza($rr, 0, 1, (int)$get['id']); ?></tbody>
 </table>
 </div>
 <?php        
@@ -97,13 +100,13 @@
 		$u['a']=implode(' ', array_slice($_POST['ch']['a'],1));
 		$u['m']=implode(' ', array_slice($_POST['ch']['m'],1));
 		$u['s']=implode(' ', array_slice($_POST['ch']['s'],1));
-		mysql_query("UPDATE login_rights SET detalii_v='$u[v]', detalii_a='$u[a]', detalii_m='$u[m]', detalii_s='$u[s]' WHERE id_role=$_GET[id] AND id_menu=$_POST[id]");
+		mysql_query("UPDATE login__rights SET detalii_v='$u[v]', detalii_a='$u[a]', detalii_m='$u[m]', detalii_s='$u[s]' WHERE id_role=$_GET[id] AND id_menu=$_POST[id]");
 	}
 	function afiseaza($level, $spc) {
-		$re=mysql_query("SELECT * FROM login_menu WHERE id_tata=$level AND id!=id_tata ORDER BY ordine");
+		$re=mysql_query("SELECT * FROM login__menu WHERE id_tata=$level AND id!=id_tata ORDER BY ordine");
 		while($r=mysql_fetch_assoc($re))
 		{
-			$dr=mysql_fetch_assoc(mysql_query("SELECT * FROM login_rights WHERE id_menu=$r[id] AND id_role=$_GET[id]"));		
+			$dr=mysql_fetch_assoc(mysql_query("SELECT * FROM login__rights WHERE id_menu=$r[id] AND id_role=$_GET[id]"));		
 		?>
         <div class="row spc" style="border-top:1px solid #CCC">
 			<div class="col-xs-6 col-sm-6 col-lg-6"><?php echo $spc.$r['denum']; ?></div>        
@@ -139,7 +142,7 @@
     function butonat(i, v) {
         $('#d_'+i+'_'+v).html('<i class="fa fa-spinner fa-pulse"></i>');
 	$.ajax({
-	  url: "ajax/modal.php?p=../settings_default/roluri/ajaxright&idu=<?php echo $get['id'] ?>&idd="+i+"&tip="+v,
+	  url: "ajax/modal.php?p=ajaxright-roluri&idu=<?php echo $get['id'] ?>&idd="+i+"&tip="+v,
 	}).done(function(msg) {
 	  $('#d_'+i+'_'+v).html(msg);
 	});
@@ -148,7 +151,7 @@
 	$('#myModalLabel').html(t);
 	$('#myModal .modal-body').html('<i class="fa fa-spinner fa-pulse fa-2x"></i>');
 	$.ajax({
-	  url: "ajax/modal.php?p=../settings_default/roluri/ajaxdet&idu=<?php echo $get['id'] ?>&idd="+l,
+	  url: "ajax/modal.php?p=ajaxdet-roluri&idu=<?php echo $get['id'] ?>&idd="+l,
 	}).done(function(msg) {
 	  $('#myModal .modal-body').html(msg);
 	});

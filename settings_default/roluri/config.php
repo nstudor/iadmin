@@ -1,11 +1,11 @@
 <?php 
-$tabel="login_roles";
+$tabel="login__roles";
 $fields=array(
     'rolename'=>"Denumire rol",
 );
 $order="";
 $title="Roluri utilizatori";
-$specials=array('rights', 'rights2');
+$specials=array('rights');
 $stitles=array(
     'rights'=>'Rights'
 );

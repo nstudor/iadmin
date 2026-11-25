@@ -6,7 +6,7 @@
                 <div class="card-body m-1 p-1">
                     <div class="row m-0">
                         <div class="col">
-                            <span class="h2 font-weight-bold mb-0 <?= $panel['textValueClass'] ?>"><?= $panel['textValue'] ?></span>
+                            <span class="h2 fw-bold mb-0 <?= $panel['textValueClass'] ?>"><?= $panel['textValue'] ?></span>
                             <h5 class="card-title mb-0 <?= $panel['textLabelClass'] ?>"><?= $panel['textLabel'] ?></h5>
                         </div>
                         <div class="col-3">
@@ -16,8 +16,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer p-1 text-right">
-                    <a class="mt-3 mb-0 text-<?= $panel['linkType'] ?> mr-2" href="<?= $panel['linkURL'] ?>">
+                <div class="card-footer p-1 text-end">
+                    <a class="mt-3 mb-0 text-<?= $panel['linkType'] ?> me-2" href="<?= $panel['linkURL'] ?>">
                         <?= $panel['linkLabel'] ?> &raquo;
                     </a>
                 </div>

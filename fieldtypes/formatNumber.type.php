@@ -1,8 +1,9 @@
 <?=
+($fieldValue === null || $fieldValue === '') ? '' :
 number_format(
-    $fieldValue,
-    (!isset($fieldDef['decimals']) ? 2 : $fieldDef['decimals']),
-    (!isset($fieldDef['decSep']) ? NULL : $fieldDef['decSep']),
-    (!isset($fieldDef['thoSep']) ? NULL : $fieldDef['thoSep'])
-) . $fieldDef['suffix'];
+    (float)$fieldValue,
+    (int)($fieldDef['decimals'] ?? 2),
+    $fieldDef['decSep'] ?? '.',
+    $fieldDef['thoSep'] ?? ','
+) . ($fieldDef['suffix'] ?? '');
 ?>

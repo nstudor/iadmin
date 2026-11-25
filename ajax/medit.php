@@ -1,6 +1,7 @@
 <?php
-$item = db_select('*', $tabel, "$id=$pp[3]")[0];
-$k = $pp[2];
+$k = $pp[2] ?? '';
+if (!array_key_exists($k, $fields)) die(showMessage('Invalid field !', 'danger'));
+$item = db_select('*', $tabel, "$id='" . db_esc($pp[3] ?? '') . "'")[0] ?? [];
 if (!is_array($fields[$k]))
     $fields[$k] = [
         'name' => $fields[$k]

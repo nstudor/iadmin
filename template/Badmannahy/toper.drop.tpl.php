@@ -30,8 +30,8 @@
                 </table>
                 <div class="row">
                     <div class="col">
-                        <button class="btn btn-success float-right" type="submit"><i class="fas fa-check-circle"></i> STERGE</button>
-                        <a href="./<?= $param[0] ?>.htm" class="btn btn-danger float-left"><i class="fas fa-times-circle"></i> ANULEAZA</a>
+                        <button class="btn btn-success float-end" type="submit"><i class="fas fa-check-circle"></i> STERGE</button>
+                        <a href="./<?= $param[0] ?>.htm" class="btn btn-danger float-start"><i class="fas fa-times-circle"></i> ANULEAZA</a>
                     </div>
                 </div>
             </div>

@@ -1,147 +1,205 @@
-<?php 
-function submeniu($m,$menu) {
-?>
-                            <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $m['denum'] ?></a>
-                              <ul class="dropdown-menu">
-<?php foreach($menu as $m1) if($m['id']==$m1['id_tata']) {
-if($m1['link']=='') submeniu($m1, $menu); else { ?>
-                                <li class="menu-item "><a href="?p=<?php echo $m1['link'] ?>"><?php echo $m1['denum'] ?></a></li>
-<?php }} ?>
-                              </ul>
-                            </li>
-						
-<?php }
-$specials=array();
-$_SESSION['link']=$_GET['p'];
-$link=explode("-",$_GET['p']);
-if(isset($link[3])) $link[2]='0';
-	else if(isset($link[2])) unset($link[2]);
-$link=implode("-",$link);
-mysql_query('SET NAMES utf8');
-$ruser=mysql_fetch_array(mysql_query("SELECT * FROM login_users WHERE id=".$_SESSION['userid']));
-$rcmenu=@mysql_fetch_array(@mysql_query("SELECT * FROM login_menu WHERE link='$link'"));
-$rcr=@mysql_fetch_array(@mysql_query("SELECT * FROM login_rights WHERE id_menu=".$rcmenu['id']." AND id_role=".$ruser['role']));
-$rcr['detalii_v']=explode(" ",$rcr['detalii_v']);
-$rcr['detalii_a']=explode(" ",$rcr['detalii_a']);
-$rcr['detalii_m']=explode(" ",$rcr['detalii_m']);
-$rcr['detalii_s']=explode(" ",$rcr['detalii_s']);
-$_SESSION['rights']=$rcr;
-if(isset($_SESSION['menudata'])) $menu=$_SESSION['menudata']; else {
-	$menu=array();
-	$re=mysql_query("SELECT * FROM login_menu WHERE id!=0 ORDER BY ordine");
-	while($r=mysql_fetch_array($re))
-		{
-			$menu[$r['id']]=$r;
-			$rd=@mysql_fetch_array(@mysql_query("SELECT * FROM login_rights WHERE id_menu=".$r['id']." AND id_role=".$ruser['role']));
-			$ok=false;
-			if($r['right']=='Y') $ok=true;
-			if($rd['vizualizare']=='Y') $ok=true;
-			$menu[$r['id']]['ok']=$ok;
-		}
-	foreach($menu as $m) if((!$menu[$m['id_tata']]['ok'])&&($m['ok'])) $menu[$m['id_tata']]['ok']=true;
-	foreach($menu as $m) if((!$menu[$m['id_tata']]['ok'])&&($m['ok'])) $menu[$m['id_tata']]['ok']=true;
-	foreach($menu as $k=>$m) if(!$m['ok']) unset($menu[$k]);
-	$_SESSION['menudata']=$menu;
+<?php
+/**
+ * Arachnania — modern sidebar admin layout (Bootstrap 5.3 + Font Awesome 6).
+ * Shared markup from fieldtypes / ajax / settings is Bootstrap 4: see css/compat-bs4.css + js/compat-bs4.js.
+ */
+$T = 'template/' . $APP_TEMPLATE;
+$h = fn($v) => htmlspecialchars((string)($v ?? ''), ENT_QUOTES);
+$loggedIn = isset($_SESSION['userid']);
+$pageTitle = $title ?? ($loggedIn ? ucfirst((string)$pag) : '');
+if (($scriptPage ?? '') == 'dashboard') $pageTitle = 'Dashboard';
+
+/** FA icon for a login__menu.icon value (legacy sprite names mapped, other values used as FA names) */
+$menuIcon = function ($icon, $hasChildren) {
+    $map = ['setari' => 'gear', 'user' => 'user', 'pofile' => 'id-badge', 'profile' => 'id-badge', 'empty' => ''];
+    $icon = trim((string)$icon);
+    $icon = $map[$icon] ?? $icon;
+    if ($icon === '' || !preg_match('/^[a-z0-9-]+$/', $icon)) $icon = $hasChildren ? 'folder' : 'circle-dot';
+    return 'fa-solid fa-' . $icon;
+};
+
+// menu tree: children by parent id (entries without an id are ignored)
+$menuKids = [];
+foreach (($menu ?? []) as $m) {
+    if (!isset($m['id'], $m['id_tata'])) continue;
+    $menuKids[(int)$m['id_tata']][] = $m;
 }
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title><?php echo $progname ?> - Conectare</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<?php
- 	if($param[0]!='') {
-		$pag=$param[1];	
-	 	if(file_exists("settings/$pag/config.php")) include("settings/$pag/config.php"); else { echo "</head><body>";include("404.php");die("</body></html>");}
-		
-		$plugins=array_slice(explode(' ',$plugins),1);
-		foreach($plugins as $pl)
-			if(file_exists("plugins/$pl.php")) include("plugins/$pl.php");	
-	}
-?>
-</head>
-<body>
-<nav class="navbar navbar-default">
-          <div class="navbar-header">
-            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a href="./" class="navbar-brand"><i class="fa fa-home"></i></a>
-          </div>
-          <div class="navbar-collapse collapse"><a href="./?p=logout" class="logout"><i class="fa fa-big fa-power-off"></i></a>
-<?php if($ruser['user']=='stefan') { ?>
-	<a href="./?p=ihelp" class="logout" style="margin-right:20px"><i class="fa fa-big fa-info-circle"></i></a>
-<?php } ?>
-            <ul class="nav navbar-nav">
-<?php
-$menu1=$menu;
-$menu2=$menu;
-$menu3=$menu;
-foreach($menu1 as $m1) if(($m1['link']=='')&&($m1['id_tata']==0)&&($m1['id']!='')) { 
-$n=0; foreach($menu2 as $m2) if($m2['id_tata']==$m1['id']) $n++; 
-if($n==0) {?>
-              <li><a href="<?php echo $m1['link'] ?>" ><?php echo $m1['denum'] ?></a></li>
-<?php }else { ?>
-              <li class="dropdown">
-                <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#"><?php echo $m1['denum'] ?> <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-<?php foreach($menu2 as $m2) if($m2['id_tata']==$m1['id'])
-if($m2['denum']=='-') { ?>
-                  <li class="divider" role="separator"></li>
-<?php } else {
-if($m2['link']=='') submeniu($m2, $menu); else { ?>
-                  <li><a href="./?p=<?php echo $m2['link'] ?>"><?php echo $m2['denum'] ?></a></li>
-<?php }} ?>
-                </ul>
-              </li>
-<?php }} ?>
-				<li></div>
-             </ul>
-          </div>
-      </nav>
-<?php
-	if($param[0]!='') {
-		$id='id';
-		$r=mysql_fetch_assoc(mysql_query("SHOW COLUMNS FROM `$tabel` WHERE `Key`='PRI'"));
-		if($r['Key']=='PRI') $id=$r['Field'];
-		if(isset($_GET['id'])) $item=mysql_fetch_array(mysql_query("SELECT * FROM $tabel WHERE $id=".$_GET['id']));
-		include($param[0].'.php');
-	} else include('first.php'); ?>
-<div class="bottom navbar navbar-default">
-<div style="float:right; margin-right:10px;" id="clock">0:00</div>
-</div>
-<script>
-$('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
-    event.preventDefault(); 
-    event.stopPropagation(); 
-    $(this).parent().addClass('open');
-    var menu = $(this).parent().find("ul");
-    var menupos = menu.offset(); 
-    if ((menupos.left + menu.width()) + 30 > $(window).width()) {
-        var newpos = - menu.width();      
-    } else {
-        var newpos = $(this).parent().width();
+$current = (string)($param[0] ?? '');
+$isActive = fn($m) => ($m['link'] ?? '') !== '' && ($m['link'] == $current);
+$hasActive = function ($id, $depth = 1) use (&$hasActive, $menuKids, $isActive) {
+    if ($depth > 3) return false; // the menu has at most 3 levels (also stops on id_tata loops)
+    foreach ($menuKids[$id] ?? [] as $c) if ($isActive($c) || $hasActive((int)$c['id'], $depth + 1)) return true;
+    return false;
+};
+/** prints the menu items with parent $parentId (recursive, max 3 levels) */
+$renderMenu = function ($parentId, $level) use (&$renderMenu, $menuKids, $isActive, $hasActive, $menuIcon, $h) {
+    foreach ($menuKids[$parentId] ?? [] as $m) {
+        $id = (int)$m['id'];
+        $kids = $level < 3 ? ($menuKids[$id] ?? []) : [];
+        if (($m['denum'] ?? '') == '-') {
+            echo '<li class="ar-nav-divider"></li>';
+            continue;
+        }
+        if (count($kids) > 0) {
+            $open = $hasActive($id);
+            echo '<li><a class="ar-nav-link" data-bs-toggle="collapse" href="#arMenu' . $id . '" role="button" aria-expanded="' . ($open ? 'true' : 'false') . '">'
+                . '<i class="ar-ico ' . $menuIcon($m['icon'] ?? '', true) . '"></i><span class="ar-label">' . $h($m['denum']) . '</span>'
+                . '<i class="ar-caret fa-solid fa-chevron-right"></i></a>'
+                . '<ul class="collapse' . ($open ? ' show' : '') . '" id="arMenu' . $id . '">';
+            $renderMenu($id, $level + 1);
+            echo '</ul></li>';
+        } elseif (($m['link'] ?? '') !== '' && $m['link'] != '#') {
+            echo '<li><a class="ar-nav-link' . ($isActive($m) ? ' active' : '') . '" href="./' . $h($m['link']) . '.htm">'
+                . '<i class="ar-ico ' . $menuIcon($m['icon'] ?? '', false) . '"></i><span class="ar-label">' . $h($m['denum']) . '</span></a></li>';
+        }
     }
-    menu.css({ left:newpos });
-});
-function clock() {
-	$.ajax({
-	  url: "ajaxtime.php",
-	}).done(function(msg) {
-	  $("#clock").html(msg);
-	});
-}
-clock();
-setInterval("clock()",15000);
-</script>
+};
+$userName = trim((string)($ruser['nume'] ?? '')) ?: (string)($ruser['user'] ?? '');
+$initials = mb_strtoupper(mb_substr($userName, 0, 1)) ?: '?';
+?>
+<!DOCTYPE html>
+<html lang="ro" data-bs-theme="light">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><?= $h(trim(($pageTitle ? strip_tags($pageTitle) . ' · ' : '') . $APP_NAME)) ?></title>
+    <link rel="icon" type="image/gif" href="favicon.gif" />
+    <script>
+        // theme before first paint: saved choice, else the OS preference
+        (function () {
+            var t = null;
+            try { t = localStorage.getItem('ar-theme'); } catch (e) {}
+            if (!t) t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-bs-theme', t);
+            try { if (localStorage.getItem('ar-sidebar') === 'collapsed') document.documentElement.classList.add('ar-pre-collapsed'); } catch (e) {}
+        })();
+    </script>
+    <meta name="csrf-token" content="<?= $loggedIn ? csrf_token() : '' ?>" />
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/all.min.css" />
+    <link rel="stylesheet" href="./css/v4-shims.min.css" />
+    <link rel="stylesheet" href="./css/BsMultiSelect.min.css" />
+    <link rel="stylesheet" href="./css/colors.css" />
+    <link rel="stylesheet" href="./css/tempus-dominus.css" />
+    <link rel="stylesheet" href="./css/bootstrap-colorpicker.min.css" />
+    <link rel="stylesheet" href="./css/compat-bs4.css" />
+    <link rel="stylesheet" href="./<?= $T ?>/arachnania.css" />
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/csrf.js"></script>
+    <script src="./js/compat-bs4.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/tempus-dominus.js"></script>
+    <script src="./js/jQuery-provider.js"></script>
+    <script src="./js/ckeditor/ckeditor.js"></script>
+    <script src="./js/bootstrap-colorpicker.js"></script>
+    <script src="./js/BsMultiSelect.min.js"></script>
+    <script src="./<?= $T ?>/arachnania.js"></script>
+    <?php
+    if (file_exists("$T/$scriptPage.head.php")) include("$T/$scriptPage.head.php");
+    ?>
+</head>
+
+<body data-pag="<?= $h($pag ?? '') ?>">
+    <script>if (document.documentElement.classList.contains('ar-pre-collapsed')) document.body.classList.add('ar-collapsed');</script>
+
+    <?php if ($loggedIn) { ?>
+        <div class="ar-shell">
+            <aside class="ar-sidebar" aria-label="Menu">
+                <a class="ar-brand" href="./">
+                    <span class="ar-brand-icon"><i class="fa-solid fa-spider"></i></span>
+                    <span class="ar-brand-text"><?= $h($APP_NAME) ?></span>
+                </a>
+                <nav class="ar-nav">
+                    <ul>
+                        <li><a class="ar-nav-link<?= ($scriptPage ?? '') == 'dashboard' ? ' active' : '' ?>" href="./"><i class="ar-ico fa-solid fa-house"></i><span class="ar-label">Dashboard</span></a></li>
+                        <li class="ar-nav-section">Meniu</li>
+                        <?php $renderMenu(0, 1); ?>
+                    </ul>
+                </nav>
+            </aside>
+            <div class="ar-backdrop"></div>
+
+            <div class="ar-main">
+                <header class="ar-topbar">
+                    <button class="ar-icon-btn" type="button" data-ar-sidebar-toggle aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+                    <h1 class="ar-title"><?= $pageTitle ?></h1>
+                    <span class="ar-clock d-none d-md-inline" id="clock">&nbsp;</span>
+                    <button class="ar-icon-btn" type="button" data-ar-theme-toggle aria-label="Light / dark"><i class="fa-solid fa-moon"></i></button>
+                    <div class="dropdown">
+                        <button class="ar-icon-btn p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Account">
+                            <span class="ar-avatar"><?= $h($initials) ?></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li class="dropdown-header"><?= $h($userName) ?></li>
+                            <li><a class="dropdown-item" href="./utilizatori-key-id-<?= (int)$_SESSION['userid'] ?>.htm"><i class="fa-solid fa-key me-2"></i>Change password</a></li>
+                            <?php if (($ruser['role'] ?? 0) == 1) { ?>
+                                <li><a class="dropdown-item" href="./loginmenu.htm"><i class="fa-solid fa-sitemap me-2"></i>Developer · Menu</a></li>
+                            <?php } ?>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="./logout.htm"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </header>
+
+                <main class="ar-content" id="arContent">
+                    <?php
+                    if (file_exists("$T/$scriptPage.tpl.php")) include("$T/$scriptPage.tpl.php");
+                    elseif (file_exists($scriptPage)) include($scriptPage);
+                    ?>
+                </main>
+            </div>
+        </div>
+
+        <!-- shared modal used by goModal() / postModal() and data-toggle="modal" data-target="#filterModal" -->
+        <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header <?= $tmpBackground ?> <?= $tmpText ?>">
+                        <h5 class="modal-title" id="filterModalTitle">&nbsp;</h5>
+                        <button type="button" class="btn-close<?= strpos((string)$tmpText, 'white') !== false || strpos((string)$tmpText, 'light') !== false ? ' btn-close-white' : '' ?>" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- inline cell editor (right click on a list cell) -->
+        <div id="contextMenu" class="card" style="display:none">
+            <div class="card-header d-flex align-items-center <?= $tmpBackground ?> <?= $tmpText ?>">
+                <span class="panel-info me-auto"></span>
+                <i class="fa-solid fa-xmark" data-ar-close style="cursor:pointer"></i>
+            </div>
+            <div class="card-body">
+                <div class="panel-data"></div>
+                <div class="panel-submit d-flex gap-2 mt-3">
+                    <button type="button" class="btn btn-primary flex-fill" onclick="salveaza()">Ok</button>
+                    <button type="button" class="btn btn-outline-secondary flex-fill" data-ar-close>Cancel</button>
+                </div>
+            </div>
+        </div>
+    <?php } else { ?>
+        <div class="ar-auth">
+            <button class="ar-icon-btn ar-auth-theme" type="button" data-ar-theme-toggle aria-label="Light / dark"><i class="fa-solid fa-moon"></i></button>
+            <div class="ar-auth-inner" id="arContent">
+                <div class="ar-auth-brand">
+                    <span class="ar-brand-icon"><i class="fa-solid fa-spider"></i></span>
+                    <span><?= $h($APP_NAME) ?></span>
+                </div>
+                <div class="card ar-auth-card">
+                    <?php
+                    if (file_exists("$T/$scriptPage.tpl.php")) include("$T/$scriptPage.tpl.php");
+                    elseif (file_exists($scriptPage)) include($scriptPage);
+                    ?>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
+    <div class="ar-toasts" id="arToasts" aria-live="polite"></div>
 </body>
+
 </html>

@@ -1,1 +1,0 @@
-<strong class="glyphicon glyphicon-<?php echo ($r[$k]=='Y'?'ok':'remove') ?> bigfont"></strong>

@@ -11,6 +11,7 @@ if (isset($_POST['item']))
                 else $MESSAGE = "Error uploading file !";
             }
         }
-        db_update($_POST['item'], $tabel, "$id=" . $get[$id]);
+        if (isset($get['id']))
+            db_update(db_only($_POST['item'], array_keys($editfields)), $tabel, "$id='" . db_esc($get['id']) . "'");
         die("<script>document.location='./$param[0].htm';</script>");
     }

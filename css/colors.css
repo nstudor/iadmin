@@ -1,107 +1,498 @@
-.bg-navy{background-color:#001f3f!important }
-.bg-blue{background-color:#0074d9!important }
-.bg-aqua{background-color:#7fdbff!important }
-.bg-teal{background-color:#39cccc!important }
-.bg-olive{background-color:#3d9970!important }
-.bg-green{background-color:#2ecc40!important }
-.bg-lime{background-color:#01ff70!important }
-.bg-yellow{background-color:#ffdc00!important }
-.bg-orange{background-color:#ff851b!important }
-.bg-red{background-color:#ff4136!important }
-.bg-fuchsia{background-color:#f012be!important }
-.bg-purple{background-color:#b10dc9!important }
-.bg-maroon{background-color:#85144b!important }
-.bg-white{background-color:#fff!important }
-.bg-gray{background-color:#aaa!important }
-.bg-silver{background-color:#ddd!important }
-.bg-black{background-color:#111!important }
+/*
+ * iAdmin color palette — 47 named colors.
+ *
+ * Colors: navy, blue, aqua, teal, olive, green, lime, yellow, orange, red, fuchsia, purple, maroon, white, gray, silver, black, sky, cyan, turquoise, steel, cobalt, royal, indigo, violet, lavender, plum, pink, rose, crimson, coral, salmon, amber, gold, brown, tan, beige, cream, emerald, mint, forest, slate, charcoal, storm-gray, burned-eggplant, river, lilac.
+ *
+ * For every color <c>:
+ *   .bg-<c>   .bkg-<c>   background                (links inside get a hover background)
+ *   .bg-<c>-subtle       light tint background
+ *   .text-<c> .txt-<c>   text color (the first 17 also as bare .<c>, kept for older configs / DB rows)
+ *   .border-<c>          border color
+ *   .shadow-<c>          text shadow
+ *   .alert-<c>           semi transparent background (kept for compatibility)
+ *   .btn-<c>             solid button  (Bootstrap 4 and 5)
+ *   .btn-outline-<c>     outline button
+ *   .badge-<c>           badge
+ *   .table-<c>           table row / cell tint    (rowClass / cellClass from line.php)
+ *
+ * The colors are CSS variables, so a template can override them:  :root { --c-navy: #123; }
+ *   --c-<c>        base color          --c-<c>-rgb    "r, g, b" (for rgba())
+ *   --c-<c>-hover  hover shade         --c-<c>-fg     readable text color on the base color
+ */
 
-.shadow-navy{text-shadow: 1px 1px 3px #001f3f!important }
-.shadow-blue{text-shadow: 1px 1px 3px #0074d9!important }
-.shadow-aqua{text-shadow: 1px 1px 3px #7fdbff!important }
-.shadow-teal{text-shadow: 1px 1px 3px #39cccc!important }
-.shadow-olive{text-shadow: 1px 1px 3px #3d9970!important }
-.shadow-green{text-shadow: 1px 1px 3px #2ecc40!important }
-.shadow-lime{text-shadow: 1px 1px 3px #01ff70!important }
-.shadow-yellow{text-shadow: 1px 1px 3px #ffdc00!important }
-.shadow-orange{text-shadow: 1px 1px 3px #ff851b!important }
-.shadow-red{text-shadow: 1px 1px 3px #ff4136!important }
-.shadow-fuchsia{text-shadow: 1px 1px 3px #f012be!important }
-.shadow-purple{text-shadow: 1px 1px 3px #b10dc9!important }
-.shadow-maroon{text-shadow: 1px 1px 3px #85144b!important }
-.shadow-white{text-shadow: 1px 1px 3px #fff!important }
-.shadow-gray{text-shadow: 1px 1px 3px #aaa!important }
-.shadow-silver{text-shadow: 1px 1px 3px #ddd!important }
-.shadow-black{text-shadow: 1px 1px 3px #111!important }
+:root {
+    --c-navy: #001f3f; --c-navy-rgb: 0, 31, 63; --c-navy-hover: #004a98; --c-navy-fg: #fff;
+    --c-blue: #0074d9; --c-blue-rgb: 0, 116, 217; --c-blue-hover: #005db0; --c-blue-fg: #fff;
+    --c-aqua: #7fdbff; --c-aqua-rgb: 127, 219, 255; --c-aqua-hover: #32c5fe; --c-aqua-fg: #111;
+    --c-teal: #39cccc; --c-teal-rgb: 57, 204, 204; --c-teal-hover: #2aa6a6; --c-teal-fg: #111;
+    --c-olive: #3d9970; --c-olive-rgb: 61, 153, 112; --c-olive-hover: #2d7253; --c-olive-fg: #fff;
+    --c-green: #2ecc40; --c-green-rgb: 46, 204, 64; --c-green-hover: #24a333; --c-green-fg: #111;
+    --c-lime: #01ff70; --c-lime-rgb: 1, 255, 112; --c-lime-hover: #00cc59; --c-lime-fg: #111;
+    --c-yellow: #ffdc00; --c-yellow-rgb: 255, 220, 0; --c-yellow-hover: #ccb000; --c-yellow-fg: #111;
+    --c-orange: #ff851b; --c-orange-rgb: 255, 133, 27; --c-orange-hover: #e16800; --c-orange-fg: #111;
+    --c-red: #ff4136; --c-red-rgb: 255, 65, 54; --c-red-hover: #f70d00; --c-red-fg: #fff;
+    --c-fuchsia: #f012be; --c-fuchsia-rgb: 240, 18, 190; --c-fuchsia-hover: #c20c99; --c-fuchsia-fg: #fff;
+    --c-purple: #b10dc9; --c-purple-rgb: 177, 13, 201; --c-purple-hover: #8a0a9c; --c-purple-fg: #fff;
+    --c-maroon: #85144b; --c-maroon-rgb: 133, 20, 75; --c-maroon-hover: #c31d6d; --c-maroon-fg: #fff;
+    --c-white: #ffffff; --c-white-rgb: 255, 255, 255; --c-white-hover: #cccccc; --c-white-fg: #111;
+    --c-gray: #aaaaaa; --c-gray-rgb: 170, 170, 170; --c-gray-hover: #888888; --c-gray-fg: #111;
+    --c-silver: #dddddd; --c-silver-rgb: 221, 221, 221; --c-silver-hover: #b0b0b0; --c-silver-fg: #111;
+    --c-black: #111111; --c-black-rgb: 17, 17, 17; --c-black-hover: #404040; --c-black-fg: #fff;
+    --c-sky: #0ea5e9; --c-sky-rgb: 14, 165, 233; --c-sky-hover: #0b87bf; --c-sky-fg: #111;
+    --c-cyan: #06b6d4; --c-cyan-rgb: 6, 182, 212; --c-cyan-hover: #0595ae; --c-cyan-fg: #111;
+    --c-turquoise: #40e0d0; --c-turquoise-rgb: 64, 224, 208; --c-turquoise-hover: #34b8ab; --c-turquoise-fg: #111;
+    --c-steel: #4682b4; --c-steel-rgb: 70, 130, 180; --c-steel-hover: #396b94; --c-steel-fg: #fff;
+    --c-cobalt: #0047ab; --c-cobalt-rgb: 0, 71, 171; --c-cobalt-hover: #003a8c; --c-cobalt-fg: #fff;
+    --c-royal: #4169e1; --c-royal-rgb: 65, 105, 225; --c-royal-hover: #3556b9; --c-royal-fg: #fff;
+    --c-indigo: #4f46e5; --c-indigo-rgb: 79, 70, 229; --c-indigo-hover: #4139bc; --c-indigo-fg: #fff;
+    --c-violet: #8b5cf6; --c-violet-rgb: 139, 92, 246; --c-violet-hover: #724bca; --c-violet-fg: #fff;
+    --c-lavender: #c4b5fd; --c-lavender-rgb: 196, 181, 253; --c-lavender-hover: #a194cf; --c-lavender-fg: #111;
+    --c-plum: #8e4585; --c-plum-rgb: 142, 69, 133; --c-plum-hover: #74396d; --c-plum-fg: #fff;
+    --c-pink: #ec4899; --c-pink-rgb: 236, 72, 153; --c-pink-hover: #c23b7d; --c-pink-fg: #fff;
+    --c-rose: #f43f5e; --c-rose-rgb: 244, 63, 94; --c-rose-hover: #c8344d; --c-rose-fg: #fff;
+    --c-crimson: #dc143c; --c-crimson-rgb: 220, 20, 60; --c-crimson-hover: #b41031; --c-crimson-fg: #fff;
+    --c-coral: #ff7f50; --c-coral-rgb: 255, 127, 80; --c-coral-hover: #d16842; --c-coral-fg: #111;
+    --c-salmon: #fa8072; --c-salmon-rgb: 250, 128, 114; --c-salmon-hover: #cd695d; --c-salmon-fg: #111;
+    --c-amber: #f59e0b; --c-amber-rgb: 245, 158, 11; --c-amber-hover: #c98209; --c-amber-fg: #111;
+    --c-gold: #ffd700; --c-gold-rgb: 255, 215, 0; --c-gold-hover: #d1b000; --c-gold-fg: #111;
+    --c-brown: #8b4513; --c-brown-rgb: 139, 69, 19; --c-brown-hover: #723910; --c-brown-fg: #fff;
+    --c-tan: #d2b48c; --c-tan-rgb: 210, 180, 140; --c-tan-hover: #ac9473; --c-tan-fg: #111;
+    --c-beige: #f5f5dc; --c-beige-rgb: 245, 245, 220; --c-beige-hover: #c9c9b4; --c-beige-fg: #111;
+    --c-cream: #fffdd0; --c-cream-rgb: 255, 253, 208; --c-cream-hover: #d1cfab; --c-cream-fg: #111;
+    --c-emerald: #10b981; --c-emerald-rgb: 16, 185, 129; --c-emerald-hover: #0d986a; --c-emerald-fg: #111;
+    --c-mint: #98ff98; --c-mint-rgb: 152, 255, 152; --c-mint-hover: #7dd17d; --c-mint-fg: #111;
+    --c-forest: #228b22; --c-forest-rgb: 34, 139, 34; --c-forest-hover: #1c721c; --c-forest-fg: #fff;
+    --c-slate: #64748b; --c-slate-rgb: 100, 116, 139; --c-slate-hover: #525f72; --c-slate-fg: #fff;
+    --c-charcoal: #36454f; --c-charcoal-rgb: 54, 69, 79; --c-charcoal-hover: #68747b; --c-charcoal-fg: #fff;
+    --c-storm-gray: #717486; --c-storm-gray-rgb: 113, 116, 134; --c-storm-gray-hover: #5d5f6e; --c-storm-gray-fg: #fff;
+    --c-burned-eggplant: #3b2532; --c-burned-eggplant-rgb: 59, 37, 50; --c-burned-eggplant-hover: #6c5c65; --c-burned-eggplant-fg: #fff;
+    --c-river: #c9d6df; --c-river-rgb: 201, 214, 223; --c-river-hover: #a5afb7; --c-river-fg: #111;
+    --c-lilac: #c8a2c8; --c-lilac-rgb: 200, 162, 200; --c-lilac-hover: #a485a4; --c-lilac-fg: #111;
+}
 
-.alert-navy{background-color:rgba(0, 31, 63, 0.5)!important }
-.alert-blue{background-color:rgba(0, 116, 217, 0.5)!important }
-.alert-aqua{background-color:rgba(127, 219, 255, 0.5)!important }
-.alert-teal{background-color:rgba(57, 204, 204, 0.5)!important }
-.alert-olive{background-color:rgba(61, 153, 112, 0.5)!important }
-.alert-green{background-color:rgba(46, 204, 64, 0.5)!important }
-.alert-lime{background-color:rgba(1, 255, 112, 0.5)!important }
-.alert-yellow{background-color:rgba(255, 220, 0, 0.5)!important }
-.alert-orange{background-color:rgba(255, 133, 27, 0.5)!important }
-.alert-red{background-color:rgba(255, 65, 54, 0.5)!important }
-.alert-fuchsia{background-color:rgba(240, 18, 190, 0.5)!important }
-.alert-purple{background-color:rgba(177, 13, 201, 0.5)!important }
-.alert-maroon{background-color:rgba(133, 20, 75, 0.5)!important }
-.alert-white{background-color:rgba(255, 255, 255, 0.5)!important }
-.alert-gray{background-color:rgba(170, 170, 170, 0.5)!important }
-.alert-silver{background-color:rgba(221, 221, 221, 0.5)!important }
-.alert-black{background-color:rgba(17, 17, 17, 0.5)!important }
+/* ---------- background ---------- */
+.bg-navy, .bkg-navy { background-color: var(--c-navy) !important; }
+.bg-blue, .bkg-blue { background-color: var(--c-blue) !important; }
+.bg-aqua, .bkg-aqua { background-color: var(--c-aqua) !important; }
+.bg-teal, .bkg-teal { background-color: var(--c-teal) !important; }
+.bg-olive, .bkg-olive { background-color: var(--c-olive) !important; }
+.bg-green, .bkg-green { background-color: var(--c-green) !important; }
+.bg-lime, .bkg-lime { background-color: var(--c-lime) !important; }
+.bg-yellow, .bkg-yellow { background-color: var(--c-yellow) !important; }
+.bg-orange, .bkg-orange { background-color: var(--c-orange) !important; }
+.bg-red, .bkg-red { background-color: var(--c-red) !important; }
+.bg-fuchsia, .bkg-fuchsia { background-color: var(--c-fuchsia) !important; }
+.bg-purple, .bkg-purple { background-color: var(--c-purple) !important; }
+.bg-maroon, .bkg-maroon { background-color: var(--c-maroon) !important; }
+.bg-white, .bkg-white { background-color: var(--c-white) !important; }
+.bg-gray, .bkg-gray { background-color: var(--c-gray) !important; }
+.bg-silver, .bkg-silver { background-color: var(--c-silver) !important; }
+.bg-black, .bkg-black { background-color: var(--c-black) !important; }
+.bg-sky, .bkg-sky { background-color: var(--c-sky) !important; }
+.bg-cyan, .bkg-cyan { background-color: var(--c-cyan) !important; }
+.bg-turquoise, .bkg-turquoise { background-color: var(--c-turquoise) !important; }
+.bg-steel, .bkg-steel { background-color: var(--c-steel) !important; }
+.bg-cobalt, .bkg-cobalt { background-color: var(--c-cobalt) !important; }
+.bg-royal, .bkg-royal { background-color: var(--c-royal) !important; }
+.bg-indigo, .bkg-indigo { background-color: var(--c-indigo) !important; }
+.bg-violet, .bkg-violet { background-color: var(--c-violet) !important; }
+.bg-lavender, .bkg-lavender { background-color: var(--c-lavender) !important; }
+.bg-plum, .bkg-plum { background-color: var(--c-plum) !important; }
+.bg-pink, .bkg-pink { background-color: var(--c-pink) !important; }
+.bg-rose, .bkg-rose { background-color: var(--c-rose) !important; }
+.bg-crimson, .bkg-crimson { background-color: var(--c-crimson) !important; }
+.bg-coral, .bkg-coral { background-color: var(--c-coral) !important; }
+.bg-salmon, .bkg-salmon { background-color: var(--c-salmon) !important; }
+.bg-amber, .bkg-amber { background-color: var(--c-amber) !important; }
+.bg-gold, .bkg-gold { background-color: var(--c-gold) !important; }
+.bg-brown, .bkg-brown { background-color: var(--c-brown) !important; }
+.bg-tan, .bkg-tan { background-color: var(--c-tan) !important; }
+.bg-beige, .bkg-beige { background-color: var(--c-beige) !important; }
+.bg-cream, .bkg-cream { background-color: var(--c-cream) !important; }
+.bg-emerald, .bkg-emerald { background-color: var(--c-emerald) !important; }
+.bg-mint, .bkg-mint { background-color: var(--c-mint) !important; }
+.bg-forest, .bkg-forest { background-color: var(--c-forest) !important; }
+.bg-slate, .bkg-slate { background-color: var(--c-slate) !important; }
+.bg-charcoal, .bkg-charcoal { background-color: var(--c-charcoal) !important; }
+.bg-storm-gray, .bkg-storm-gray { background-color: var(--c-storm-gray) !important; }
+.bg-burned-eggplant, .bkg-burned-eggplant { background-color: var(--c-burned-eggplant) !important; }
+.bg-river, .bkg-river { background-color: var(--c-river) !important; }
+.bg-lilac, .bkg-lilac { background-color: var(--c-lilac) !important; }
 
-.navy{color:#001f3f!important }
-.blue{color:#0074d9!important }
-.aqua{color:#7fdbff!important }
-.teal{color:#39cccc!important }
-.olive{color:#3d9970!important }
-.green{color:#2ecc40!important }
-.lime{color:#01ff70!important }
-.yellow{color:#ffdc00!important }
-.orange{color:#ff851b!important }
-.red{color:#ff4136!important }
-.fuchsia{color:#f012be!important }
-.purple{color:#b10dc9!important }
-.maroon{color:#85144b!important }
-.white{color:#fff!important }
-.silver{color:#ddd!important }
-.gray{color:#aaa!important }
-.black{color:#111!important }
+/* links inside a colored background (menus, headers) */
+.bg-navy a:hover, .bkg-navy a:hover { background-color: var(--c-navy-hover) !important; }
+.bg-blue a:hover, .bkg-blue a:hover { background-color: var(--c-blue-hover) !important; }
+.bg-aqua a:hover, .bkg-aqua a:hover { background-color: var(--c-aqua-hover) !important; }
+.bg-teal a:hover, .bkg-teal a:hover { background-color: var(--c-teal-hover) !important; }
+.bg-olive a:hover, .bkg-olive a:hover { background-color: var(--c-olive-hover) !important; }
+.bg-green a:hover, .bkg-green a:hover { background-color: var(--c-green-hover) !important; }
+.bg-lime a:hover, .bkg-lime a:hover { background-color: var(--c-lime-hover) !important; }
+.bg-yellow a:hover, .bkg-yellow a:hover { background-color: var(--c-yellow-hover) !important; }
+.bg-orange a:hover, .bkg-orange a:hover { background-color: var(--c-orange-hover) !important; }
+.bg-red a:hover, .bkg-red a:hover { background-color: var(--c-red-hover) !important; }
+.bg-fuchsia a:hover, .bkg-fuchsia a:hover { background-color: var(--c-fuchsia-hover) !important; }
+.bg-purple a:hover, .bkg-purple a:hover { background-color: var(--c-purple-hover) !important; }
+.bg-maroon a:hover, .bkg-maroon a:hover { background-color: var(--c-maroon-hover) !important; }
+.bg-white a:hover, .bkg-white a:hover { background-color: var(--c-white-hover) !important; }
+.bg-gray a:hover, .bkg-gray a:hover { background-color: var(--c-gray-hover) !important; }
+.bg-silver a:hover, .bkg-silver a:hover { background-color: var(--c-silver-hover) !important; }
+.bg-black a:hover, .bkg-black a:hover { background-color: var(--c-black-hover) !important; }
+.bg-sky a:hover, .bkg-sky a:hover { background-color: var(--c-sky-hover) !important; }
+.bg-cyan a:hover, .bkg-cyan a:hover { background-color: var(--c-cyan-hover) !important; }
+.bg-turquoise a:hover, .bkg-turquoise a:hover { background-color: var(--c-turquoise-hover) !important; }
+.bg-steel a:hover, .bkg-steel a:hover { background-color: var(--c-steel-hover) !important; }
+.bg-cobalt a:hover, .bkg-cobalt a:hover { background-color: var(--c-cobalt-hover) !important; }
+.bg-royal a:hover, .bkg-royal a:hover { background-color: var(--c-royal-hover) !important; }
+.bg-indigo a:hover, .bkg-indigo a:hover { background-color: var(--c-indigo-hover) !important; }
+.bg-violet a:hover, .bkg-violet a:hover { background-color: var(--c-violet-hover) !important; }
+.bg-lavender a:hover, .bkg-lavender a:hover { background-color: var(--c-lavender-hover) !important; }
+.bg-plum a:hover, .bkg-plum a:hover { background-color: var(--c-plum-hover) !important; }
+.bg-pink a:hover, .bkg-pink a:hover { background-color: var(--c-pink-hover) !important; }
+.bg-rose a:hover, .bkg-rose a:hover { background-color: var(--c-rose-hover) !important; }
+.bg-crimson a:hover, .bkg-crimson a:hover { background-color: var(--c-crimson-hover) !important; }
+.bg-coral a:hover, .bkg-coral a:hover { background-color: var(--c-coral-hover) !important; }
+.bg-salmon a:hover, .bkg-salmon a:hover { background-color: var(--c-salmon-hover) !important; }
+.bg-amber a:hover, .bkg-amber a:hover { background-color: var(--c-amber-hover) !important; }
+.bg-gold a:hover, .bkg-gold a:hover { background-color: var(--c-gold-hover) !important; }
+.bg-brown a:hover, .bkg-brown a:hover { background-color: var(--c-brown-hover) !important; }
+.bg-tan a:hover, .bkg-tan a:hover { background-color: var(--c-tan-hover) !important; }
+.bg-beige a:hover, .bkg-beige a:hover { background-color: var(--c-beige-hover) !important; }
+.bg-cream a:hover, .bkg-cream a:hover { background-color: var(--c-cream-hover) !important; }
+.bg-emerald a:hover, .bkg-emerald a:hover { background-color: var(--c-emerald-hover) !important; }
+.bg-mint a:hover, .bkg-mint a:hover { background-color: var(--c-mint-hover) !important; }
+.bg-forest a:hover, .bkg-forest a:hover { background-color: var(--c-forest-hover) !important; }
+.bg-slate a:hover, .bkg-slate a:hover { background-color: var(--c-slate-hover) !important; }
+.bg-charcoal a:hover, .bkg-charcoal a:hover { background-color: var(--c-charcoal-hover) !important; }
+.bg-storm-gray a:hover, .bkg-storm-gray a:hover { background-color: var(--c-storm-gray-hover) !important; }
+.bg-burned-eggplant a:hover, .bkg-burned-eggplant a:hover { background-color: var(--c-burned-eggplant-hover) !important; }
+.bg-river a:hover, .bkg-river a:hover { background-color: var(--c-river-hover) !important; }
+.bg-lilac a:hover, .bkg-lilac a:hover { background-color: var(--c-lilac-hover) !important; }
 
-.border-navy{border-color:#001f3f!important }
-.border-blue{border-color:#0074d9!important }
-.border-aqua{border-color:#7fdbff!important }
-.border-teal{border-color:#39cccc!important }
-.border-olive{border-color:#3d9970!important }
-.border-green{border-color:#2ecc40!important }
-.border-lime{border-color:#01ff70!important }
-.border-yellow{border-color:#ffdc00!important }
-.border-orange{border-color:#ff851b!important }
-.border-red{border-color:#ff4136!important }
-.border-fuchsia{border-color:#f012be!important }
-.border-purple{border-color:#b10dc9!important }
-.border-maroon{border-color:#85144b!important }
-.border-white{border-color:#fff!important }
-.border-gray{border-color:#aaa!important }
-.border-silver{border-color:#ddd!important }
-.border-black{border-color:#111!important }
+/* light tints */
+.bg-navy-subtle { background-color: rgba(var(--c-navy-rgb), 0.12) !important; }
+.bg-blue-subtle { background-color: rgba(var(--c-blue-rgb), 0.12) !important; }
+.bg-aqua-subtle { background-color: rgba(var(--c-aqua-rgb), 0.25) !important; }
+.bg-teal-subtle { background-color: rgba(var(--c-teal-rgb), 0.18) !important; }
+.bg-olive-subtle { background-color: rgba(var(--c-olive-rgb), 0.12) !important; }
+.bg-green-subtle { background-color: rgba(var(--c-green-rgb), 0.18) !important; }
+.bg-lime-subtle { background-color: rgba(var(--c-lime-rgb), 0.25) !important; }
+.bg-yellow-subtle { background-color: rgba(var(--c-yellow-rgb), 0.25) !important; }
+.bg-orange-subtle { background-color: rgba(var(--c-orange-rgb), 0.18) !important; }
+.bg-red-subtle { background-color: rgba(var(--c-red-rgb), 0.18) !important; }
+.bg-fuchsia-subtle { background-color: rgba(var(--c-fuchsia-rgb), 0.12) !important; }
+.bg-purple-subtle { background-color: rgba(var(--c-purple-rgb), 0.12) !important; }
+.bg-maroon-subtle { background-color: rgba(var(--c-maroon-rgb), 0.12) !important; }
+.bg-white-subtle { background-color: rgba(var(--c-white-rgb), 0.45) !important; }
+.bg-gray-subtle { background-color: rgba(var(--c-gray-rgb), 0.18) !important; }
+.bg-silver-subtle { background-color: rgba(var(--c-silver-rgb), 0.25) !important; }
+.bg-black-subtle { background-color: rgba(var(--c-black-rgb), 0.12) !important; }
+.bg-sky-subtle { background-color: rgba(var(--c-sky-rgb), 0.18) !important; }
+.bg-cyan-subtle { background-color: rgba(var(--c-cyan-rgb), 0.18) !important; }
+.bg-turquoise-subtle { background-color: rgba(var(--c-turquoise-rgb), 0.25) !important; }
+.bg-steel-subtle { background-color: rgba(var(--c-steel-rgb), 0.12) !important; }
+.bg-cobalt-subtle { background-color: rgba(var(--c-cobalt-rgb), 0.12) !important; }
+.bg-royal-subtle { background-color: rgba(var(--c-royal-rgb), 0.12) !important; }
+.bg-indigo-subtle { background-color: rgba(var(--c-indigo-rgb), 0.12) !important; }
+.bg-violet-subtle { background-color: rgba(var(--c-violet-rgb), 0.12) !important; }
+.bg-lavender-subtle { background-color: rgba(var(--c-lavender-rgb), 0.25) !important; }
+.bg-plum-subtle { background-color: rgba(var(--c-plum-rgb), 0.12) !important; }
+.bg-pink-subtle { background-color: rgba(var(--c-pink-rgb), 0.12) !important; }
+.bg-rose-subtle { background-color: rgba(var(--c-rose-rgb), 0.12) !important; }
+.bg-crimson-subtle { background-color: rgba(var(--c-crimson-rgb), 0.12) !important; }
+.bg-coral-subtle { background-color: rgba(var(--c-coral-rgb), 0.18) !important; }
+.bg-salmon-subtle { background-color: rgba(var(--c-salmon-rgb), 0.18) !important; }
+.bg-amber-subtle { background-color: rgba(var(--c-amber-rgb), 0.18) !important; }
+.bg-gold-subtle { background-color: rgba(var(--c-gold-rgb), 0.25) !important; }
+.bg-brown-subtle { background-color: rgba(var(--c-brown-rgb), 0.12) !important; }
+.bg-tan-subtle { background-color: rgba(var(--c-tan-rgb), 0.18) !important; }
+.bg-beige-subtle { background-color: rgba(var(--c-beige-rgb), 0.45) !important; }
+.bg-cream-subtle { background-color: rgba(var(--c-cream-rgb), 0.45) !important; }
+.bg-emerald-subtle { background-color: rgba(var(--c-emerald-rgb), 0.18) !important; }
+.bg-mint-subtle { background-color: rgba(var(--c-mint-rgb), 0.45) !important; }
+.bg-forest-subtle { background-color: rgba(var(--c-forest-rgb), 0.12) !important; }
+.bg-slate-subtle { background-color: rgba(var(--c-slate-rgb), 0.12) !important; }
+.bg-charcoal-subtle { background-color: rgba(var(--c-charcoal-rgb), 0.12) !important; }
+.bg-storm-gray-subtle { background-color: rgba(var(--c-storm-gray-rgb), 0.12) !important; }
+.bg-burned-eggplant-subtle { background-color: rgba(var(--c-burned-eggplant-rgb), 0.12) !important; }
+.bg-river-subtle { background-color: rgba(var(--c-river-rgb), 0.25) !important; }
+.bg-lilac-subtle { background-color: rgba(var(--c-lilac-rgb), 0.18) !important; }
 
-.bg-navy a:hover {background-color:#004a98!important }
-.bg-blue a:hover {background-color:#1491ff!important }
-.bg-aqua a:hover {background-color:#32c5fe!important }
-.bg-teal a:hover {background-color:#2aa6a6!important }
-.bg-olive a:hover {background-color:#3e9b72!important }
-.bg-green a:hover {background-color:#24a333!important }
-.bg-lime a:hover {background-color:#00cc59!important }
-.bg-yellow a:hover {background-color:#ccb000!important }
-.bg-orange a:hover {background-color:#e16800!important }
-.bg-red a:hover {background-color:#f70d00!important }
-.bg-fuchsia a:hover {background-color:#f341cb!important }
-.bg-purple a:hover {background-color:#d620f0!important }
-.bg-maroon  a:hover {background-color:#c31d6d!important }
-.bg-white a:hover {background-color:#ccc!important }*
-.bg-gray a:hover {background-color:#888!important }
-.bg-silver a:hover {background-color:#b0b0b0!important }
-.bg-black a:hover {background-color:#404040!important }
+/* semi transparent (kept for compatibility) */
+.alert-navy { background-color: rgba(var(--c-navy-rgb), .5) !important; }
+.alert-blue { background-color: rgba(var(--c-blue-rgb), .5) !important; }
+.alert-aqua { background-color: rgba(var(--c-aqua-rgb), .5) !important; }
+.alert-teal { background-color: rgba(var(--c-teal-rgb), .5) !important; }
+.alert-olive { background-color: rgba(var(--c-olive-rgb), .5) !important; }
+.alert-green { background-color: rgba(var(--c-green-rgb), .5) !important; }
+.alert-lime { background-color: rgba(var(--c-lime-rgb), .5) !important; }
+.alert-yellow { background-color: rgba(var(--c-yellow-rgb), .5) !important; }
+.alert-orange { background-color: rgba(var(--c-orange-rgb), .5) !important; }
+.alert-red { background-color: rgba(var(--c-red-rgb), .5) !important; }
+.alert-fuchsia { background-color: rgba(var(--c-fuchsia-rgb), .5) !important; }
+.alert-purple { background-color: rgba(var(--c-purple-rgb), .5) !important; }
+.alert-maroon { background-color: rgba(var(--c-maroon-rgb), .5) !important; }
+.alert-white { background-color: rgba(var(--c-white-rgb), .5) !important; }
+.alert-gray { background-color: rgba(var(--c-gray-rgb), .5) !important; }
+.alert-silver { background-color: rgba(var(--c-silver-rgb), .5) !important; }
+.alert-black { background-color: rgba(var(--c-black-rgb), .5) !important; }
+.alert-sky { background-color: rgba(var(--c-sky-rgb), .5) !important; }
+.alert-cyan { background-color: rgba(var(--c-cyan-rgb), .5) !important; }
+.alert-turquoise { background-color: rgba(var(--c-turquoise-rgb), .5) !important; }
+.alert-steel { background-color: rgba(var(--c-steel-rgb), .5) !important; }
+.alert-cobalt { background-color: rgba(var(--c-cobalt-rgb), .5) !important; }
+.alert-royal { background-color: rgba(var(--c-royal-rgb), .5) !important; }
+.alert-indigo { background-color: rgba(var(--c-indigo-rgb), .5) !important; }
+.alert-violet { background-color: rgba(var(--c-violet-rgb), .5) !important; }
+.alert-lavender { background-color: rgba(var(--c-lavender-rgb), .5) !important; }
+.alert-plum { background-color: rgba(var(--c-plum-rgb), .5) !important; }
+.alert-pink { background-color: rgba(var(--c-pink-rgb), .5) !important; }
+.alert-rose { background-color: rgba(var(--c-rose-rgb), .5) !important; }
+.alert-crimson { background-color: rgba(var(--c-crimson-rgb), .5) !important; }
+.alert-coral { background-color: rgba(var(--c-coral-rgb), .5) !important; }
+.alert-salmon { background-color: rgba(var(--c-salmon-rgb), .5) !important; }
+.alert-amber { background-color: rgba(var(--c-amber-rgb), .5) !important; }
+.alert-gold { background-color: rgba(var(--c-gold-rgb), .5) !important; }
+.alert-brown { background-color: rgba(var(--c-brown-rgb), .5) !important; }
+.alert-tan { background-color: rgba(var(--c-tan-rgb), .5) !important; }
+.alert-beige { background-color: rgba(var(--c-beige-rgb), .5) !important; }
+.alert-cream { background-color: rgba(var(--c-cream-rgb), .5) !important; }
+.alert-emerald { background-color: rgba(var(--c-emerald-rgb), .5) !important; }
+.alert-mint { background-color: rgba(var(--c-mint-rgb), .5) !important; }
+.alert-forest { background-color: rgba(var(--c-forest-rgb), .5) !important; }
+.alert-slate { background-color: rgba(var(--c-slate-rgb), .5) !important; }
+.alert-charcoal { background-color: rgba(var(--c-charcoal-rgb), .5) !important; }
+.alert-storm-gray { background-color: rgba(var(--c-storm-gray-rgb), .5) !important; }
+.alert-burned-eggplant { background-color: rgba(var(--c-burned-eggplant-rgb), .5) !important; }
+.alert-river { background-color: rgba(var(--c-river-rgb), .5) !important; }
+.alert-lilac { background-color: rgba(var(--c-lilac-rgb), .5) !important; }
+
+/* ---------- text ---------- */
+.text-navy, .txt-navy, .navy { color: var(--c-navy) !important; }
+.text-blue, .txt-blue, .blue { color: var(--c-blue) !important; }
+.text-aqua, .txt-aqua, .aqua { color: var(--c-aqua) !important; }
+.text-teal, .txt-teal, .teal { color: var(--c-teal) !important; }
+.text-olive, .txt-olive, .olive { color: var(--c-olive) !important; }
+.text-green, .txt-green, .green { color: var(--c-green) !important; }
+.text-lime, .txt-lime, .lime { color: var(--c-lime) !important; }
+.text-yellow, .txt-yellow, .yellow { color: var(--c-yellow) !important; }
+.text-orange, .txt-orange, .orange { color: var(--c-orange) !important; }
+.text-red, .txt-red, .red { color: var(--c-red) !important; }
+.text-fuchsia, .txt-fuchsia, .fuchsia { color: var(--c-fuchsia) !important; }
+.text-purple, .txt-purple, .purple { color: var(--c-purple) !important; }
+.text-maroon, .txt-maroon, .maroon { color: var(--c-maroon) !important; }
+.text-white, .txt-white, .white { color: var(--c-white) !important; }
+.text-gray, .txt-gray, .gray { color: var(--c-gray) !important; }
+.text-silver, .txt-silver, .silver { color: var(--c-silver) !important; }
+.text-black, .txt-black, .black { color: var(--c-black) !important; }
+.text-sky, .txt-sky { color: var(--c-sky) !important; }
+.text-cyan, .txt-cyan { color: var(--c-cyan) !important; }
+.text-turquoise, .txt-turquoise { color: var(--c-turquoise) !important; }
+.text-steel, .txt-steel { color: var(--c-steel) !important; }
+.text-cobalt, .txt-cobalt { color: var(--c-cobalt) !important; }
+.text-royal, .txt-royal { color: var(--c-royal) !important; }
+.text-indigo, .txt-indigo { color: var(--c-indigo) !important; }
+.text-violet, .txt-violet { color: var(--c-violet) !important; }
+.text-lavender, .txt-lavender { color: var(--c-lavender) !important; }
+.text-plum, .txt-plum { color: var(--c-plum) !important; }
+.text-pink, .txt-pink { color: var(--c-pink) !important; }
+.text-rose, .txt-rose { color: var(--c-rose) !important; }
+.text-crimson, .txt-crimson { color: var(--c-crimson) !important; }
+.text-coral, .txt-coral { color: var(--c-coral) !important; }
+.text-salmon, .txt-salmon { color: var(--c-salmon) !important; }
+.text-amber, .txt-amber { color: var(--c-amber) !important; }
+.text-gold, .txt-gold { color: var(--c-gold) !important; }
+.text-brown, .txt-brown { color: var(--c-brown) !important; }
+.text-tan, .txt-tan { color: var(--c-tan) !important; }
+.text-beige, .txt-beige { color: var(--c-beige) !important; }
+.text-cream, .txt-cream { color: var(--c-cream) !important; }
+.text-emerald, .txt-emerald { color: var(--c-emerald) !important; }
+.text-mint, .txt-mint { color: var(--c-mint) !important; }
+.text-forest, .txt-forest { color: var(--c-forest) !important; }
+.text-slate, .txt-slate { color: var(--c-slate) !important; }
+.text-charcoal, .txt-charcoal { color: var(--c-charcoal) !important; }
+.text-storm-gray, .txt-storm-gray { color: var(--c-storm-gray) !important; }
+.text-burned-eggplant, .txt-burned-eggplant { color: var(--c-burned-eggplant) !important; }
+.text-river, .txt-river { color: var(--c-river) !important; }
+.text-lilac, .txt-lilac { color: var(--c-lilac) !important; }
+
+/* ---------- border ---------- */
+.border-navy { border-color: var(--c-navy) !important; }
+.border-blue { border-color: var(--c-blue) !important; }
+.border-aqua { border-color: var(--c-aqua) !important; }
+.border-teal { border-color: var(--c-teal) !important; }
+.border-olive { border-color: var(--c-olive) !important; }
+.border-green { border-color: var(--c-green) !important; }
+.border-lime { border-color: var(--c-lime) !important; }
+.border-yellow { border-color: var(--c-yellow) !important; }
+.border-orange { border-color: var(--c-orange) !important; }
+.border-red { border-color: var(--c-red) !important; }
+.border-fuchsia { border-color: var(--c-fuchsia) !important; }
+.border-purple { border-color: var(--c-purple) !important; }
+.border-maroon { border-color: var(--c-maroon) !important; }
+.border-white { border-color: var(--c-white) !important; }
+.border-gray { border-color: var(--c-gray) !important; }
+.border-silver { border-color: var(--c-silver) !important; }
+.border-black { border-color: var(--c-black) !important; }
+.border-sky { border-color: var(--c-sky) !important; }
+.border-cyan { border-color: var(--c-cyan) !important; }
+.border-turquoise { border-color: var(--c-turquoise) !important; }
+.border-steel { border-color: var(--c-steel) !important; }
+.border-cobalt { border-color: var(--c-cobalt) !important; }
+.border-royal { border-color: var(--c-royal) !important; }
+.border-indigo { border-color: var(--c-indigo) !important; }
+.border-violet { border-color: var(--c-violet) !important; }
+.border-lavender { border-color: var(--c-lavender) !important; }
+.border-plum { border-color: var(--c-plum) !important; }
+.border-pink { border-color: var(--c-pink) !important; }
+.border-rose { border-color: var(--c-rose) !important; }
+.border-crimson { border-color: var(--c-crimson) !important; }
+.border-coral { border-color: var(--c-coral) !important; }
+.border-salmon { border-color: var(--c-salmon) !important; }
+.border-amber { border-color: var(--c-amber) !important; }
+.border-gold { border-color: var(--c-gold) !important; }
+.border-brown { border-color: var(--c-brown) !important; }
+.border-tan { border-color: var(--c-tan) !important; }
+.border-beige { border-color: var(--c-beige) !important; }
+.border-cream { border-color: var(--c-cream) !important; }
+.border-emerald { border-color: var(--c-emerald) !important; }
+.border-mint { border-color: var(--c-mint) !important; }
+.border-forest { border-color: var(--c-forest) !important; }
+.border-slate { border-color: var(--c-slate) !important; }
+.border-charcoal { border-color: var(--c-charcoal) !important; }
+.border-storm-gray { border-color: var(--c-storm-gray) !important; }
+.border-burned-eggplant { border-color: var(--c-burned-eggplant) !important; }
+.border-river { border-color: var(--c-river) !important; }
+.border-lilac { border-color: var(--c-lilac) !important; }
+
+/* ---------- text shadow ---------- */
+.shadow-navy { text-shadow: 1px 1px 3px var(--c-navy) !important; }
+.shadow-blue { text-shadow: 1px 1px 3px var(--c-blue) !important; }
+.shadow-aqua { text-shadow: 1px 1px 3px var(--c-aqua) !important; }
+.shadow-teal { text-shadow: 1px 1px 3px var(--c-teal) !important; }
+.shadow-olive { text-shadow: 1px 1px 3px var(--c-olive) !important; }
+.shadow-green { text-shadow: 1px 1px 3px var(--c-green) !important; }
+.shadow-lime { text-shadow: 1px 1px 3px var(--c-lime) !important; }
+.shadow-yellow { text-shadow: 1px 1px 3px var(--c-yellow) !important; }
+.shadow-orange { text-shadow: 1px 1px 3px var(--c-orange) !important; }
+.shadow-red { text-shadow: 1px 1px 3px var(--c-red) !important; }
+.shadow-fuchsia { text-shadow: 1px 1px 3px var(--c-fuchsia) !important; }
+.shadow-purple { text-shadow: 1px 1px 3px var(--c-purple) !important; }
+.shadow-maroon { text-shadow: 1px 1px 3px var(--c-maroon) !important; }
+.shadow-white { text-shadow: 1px 1px 3px var(--c-white) !important; }
+.shadow-gray { text-shadow: 1px 1px 3px var(--c-gray) !important; }
+.shadow-silver { text-shadow: 1px 1px 3px var(--c-silver) !important; }
+.shadow-black { text-shadow: 1px 1px 3px var(--c-black) !important; }
+.shadow-sky { text-shadow: 1px 1px 3px var(--c-sky) !important; }
+.shadow-cyan { text-shadow: 1px 1px 3px var(--c-cyan) !important; }
+.shadow-turquoise { text-shadow: 1px 1px 3px var(--c-turquoise) !important; }
+.shadow-steel { text-shadow: 1px 1px 3px var(--c-steel) !important; }
+.shadow-cobalt { text-shadow: 1px 1px 3px var(--c-cobalt) !important; }
+.shadow-royal { text-shadow: 1px 1px 3px var(--c-royal) !important; }
+.shadow-indigo { text-shadow: 1px 1px 3px var(--c-indigo) !important; }
+.shadow-violet { text-shadow: 1px 1px 3px var(--c-violet) !important; }
+.shadow-lavender { text-shadow: 1px 1px 3px var(--c-lavender) !important; }
+.shadow-plum { text-shadow: 1px 1px 3px var(--c-plum) !important; }
+.shadow-pink { text-shadow: 1px 1px 3px var(--c-pink) !important; }
+.shadow-rose { text-shadow: 1px 1px 3px var(--c-rose) !important; }
+.shadow-crimson { text-shadow: 1px 1px 3px var(--c-crimson) !important; }
+.shadow-coral { text-shadow: 1px 1px 3px var(--c-coral) !important; }
+.shadow-salmon { text-shadow: 1px 1px 3px var(--c-salmon) !important; }
+.shadow-amber { text-shadow: 1px 1px 3px var(--c-amber) !important; }
+.shadow-gold { text-shadow: 1px 1px 3px var(--c-gold) !important; }
+.shadow-brown { text-shadow: 1px 1px 3px var(--c-brown) !important; }
+.shadow-tan { text-shadow: 1px 1px 3px var(--c-tan) !important; }
+.shadow-beige { text-shadow: 1px 1px 3px var(--c-beige) !important; }
+.shadow-cream { text-shadow: 1px 1px 3px var(--c-cream) !important; }
+.shadow-emerald { text-shadow: 1px 1px 3px var(--c-emerald) !important; }
+.shadow-mint { text-shadow: 1px 1px 3px var(--c-mint) !important; }
+.shadow-forest { text-shadow: 1px 1px 3px var(--c-forest) !important; }
+.shadow-slate { text-shadow: 1px 1px 3px var(--c-slate) !important; }
+.shadow-charcoal { text-shadow: 1px 1px 3px var(--c-charcoal) !important; }
+.shadow-storm-gray { text-shadow: 1px 1px 3px var(--c-storm-gray) !important; }
+.shadow-burned-eggplant { text-shadow: 1px 1px 3px var(--c-burned-eggplant) !important; }
+.shadow-river { text-shadow: 1px 1px 3px var(--c-river) !important; }
+.shadow-lilac { text-shadow: 1px 1px 3px var(--c-lilac) !important; }
+
+/* ---------- buttons (Bootstrap 4 + 5) ---------- */
+.btn-navy, .btn-blue, .btn-aqua, .btn-teal, .btn-olive, .btn-green, .btn-lime, .btn-yellow, .btn-orange, .btn-red, .btn-fuchsia, .btn-purple, .btn-maroon, .btn-white, .btn-gray, .btn-silver, .btn-black, .btn-sky, .btn-cyan, .btn-turquoise, .btn-steel, .btn-cobalt, .btn-royal, .btn-indigo, .btn-violet, .btn-lavender, .btn-plum, .btn-pink, .btn-rose, .btn-crimson, .btn-coral, .btn-salmon, .btn-amber, .btn-gold, .btn-brown, .btn-tan, .btn-beige, .btn-cream, .btn-emerald, .btn-mint, .btn-forest, .btn-slate, .btn-charcoal, .btn-storm-gray, .btn-burned-eggplant, .btn-river, .btn-lilac {
+    color: var(--c-fg); background-color: var(--c-bg); border-color: var(--c-bg);
+    --bs-btn-color: var(--c-fg); --bs-btn-bg: var(--c-bg); --bs-btn-border-color: var(--c-bg);
+    --bs-btn-hover-color: var(--c-fg); --bs-btn-hover-bg: var(--c-hover); --bs-btn-hover-border-color: var(--c-hover);
+    --bs-btn-active-color: var(--c-fg); --bs-btn-active-bg: var(--c-hover); --bs-btn-active-border-color: var(--c-hover);
+}
+.btn-navy:hover, .btn-blue:hover, .btn-aqua:hover, .btn-teal:hover, .btn-olive:hover, .btn-green:hover, .btn-lime:hover, .btn-yellow:hover, .btn-orange:hover, .btn-red:hover, .btn-fuchsia:hover, .btn-purple:hover, .btn-maroon:hover, .btn-white:hover, .btn-gray:hover, .btn-silver:hover, .btn-black:hover, .btn-sky:hover, .btn-cyan:hover, .btn-turquoise:hover, .btn-steel:hover, .btn-cobalt:hover, .btn-royal:hover, .btn-indigo:hover, .btn-violet:hover, .btn-lavender:hover, .btn-plum:hover, .btn-pink:hover, .btn-rose:hover, .btn-crimson:hover, .btn-coral:hover, .btn-salmon:hover, .btn-amber:hover, .btn-gold:hover, .btn-brown:hover, .btn-tan:hover, .btn-beige:hover, .btn-cream:hover, .btn-emerald:hover, .btn-mint:hover, .btn-forest:hover, .btn-slate:hover, .btn-charcoal:hover, .btn-storm-gray:hover, .btn-burned-eggplant:hover, .btn-river:hover, .btn-lilac:hover {
+    color: var(--c-fg); background-color: var(--c-hover); border-color: var(--c-hover);
+}
+.btn-outline-navy, .btn-outline-blue, .btn-outline-aqua, .btn-outline-teal, .btn-outline-olive, .btn-outline-green, .btn-outline-lime, .btn-outline-yellow, .btn-outline-orange, .btn-outline-red, .btn-outline-fuchsia, .btn-outline-purple, .btn-outline-maroon, .btn-outline-white, .btn-outline-gray, .btn-outline-silver, .btn-outline-black, .btn-outline-sky, .btn-outline-cyan, .btn-outline-turquoise, .btn-outline-steel, .btn-outline-cobalt, .btn-outline-royal, .btn-outline-indigo, .btn-outline-violet, .btn-outline-lavender, .btn-outline-plum, .btn-outline-pink, .btn-outline-rose, .btn-outline-crimson, .btn-outline-coral, .btn-outline-salmon, .btn-outline-amber, .btn-outline-gold, .btn-outline-brown, .btn-outline-tan, .btn-outline-beige, .btn-outline-cream, .btn-outline-emerald, .btn-outline-mint, .btn-outline-forest, .btn-outline-slate, .btn-outline-charcoal, .btn-outline-storm-gray, .btn-outline-burned-eggplant, .btn-outline-river, .btn-outline-lilac {
+    color: var(--c-bg); background-color: transparent; border-color: var(--c-bg);
+    --bs-btn-color: var(--c-bg); --bs-btn-border-color: var(--c-bg);
+    --bs-btn-hover-color: var(--c-fg); --bs-btn-hover-bg: var(--c-bg); --bs-btn-hover-border-color: var(--c-bg);
+    --bs-btn-active-color: var(--c-fg); --bs-btn-active-bg: var(--c-bg); --bs-btn-active-border-color: var(--c-bg);
+}
+.btn-outline-navy:hover, .btn-outline-blue:hover, .btn-outline-aqua:hover, .btn-outline-teal:hover, .btn-outline-olive:hover, .btn-outline-green:hover, .btn-outline-lime:hover, .btn-outline-yellow:hover, .btn-outline-orange:hover, .btn-outline-red:hover, .btn-outline-fuchsia:hover, .btn-outline-purple:hover, .btn-outline-maroon:hover, .btn-outline-white:hover, .btn-outline-gray:hover, .btn-outline-silver:hover, .btn-outline-black:hover, .btn-outline-sky:hover, .btn-outline-cyan:hover, .btn-outline-turquoise:hover, .btn-outline-steel:hover, .btn-outline-cobalt:hover, .btn-outline-royal:hover, .btn-outline-indigo:hover, .btn-outline-violet:hover, .btn-outline-lavender:hover, .btn-outline-plum:hover, .btn-outline-pink:hover, .btn-outline-rose:hover, .btn-outline-crimson:hover, .btn-outline-coral:hover, .btn-outline-salmon:hover, .btn-outline-amber:hover, .btn-outline-gold:hover, .btn-outline-brown:hover, .btn-outline-tan:hover, .btn-outline-beige:hover, .btn-outline-cream:hover, .btn-outline-emerald:hover, .btn-outline-mint:hover, .btn-outline-forest:hover, .btn-outline-slate:hover, .btn-outline-charcoal:hover, .btn-outline-storm-gray:hover, .btn-outline-burned-eggplant:hover, .btn-outline-river:hover, .btn-outline-lilac:hover {
+    color: var(--c-fg); background-color: var(--c-bg);
+}
+
+/* ---------- badges ---------- */
+.badge-navy, .badge-blue, .badge-aqua, .badge-teal, .badge-olive, .badge-green, .badge-lime, .badge-yellow, .badge-orange, .badge-red, .badge-fuchsia, .badge-purple, .badge-maroon, .badge-white, .badge-gray, .badge-silver, .badge-black, .badge-sky, .badge-cyan, .badge-turquoise, .badge-steel, .badge-cobalt, .badge-royal, .badge-indigo, .badge-violet, .badge-lavender, .badge-plum, .badge-pink, .badge-rose, .badge-crimson, .badge-coral, .badge-salmon, .badge-amber, .badge-gold, .badge-brown, .badge-tan, .badge-beige, .badge-cream, .badge-emerald, .badge-mint, .badge-forest, .badge-slate, .badge-charcoal, .badge-storm-gray, .badge-burned-eggplant, .badge-river, .badge-lilac {
+    color: var(--c-fg); background-color: var(--c-bg);
+}
+
+/* ---------- table rows / cells (Bootstrap 4 + 5) ---------- */
+.table-navy, .table-blue, .table-aqua, .table-teal, .table-olive, .table-green, .table-lime, .table-yellow, .table-orange, .table-red, .table-fuchsia, .table-purple, .table-maroon, .table-white, .table-gray, .table-silver, .table-black, .table-sky, .table-cyan, .table-turquoise, .table-steel, .table-cobalt, .table-royal, .table-indigo, .table-violet, .table-lavender, .table-plum, .table-pink, .table-rose, .table-crimson, .table-coral, .table-salmon, .table-amber, .table-gold, .table-brown, .table-tan, .table-beige, .table-cream, .table-emerald, .table-mint, .table-forest, .table-slate, .table-charcoal, .table-storm-gray, .table-burned-eggplant, .table-river, .table-lilac {
+    --bs-table-bg: rgba(var(--c-rgb), .18); --bs-table-striped-bg: rgba(var(--c-rgb), .24); --bs-table-hover-bg: rgba(var(--c-rgb), .3);
+    --bs-table-bg-type: initial; --bs-table-bg-state: initial;
+}
+tr.table-navy > *, tr.table-blue > *, tr.table-aqua > *, tr.table-teal > *, tr.table-olive > *, tr.table-green > *, tr.table-lime > *, tr.table-yellow > *, tr.table-orange > *, tr.table-red > *, tr.table-fuchsia > *, tr.table-purple > *, tr.table-maroon > *, tr.table-white > *, tr.table-gray > *, tr.table-silver > *, tr.table-black > *, tr.table-sky > *, tr.table-cyan > *, tr.table-turquoise > *, tr.table-steel > *, tr.table-cobalt > *, tr.table-royal > *, tr.table-indigo > *, tr.table-violet > *, tr.table-lavender > *, tr.table-plum > *, tr.table-pink > *, tr.table-rose > *, tr.table-crimson > *, tr.table-coral > *, tr.table-salmon > *, tr.table-amber > *, tr.table-gold > *, tr.table-brown > *, tr.table-tan > *, tr.table-beige > *, tr.table-cream > *, tr.table-emerald > *, tr.table-mint > *, tr.table-forest > *, tr.table-slate > *, tr.table-charcoal > *, tr.table-storm-gray > *, tr.table-burned-eggplant > *, tr.table-river > *, tr.table-lilac > *,
+td.table-navy, td.table-blue, td.table-aqua, td.table-teal, td.table-olive, td.table-green, td.table-lime, td.table-yellow, td.table-orange, td.table-red, td.table-fuchsia, td.table-purple, td.table-maroon, td.table-white, td.table-gray, td.table-silver, td.table-black, td.table-sky, td.table-cyan, td.table-turquoise, td.table-steel, td.table-cobalt, td.table-royal, td.table-indigo, td.table-violet, td.table-lavender, td.table-plum, td.table-pink, td.table-rose, td.table-crimson, td.table-coral, td.table-salmon, td.table-amber, td.table-gold, td.table-brown, td.table-tan, td.table-beige, td.table-cream, td.table-emerald, td.table-mint, td.table-forest, td.table-slate, td.table-charcoal, td.table-storm-gray, td.table-burned-eggplant, td.table-river, td.table-lilac {
+    background-color: rgba(var(--c-rgb), .18);
+}
+
+/* per color variables for the shared rules above */
+.btn-navy, .btn-outline-navy, .badge-navy, .table-navy { --c-bg: var(--c-navy); --c-hover: var(--c-navy-hover); --c-fg: var(--c-navy-fg); --c-rgb: var(--c-navy-rgb); }
+.btn-blue, .btn-outline-blue, .badge-blue, .table-blue { --c-bg: var(--c-blue); --c-hover: var(--c-blue-hover); --c-fg: var(--c-blue-fg); --c-rgb: var(--c-blue-rgb); }
+.btn-aqua, .btn-outline-aqua, .badge-aqua, .table-aqua { --c-bg: var(--c-aqua); --c-hover: var(--c-aqua-hover); --c-fg: var(--c-aqua-fg); --c-rgb: var(--c-aqua-rgb); }
+.btn-teal, .btn-outline-teal, .badge-teal, .table-teal { --c-bg: var(--c-teal); --c-hover: var(--c-teal-hover); --c-fg: var(--c-teal-fg); --c-rgb: var(--c-teal-rgb); }
+.btn-olive, .btn-outline-olive, .badge-olive, .table-olive { --c-bg: var(--c-olive); --c-hover: var(--c-olive-hover); --c-fg: var(--c-olive-fg); --c-rgb: var(--c-olive-rgb); }
+.btn-green, .btn-outline-green, .badge-green, .table-green { --c-bg: var(--c-green); --c-hover: var(--c-green-hover); --c-fg: var(--c-green-fg); --c-rgb: var(--c-green-rgb); }
+.btn-lime, .btn-outline-lime, .badge-lime, .table-lime { --c-bg: var(--c-lime); --c-hover: var(--c-lime-hover); --c-fg: var(--c-lime-fg); --c-rgb: var(--c-lime-rgb); }
+.btn-yellow, .btn-outline-yellow, .badge-yellow, .table-yellow { --c-bg: var(--c-yellow); --c-hover: var(--c-yellow-hover); --c-fg: var(--c-yellow-fg); --c-rgb: var(--c-yellow-rgb); }
+.btn-orange, .btn-outline-orange, .badge-orange, .table-orange { --c-bg: var(--c-orange); --c-hover: var(--c-orange-hover); --c-fg: var(--c-orange-fg); --c-rgb: var(--c-orange-rgb); }
+.btn-red, .btn-outline-red, .badge-red, .table-red { --c-bg: var(--c-red); --c-hover: var(--c-red-hover); --c-fg: var(--c-red-fg); --c-rgb: var(--c-red-rgb); }
+.btn-fuchsia, .btn-outline-fuchsia, .badge-fuchsia, .table-fuchsia { --c-bg: var(--c-fuchsia); --c-hover: var(--c-fuchsia-hover); --c-fg: var(--c-fuchsia-fg); --c-rgb: var(--c-fuchsia-rgb); }
+.btn-purple, .btn-outline-purple, .badge-purple, .table-purple { --c-bg: var(--c-purple); --c-hover: var(--c-purple-hover); --c-fg: var(--c-purple-fg); --c-rgb: var(--c-purple-rgb); }
+.btn-maroon, .btn-outline-maroon, .badge-maroon, .table-maroon { --c-bg: var(--c-maroon); --c-hover: var(--c-maroon-hover); --c-fg: var(--c-maroon-fg); --c-rgb: var(--c-maroon-rgb); }
+.btn-white, .btn-outline-white, .badge-white, .table-white { --c-bg: var(--c-white); --c-hover: var(--c-white-hover); --c-fg: var(--c-white-fg); --c-rgb: var(--c-white-rgb); }
+.btn-gray, .btn-outline-gray, .badge-gray, .table-gray { --c-bg: var(--c-gray); --c-hover: var(--c-gray-hover); --c-fg: var(--c-gray-fg); --c-rgb: var(--c-gray-rgb); }
+.btn-silver, .btn-outline-silver, .badge-silver, .table-silver { --c-bg: var(--c-silver); --c-hover: var(--c-silver-hover); --c-fg: var(--c-silver-fg); --c-rgb: var(--c-silver-rgb); }
+.btn-black, .btn-outline-black, .badge-black, .table-black { --c-bg: var(--c-black); --c-hover: var(--c-black-hover); --c-fg: var(--c-black-fg); --c-rgb: var(--c-black-rgb); }
+.btn-sky, .btn-outline-sky, .badge-sky, .table-sky { --c-bg: var(--c-sky); --c-hover: var(--c-sky-hover); --c-fg: var(--c-sky-fg); --c-rgb: var(--c-sky-rgb); }
+.btn-cyan, .btn-outline-cyan, .badge-cyan, .table-cyan { --c-bg: var(--c-cyan); --c-hover: var(--c-cyan-hover); --c-fg: var(--c-cyan-fg); --c-rgb: var(--c-cyan-rgb); }
+.btn-turquoise, .btn-outline-turquoise, .badge-turquoise, .table-turquoise { --c-bg: var(--c-turquoise); --c-hover: var(--c-turquoise-hover); --c-fg: var(--c-turquoise-fg); --c-rgb: var(--c-turquoise-rgb); }
+.btn-steel, .btn-outline-steel, .badge-steel, .table-steel { --c-bg: var(--c-steel); --c-hover: var(--c-steel-hover); --c-fg: var(--c-steel-fg); --c-rgb: var(--c-steel-rgb); }
+.btn-cobalt, .btn-outline-cobalt, .badge-cobalt, .table-cobalt { --c-bg: var(--c-cobalt); --c-hover: var(--c-cobalt-hover); --c-fg: var(--c-cobalt-fg); --c-rgb: var(--c-cobalt-rgb); }
+.btn-royal, .btn-outline-royal, .badge-royal, .table-royal { --c-bg: var(--c-royal); --c-hover: var(--c-royal-hover); --c-fg: var(--c-royal-fg); --c-rgb: var(--c-royal-rgb); }
+.btn-indigo, .btn-outline-indigo, .badge-indigo, .table-indigo { --c-bg: var(--c-indigo); --c-hover: var(--c-indigo-hover); --c-fg: var(--c-indigo-fg); --c-rgb: var(--c-indigo-rgb); }
+.btn-violet, .btn-outline-violet, .badge-violet, .table-violet { --c-bg: var(--c-violet); --c-hover: var(--c-violet-hover); --c-fg: var(--c-violet-fg); --c-rgb: var(--c-violet-rgb); }
+.btn-lavender, .btn-outline-lavender, .badge-lavender, .table-lavender { --c-bg: var(--c-lavender); --c-hover: var(--c-lavender-hover); --c-fg: var(--c-lavender-fg); --c-rgb: var(--c-lavender-rgb); }
+.btn-plum, .btn-outline-plum, .badge-plum, .table-plum { --c-bg: var(--c-plum); --c-hover: var(--c-plum-hover); --c-fg: var(--c-plum-fg); --c-rgb: var(--c-plum-rgb); }
+.btn-pink, .btn-outline-pink, .badge-pink, .table-pink { --c-bg: var(--c-pink); --c-hover: var(--c-pink-hover); --c-fg: var(--c-pink-fg); --c-rgb: var(--c-pink-rgb); }
+.btn-rose, .btn-outline-rose, .badge-rose, .table-rose { --c-bg: var(--c-rose); --c-hover: var(--c-rose-hover); --c-fg: var(--c-rose-fg); --c-rgb: var(--c-rose-rgb); }
+.btn-crimson, .btn-outline-crimson, .badge-crimson, .table-crimson { --c-bg: var(--c-crimson); --c-hover: var(--c-crimson-hover); --c-fg: var(--c-crimson-fg); --c-rgb: var(--c-crimson-rgb); }
+.btn-coral, .btn-outline-coral, .badge-coral, .table-coral { --c-bg: var(--c-coral); --c-hover: var(--c-coral-hover); --c-fg: var(--c-coral-fg); --c-rgb: var(--c-coral-rgb); }
+.btn-salmon, .btn-outline-salmon, .badge-salmon, .table-salmon { --c-bg: var(--c-salmon); --c-hover: var(--c-salmon-hover); --c-fg: var(--c-salmon-fg); --c-rgb: var(--c-salmon-rgb); }
+.btn-amber, .btn-outline-amber, .badge-amber, .table-amber { --c-bg: var(--c-amber); --c-hover: var(--c-amber-hover); --c-fg: var(--c-amber-fg); --c-rgb: var(--c-amber-rgb); }
+.btn-gold, .btn-outline-gold, .badge-gold, .table-gold { --c-bg: var(--c-gold); --c-hover: var(--c-gold-hover); --c-fg: var(--c-gold-fg); --c-rgb: var(--c-gold-rgb); }
+.btn-brown, .btn-outline-brown, .badge-brown, .table-brown { --c-bg: var(--c-brown); --c-hover: var(--c-brown-hover); --c-fg: var(--c-brown-fg); --c-rgb: var(--c-brown-rgb); }
+.btn-tan, .btn-outline-tan, .badge-tan, .table-tan { --c-bg: var(--c-tan); --c-hover: var(--c-tan-hover); --c-fg: var(--c-tan-fg); --c-rgb: var(--c-tan-rgb); }
+.btn-beige, .btn-outline-beige, .badge-beige, .table-beige { --c-bg: var(--c-beige); --c-hover: var(--c-beige-hover); --c-fg: var(--c-beige-fg); --c-rgb: var(--c-beige-rgb); }
+.btn-cream, .btn-outline-cream, .badge-cream, .table-cream { --c-bg: var(--c-cream); --c-hover: var(--c-cream-hover); --c-fg: var(--c-cream-fg); --c-rgb: var(--c-cream-rgb); }
+.btn-emerald, .btn-outline-emerald, .badge-emerald, .table-emerald { --c-bg: var(--c-emerald); --c-hover: var(--c-emerald-hover); --c-fg: var(--c-emerald-fg); --c-rgb: var(--c-emerald-rgb); }
+.btn-mint, .btn-outline-mint, .badge-mint, .table-mint { --c-bg: var(--c-mint); --c-hover: var(--c-mint-hover); --c-fg: var(--c-mint-fg); --c-rgb: var(--c-mint-rgb); }
+.btn-forest, .btn-outline-forest, .badge-forest, .table-forest { --c-bg: var(--c-forest); --c-hover: var(--c-forest-hover); --c-fg: var(--c-forest-fg); --c-rgb: var(--c-forest-rgb); }
+.btn-slate, .btn-outline-slate, .badge-slate, .table-slate { --c-bg: var(--c-slate); --c-hover: var(--c-slate-hover); --c-fg: var(--c-slate-fg); --c-rgb: var(--c-slate-rgb); }
+.btn-charcoal, .btn-outline-charcoal, .badge-charcoal, .table-charcoal { --c-bg: var(--c-charcoal); --c-hover: var(--c-charcoal-hover); --c-fg: var(--c-charcoal-fg); --c-rgb: var(--c-charcoal-rgb); }
+.btn-storm-gray, .btn-outline-storm-gray, .badge-storm-gray, .table-storm-gray { --c-bg: var(--c-storm-gray); --c-hover: var(--c-storm-gray-hover); --c-fg: var(--c-storm-gray-fg); --c-rgb: var(--c-storm-gray-rgb); }
+.btn-burned-eggplant, .btn-outline-burned-eggplant, .badge-burned-eggplant, .table-burned-eggplant { --c-bg: var(--c-burned-eggplant); --c-hover: var(--c-burned-eggplant-hover); --c-fg: var(--c-burned-eggplant-fg); --c-rgb: var(--c-burned-eggplant-rgb); }
+.btn-river, .btn-outline-river, .badge-river, .table-river { --c-bg: var(--c-river); --c-hover: var(--c-river-hover); --c-fg: var(--c-river-fg); --c-rgb: var(--c-river-rgb); }
+.btn-lilac, .btn-outline-lilac, .badge-lilac, .table-lilac { --c-bg: var(--c-lilac); --c-hover: var(--c-lilac-hover); --c-fg: var(--c-lilac-fg); --c-rgb: var(--c-lilac-rgb); }

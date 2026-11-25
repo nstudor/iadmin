@@ -1,0 +1,3 @@
+<style>
+    .ar-auth-card { max-width: 420px; margin: 0 auto; }
+</style>

@@ -1,6 +1,6 @@
 <?php
-if ($fieldValue == $fieldDef['defaultValue']) {
-    echo $fieldDef['defaultResult'];
+if (isset($fieldDef['defaultValue']) && $fieldValue == $fieldDef['defaultValue']) {
+    echo $fieldDef['defaultResult'] ?? '';
 } else {
-    echo $fieldDef['selectFrom'][$fieldValue];
+    echo $fieldDef['selectFrom'][$fieldValue] ?? $fieldValue;
 }

@@ -3,7 +3,11 @@ $size1 = filesize($tempName);
 
 $crtPath = getcwd();
 
-$im1 = imagecreatefromstring(file_get_contents($tempName));
+$im1 = @imagecreatefromstring(file_get_contents($tempName));
+if ($im1 === false) {
+    $MESSAGE = "The uploaded file is not a valid image !";
+    return;
+}
 
 if (!empty($fields[$k]['cropRatio'])) {
     $x = imagesx($im1);

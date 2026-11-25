@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 $oper = $pp[1];
 $k = $pp[2]; ?>
 <form action="./<?php echo $oper ?>.htm" method="post" name="ff">

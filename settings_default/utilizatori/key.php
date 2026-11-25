@@ -1,25 +1,23 @@
 <?php
-if ($_SESSION['rights']['modify_right'] != 'Y') {
-    if ($_SESSION['userid'] != $param[3]) {
-        die('<div role="alert" class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i> ERROR: No rights !</div>');
-    }
+// own password: always allowed, old password required
+// another user's password: needs modify_right on utilizatori (rights from the DB)
+$isSelf = !empty($item['id']) && ((int)$item['id'] === (int)$_SESSION['userid']);
+if (empty($item['id']) || (!$isSelf && !has_right($rcr, 'modify_right'))) {
+    die('<div role="alert" class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i> ERROR: No rights !</div>');
 }
 $err = '';
-if (isset($_POST['pass0'])) {
-    if (md5($_POST['pass0']) != $item['pass']) {
+if (isset($_POST['pass1'])) {
+    if ($isSelf && !password_check($_POST['pass0'] ?? '', $item['pass'])) {
         $err = '<div role="alert" class="alert alert-warning">Wrong password</div>';
-    }
-}
-if (isset($_POST['pass1']) && $err == '') {
-    if ($_POST['pass1'] != $_POST['pass2']) {
+    } elseif ($_POST['pass1'] != ($_POST['pass2'] ?? '')) {
         $err = '<div role="alert" class="alert alert-warning">Passwords do not match !</div>';
-    }
-    if (strlen(trim($_POST['pass1'])) < 6) {
+    } elseif (strlen(trim($_POST['pass1'])) < 6) {
         $err = '<div role="alert" class="alert alert-warning">Password too short !</div>';
     }
     if ($err == '') {
-        db_update(['pass' => md5($_POST['pass1'])], 'login_users', 'id=' . $item['id']);
-        $err = '<div role="alert" class="alert alert-info">Password changed !</div>';
+        $err = password_store($item['id'], $_POST['pass1'])
+            ? '<div role="alert" class="alert alert-info">Password changed !</div>'
+            : '<div role="alert" class="alert alert-danger">' . htmlspecialchars($MESSAGE ?: 'The password could not be saved !') . '</div>';
     }
 } ?>
     <div class="row m-0">
@@ -32,7 +30,7 @@ if (isset($_POST['pass1']) && $err == '') {
                 <div class="card-body">
                     <form id="form1" name="form1" method="post" action="">
                     <?php if ($err == '') { ?>
-                        <?php if ($_SESSION['userid'] == $param[4]) { ?>
+                        <?php if ($isSelf) { ?>
                             <div class="row m-1">
                                 <div class="col-4">Old password</div>
                                 <div class="col-8"><input type="password" name="pass0" class="form-control"/></div>

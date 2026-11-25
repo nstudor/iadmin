@@ -1,7 +1,5 @@
 <?php
-session_start();
 $oper = $pp[1];
-include("../settings/$oper/config.php");
 if (!isset($id)) $id = 'id';
 ?>
 <form method="post" action="./script/export.php">
@@ -15,7 +13,7 @@ if (!isset($id)) $id = 'id';
     <hr>
     <label for="exportType">Export to</label>
     <select class="form-control" id='exportType' name="type">
-        <?php foreach ($exportTo as $v) { ?>
+        <?php foreach (($exportTo ?? []) as $v) { ?>
             <option value='<?= $v ?>'><?= t("export_to_$v") ?></option>
         <?php } ?>
     </select>

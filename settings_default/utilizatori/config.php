@@ -1,5 +1,5 @@
 <?php 
-    $tabel="login_users";
+    $tabel="login__users";
     $fields=array(
 	'nume'=>"Numele si prenumele",
 	'user'=>"Utilizator",
@@ -10,7 +10,7 @@
             'defaultValue'=>0,
             'defaultResult'=>'Not set',
             'field'=>'rolename',
-            'table'=>'login_roles',
+            'table'=>'login__roles',
             'relatedField'=>'id',
         ),
 	'sex'=>array(
@@ -55,10 +55,9 @@
     $order="";
     $title="Utilizatori";
     $loadmce='yes';
-    $specials=array('key', 'face');
+    $specials=array('key');
     $stitles=array(
             'key'=>'Parola',
-            'face'=>'Tema grafica'
     );
 
     $confdroptext='Stergi utilizatorul';

@@ -7,8 +7,10 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 chdir('..');
 include("utils.php");
-$param = ['tabel', $_POST['oper']];
-$pag = $_POST['oper'];
+$pag = $_POST['oper'] ?? '';
+// module names may only contain lowercase letters, digits and "_"
+if (!preg_match('/^[a-z0-9_]+$/', $pag)) exit;
+$param = [$pag];
 include('settings.ini');
 include('lang/english.lng.php');
 $_DEFLNG = $_LNG;
@@ -17,22 +19,34 @@ if (file_exists('lang/' . $APP_LANGUAGE . '.lng.php')) {
 }
 include('connector/' . $APP_DB_TYPE . '.con.php');
 db_connect();
+// logged in, valid CSRF token and view right on the module
+if (empty($_SESSION['userid']) || !csrf_ok() || !has_right(load_rights($pag), 'view_right')) {
+    http_response_code(403);
+    exit;
+}
+$settingFile = "settings/$pag/config.php";
+if (!file_exists($settingFile)) $settingFile = "settings_default/$pag/config.php";
+if (!file_exists($settingFile)) exit;
+include($settingFile);
+if (empty($tabel) || empty($fields) || !is_array($fields)) exit;
 $dontshowpages = 1;
 include('script/tabel.scr.php');
+// only fields of the module can be exported
+$expFields = array_values(array_intersect((array)($_POST['fields'] ?? []), array_keys($fields)));
 $expArr = [];
 $arr = [];
-foreach ($_POST['fields'] as $v)
+foreach ($expFields as $v)
     $arr[] = is_array($fields[$v]) ? $fields[$v]['name'] : $fields[$v];
 $expArr[] = $arr;
-foreach ($rows as $r) {
+foreach (($rows ?? []) as $r) {
     $arr = [];
-    foreach ($_POST['fields'] as $k) {
-        $v = $r[$k];
+    foreach ($expFields as $k) {
+        $v = $fields[$k];
         ob_start();
         if (file_exists("settings/$pag/{$k}_show.php")) {
             include("settings/$pag/{$k}_show.php");
         } else {
-            fieldFormat($k, $v, $r[$k], '', '', $r[$id], $param[1]);
+            fieldFormat($k, $v, $r[$k], '', '', $r[$id], $pag);
         }
         $arr[] = trim(str_replace(["\n", "\r", "\t"], '', ob_get_contents()));
         ob_end_clean();
@@ -98,6 +112,8 @@ switch ($_POST['type']) {
         header('Pragma: public'); // HTTP/1.0
         $writer = IOFactory::createWriter($spreadsheet, 'Csv');
         break;
+    default:
+        exit;
 }
 $writer->save('php://output');
 ?>

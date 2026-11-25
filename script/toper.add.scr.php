@@ -12,7 +12,7 @@ if (isset($_POST['item']))
             }
         }
         if ($MESSAGE == '')
-            $id = db_insert($_POST['item'], $tabel);
+            $id = db_insert(db_only($_POST['item'], array_keys($addfields)), $tabel);
         if ($id)
             if (file_exists("settings/$pag/new.php"))
                 die("<script>document.location='./$param[0]-new-$id.htm';</script>");

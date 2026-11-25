@@ -1,6 +1,7 @@
 <?php
 $fieldDef = $fields[$k];
-$fieldVal = explode(',', $_SESSION['filter'][$k]);
+$fieldVal = $_SESSION['filter'][$k] ?? [];
+$fieldVal = is_array($fieldVal) ? $fieldVal : explode(',', (string)$fieldVal);
 ?>
 <input name="fv" type="hidden" value="<?= isset($_SESSION['filtertype'][$k]) ? $_SESSION['filtertype'][$k] : 6 ?>" />
 <div class="row">

@@ -1,6 +1,6 @@
 <div class="col">
     <?php if (isset($exportTo)) if (count($exportTo) > 0) { ?>
-        <button type="button" class="btn btn-secondary float-right" data-toggle="modal" data-target="#filterModal" onclick="goModal('export-countries', 'Export')">
+        <button type="button" class="btn btn-secondary float-end" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="goModal('export-<?= $pag ?>', 'Export')">
             <i class="fas fa-download"></i>
         </button>
     <?php } ?>
@@ -8,10 +8,10 @@
     if (file_exists("settings/$pag/header.php")) {
         include("settings/$pag/header.php");
     } else {
-        echo "<h5>$title</h5>";
+        echo "<h5>" . ($title ?? $pag) . "</h5>";
     }
     $iSpecials = [];
-    foreach ($inlineSpecials as $sp => $btn)
+    foreach ($inlineSpecials ?? [] as $sp => $btn)
         if (in_array($sp, $rcr['details_v']))
             $iSpecials[$sp] = $btn;
     ?>
@@ -19,7 +19,7 @@
         <thead class="<?= $tmpBackground ?> <?= $tmpText ?>">
             <tr class="text-center">
                 <th width="3%">
-                    <a href="<?php echo $param[0] ?>-add.htm" class="btn btn-default <?= $tmpText ?>"><i class="fas fa-plus"></i></a>
+                    <a href="<?php echo $param[0] ?>-add.htm" class="btn btn-light <?= $tmpText ?>"><i class="fas fa-plus"></i></a>
                 </th>
                 <?php foreach ($fields as $f) { ?>
                     <th>
@@ -33,7 +33,7 @@
             </tr>
             <tr class="text-center <?= $tmpBackground ?>">
                 <th>
-                    <?php if (($filtersExists != 0) && ($showFilter != 'no')) { ?>
+                    <?php if (($filtersExists != 0) && (($showFilter ?? '') != 'no')) { ?>
                         <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" name="clearfilters">
                             <input type="hidden" name="fv" value="999" />
                         </form>
@@ -46,19 +46,18 @@
                 <?php foreach ($fields as $k => $f) { ?>
                     <th>
                         <form action="" method="post" id="ord_<?php echo $k ?>">
-                            <?php if ($showFilter != 'no') { ?>
-                                <a href="modal.php?p=filter-<?php echo $pag ?>-<?php echo $k ?>" title="Filtrare <?php echo $v ?>"></a>
-                                <i class="fa fa-filter float-left text-<?php echo (isset($_SESSION['filter'][$k]) ? 'orange' : 'white'); ?>" data-toggle="modal" data-target="#filterModal" onclick="goModal('filter-<?php echo $pag ?>-<?php echo $k ?>', 'Filtrare')"></i>
+                            <?php if (($showFilter ?? '') != 'no') { ?>
+                                <i class="fa fa-filter float-start text-<?php echo (isset($_SESSION['filter'][$k]) ? 'orange' : 'white'); ?>" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="goModal('filter-<?php echo $pag ?>-<?php echo $k ?>', 'Filtrare')"></i>
                             <?php } ?>
                             <input name="order" type="hidden" value="<?php echo $k ?>" />
-                            <?php if ($showOrder != 'no') {
+                            <?php if (($showOrder ?? '') != 'no') {
                                 if (!isset($_SESSION['order'][$k])) {
                             ?>
                                     <input name="ordertype" type="hidden" value="up" />
-                                    <i class="fa fa-sort float-right <?= $tmpText ?>" onclick="$('#ord_<?php echo $k ?>').submit()" style="cursor:pointer"></i>
+                                    <i class="fa fa-sort float-end <?= $tmpText ?>" onclick="$('#ord_<?php echo $k ?>').submit()" style="cursor:pointer"></i>
                                 <?php } else { ?>
                                     <input id="ord_<?php echo $k ?>_type" name="ordertype" type="hidden" value="<?php echo ($_SESSION['order'][$k] == 'up' ? 'dn' : 'up') ?>" />
-                                    <i class="fa float-right text-orange shadow-white fa-sort-<?php echo $_SESSION['order'][$k] == "up" ? "up" : "down" ?>" onclick="$('#ord_<?php echo $k ?>').submit()" oncontextmenu="$('#ord_<?php echo $k ?>_type').val('');$('#ord_<?php echo $k ?>').submit(); return false;" style="cursor:pointer"></i>
+                                    <i class="fa float-end text-orange shadow-white fa-sort-<?php echo $_SESSION['order'][$k] == "up" ? "up" : "down" ?>" onclick="$('#ord_<?php echo $k ?>').submit()" oncontextmenu="$('#ord_<?php echo $k ?>_type').val('');$('#ord_<?php echo $k ?>').submit(); return false;" style="cursor:pointer"></i>
                             <?php }
                             }
                             ?>
@@ -93,8 +92,8 @@
                     ?>
                         <tr class="<?= $rowClass ?>">
                             <td class="text-center">
-                                <div class="btn-group dropright">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                <div class="btn-group dropend">
+                                    <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                     <div class="dropdown-menu">
                                         <?php
                                         foreach ($specials as $sp)
@@ -105,22 +104,22 @@
                                         ?>
                                             <a class="dropdown-item" href="./<?= $param[0] ?>-<?= $sp ?>-id-<?= $r[$id] ?>.htm"><i class="fa fa-<?= (isset($fontawesome[$sp]) ? $fontawesome[$sp] : $sp) ?>"></i> <?php echo ucfirst($spd) ?></a>
                                         <?php } ?>
-                                        <?php if ($rcr['modify_right'] == 'Y') { ?>
+                                        <?php if (($rcr['modify_right'] ?? '') == 'Y') { ?>
                                             <a class="dropdown-item" href="./<?php echo $param[0] ?>-edit-id-<?php echo $r[$id] ?>.htm"><i class="fa fa-pencil-alt text-blue shadow-maroon"></i> Editeaza</a>
                                         <?php } ?>
-                                        <?php if ($rcr['delete_right'] == 'Y') { ?>
+                                        <?php if (($rcr['delete_right'] ?? '') == 'Y') { ?>
                                             <a class="dropdown-item" href="./<?php echo $param[0] ?>-drop-id-<?php echo $r[$id] ?>.htm"><i class="fa fa-times text-red shadow-maroon"></i> Sterge</a>
                                         <?php } ?>
                                     </div>
                                 </div>
                             </td>
                             <?php foreach ($fields as $k => $v) { ?>
-                                <td<?php if ($rcr["modify_right"] == 'Y') { ?> class="cell <?= $cellClass[$k] ?>" alt="<?php echo $k . '-' . $r[$id] ?>" title="<?= is_array($v) ? $v['name'] : $v ?>" <?php } else { ?> class="<?= $cellClass[$k] ?>" <?php } ?>>
+                                <td<?php if (($rcr["modify_right"] ?? '') == 'Y') { ?> class="cell <?= $cellClass[$k] ?? '' ?>" alt="<?php echo $k . '-' . $r[$id] ?>" title="<?= is_array($v) ? $v['name'] : $v ?>" <?php } else { ?> class="<?= $cellClass[$k] ?? '' ?>" <?php } ?>>
                                     <?php
                                     if (file_exists("settings/$pag/{$k}_show.php")) {
                                         include("settings/$pag/{$k}_show.php");
                                     } else {
-                                        fieldFormat($k, $v, $r[$k], '', '', $r[$id], $param[1]);
+                                        fieldFormat($k, $v, $r[$k], '', '', $r[$id], $pag);
                                     }
                                     ?></td>
                                 <?php } ?>
@@ -141,14 +140,14 @@
                 ?>
                 <tr>
                     <td>&nbsp;</td>
-                    <td colspan="<?php echo count($fields) + ($rcr['delete_right'] == 'Y' ? 1 : 0) ?>" style="text-align:right">
-                        <?php if (is_array($multiOper)) foreach ($multiOper as $k => $v) { ?>
-                            <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#filterModal" onclick="postModal('multi-<?= $param[1] ?>-<?php echo $k ?>-<?= $id ?>', '<?php echo $v ?>', $('#multiForm').serialize())"><?php echo $v ?></button>
+                    <td colspan="<?php echo count($fields) + (($rcr['delete_right'] ?? '') == 'Y' ? 1 : 0) ?>" style="text-align:right">
+                        <?php if (is_array($multiOper ?? null)) foreach ($multiOper as $k => $v) { ?>
+                            <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="postModal('multi-<?= $pag ?>-<?php echo $k ?>-<?= $id ?>', '<?php echo $v ?>', $('#multiForm').serialize())"><?php echo $v ?></button>
                         <?php } ?>
-                        <?php if ($rcr['delete_right'] == 'Y') { ?>
-                            <button class="btn <?= $tmpBackground ?> <?= $tmpText ?>" type="button" data-toggle="modal" data-target="#filterModal" onclick="postModal('multi-<?= $param[1] ?>-delete-<?= $id ?>', 'Sterge', $('#multiForm').serialize())">STERGE</button>
+                        <?php if (($rcr['delete_right'] ?? '') == 'Y') { ?>
+                            <button class="btn <?= $tmpBackground ?> <?= $tmpText ?>" type="button" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="postModal('multi-<?= $pag ?>-delete-<?= $id ?>', 'Sterge', $('#multiForm').serialize())">STERGE</button>
                         <?php };
-                        if (($rcr['delete_right'] == 'Y') || (is_array($multiOper))) {
+                        if ((($rcr['delete_right'] ?? '') == 'Y') || (is_array($multiOper ?? null))) {
                         ?>
                             <i class="fas fa-reply fa-rotate-90"></i>
                         <?php } ?>
@@ -204,9 +203,7 @@
         <div class="modal-content">
             <div class="modal-header <?= $tmpBackground ?> <?= $tmpText ?>">
                 <h5 class="modal-title" id="filterModalTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
             </div>
@@ -216,7 +213,7 @@
 <div id="contextMenu" class="card clearfix" style="display:none">
     <div class="card-header bg-secondary <?= $tmpText ?>">
         <span class="panel-info"></span>
-        <i class="fa fa-times float-right" style="cursor:pointer"></i>
+        <i class="fa fa-times float-end" style="cursor:pointer"></i>
     </div>
     <div class="card-body">
         <div class="row panel-data"></div>

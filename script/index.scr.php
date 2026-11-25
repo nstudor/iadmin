@@ -1,49 +1,33 @@
 <?php
 if (isset($_SESSION['userid'])) {
-    $ruser = db_select('*', 'login_users', 'id=' . $_SESSION['userid'])[0];
-    $link = $param[0];
-    if (!empty($param[1])) {
-        $link .= "-$param[1]";
-    }
-    $rlink = $param[0];
-    if ($rlink == 'toper') {
-        $rlink = 'tabel';
-    }
-    if (!empty($param[1])) {
-        $rlink .= "-$param[1]";
-    }
-    $rcmenu = db_select('*', 'login_menu', "link='$rlink'")[0];
-    $rcr = db_select('*', 'login_rights', 'id_menu=' . ($rcmenu['id'] * 1) . ' AND id_role=' . $ruser['role'])[0];
-    $rcr['details_v'] = explode(" ", $rcr['details_v']);
-    $rcr['details_a'] = explode(" ", $rcr['details_a']);
-    $rcr['details_m'] = explode(" ", $rcr['details_m']);
-    $rcr['details_d'] = explode(" ", $rcr['details_d']);
-    $_SESSION['rights'] = $rcr;
+    $ruser = db_select('*', 'login__users', 'id=' . (int)$_SESSION['userid'])[0] ?? [];
+    // rights of the current module, always loaded from the DB (never cached in the session)
+    $rcr = load_rights($param[0]);
     if (isset($_SESSION['menudata'])) {
         $menu = $_SESSION['menudata'];
     } else {
         $menu = [];
-        $re = db_select('*', 'login_menu', 'id!=0', 'ordine');
+        $re = db_select('*', 'login__menu', 'id!=0', 'ordine');
         if ($re) {
             foreach ($re as $r) {
                 $menu[$r['id']] = $r;
-                $rd = db_select('*', 'login_rights', 'id_menu=' . $r['id'] . " AND id_role=" . $ruser['role'])[0];
+                $rd = db_select('*', 'login__rights', 'id_menu=' . $r['id'] . " AND id_role=" . (int)($ruser['role'] ?? 0))[0] ?? [];
                 $ok = false;
                 if ($r['right'] == 'Y') {
                     $ok = true;
                 }
-                if ($rd['view_right'] == 'Y') {
+                if (($rd['view_right'] ?? '') == 'Y') {
                     $ok = true;
                 }
                 $menu[$r['id']]['ok'] = $ok;
             }
             foreach ($menu as $m) {
-                if ((!$menu[$m['id_tata']]['ok']) && ($m['ok']) && ($m['right'] != 'Y')) {
+                if (isset($menu[$m['id_tata']]) && (!$menu[$m['id_tata']]['ok']) && ($m['ok']) && ($m['right'] != 'Y')) {
                     $menu[$m['id_tata']]['ok'] = true;
                 }
             }
             foreach ($menu as $m) {
-                if ((!$menu[$m['id_tata']]['ok']) && ($m['ok']) && ($m['right'] != 'Y')) {
+                if (isset($menu[$m['id_tata']]) && (!$menu[$m['id_tata']]['ok']) && ($m['ok']) && ($m['right'] != 'Y')) {
                     $menu[$m['id_tata']]['ok'] = true;
                 }
             }

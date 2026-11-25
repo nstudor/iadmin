@@ -1,10 +1,14 @@
 <?php
+// selected day: ?data=YYYY-MM-DD, default today
+$calDay = strtotime($_GET['data'] ?? 'today') ?: strtotime('today');
 foreach ($panelRows as $rk => $rv)
     foreach ($rv['panels'] as $k => $v)
         if ($v['fisier'] == 'calendar') {
-            $panelRows[$rk]['panels'][$k]['data']['dd'] = strtotime(isset($_GET['data'])?$_GET['data']:"now");
-            $panelRows[$rk]['panels'][$k]['data']['an'] = date("Y",$panelRows[$rk]['panels'][$k]['data']['dd']);       
-            $panelRows[$rk]['panels'][$k]['data']['lu'] = date("m",$panelRows[$rk]['panels'][$k]['data']['dd']);
-            $panelRows[$rk]['panels'][$k]['data']['zi'] = date("d",$panelRows[$rk]['panels'][$k]['data']['dd']);
-            $panelRows[$rk]['panels'][$k]['data']['crt'] = (date("Y-m-d",$panelRows[$rk]['panels'][$k]['data']['dd'])==date("Y-m-d",strtotime(date("Y-m-",$panelRows[$rk]['panels'][$k]['dd']).date("j"))));
+            $panelRows[$rk]['panels'][$k]['data'] = [
+                'dd' => $calDay,
+                'an' => date("Y", $calDay),
+                'lu' => date("m", $calDay),
+                'zi' => date("d", $calDay),
+                'crt' => date("Y-m-d", $calDay) == date("Y-m-d"),
+            ];
         }

@@ -1,5 +1,5 @@
 <?php 
-$tabel="login_dashboard";
+$tabel="login__dashboard";
 $fields=array( 
     'denumire'=>"Denumire",
     'fisier'=>"Addon",

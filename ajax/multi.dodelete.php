@@ -1,6 +1,6 @@
 <?php
 
-if (db_drop("$pp[3] IN ('" . implode("', '", $ids) . "')", $tabel))
+if (db_drop("$id IN ('" . implode("', '", array_map('db_esc', $ids)) . "')", $tabel))
     die("<script>document.location=document.location;</script>");
 else {
     echo showMessage($MESSAGE, 'danger');

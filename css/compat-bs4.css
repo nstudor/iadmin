@@ -1,0 +1,82 @@
+/*
+ * Bootstrap 4 -> 5 compatibility for markup printed outside the template
+ * (fieldtypes, ajax dialogs, settings pages, login pages stored in the DB).
+ */
+
+/* floats / text alignment */
+.float-left { float: left !important; }
+.float-right { float: right !important; }
+.text-left { text-align: left !important; }
+.text-right { text-align: right !important; }
+
+/* margin / padding left-right (ml/mr/pl/pr) */
+.ml-0 { margin-left: 0 !important; } .mr-0 { margin-right: 0 !important; }
+.ml-1 { margin-left: .25rem !important; } .mr-1 { margin-right: .25rem !important; }
+.ml-2 { margin-left: .5rem !important; } .mr-2 { margin-right: .5rem !important; }
+.ml-3 { margin-left: 1rem !important; } .mr-3 { margin-right: 1rem !important; }
+.ml-4 { margin-left: 1.5rem !important; } .mr-4 { margin-right: 1.5rem !important; }
+.ml-5 { margin-left: 3rem !important; } .mr-5 { margin-right: 3rem !important; }
+.ml-auto { margin-left: auto !important; } .mr-auto { margin-right: auto !important; }
+.pl-0 { padding-left: 0 !important; } .pr-0 { padding-right: 0 !important; }
+.pl-1 { padding-left: .25rem !important; } .pr-1 { padding-right: .25rem !important; }
+.pl-2 { padding-left: .5rem !important; } .pr-2 { padding-right: .5rem !important; }
+.pl-3 { padding-left: 1rem !important; } .pr-3 { padding-right: 1rem !important; }
+.pl-4 { padding-left: 1.5rem !important; } .pr-4 { padding-right: 1.5rem !important; }
+.pl-5 { padding-left: 3rem !important; } .pr-5 { padding-right: 3rem !important; }
+
+/* typography / helpers */
+.font-weight-light { font-weight: 300 !important; }
+.font-weight-normal { font-weight: 400 !important; }
+.font-weight-bold { font-weight: 700 !important; }
+.font-italic { font-style: italic !important; }
+.sr-only {
+    position: absolute !important; width: 1px !important; height: 1px !important;
+    padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important;
+}
+.btn-block { display: block; width: 100%; }
+.btn-block + .btn-block { margin-top: .5rem; }
+.btn-default { --bs-btn-color: var(--bs-body-color); --bs-btn-hover-bg: var(--bs-secondary-bg); }
+.form-group { margin-bottom: 1rem; }
+.badge-primary { background-color: var(--bs-primary); } .badge-secondary { background-color: var(--bs-secondary); }
+.badge-success { background-color: var(--bs-success); } .badge-danger { background-color: var(--bs-danger); }
+.badge-warning { background-color: var(--bs-warning); color: #000; } .badge-info { background-color: var(--bs-info); color: #000; }
+
+/* grid: col-xs-* == col-* */
+.col-xs-1 { flex: 0 0 auto; width: 8.333333%; } .col-xs-2 { flex: 0 0 auto; width: 16.666667%; }
+.col-xs-3 { flex: 0 0 auto; width: 25%; } .col-xs-4 { flex: 0 0 auto; width: 33.333333%; }
+.col-xs-5 { flex: 0 0 auto; width: 41.666667%; } .col-xs-6 { flex: 0 0 auto; width: 50%; }
+.col-xs-7 { flex: 0 0 auto; width: 58.333333%; } .col-xs-8 { flex: 0 0 auto; width: 66.666667%; }
+.col-xs-9 { flex: 0 0 auto; width: 75%; } .col-xs-10 { flex: 0 0 auto; width: 83.333333%; }
+.col-xs-11 { flex: 0 0 auto; width: 91.666667%; } .col-xs-12 { flex: 0 0 auto; width: 100%; }
+/* "col col-xs-12 col-sm-3": let the sm/lg classes win again */
+@media (min-width: 576px) { .col.col-xs-12[class*="col-sm-"] { width: auto; } }
+
+/* input groups: BS5 has no -append / -prepend wrappers */
+.input-group-append, .input-group-prepend { display: flex; }
+.input-group > .input-group-append > .btn,
+.input-group > .input-group-append > .input-group-text { border-top-left-radius: 0; border-bottom-left-radius: 0; }
+.input-group > .input-group-prepend > .btn,
+.input-group > .input-group-prepend > .input-group-text { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.input-group-append { margin-left: -1px; }
+.input-group-prepend { margin-right: -1px; }
+
+/* old close button */
+.close {
+    float: right; font-size: 1.5rem; font-weight: 700; line-height: 1; color: inherit;
+    opacity: .6; background: transparent; border: 0; padding: 0 .25rem;
+}
+.close:hover { opacity: 1; }
+
+/* embed-responsive -> ratio */
+.embed-responsive { position: relative; display: block; width: 100%; overflow: hidden; }
+.embed-responsive::before { content: ""; display: block; }
+.embed-responsive-1by1::before { padding-top: 100%; }
+.embed-responsive-4by3::before { padding-top: 75%; }
+.embed-responsive-16by9::before { padding-top: 56.25%; }
+.embed-responsive .embed-responsive-item { position: absolute; inset: 0; }
+
+/* Bootstrap 3 glyphicons still printed by shared code -> Font Awesome 6 */
+.glyphicon { font-family: "Font Awesome 6 Free"; font-weight: 900; font-style: normal; display: inline-block; }
+.glyphicon-warning-sign::before { content: "\f071"; }
+.glyphicon-ok::before { content: "\f00c"; }

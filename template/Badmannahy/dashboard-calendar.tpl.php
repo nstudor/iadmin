@@ -6,22 +6,22 @@ $zi = $panelData['zi'];
 ?>
 <table class="table table-striped" style="color:#999">
   <thead>
-    <tr style="height:25px;" class="alert-<?php echo $theme ?>">
+    <tr style="height:25px;" class="alert-<?php echo $theme ?? 'secondary' ?>">
       <th><a href="?data=<?php echo date("Y-m-d", strtotime(date("Y-m-d", $dd) . " - 1 month")) ?>"><strong class="fa fa-chevron-left"></strong></a></th>
       <th colspan="5">
         <span class="dropdown">
-          <span class="dropdown-toggle" id="ddluna" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <?php echo strtoupper(strftime("%B", $dd)) ?> <span class="caret"></span>
+          <span class="dropdown-toggle" id="ddluna" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <?php echo mb_strtoupper(format_strftime("%B", $dd)) ?> <span class="caret"></span>
           </span>
           <ul class="dropdown-menu" aria-labelledby="ddluna">
             <?php for ($j = 1; $j <= 12; $j++) { ?>
-              <li><a href="./?data=<?php echo "$an-$j-$zi"; ?>"><?php echo strtoupper(strftime("%B", strtotime("2000-$j-01"))) ?></a></li>
+              <li><a href="./?data=<?php echo "$an-$j-$zi"; ?>"><?php echo mb_strtoupper(format_strftime("%B", strtotime("2000-$j-01"))) ?></a></li>
             <?php } ?>
           </ul>
         </span>
         <span class="dropdown">
-          <span class="dropdown-toggle" id="ddanul" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <?php echo strtoupper(strftime("%Y", $dd)) ?> <span class="caret"></span>
+          <span class="dropdown-toggle" id="ddanul" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <?php echo mb_strtoupper(format_strftime("%Y", $dd)) ?> <span class="caret"></span>
           </span>
           <ul class="dropdown-menu" aria-labelledby="ddanul">
             <?php for ($j = $an - 3; $j <= $an + 3; $j++) { ?>
