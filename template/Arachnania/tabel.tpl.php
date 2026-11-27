@@ -155,18 +155,6 @@ $pageUrl = function ($i) use ($param) {
     </div>
 
     <div class="ar-list-foot">
-        <div class="d-flex flex-wrap gap-2 align-items-center">
-            <?php if (is_array($multiOper ?? null) || $canDrop) { ?>
-                <span class="text-body-secondary small"><i class="fa-solid fa-turn-up fa-flip-horizontal me-1"></i>Selectate:</span>
-            <?php } ?>
-            <?php if (is_array($multiOper ?? null)) foreach ($multiOper as $k => $v) { ?>
-                <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="postModal('multi-<?= $pag ?>-<?= $k ?>-<?= $id ?>', '<?= $v ?>', $('#multiForm').serialize())"><?= $v ?></button>
-            <?php } ?>
-            <?php if ($canDrop) { ?>
-                <button class="btn btn-sm btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="postModal('multi-<?= $pag ?>-delete-<?= $id ?>', 'Sterge', $('#multiForm').serialize())"><i class="fa-solid fa-trash me-1"></i>Sterge</button>
-            <?php } ?>
-        </div>
-
         <?php if (!isset($dontshowpages) && ($np ?? 0) > 0) { ?>
             <nav aria-label="Pagini">
                 <ul class="pagination pagination-sm mb-0">
@@ -180,6 +168,21 @@ $pageUrl = function ($i) use ($param) {
                 </ul>
             </nav>
         <?php } ?>
+
+        <div class="d-flex flex-wrap gap-2 align-items-center justify-content-end ms-auto">
+            <?php if (is_array($multiOper ?? null) || $canDrop) { ?>
+                <span class="text-body-secondary small">Selectate:</span>
+            <?php } ?>
+            <?php if (is_array($multiOper ?? null)) foreach ($multiOper as $k => $v) { ?>
+                <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="postModal('multi-<?= $pag ?>-<?= $k ?>-<?= $id ?>', '<?= $v ?>', $('#multiForm').serialize())"><?= $v ?></button>
+            <?php } ?>
+            <?php if ($canDrop) { ?>
+                <button class="btn btn-sm btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="postModal('multi-<?= $pag ?>-delete-<?= $id ?>', 'Sterge', $('#multiForm').serialize())"><i class="fa-solid fa-trash me-1"></i>Sterge</button>
+            <?php } ?>
+            <?php if (is_array($multiOper ?? null) || $canDrop) { ?>
+                <i class="fa-solid fa-turn-up text-body-secondary ar-sel-arrow" title="Selected rows"></i>
+            <?php } ?>
+        </div>
     </div>
 </div>
 <?php if (file_exists("settings/$pag/bottom.php")) include("settings/$pag/bottom.php"); ?>
