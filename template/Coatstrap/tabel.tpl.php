@@ -157,7 +157,9 @@ $pageUrl = function ($i) use ($param) {
                 <ul class="pagination pagination-sm mb-0">
                     <li class="page-item<?= $st == 0 ? ' disabled' : '' ?>"><a class="page-link" href="<?= $pageUrl(0) ?>" aria-label="<?= t('page_first') ?>"><i class="fa-solid fa-angles-left"></i></a></li>
                     <li class="page-item<?= $st == 0 ? ' disabled' : '' ?>"><a class="page-link" href="<?= $pageUrl(max(0, $st - 1)) ?>" aria-label="<?= t('page_previous') ?>"><i class="fa-solid fa-angle-left"></i></a></li>
-                    <?php for ($i = $st - 3; $i <= $st + 3; $i++) if ($i >= 0 && $i <= $np) { ?>
+                    <?php foreach (pagination_pages($st, $np) as $i) if ($i === null) { ?>
+                        <li class="page-item disabled"><span class="page-link">&hellip;</span></li>
+                    <?php } else { ?>
                         <li class="page-item<?= $i == $st ? ' active' : '' ?>"><a class="page-link" href="<?= $pageUrl($i) ?>"><?= $i + 1 ?></a></li>
                     <?php } ?>
                     <li class="page-item<?= $st == $np ? ' disabled' : '' ?>"><a class="page-link" href="<?= $pageUrl(min($np, $st + 1)) ?>" aria-label="<?= t('page_next') ?>"><i class="fa-solid fa-angle-right"></i></a></li>

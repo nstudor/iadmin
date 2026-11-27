@@ -173,9 +173,13 @@
             <span class="page-link">&nbsp;</span>
         </li>
         <?php
-        for ($i = $st - 3; $i <= $st + 3; $i++)
-            if (($i >= 0) && ($i <= $np)) {
+        foreach (pagination_pages($st, $np) as $i)
+            if ($i === null) {
         ?>
+            <li class="page-item disabled">
+                <span class="page-link text-maroon">&hellip;</span>
+            </li>
+        <?php } else { ?>
             <li class="page-item">
                 <a class="page-link<?= $i == $st ? ' bg-gray text-white' : ' text-maroon' ?>" href="./<?= $param[0] . '-' . $i . (isset($param[2]) ? "-" . implode("-", array_slice($param, 2)) : '') ?>.htm">
                     <?= $i + 1 ?>

@@ -39,6 +39,26 @@ function t($x) {
     return (isset($_LNG[$x])?$_LNG[$x]:(isset($_DEFLNG[$x])?$_DEFLNG[$x]:"%%$x%%"));
 }
 
+/**
+ * Page numbers (0-based) for a list's pagination, in order: the first 3 pages, 2 pages before and after
+ * the current one and the last 3 pages. null marks skipped pages (shown as "…" by the templates).
+ * Example: pagination_pages(9, 17) => [0, 1, 2, null, 7, 8, 9, 10, 11, null, 15, 16, 17]
+ */
+function pagination_pages($current, $last)
+{
+    $current = (int)$current;
+    $last = (int)$last;
+    $pages = array_merge(range(0, 2), range($current - 2, $current + 2), range($last - 2, $last));
+    $pages = array_unique(array_filter($pages, fn($p) => $p >= 0 && $p <= $last));
+    sort($pages);
+    $out = [];
+    foreach ($pages as $p) {
+        if ($out && $p - end($out) > 1) $out[] = null;
+        $out[] = $p;
+    }
+    return $out;
+}
+
 /* ---------- Field types ---------- */
 
 /**
