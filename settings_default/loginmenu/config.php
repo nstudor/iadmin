@@ -2,30 +2,30 @@
     $tabel="login__menu";
     $fields=array(
         'id'=>array(
-            'name'=>"ID",
+            'name'=>t('fld_id'),
             "noAdd"=>1,
             "noEdit"=>1,
         ),
         'id_tata'=>array(
-            'name'=>"Parent",
+            'name'=>t('fld_parent'),
             'type'=>'dbSelect',
             'field'=>'denum',
             'table'=>'login__menu',
             'relatedField'=>'id',            
             'defaultValue'=>0,
-            'defaultResult'=>'[[ MAIN ]]',
+            'defaultResult'=>t('menu_main'),
         ),
-        'denum'=>"Name",
-        'link'=>"Link",
-        'ordine'=>"Order",
+        'denum'=>t('fld_name'),
+        'link'=>t('fld_link'),
+        'ordine'=>t('fld_order'),
         'right'=>array(
-            'name'=>"Right",
+            'name'=>t('fld_right'),
             'type'=>'awesomecase',
             'template'=>'YesNoCheck',
         ),        
-        'icon'=>"Icon",
+        'icon'=>t('fld_icon'),
     );
     $order="";
-    $title="Menu";
+    $title=t('title_menu');
 	
 ?>

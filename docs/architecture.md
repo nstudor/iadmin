@@ -84,3 +84,9 @@ Panels are configured in the **Dashboard** module (`dashboard.htm`).
 
 `lang/<language>.lng.php` defines `$_LNG = ['key' => 'text', ...]`. `t('key')` returns the text of the
 selected language, falls back to English, else `%%key%%`.
+
+All interface texts outside `settings/` and `setup/` come from these files: templates, fieldtypes, AJAX dialogs,
+messages and the `settings_default` modules (titles, column names). Add every new key to `lang/english.lng.php`
+(the fallback) and translate it in the other files. Texts with values use `sprintf()` placeholders, e.g.
+`sprintf(t('delete_rows_confirm'), $count)`. JavaScript texts reach the Arachnania / Coatstrap scripts through
+`window.APP_LNG` (set in `index.tpl.php`).

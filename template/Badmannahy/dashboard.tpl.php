@@ -11,7 +11,7 @@
 <?php if($r2['vizibil']=='Y' && $panelTpl) {
     if(empty($r2['no_box'])) {?>
 <div class="card" rel="<?= (int)$r2['id'] ?>">
-    <div class="card-header <?= $tmpBackground ?> text-light">
+    <div class="card-header bg-gray text-light">
         <b><?php echo $r2['denumire'] ?></b>
         <i class="float-end fa fa-chevron-<?php echo ($r2['deschis']=='N'?"down":"up") ?>"></i>
     </div>

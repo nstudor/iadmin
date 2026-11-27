@@ -19,10 +19,10 @@
 <thead>
   <tr>
     <th>&nbsp;</th>
-    <th width="15%">Vizualizare</th>
-    <th width="15%">Adaugare</th>
-    <th width="15%">Modificare</th>
-    <th width="15%">Stergere</th>
+    <th width="15%"><?= t('right_view') ?></th>
+    <th width="15%"><?= t('right_add') ?></th>
+    <th width="15%"><?= t('right_modify') ?></th>
+    <th width="15%"><?= t('right_delete') ?></th>
   </tr>
 </thead>
 <tbody>
@@ -39,7 +39,7 @@
 <tfoot>
   <tr>
     <td colspan="2">&nbsp;</td>
-    <td colspan="3" align="center"><button class="btn btn-success spc" type="submit"><i class="fa-solid fa-check"></i> OK</button></td>
+    <td colspan="3" align="center"><button class="btn btn-success spc" type="submit"><i class="fa-solid fa-check"></i> <?= t('ok') ?></button></td>
     </tr>
  </tfoot>
 </table>

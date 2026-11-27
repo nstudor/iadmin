@@ -2,12 +2,12 @@
     $vl=explode('~', (string)($_SESSION['filter'][$k] ?? '')) + ['', ''];
     $fType=(int)($_SESSION['filtertype'][$k] ?? 3);
     $fTypes=[
-      3  => 'Egal cu',
-      4  => 'Diferit de',
-      11 => 'Mai mare ca',
-      13 => 'Mai mare sau egal cu',
-      12 => 'Mai mic ca',
-      14 => 'Mai mic sau egal cu',
+      3  => t('filter_eq'),
+      4  => t('filter_ne'),
+      11 => t('filter_gt'),
+      13 => t('filter_ge'),
+      12 => t('filter_lt'),
+      14 => t('filter_le'),
       8  => 'Intre',
     ];
     $fieldDef=$fields[$k];
@@ -49,12 +49,12 @@
 <input name="<?php echo $k ?>" type="hidden" value="<?= $_SESSION['filter'][$k] ?? '' ?>" />
 <div class="col">
     <button onclick="document.ff.<?php echo $k ?>.value=(document.ff.fv.value!=8?document.ff.<?php echo $k ?>1.value:document.ff.<?php echo $k ?>1.value+'~'+document.ff.<?php echo $k ?>2.value);document.ff.submit()" class='btn btn-secondary col' type="button">     
-    <i class="fa fa-check <?= $tmpText ?>"></i>
+    <i class="fa fa-check"></i>
     </button>
 </div>
 <div class="col">
     <button onclick="document.ff.fv.value=5;document.ff.submit()" class='btn btn-danger col' type="button">     
-    <i class="fa fa-times <?= $tmpText ?>"></i>
+    <i class="fa fa-times"></i>
     </button>
 </div>
 </div>

@@ -221,7 +221,7 @@ function password_store($userId, $plain)
     if (!db_update(['pass' => $hash], 'login__users', "id=$userId")) return false;
     $saved = db_select('pass', 'login__users', "id=$userId")[0]['pass'] ?? '';
     if ($saved !== $hash) {
-        $MESSAGE = 'The password could not be saved: the login__users.pass column must be varchar(255).';
+        $MESSAGE = t('password_column_short');
         return false;
     }
     return true;

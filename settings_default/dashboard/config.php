@@ -1,26 +1,26 @@
 <?php 
 $tabel="login__dashboard";
 $fields=array( 
-    'denumire'=>"Denumire",
-    'fisier'=>"Addon",
-    'rand'=>"Rand",
-    'marimesm'=>"Marime<br />Mobil",
-    'marimelg'=>"Marime<br />Desktop",
-    'ordine'=>"Ordine",
+    'denumire'=>t('fld_name'),
+    'fisier'=>t('fld_addon'),
+    'rand'=>t('fld_row'),
+    'marimesm'=>t('fld_size_mobile'),
+    'marimelg'=>t('fld_size_desktop'),
+    'ordine'=>t('fld_order'),
     'deschis'=>array(
-        'name'=>'Deschis',
+        'name'=>t('fld_open'),
         'type'=>'awesomecase',
         'template'=>'YesNoSquareCheck',
         'fatype'=>'r,r'      
     ),
     'vizibil'=>array(
-        'name'=>"Vizibil",
+        'name'=>t('fld_visible'),
         'type'=>'awesomecase',
         'template'=>'YesNoSquareCheck',
         'fatype'=>'r,r'      
     ),
 );
-$title="Dashboard";
+$title=t('title_dashboard');
 //$_SESSION['filter']['id_user']=$_SESSION['userid'];
 //$_SESSION['filtertype']['id_user']=1;
 //$defaults=array( 'id_user'=>$_SESSION['userid'] );

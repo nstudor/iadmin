@@ -11,7 +11,7 @@ delete forms, inline editing, bulk actions and export — with per-role rights, 
 | [Modules](modules.md) | writing a module: `config.php` variables, field flags, override files and hooks |
 | [Field types](fieldtypes.md) | every field type and its options |
 | [Rights](rights.md) | menu, roles, rights, special pages, how access is decided |
-| [Templates](templates.md) | template contract, Badmannahy, Arachnania, Bootstrap 4 compatibility, colors |
+| [Templates](templates.md) | template contract, Badmannahy, Arachnania, Coatstrap, Bootstrap 4 compatibility, colors |
 | [Security](security.md) | CSRF, passwords, SQL helpers, deployment checklist |
 | [Developer reference](developer.md) | functions in `utils.php` and the database connector |
 | [Database](database.md) | the `login__*` tables |
@@ -33,13 +33,13 @@ index.php            entry point (all *.htm URLs are rewritten to index.php?p=..
 utils.php            shared helpers: rights, CSRF, passwords, field type dispatch, dates
 settings.ini         installation settings (created by setup, PHP syntax)
 connector/           database connector (mySQL.con.php)
-setup/               setup wizard + schema.sql
+setup/               setup wizard + schema.<language>.sql
 script/              page controllers (list, add / edit / drop, dashboard)
 ajax/                AJAX endpoints, all reached through ajax/modal.php
 fieldtypes/          field types (display / add / edit / filter / upload processing)
 settings_default/    built-in modules (users, roles, menu, dashboard, shortcuts, pages, login...)
 settings/            your modules (override settings_default/ with the same name)
-template/            templates: Badmannahy (top menu), Arachnania (sidebar, dark mode)
+template/            templates: Badmannahy (top menu), Arachnania (sidebar, dark mode), Coatstrap (Bootstrap classes only)
 lang/                translations (english.lng.php, romana.lng.php)
 css/ js/ webfonts/   shared front-end libraries + colors.css, compat-bs4.*, csrf.js, fieldtypes.js
 docs/                this documentation

@@ -38,7 +38,7 @@ if (isset($_SESSION['userid'])) {
             }
             $_SESSION['menudata'] = $menu;
         } else {
-            showMessage("Access denied: " . $MESSAGE, 'danger');
+            showMessage(sprintf(t('access_denied_reason'), $MESSAGE), 'danger');
         }
     }
 }

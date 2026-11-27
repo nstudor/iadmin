@@ -8,7 +8,7 @@
     $idu = (int)($_GET['idu'] ?? 0);
     $idd = (int)($_GET['idd'] ?? 0);
     $tip = $_GET['tip'] ?? '';
-    if (!isset($fields[$tip])) die(showMessage('Invalid right !', 'danger'));
+    if (!isset($fields[$tip])) die(showMessage(t('invalid_right'), 'danger'));
     $col = $fields[$tip];
     $item=db_select('*', 'login__rights', "id_role=$idu AND id_menu=$idd")[0] ?? [];
     if(!isset($item[$col]))

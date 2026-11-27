@@ -1,8 +1,8 @@
 <form action="" method="post">
     <div class="container">
         <div class="card">
-            <div class="card-header <?= $tmpBackground ?> <?= $tmpText ?>">
-                <?= $title ?> - Stergere
+            <div class="card-header bg-gray text-white">
+                <?= $title ?> - <?= t('form_deleting') ?>
             </div>
             <div class="card-body">
                 <input type="hidden" name="item" value="1" />
@@ -30,8 +30,8 @@
                 </table>
                 <div class="row">
                     <div class="col">
-                        <button class="btn btn-success float-end" type="submit"><i class="fas fa-check-circle"></i> STERGE</button>
-                        <a href="./<?= $param[0] ?>.htm" class="btn btn-danger float-start"><i class="fas fa-times-circle"></i> ANULEAZA</a>
+                        <button class="btn btn-success float-end" type="submit"><i class="fas fa-check-circle"></i> <?= t('delete') ?></button>
+                        <a href="./<?= $param[0] ?>.htm" class="btn btn-danger float-start"><i class="fas fa-times-circle"></i> <?= t('cancel') ?></a>
                     </div>
                 </div>
             </div>

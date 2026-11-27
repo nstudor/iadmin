@@ -6,8 +6,9 @@ The template is chosen with `$APP_TEMPLATE` in `settings.ini` (folder in `templa
 |---|---|
 | **Badmannahy** | top navigation bar (3-level dropdown menu), bottom bar with account menu and clock |
 | **Arachnania** | sidebar admin layout: collapsible 3-level menu (off-canvas on phones), top bar with clock, dark mode toggle and account menu; responsive lists with sticky header; toast messages; centered sign-in page |
+| **Coatstrap** | sidebar layout like Arachnania built only from Bootstrap 5.3 classes (no template CSS; `colors.css` only for custom content); native checkboxes, no sticky list header (see `template/Coatstrap/README.md`) |
 
-Both use Bootstrap 5.3 and Font Awesome 6 from the shared `css/` and `js/` folders (see [Libraries](libraries.md)).
+All use Bootstrap 5.3 and Font Awesome 6 from the shared `css/` and `js/` folders (see [Libraries](libraries.md)).
 
 ## Template contract
 
@@ -16,7 +17,7 @@ Both use Bootstrap 5.3 and Font Awesome 6 from the shared `css/` and `js/` folde
 1. include `<scriptPage>.head.php` (if present) inside `<head>`;
 2. include `template/<T>/<scriptPage>.tpl.php`, or `$scriptPage` itself when it is a file path (special pages);
 3. load jQuery, `js/csrf.js`, `js/fieldtypes.js`, `js/compat-bs4.js`, Popper, the Bootstrap bundle, Tempus Dominus
-   (+ `jQuery-provider.js`), CKEditor, bootstrap-colorpicker, BsMultiSelect and `css/compat-bs4.css`, `css/colors.css`;
+   (+ `jQuery-provider.js`), CKEditor, bootstrap-colorpicker, BsMultiSelect and `css/compat-bs4.css`, `css/colors.css` (Coatstrap leaves out `colors.css`);
 4. output `<meta name="csrf-token" content="<?= csrf_token() ?>">` for logged-in users;
 5. provide what shared code uses:
    - `goModal(url, title, size)` / `postModal(url, title, data, size)` loading `ajax/modal.php?p=...` into `#filterModal`
@@ -26,22 +27,21 @@ Both use Bootstrap 5.3 and Font Awesome 6 from the shared `css/` and `js/` folde
    - `checkAll(checked)` for the row checkboxes (`.chboxoper`);
    - `#clock` filled from `ajax/time.php`;
    - `$('.color-selector').colorpicker()`;
-   - the checkbox style `input[type=checkbox] + label` (Font Awesome icons).
+   - the checkbox style `input[type=checkbox] + label` (Font Awesome icons; Coatstrap uses native checkboxes instead).
 
 Page templates: `tabel` (list), `toper.add`, `toper.edit`, `toper.drop`, `dashboard` + `dashboard-<panel>`,
 `page` (public pages), `logout`, `403`, `404`, `configerror`, `recover` (+ `recover.htm`, the e-mail body), `none`.
 
 Template variables: `$menu`, `$ruser`, `$rcr`, `$pag`, `$param`, `$fields`, `$rows`, `$st` / `$np` (current / last page),
 `$title`, `$specials`, `$stitles`, `$fontawesome`, `$inlineSpecials`, `$multiOper`, `$exportTo`, `$MESSAGE`,
-`$item`, `$addfields`, `$editfields`, `$dropfields`, `$id`, `$panelRows` / `$panelData`, `$APP_NAME`,
-`$tmpBackground`, `$tmpText`.
+`$item`, `$addfields`, `$editfields`, `$dropfields`, `$id`, `$panelRows` / `$panelData`, `$APP_NAME`.
 
-## Theme accents
+## Colors
 
-`$tmpBackground` and `$tmpText` (class names, default `bg-gray` / `text-white`, overridable in `settings.ini`) color
-the table header, modal header and Badmannahy's bars. Any class from `colors.css` can be used.
+Each template sets its own colors; there are no global color settings. Badmannahy and Arachnania use
+`bg-gray` / `text-white` from `colors.css` for their bars and headers, Coatstrap uses Bootstrap classes only.
 
-Arachnania's own colors are CSS variables in `template/Arachnania/arachnania.css` (`--ar-accent`, `--ar-sidebar-bg`, ...).
+Arachnania's own colors are CSS variables in `template/Arachnania/arachnania.css` (`--ar-accent`, `--ar-sidebar-bg`, ...).
 Its dark mode uses Bootstrap's `data-bs-theme` (saved in the browser, default: the OS preference).
 
 ## Bootstrap 4 compatibility

@@ -1,17 +1,17 @@
 <div class="row">
     <div class="col">
-        <H5>Sterge <?= count($ids) ?> randuri ?</H5>
+        <H5><?= sprintf(t('delete_rows_confirm'), count($ids)) ?></H5>
     </div>
 </div>
 <div class="row">
     <div class="col-6">
         <button class='btn btn-secondary col' type="button" onclick="postModal('multi-<?= $pp[1] ?>-dodelete-<?= $pp[3] ?>','...', $('#multiForm').serialize() )">
-            <i class="fa fa-check <?= $tmpText ?>"></i>
+            <i class="fa fa-check"></i>
         </button>
     </div>
     <div class="col-6">
         <button class='btn btn-danger col' type="button" onclick="document.location=document.location">
-            <i class="fa fa-times <?= $tmpText ?>"></i>
+            <i class="fa fa-times"></i>
         </button>
     </div>
 </div>

@@ -42,10 +42,10 @@
 <body>
 
   <?php if (isset($_SESSION['userid'])) { ?>
-    <nav class="navbar navbar-expand-sm navbar-light <?= $tmpBackground ?> fixed-top">
+    <nav class="navbar navbar-expand-sm navbar-light bg-gray fixed-top">
       <div class="container-fluid">
-      <a class="navbar-brand <?= $tmpText ?>" href="./"><i class="fas fa-home"></i></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand text-white" href="./"><i class="fas fa-home"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="<?= t('toggle_navigation') ?>">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbar1">
@@ -60,31 +60,31 @@
               foreach ($menu2 as $m2) if (($m2['id_tata'] ?? null) == $m1['id']) $n++;
               if ($n == 0) { ?>
               <li class="nav-item">
-                <a class="nav-link <?= $tmpText ?>" href="<?= $m1['link'] ?>"><?= $m1['denum'] ?></a>
+                <a class="nav-link text-white" href="<?= $m1['link'] ?>"><?= $m1['denum'] ?></a>
               </li>
             <?php } else { ?>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle <?= $tmpText ?>" href="#" id="dropdown<?= $k1 ?>" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $m1['denum'] ?></a>
-                <ul class="dropdown-menu <?= $tmpBackground ?>">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="dropdown<?= $k1 ?>" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $m1['denum'] ?></a>
+                <ul class="dropdown-menu bg-gray">
                   <?php foreach ($menu2 as $k2 => $m2) if (($m2['id_tata'] ?? null) == $m1['id'])
                     if ($m2['denum'] == '-') { ?>
                     <li class="dropdown-item dropdown-submenu m-0 p-0"><hr class="dropdown-divider"></li>
                   <?php } else 
     if ($m2['link'] != '') {    ?>
-                    <li class="dropdown-item dropdown-submenu m-0 p-0"><a class="dropdown-item <?= $tmpText ?>" href="<?php echo $m2['link'] ?>.htm"><?php echo $m2['denum'] ?></a></li>
+                    <li class="dropdown-item dropdown-submenu m-0 p-0"><a class="dropdown-item text-white" href="<?php echo $m2['link'] ?>.htm"><?php echo $m2['denum'] ?></a></li>
                     <?php } else {
                       $n = 0;
                       foreach ($menu3 as $m3) if (($m3['id_tata'] ?? null) == $m2['id']) $n++;
                       if ($n != 0) {
                     ?>
                       <li class="dropdown-item dropdown-submenu m-0 p-0">
-                        <a href="#" class="dropdown-toggle dropdown-item <?= $tmpText ?>"><?php echo $m2['denum'] ?></a>
-                        <ul class="dropdown-menu <?= $tmpBackground ?>">
+                        <a href="#" class="dropdown-toggle dropdown-item text-white"><?php echo $m2['denum'] ?></a>
+                        <ul class="dropdown-menu bg-gray">
                           <?php foreach ($menu3 as $k3 => $m3) if (($m3['id_tata'] ?? null) == $m2['id'])
                             if ($m3['denum'] == '-') { ?>
                             <li class="dropdown-item m-0 p-0"><hr class="dropdown-divider"></li>
                           <?php } else { ?>
-                            <li class="dropdown-item m-0 p-0"><a class="dropdown-item <?= $tmpText ?>" href="<?php echo $m3['link'] ?>.htm"><?php echo $m3['denum'] ?></a></li>
+                            <li class="dropdown-item m-0 p-0"><a class="dropdown-item text-white" href="<?php echo $m3['link'] ?>.htm"><?php echo $m3['denum'] ?></a></li>
                           <?php } ?>
                         </ul>
                       </li>
@@ -117,28 +117,28 @@
   ?>
   <?php if (isset($_SESSION['userid'])) { ?>
     <br /><br />
-    <nav class="navbar fixed-bottom navbar-expand-sm navbar-light <?= $tmpBackground ?>">
+    <nav class="navbar fixed-bottom navbar-expand-sm navbar-light bg-gray">
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav me-auto">
           <li class="nav-item dropup">
-            <a class="nav-link dropdown-toggle <?= $tmpText ?>" href="#" id="dds1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-            <div class="dropdown-menu <?= $tmpBackground ?>" aria-labelledby="dds1">
-              <a class="dropdown-item <?= $tmpText ?>" href="./utilizatori-key-id-<?= (int)$_SESSION['userid'] ?>.htm">Change password</a>
-              <a class="dropdown-item <?= $tmpText ?>" href="#">Settings</a>
-              <a class="dropdown-item <?= $tmpText ?>" href="./logout.htm">Logout</a>
+            <a class="nav-link dropdown-toggle text-white" href="#" id="dds1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= t('account') ?></a>
+            <div class="dropdown-menu bg-gray" aria-labelledby="dds1">
+              <a class="dropdown-item text-white" href="./utilizatori-key-id-<?= (int)$_SESSION['userid'] ?>.htm"><?= t('change_password') ?></a>
+              <a class="dropdown-item text-white" href="#"><?= t('settings') ?></a>
+              <a class="dropdown-item text-white" href="./logout.htm"><?= t('logout') ?></a>
             </div>
           </li>
           <?php if ($ruser['role'] == 1) { ?>
             <li class="nav-item dropup">
-              <a class="nav-link dropdown-toggle <?= $tmpText ?>" href="#" id="dds2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Developer</a>
-              <div class="dropdown-menu <?= $tmpBackground ?>" aria-labelledby="dds2">
-                <a class="dropdown-item <?= $tmpText ?>" href="loginmenu.htm">Menu</a>
+              <a class="nav-link dropdown-toggle text-white" href="#" id="dds2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= t('developer') ?></a>
+              <div class="dropdown-menu bg-gray" aria-labelledby="dds2">
+                <a class="dropdown-item text-white" href="loginmenu.htm"><?= t('menu') ?></a>
               </div>
             </li>
           <?php } ?>
         </ul>
         <ul class="navbar-nav my-2 my-md-0">
-          <li class="nav-item <?= $tmpText ?>" id="clock">-</li>
+          <li class="nav-item text-white" id="clock">-</li>
         </ul>
       </div>
     </nav>

@@ -1,7 +1,7 @@
 <?php
 // List page: same data / hooks as Badmannahy (header.php, line.php, {field}_show.php, bottom.php),
 // shown as a card with a scrolling table, sticky header and a footer with bulk actions + pages.
-$thClass = trim("$tmpBackground $tmpText");
+$thClass = 'bg-gray text-white';
 $canAdd = ($rcr['add_right'] ?? '') == 'Y';
 $canEdit = ($rcr['modify_right'] ?? '') == 'Y';
 $canDrop = ($rcr['delete_right'] ?? '') == 'Y';
@@ -22,12 +22,12 @@ $pageUrl = function ($i) use ($param) {
     ?>
     <div class="ar-list-tools">
         <?php if (isset($exportTo) && count($exportTo) > 0) { ?>
-            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="goModal('export-<?= $pag ?>', 'Export')">
-                <i class="fa-solid fa-download me-1"></i> Export
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="goModal('export-<?= $pag ?>', '<?= t('export') ?>')">
+                <i class="fa-solid fa-download me-1"></i> <?= t('export') ?>
             </button>
         <?php } ?>
         <?php if ($canAdd) { ?>
-            <a href="./<?= $param[0] ?>-add.htm" class="btn btn-primary"><i class="fa-solid fa-plus me-1"></i> Adauga</a>
+            <a href="./<?= $param[0] ?>-add.htm" class="btn btn-primary"><i class="fa-solid fa-plus me-1"></i> <?= t('add') ?></a>
         <?php } ?>
     </div>
 </div>
@@ -55,13 +55,13 @@ $pageUrl = function ($i) use ($param) {
                     <?php } ?>
                     <th class="<?= $thClass ?> text-center" style="width:2.5rem">
                         <input type="checkbox" id="ba" onchange="checkAll($(this).is(':checked'))">
-                        <label for="ba" title="Select all"></label>
+                        <label for="ba" title="<?= t('select_all') ?>"></label>
                     </th>
                 </tr>
                 <tr class="ar-tools-row">
                     <th class="<?= $thClass ?> text-center">
                         <?php if (($filtersExists ?? 0) != 0 && ($showFilter ?? '') != 'no') { ?>
-                            <span class="fa-stack" onclick="document.clearfilters.submit()" style="cursor:pointer" title="Clear filters">
+                            <span class="fa-stack" onclick="document.clearfilters.submit()" style="cursor:pointer" title="<?= t('clear_filters') ?>">
                                 <i class="fa-solid fa-filter text-warning fa-stack-1x"></i>
                                 <i class="fa-solid fa-ban fa-stack-1x fa-lg text-danger"></i>
                             </span>
@@ -71,16 +71,16 @@ $pageUrl = function ($i) use ($param) {
                         <th class="<?= $thClass ?>">
                             <form action="" method="post" id="ord_<?= $k ?>" class="ar-th-tools">
                                 <?php if (($showFilter ?? '') != 'no') { ?>
-                                    <i class="fa-solid fa-filter<?= isset($_SESSION['filter'][$k]) ? ' ar-on text-warning' : '' ?>" title="Filtrare" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="goModal('filter-<?= $pag ?>-<?= $k ?>', 'Filtrare')"></i>
+                                    <i class="fa-solid fa-filter<?= isset($_SESSION['filter'][$k]) ? ' ar-on text-warning' : '' ?>" title="<?= t('filter') ?>" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="goModal('filter-<?= $pag ?>-<?= $k ?>', '<?= t('filter') ?>')"></i>
                                 <?php } else { ?><span></span><?php } ?>
                                 <input name="order" type="hidden" value="<?= $k ?>" />
                                 <?php if (($showOrder ?? '') != 'no') {
                                     if (!isset($_SESSION['order'][$k])) { ?>
                                         <input name="ordertype" type="hidden" value="up" />
-                                        <i class="fa-solid fa-sort" title="Sort" onclick="$('#ord_<?= $k ?>').submit()"></i>
+                                        <i class="fa-solid fa-sort" title="<?= t('sort') ?>" onclick="$('#ord_<?= $k ?>').submit()"></i>
                                     <?php } else { ?>
                                         <input id="ord_<?= $k ?>_type" name="ordertype" type="hidden" value="<?= ($_SESSION['order'][$k] == 'up' ? 'dn' : 'up') ?>" />
-                                        <i class="fa-solid ar-on text-warning fa-sort-<?= $_SESSION['order'][$k] == 'up' ? 'up' : 'down' ?>" title="Sort (right click: remove)" onclick="$('#ord_<?= $k ?>').submit()" oncontextmenu="$('#ord_<?= $k ?>_type').val('');$('#ord_<?= $k ?>').submit(); return false;"></i>
+                                        <i class="fa-solid ar-on text-warning fa-sort-<?= $_SESSION['order'][$k] == 'up' ? 'up' : 'down' ?>" title="<?= t('sort_remove') ?>" onclick="$('#ord_<?= $k ?>').submit()" oncontextmenu="$('#ord_<?= $k ?>_type').val('');$('#ord_<?= $k ?>').submit(); return false;"></i>
                                 <?php }
                                 } ?>
                             </form>
@@ -98,7 +98,7 @@ $pageUrl = function ($i) use ($param) {
                         <td colspan="<?= $colCount ?>">
                             <div class="ar-empty">
                                 <i class="fa-regular fa-folder-open"></i>
-                                <?= $MESSAGE ? $MESSAGE : 'No records to show !' ?>
+                                <?= $MESSAGE ? $MESSAGE : t('no_records') ?>
                             </div>
                         </td>
                     </tr>
@@ -112,7 +112,7 @@ $pageUrl = function ($i) use ($param) {
                             <td class="text-center ar-row-actions">
                                 <?php if (count($rowSpecials) > 0 || $canEdit || $canDrop) { ?>
                                     <div class="dropdown">
-                                        <button type="button" class="btn btn-sm btn-light" data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false" aria-label="Actions">
+                                        <button type="button" class="btn btn-sm btn-light" data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false" aria-label="<?= t('actions') ?>">
                                             <i class="fa-solid fa-ellipsis-vertical"></i>
                                         </button>
                                         <ul class="dropdown-menu">
@@ -120,11 +120,11 @@ $pageUrl = function ($i) use ($param) {
                                                 <li><a class="dropdown-item" href="./<?= $param[0] ?>-<?= $sp ?>-id-<?= $r[$id] ?>.htm"><i class="fa fa-<?= $fontawesome[$sp] ?? $sp ?> me-2"></i><?= ucfirst($stitles[$sp] ?? $sp) ?></a></li>
                                             <?php } ?>
                                             <?php if ($canEdit) { ?>
-                                                <li><a class="dropdown-item" href="./<?= $param[0] ?>-edit-id-<?= $r[$id] ?>.htm"><i class="fa-solid fa-pen me-2 text-primary"></i>Editeaza</a></li>
+                                                <li><a class="dropdown-item" href="./<?= $param[0] ?>-edit-id-<?= $r[$id] ?>.htm"><i class="fa-solid fa-pen me-2 text-primary"></i><?= t('edit') ?></a></li>
                                             <?php } ?>
                                             <?php if ($canDrop) { ?>
                                                 <li><hr class="dropdown-divider"></li>
-                                                <li><a class="dropdown-item text-danger" href="./<?= $param[0] ?>-drop-id-<?= $r[$id] ?>.htm"><i class="fa-solid fa-trash me-2"></i>Sterge</a></li>
+                                                <li><a class="dropdown-item text-danger" href="./<?= $param[0] ?>-drop-id-<?= $r[$id] ?>.htm"><i class="fa-solid fa-trash me-2"></i><?= t('delete') ?></a></li>
                                             <?php } ?>
                                         </ul>
                                     </div>
@@ -156,31 +156,31 @@ $pageUrl = function ($i) use ($param) {
 
     <div class="ar-list-foot">
         <?php if (!isset($dontshowpages) && ($np ?? 0) > 0) { ?>
-            <nav aria-label="Pagini">
+            <nav aria-label="<?= t('pages') ?>">
                 <ul class="pagination pagination-sm mb-0">
-                    <li class="page-item<?= $st == 0 ? ' disabled' : '' ?>"><a class="page-link" href="<?= $pageUrl(0) ?>" aria-label="First"><i class="fa-solid fa-angles-left"></i></a></li>
-                    <li class="page-item<?= $st == 0 ? ' disabled' : '' ?>"><a class="page-link" href="<?= $pageUrl(max(0, $st - 1)) ?>" aria-label="Previous"><i class="fa-solid fa-angle-left"></i></a></li>
+                    <li class="page-item<?= $st == 0 ? ' disabled' : '' ?>"><a class="page-link" href="<?= $pageUrl(0) ?>" aria-label="<?= t('page_first') ?>"><i class="fa-solid fa-angles-left"></i></a></li>
+                    <li class="page-item<?= $st == 0 ? ' disabled' : '' ?>"><a class="page-link" href="<?= $pageUrl(max(0, $st - 1)) ?>" aria-label="<?= t('page_previous') ?>"><i class="fa-solid fa-angle-left"></i></a></li>
                     <?php for ($i = $st - 3; $i <= $st + 3; $i++) if ($i >= 0 && $i <= $np) { ?>
                         <li class="page-item<?= $i == $st ? ' active' : '' ?>"><a class="page-link" href="<?= $pageUrl($i) ?>"><?= $i + 1 ?></a></li>
                     <?php } ?>
-                    <li class="page-item<?= $st == $np ? ' disabled' : '' ?>"><a class="page-link" href="<?= $pageUrl(min($np, $st + 1)) ?>" aria-label="Next"><i class="fa-solid fa-angle-right"></i></a></li>
-                    <li class="page-item<?= $st == $np ? ' disabled' : '' ?>"><a class="page-link" href="<?= $pageUrl($np) ?>" aria-label="Last"><i class="fa-solid fa-angles-right"></i></a></li>
+                    <li class="page-item<?= $st == $np ? ' disabled' : '' ?>"><a class="page-link" href="<?= $pageUrl(min($np, $st + 1)) ?>" aria-label="<?= t('page_next') ?>"><i class="fa-solid fa-angle-right"></i></a></li>
+                    <li class="page-item<?= $st == $np ? ' disabled' : '' ?>"><a class="page-link" href="<?= $pageUrl($np) ?>" aria-label="<?= t('page_last') ?>"><i class="fa-solid fa-angles-right"></i></a></li>
                 </ul>
             </nav>
         <?php } ?>
 
         <div class="d-flex flex-wrap gap-2 align-items-center justify-content-end ms-auto">
             <?php if (is_array($multiOper ?? null) || $canDrop) { ?>
-                <span class="text-body-secondary small">Selectate:</span>
+                <span class="text-body-secondary small"><?= t('selected') ?></span>
             <?php } ?>
             <?php if (is_array($multiOper ?? null)) foreach ($multiOper as $k => $v) { ?>
                 <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="postModal('multi-<?= $pag ?>-<?= $k ?>-<?= $id ?>', '<?= $v ?>', $('#multiForm').serialize())"><?= $v ?></button>
             <?php } ?>
             <?php if ($canDrop) { ?>
-                <button class="btn btn-sm btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="postModal('multi-<?= $pag ?>-delete-<?= $id ?>', 'Sterge', $('#multiForm').serialize())"><i class="fa-solid fa-trash me-1"></i>Sterge</button>
+                <button class="btn btn-sm btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="postModal('multi-<?= $pag ?>-delete-<?= $id ?>', '<?= t('delete') ?>', $('#multiForm').serialize())"><i class="fa-solid fa-trash me-1"></i><?= t('delete') ?></button>
             <?php } ?>
             <?php if (is_array($multiOper ?? null) || $canDrop) { ?>
-                <i class="fa-solid fa-turn-up text-body-secondary ar-sel-arrow" title="Selected rows"></i>
+                <i class="fa-solid fa-turn-up text-body-secondary ar-sel-arrow" title="<?= t('selected_rows') ?>"></i>
             <?php } ?>
         </div>
     </div>

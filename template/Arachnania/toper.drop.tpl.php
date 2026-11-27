@@ -1,11 +1,11 @@
 <form action="" method="post">
     <div class="card ar-page-card border-danger-subtle">
         <div class="card-header bg-danger-subtle text-danger-emphasis">
-            <i class="fa-solid fa-trash me-2"></i><?= $title ?? $pag ?> — Stergere
+            <i class="fa-solid fa-trash me-2"></i><?= $title ?? $pag ?> — <?= t('form_deleting') ?>
         </div>
         <div class="card-body">
             <input type="hidden" name="item" value="1" />
-            <p class="mb-3">Sigur stergi inregistrarea de mai jos?</p>
+            <p class="mb-3"><?= t('delete_confirm') ?></p>
             <div class="table-responsive">
                 <table class="table table-bordered table-sm align-middle">
                     <tbody>
@@ -25,8 +25,8 @@
                 </table>
             </div>
             <div class="ar-actions">
-                <a href="./<?= $param[0] ?>.htm" class="btn btn-outline-secondary"><i class="fa-solid fa-xmark me-1"></i> Anuleaza</a>
-                <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash me-1"></i> Sterge</button>
+                <a href="./<?= $param[0] ?>.htm" class="btn btn-outline-secondary"><i class="fa-solid fa-xmark me-1"></i> <?= t('cancel') ?></a>
+                <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash me-1"></i> <?= t('delete') ?></button>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
     <?php if (count($panelRows ?? []) == 0) { ?>
         <div class="card"><div class="card-body ar-empty">
             <i class="fa-solid fa-table-cells-large"></i>
-            No dashboard panels yet. Add them in <a href="./dashboard.htm">Dashboard</a> settings.
+            <?= sprintf(t('no_dashboard_panels'), '<a href="./dashboard.htm">' . t('dashboard') . '</a>') ?>
         </div></div>
     <?php } ?>
     <?php foreach (($panelRows ?? []) as $r) { ?>
@@ -18,7 +18,7 @@
                             <div class="card h-100" rel="<?= (int)$r2['id'] ?>">
                                 <div class="card-header">
                                     <span><?= htmlspecialchars($r2['denumire']) ?></span>
-                                    <i class="fa-solid fa-chevron-<?= $open ? 'up' : 'down' ?> ar-collapse-btn" role="button" aria-label="Toggle"></i>
+                                    <i class="fa-solid fa-chevron-<?= $open ? 'up' : 'down' ?> ar-collapse-btn" role="button" aria-label="<?= t('toggle') ?>"></i>
                                 </div>
                                 <div class="card-body"<?= $open ? '' : ' style="display:none"' ?>>
                                     <?php include($panelTpl) ?>

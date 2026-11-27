@@ -33,13 +33,13 @@ $zi = $panelData['zi'];
       <th><a href="?data=<?php echo date("Y-m-d", strtotime(date("Y-m-d", $dd) . " + 1 month")) ?>" style="float:right"><strong class="fa fa-chevron-right"></strong></a></th>
     </tr>
     <tr bgcolor="#FFFFFF" style="font-size:14px">
-      <td><strong>Lu</strong></td>
-      <td><strong>Ma</strong></td>
-      <td><strong>Mi</strong></td>
-      <td><strong>Jo</strong></td>
-      <td><strong>Vi</strong></td>
-      <td><strong>Sa</strong></td>
-      <td><strong>Du</strong></td>
+      <td><strong><?= t('day_short_1') ?></strong></td>
+      <td><strong><?= t('day_short_2') ?></strong></td>
+      <td><strong><?= t('day_short_3') ?></strong></td>
+      <td><strong><?= t('day_short_4') ?></strong></td>
+      <td><strong><?= t('day_short_5') ?></strong></td>
+      <td><strong><?= t('day_short_6') ?></strong></td>
+      <td><strong><?= t('day_short_7') ?></strong></td>
     </tr>
   </thead>
   <tbody>

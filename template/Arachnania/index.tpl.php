@@ -7,7 +7,7 @@ $T = 'template/' . $APP_TEMPLATE;
 $h = fn($v) => htmlspecialchars((string)($v ?? ''), ENT_QUOTES);
 $loggedIn = isset($_SESSION['userid']);
 $pageTitle = $title ?? ($loggedIn ? ucfirst((string)$pag) : '');
-if (($scriptPage ?? '') == 'dashboard') $pageTitle = 'Dashboard';
+if (($scriptPage ?? '') == 'dashboard') $pageTitle = t('dashboard');
 
 /** FA icon for a login__menu.icon value (legacy sprite names mapped, other values used as FA names) */
 $menuIcon = function ($icon, $hasChildren) {
@@ -76,6 +76,7 @@ $initials = mb_strtoupper(mb_substr($userName, 0, 1)) ?: '?';
         })();
     </script>
     <meta name="csrf-token" content="<?= $loggedIn ? csrf_token() : '' ?>" />
+    <script>window.APP_LNG = <?= json_encode(['loading' => t('loading'), 'error' => t('error'), 'saved' => t('saved'), 'save_failed' => t('save_failed'), 'editing_field' => t('editing_field'), 'close' => t('close')]) ?>;</script>
 
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/all.min.css" />
@@ -109,15 +110,15 @@ $initials = mb_strtoupper(mb_substr($userName, 0, 1)) ?: '?';
 
     <?php if ($loggedIn) { ?>
         <div class="ar-shell">
-            <aside class="ar-sidebar" aria-label="Menu">
+            <aside class="ar-sidebar" aria-label="<?= t('menu') ?>">
                 <a class="ar-brand" href="./">
                     <span class="ar-brand-icon"><i class="fa-solid fa-spider"></i></span>
                     <span class="ar-brand-text"><?= $h($APP_NAME) ?></span>
                 </a>
                 <nav class="ar-nav">
                     <ul>
-                        <li><a class="ar-nav-link<?= ($scriptPage ?? '') == 'dashboard' ? ' active' : '' ?>" href="./"><i class="ar-ico fa-solid fa-house"></i><span class="ar-label">Dashboard</span></a></li>
-                        <li class="ar-nav-section">Meniu</li>
+                        <li><a class="ar-nav-link<?= ($scriptPage ?? '') == 'dashboard' ? ' active' : '' ?>" href="./"><i class="ar-ico fa-solid fa-house"></i><span class="ar-label"><?= t('dashboard') ?></span></a></li>
+                        <li class="ar-nav-section"><?= t('menu') ?></li>
                         <?php $renderMenu(0, 1); ?>
                     </ul>
                 </nav>
@@ -126,22 +127,22 @@ $initials = mb_strtoupper(mb_substr($userName, 0, 1)) ?: '?';
 
             <div class="ar-main">
                 <header class="ar-topbar">
-                    <button class="ar-icon-btn" type="button" data-ar-sidebar-toggle aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+                    <button class="ar-icon-btn" type="button" data-ar-sidebar-toggle aria-label="<?= t('toggle_navigation') ?>"><i class="fa-solid fa-bars"></i></button>
                     <h1 class="ar-title"><?= $pageTitle ?></h1>
                     <span class="ar-clock d-none d-md-inline" id="clock">&nbsp;</span>
-                    <button class="ar-icon-btn" type="button" data-ar-theme-toggle aria-label="Light / dark"><i class="fa-solid fa-moon"></i></button>
+                    <button class="ar-icon-btn" type="button" data-ar-theme-toggle aria-label="<?= t('light_dark') ?>"><i class="fa-solid fa-moon"></i></button>
                     <div class="dropdown">
-                        <button class="ar-icon-btn p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Account">
+                        <button class="ar-icon-btn p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="<?= t('account') ?>">
                             <span class="ar-avatar"><?= $h($initials) ?></span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li class="dropdown-header"><?= $h($userName) ?></li>
-                            <li><a class="dropdown-item" href="./utilizatori-key-id-<?= (int)$_SESSION['userid'] ?>.htm"><i class="fa-solid fa-key me-2"></i>Change password</a></li>
+                            <li><a class="dropdown-item" href="./utilizatori-key-id-<?= (int)$_SESSION['userid'] ?>.htm"><i class="fa-solid fa-key me-2"></i><?= t('change_password') ?></a></li>
                             <?php if (($ruser['role'] ?? 0) == 1) { ?>
-                                <li><a class="dropdown-item" href="./loginmenu.htm"><i class="fa-solid fa-sitemap me-2"></i>Developer · Menu</a></li>
+                                <li><a class="dropdown-item" href="./loginmenu.htm"><i class="fa-solid fa-sitemap me-2"></i><?= t('developer_menu') ?></a></li>
                             <?php } ?>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-danger" href="./logout.htm"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
+                            <li><a class="dropdown-item text-danger" href="./logout.htm"><i class="fa-solid fa-right-from-bracket me-2"></i><?= t('logout') ?></a></li>
                         </ul>
                     </div>
                 </header>
@@ -159,9 +160,9 @@ $initials = mb_strtoupper(mb_substr($userName, 0, 1)) ?: '?';
         <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
-                    <div class="modal-header <?= $tmpBackground ?> <?= $tmpText ?>">
+                    <div class="modal-header bg-gray text-white">
                         <h5 class="modal-title" id="filterModalTitle">&nbsp;</h5>
-                        <button type="button" class="btn-close<?= strpos((string)$tmpText, 'white') !== false || strpos((string)$tmpText, 'light') !== false ? ' btn-close-white' : '' ?>" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="<?= t('close') ?>"></button>
                     </div>
                     <div class="modal-body"></div>
                 </div>
@@ -170,21 +171,21 @@ $initials = mb_strtoupper(mb_substr($userName, 0, 1)) ?: '?';
 
         <!-- inline cell editor (right click on a list cell) -->
         <div id="contextMenu" class="card" style="display:none">
-            <div class="card-header d-flex align-items-center <?= $tmpBackground ?> <?= $tmpText ?>">
+            <div class="card-header d-flex align-items-center bg-gray text-white">
                 <span class="panel-info me-auto"></span>
                 <i class="fa-solid fa-xmark" data-ar-close style="cursor:pointer"></i>
             </div>
             <div class="card-body">
                 <div class="panel-data"></div>
                 <div class="panel-submit d-flex gap-2 mt-3">
-                    <button type="button" class="btn btn-primary flex-fill" onclick="salveaza()">Ok</button>
-                    <button type="button" class="btn btn-outline-secondary flex-fill" data-ar-close>Cancel</button>
+                    <button type="button" class="btn btn-primary flex-fill" onclick="salveaza()"><?= t('ok') ?></button>
+                    <button type="button" class="btn btn-outline-secondary flex-fill" data-ar-close><?= t('cancel') ?></button>
                 </div>
             </div>
         </div>
     <?php } else { ?>
         <div class="ar-auth">
-            <button class="ar-icon-btn ar-auth-theme" type="button" data-ar-theme-toggle aria-label="Light / dark"><i class="fa-solid fa-moon"></i></button>
+            <button class="ar-icon-btn ar-auth-theme" type="button" data-ar-theme-toggle aria-label="<?= t('light_dark') ?>"><i class="fa-solid fa-moon"></i></button>
             <div class="ar-auth-inner" id="arContent">
                 <div class="ar-auth-brand">
                     <span class="ar-brand-icon"><i class="fa-solid fa-spider"></i></span>

@@ -1,6 +1,6 @@
 <div class="col">
     <?php if (isset($exportTo)) if (count($exportTo) > 0) { ?>
-        <button type="button" class="btn btn-secondary float-end" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="goModal('export-<?= $pag ?>', 'Export')">
+        <button type="button" class="btn btn-secondary float-end" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="goModal('export-<?= $pag ?>', '<?= t('export') ?>')">
             <i class="fas fa-download"></i>
         </button>
     <?php } ?>
@@ -16,10 +16,10 @@
             $iSpecials[$sp] = $btn;
     ?>
     <table class="table table-striped table-bordered table-sm">
-        <thead class="<?= $tmpBackground ?> <?= $tmpText ?>">
+        <thead class="bg-gray text-white">
             <tr class="text-center">
                 <th width="3%">
-                    <a href="<?php echo $param[0] ?>-add.htm" class="btn btn-light <?= $tmpText ?>"><i class="fas fa-plus"></i></a>
+                    <a href="<?php echo $param[0] ?>-add.htm" class="btn btn-light text-white"><i class="fas fa-plus"></i></a>
                 </th>
                 <?php foreach ($fields as $f) { ?>
                     <th>
@@ -31,7 +31,7 @@
                 <?php } ?>
                 <th width="2%">&nbsp;</th>
             </tr>
-            <tr class="text-center <?= $tmpBackground ?>">
+            <tr class="text-center bg-gray">
                 <th>
                     <?php if (($filtersExists != 0) && (($showFilter ?? '') != 'no')) { ?>
                         <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" name="clearfilters">
@@ -47,14 +47,14 @@
                     <th>
                         <form action="" method="post" id="ord_<?php echo $k ?>">
                             <?php if (($showFilter ?? '') != 'no') { ?>
-                                <i class="fa fa-filter float-start text-<?php echo (isset($_SESSION['filter'][$k]) ? 'orange' : 'white'); ?>" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="goModal('filter-<?php echo $pag ?>-<?php echo $k ?>', 'Filtrare')"></i>
+                                <i class="fa fa-filter float-start text-<?php echo (isset($_SESSION['filter'][$k]) ? 'orange' : 'white'); ?>" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="goModal('filter-<?php echo $pag ?>-<?php echo $k ?>', '<?= t('filter') ?>')"></i>
                             <?php } ?>
                             <input name="order" type="hidden" value="<?php echo $k ?>" />
                             <?php if (($showOrder ?? '') != 'no') {
                                 if (!isset($_SESSION['order'][$k])) {
                             ?>
                                     <input name="ordertype" type="hidden" value="up" />
-                                    <i class="fa fa-sort float-end <?= $tmpText ?>" onclick="$('#ord_<?php echo $k ?>').submit()" style="cursor:pointer"></i>
+                                    <i class="fa fa-sort float-end text-white" onclick="$('#ord_<?php echo $k ?>').submit()" style="cursor:pointer"></i>
                                 <?php } else { ?>
                                     <input id="ord_<?php echo $k ?>_type" name="ordertype" type="hidden" value="<?php echo ($_SESSION['order'][$k] == 'up' ? 'dn' : 'up') ?>" />
                                     <i class="fa float-end text-orange shadow-white fa-sort-<?php echo $_SESSION['order'][$k] == "up" ? "up" : "down" ?>" onclick="$('#ord_<?php echo $k ?>').submit()" oncontextmenu="$('#ord_<?php echo $k ?>_type').val('');$('#ord_<?php echo $k ?>').submit(); return false;" style="cursor:pointer"></i>
@@ -105,10 +105,10 @@
                                             <a class="dropdown-item" href="./<?= $param[0] ?>-<?= $sp ?>-id-<?= $r[$id] ?>.htm"><i class="fa fa-<?= (isset($fontawesome[$sp]) ? $fontawesome[$sp] : $sp) ?>"></i> <?php echo ucfirst($spd) ?></a>
                                         <?php } ?>
                                         <?php if (($rcr['modify_right'] ?? '') == 'Y') { ?>
-                                            <a class="dropdown-item" href="./<?php echo $param[0] ?>-edit-id-<?php echo $r[$id] ?>.htm"><i class="fa fa-pencil-alt text-blue shadow-maroon"></i> Editeaza</a>
+                                            <a class="dropdown-item" href="./<?php echo $param[0] ?>-edit-id-<?php echo $r[$id] ?>.htm"><i class="fa fa-pencil-alt text-blue shadow-maroon"></i> <?= t('edit') ?></a>
                                         <?php } ?>
                                         <?php if (($rcr['delete_right'] ?? '') == 'Y') { ?>
-                                            <a class="dropdown-item" href="./<?php echo $param[0] ?>-drop-id-<?php echo $r[$id] ?>.htm"><i class="fa fa-times text-red shadow-maroon"></i> Sterge</a>
+                                            <a class="dropdown-item" href="./<?php echo $param[0] ?>-drop-id-<?php echo $r[$id] ?>.htm"><i class="fa fa-times text-red shadow-maroon"></i> <?= t('delete') ?></a>
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -145,7 +145,7 @@
                             <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="postModal('multi-<?= $pag ?>-<?php echo $k ?>-<?= $id ?>', '<?php echo $v ?>', $('#multiForm').serialize())"><?php echo $v ?></button>
                         <?php } ?>
                         <?php if (($rcr['delete_right'] ?? '') == 'Y') { ?>
-                            <button class="btn <?= $tmpBackground ?> <?= $tmpText ?>" type="button" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="postModal('multi-<?= $pag ?>-delete-<?= $id ?>', 'Sterge', $('#multiForm').serialize())">STERGE</button>
+                            <button class="btn bg-gray text-white" type="button" data-bs-toggle="modal" data-bs-target="#filterModal" onclick="postModal('multi-<?= $pag ?>-delete-<?= $id ?>', '<?= t('delete') ?>', $('#multiForm').serialize())"><?= t('delete') ?></button>
                         <?php };
                         if ((($rcr['delete_right'] ?? '') == 'Y') || (is_array($multiOper ?? null))) {
                         ?>
@@ -177,7 +177,7 @@
             if (($i >= 0) && ($i <= $np)) {
         ?>
             <li class="page-item">
-                <a class="page-link<?= $i == $st ? " $tmpBackground $tmpText" : ' text-maroon' ?>" href="./<?= $param[0] . '-' . $i . (isset($param[2]) ? "-" . implode("-", array_slice($param, 2)) : '') ?>.htm">
+                <a class="page-link<?= $i == $st ? ' bg-gray text-white' : ' text-maroon' ?>" href="./<?= $param[0] . '-' . $i . (isset($param[2]) ? "-" . implode("-", array_slice($param, 2)) : '') ?>.htm">
                     <?= $i + 1 ?>
                 </a>
             </li>
@@ -201,9 +201,9 @@
 <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header <?= $tmpBackground ?> <?= $tmpText ?>">
-                <h5 class="modal-title" id="filterModalTitle">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-header bg-gray text-white">
+                <h5 class="modal-title" id="filterModalTitle">&nbsp;</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?= t('close') ?>"></button>
             </div>
             <div class="modal-body">
             </div>
@@ -211,7 +211,7 @@
     </div>
 </div>
 <div id="contextMenu" class="card clearfix" style="display:none">
-    <div class="card-header bg-secondary <?= $tmpText ?>">
+    <div class="card-header bg-secondary text-white">
         <span class="panel-info"></span>
         <i class="fa fa-times float-end" style="cursor:pointer"></i>
     </div>
@@ -219,15 +219,15 @@
         <div class="row panel-data"></div>
         <div class="row panel-submit" style="margin-top:10px">
             <div class="col">&nbsp;</div>
-            <div class="col"><button type="button" class="btn btn-primary spc" onclick="salveaza()" style="width: 100%">Ok</button></div>
-            <div class="col"><button type="button" class="btn btn-primary spc" onclick="$('#contextMenu').hide();" style="width: 100%">Cancel</button></div>
+            <div class="col"><button type="button" class="btn btn-primary spc" onclick="salveaza()" style="width: 100%"><?= t('ok') ?></button></div>
+            <div class="col"><button type="button" class="btn btn-primary spc" onclick="$('#contextMenu').hide();" style="width: 100%"><?= t('cancel') ?></button></div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
     $(function() {
         $("body").on("contextmenu", ".cell", function(e) {
-            $("#contextMenu .panel-info").html('Editare ' + $(this).attr("title"));
+            $("#contextMenu .panel-info").html(<?= json_encode(t('editing_field') . ' ') ?> + $(this).attr("title"));
             $("#contextMenu .panel-data").html('<i class="fa fa-spinner fa-pulse fa-2x"></i>');
             $("#contextMenu .panel-submit").slideUp('fast');
             mx = e.clientX;

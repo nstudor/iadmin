@@ -1,6 +1,6 @@
 <?php
 if (!isset($fieldDef['defaultValue'])) $fieldDef['defaultValue'] = '';
-if (!isset($fieldDef['defaultResult'])) $fieldDef['defaultResult'] = 'N/A';
+if (!isset($fieldDef['defaultResult'])) $fieldDef['defaultResult'] = t('not_available');
 if (!isset($fieldDef['field'])) $fieldDef['field'] = '*';
 
 if ($fieldValue == $fieldDef['defaultValue']) {

@@ -5,7 +5,7 @@ $crtPath = getcwd();
 
 $im1 = @imagecreatefromstring(file_get_contents($tempName));
 if ($im1 === false) {
-    $MESSAGE = "The uploaded file is not a valid image !";
+    $MESSAGE = t('invalid_image');
     return;
 }
 
@@ -85,7 +85,7 @@ switch ($fields[$k]['filetype']) {
         break;
 }
 $size2 = filesize($crtPath . $fields[$k]['path'] . $fileName);
-if ($size2 == 0) $MESSAGE = "Error saving file !";
+if ($size2 == 0) $MESSAGE = t('file_save_error');
 
 if (is_array($fields[$k]['plugin'])) {
     include('imagePlugins/' . $fields[$k]['plugin']['name'] . '.php');

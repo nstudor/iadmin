@@ -18,7 +18,7 @@
                 setTimeout(
                     function() {
                         $('#contextMenu').hide();
-                        goModal('upload-<?= ($fieldDef['uri'] ?? '') . "-$fieldId-" . ($fieldDef['rowId'] ?? ''); ?>', 'Upload');
+                        goModal('upload-<?= ($fieldDef['uri'] ?? '') . "-$fieldId-" . ($fieldDef['rowId'] ?? ''); ?>', '<?= t('upload') ?>');
                         $('#filterModal').modal('show');
                     }, 0);
             </script>

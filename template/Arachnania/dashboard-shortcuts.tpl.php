@@ -29,6 +29,6 @@ $h = fn($v) => htmlspecialchars((string)($v ?? ''), ENT_QUOTES);
         </div>
     <?php } ?>
     <?php if (count($panelData ?? []) == 0) { ?>
-        <div class="col-12 text-body-secondary small">No shortcuts.</div>
+        <div class="col-12 text-body-secondary small"><?= t('no_shortcuts') ?></div>
     <?php } ?>
 </div>

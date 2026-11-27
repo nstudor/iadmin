@@ -8,19 +8,16 @@ if (empty($_SESSION['userid'])) {
     exit;
 }
 include('../settings.ini');
-// theme defaults, can be overridden in settings.ini
-$tmpBackground ??= 'bg-gray';
-$tmpText ??= 'text-white';
 include('../utils.php');
-// every modal request (GET or POST) must carry the session CSRF token
-if (!csrf_ok()) {
-    http_response_code(403);
-    die(showMessage('Invalid or expired token. Reload the page and try again.', 'danger'));
-}
 include('../lang/english.lng.php');
 $_DEFLNG = $_LNG;
 if (file_exists('../lang/' . $APP_LANGUAGE . '.lng.php')) {
     include('../lang/' . $APP_LANGUAGE . '.lng.php');
+}
+// every modal request (GET or POST) must carry the session CSRF token
+if (!csrf_ok()) {
+    http_response_code(403);
+    die(showMessage(t('invalid_token'), 'danger'));
 }
 include('../connector/' . $APP_DB_TYPE . '.con.php');
 db_connect();
@@ -42,7 +39,7 @@ else $needRight = $actionRights[$action] ?? 'modify_right';
 $rcr = load_rights($pag);
 if (!has_right($rcr, $needRight)) {
     http_response_code(403);
-    die(showMessage('Access denied !', 'danger'));
+    die(showMessage(t('access_denied'), 'danger'));
 }
 
 $id = 'id';

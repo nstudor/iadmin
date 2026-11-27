@@ -1,13 +1,13 @@
 <?php 
 $tabel="login__roles";
 $fields=array(
-    'rolename'=>"Denumire rol",
+    'rolename'=>t('fld_role_name'),
 );
 $order="";
-$title="Roluri utilizatori";
+$title=t('title_roles');
 $specials=array('rights');
 $stitles=array(
-    'rights'=>'Rights'
+    'rights'=>t('special_rights')
 );
 $fontawesome=array(
     'rights'=>'eye green shadow-maroon'

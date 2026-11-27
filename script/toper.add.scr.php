@@ -8,7 +8,7 @@ if (isset($_POST['item']))
                 $tempName = $_FILES['file']['tmp_name'][$k];
                 if ($_FILES['file']['error'][$k] == 0)
                     include("fieldtypes/" . $fields[$k]['type'] . ".process.php");
-                else $MESSAGE = "Error uploading file !";
+                else $MESSAGE = t('upload_error');
             }
         }
         $newId = false;

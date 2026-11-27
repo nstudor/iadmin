@@ -15,9 +15,9 @@ $ag = $panelData['slots'] ?? [];
                     <td><?= $slot ? ($cont ? '<span class="text-body-secondary">&#8942;</span>' : htmlspecialchars($slot['subiect'])) : '' ?></td>
                     <td class="text-end" style="width:3rem">
                         <?php if (!$slot) { ?>
-                            <a class="text-body-secondary" href="./agenda-add.htm?data=<?= date('Y-m-d', $dd) ?>&ora=<?= $i ?>" title="Add"><i class="fa-solid fa-plus"></i></a>
+                            <a class="text-body-secondary" href="./agenda-add.htm?data=<?= date('Y-m-d', $dd) ?>&ora=<?= $i ?>" title="<?= t('add') ?>"><i class="fa-solid fa-plus"></i></a>
                         <?php } elseif (!$cont) { ?>
-                            <a href="./agenda-edit-id-<?= (int)$slot['id'] ?>.htm" title="Open"><i class="fa-solid fa-eye"></i></a>
+                            <a href="./agenda-edit-id-<?= (int)$slot['id'] ?>.htm" title="<?= t('open') ?>"><i class="fa-solid fa-eye"></i></a>
                         <?php } ?>
                     </td>
                 </tr>

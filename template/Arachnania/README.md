@@ -11,8 +11,7 @@ In `settings.ini`:
 $APP_TEMPLATE="Arachnania";
 ```
 
-(or choose **Arachnania** in `setup/`). Optional accents from `settings.ini` are still used:
-`$tmpBackground` / `$tmpText` (table header, modal header).
+(or choose **Arachnania** in `setup/`).
 
 ## Libraries
 

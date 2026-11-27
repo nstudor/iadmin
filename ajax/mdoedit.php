@@ -4,14 +4,14 @@
 $k = $_POST['field'] ?? '';
 if (!array_key_exists($k, $fields) || (is_array($fields[$k]) && !empty($fields[$k]['noEdit']))) {
     http_response_code(400);
-    die(showMessage('Invalid field !', 'danger'));
+    die(showMessage(t('invalid_field'), 'danger'));
 }
 $item = $_POST['item'] ?? '';
 // awesomecase fields only accept one of their values
 if (is_array($fields[$k]) && ($fields[$k]['type'] ?? '') == 'awesomecase'
     && !in_array((string)$item, array_map('strval', awesomecase_def($fields[$k])['values']), true)) {
     http_response_code(400);
-    die(showMessage('Invalid value !', 'danger'));
+    die(showMessage(t('invalid_value'), 'danger'));
 }
 $where = "$id='" . db_esc($_POST['id'] ?? '') . "'";
 db_update([$k => $item], $tabel, $where);

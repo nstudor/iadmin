@@ -82,13 +82,13 @@
 <br><br>
 <div class="container">
 <table class="table table-striped table-bordered">
-    <thead class="bg-info <?= $tmpText ?>">
-        <th colspan="5">Denumire</th>
-        <th>Vizualizare</th>
-        <th>Adaugare</th>
-        <th>Modificare</th>
-        <th>Stergere</th>
-        <th>Extra</th>
+    <thead class="text-bg-info">
+        <th colspan="5"><?= t('fld_name') ?></th>
+        <th><?= t('right_view') ?></th>
+        <th><?= t('right_add') ?></th>
+        <th><?= t('right_modify') ?></th>
+        <th><?= t('right_delete') ?></th>
+        <th><?= t('right_extra') ?></th>
     </thead>
     <tbody><?php afiseaza($rr, 0, 1, (int)$get['id']); ?></tbody>
 </table>
@@ -160,9 +160,9 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-info <?= $tmpText ?>">
-        <h5 class="modal-title" id="myModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header text-bg-info">
+        <h5 class="modal-title" id="myModalLabel">&nbsp;</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="<?= t('close') ?>">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

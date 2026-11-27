@@ -24,7 +24,7 @@ function db_ready()
 {
     global $APP_DB_LINK, $MESSAGE;
     if ($APP_DB_LINK) return TRUE;
-    if ($MESSAGE == '') $MESSAGE = 'No database connection';
+    if ($MESSAGE == '') $MESSAGE = t('no_db_connection');
     return FALSE;
 }
 
@@ -59,7 +59,7 @@ function db_initialize($sqlFile, $replace = [], $dropExisting = false)
     if (!db_ready()) return FALSE;
     $sql = @file_get_contents($sqlFile);
     if ($sql === false) {
-        $MESSAGE = 'Schema file not found: ' . basename($sqlFile);
+        $MESSAGE = sprintf(t('schema_not_found'), basename($sqlFile));
         return FALSE;
     }
     foreach ($replace as $k => $v) $sql = str_replace("[[$k]]", db_esc($v), $sql);
@@ -132,7 +132,7 @@ function db_update($what, $table, $where)
     $upd = [];
     foreach ($what as $k => $v) {
         if (!db_is_ident($k)) {
-            $MESSAGE = 'Invalid field name';
+            $MESSAGE = t('invalid_field_name');
             return FALSE;
         }
         $upd[] = "`$k`='" . db_esc($v) . "'";
@@ -156,7 +156,7 @@ function db_insert($what, $table)
     $vals = [];
     foreach ($what as $k => $v) {
         if (!db_is_ident($k)) {
-            $MESSAGE = 'Invalid field name';
+            $MESSAGE = t('invalid_field_name');
             return FALSE;
         }
         $cols[] = "`$k`";

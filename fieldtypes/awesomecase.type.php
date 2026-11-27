@@ -29,7 +29,7 @@ if ($uri != '' && (string)$rowId !== '' && (string)$rowId !== '0') {
         $pos = array_search($val, $vals, true);
         $next = $vals[$pos === false ? 0 : ($pos + 1) % count($vals)];
         $classes .= ' ac-toggle';
-        $extra .= ' role="button" title="Click to change" data-pag="' . $attr($uri) . '" data-field="' . $attr($fieldId) .
+        $extra .= ' role="button" title="' . $attr(t('click_to_change')) . '" data-pag="' . $attr($uri) . '" data-field="' . $attr($fieldId) .
             '" data-id="' . $attr($rowId) . '" data-next="' . $attr($next) . '"';
     } elseif (!empty($fieldDef['onclickchange']) && preg_match('/^[A-Za-z_$][A-Za-z0-9_$.]*$/', $fieldDef['onclickchange'])) {
         $extra .= ' role="button" onclick="' . $fieldDef['onclickchange'] . '(this)" data-field="' . $attr($fieldId) .

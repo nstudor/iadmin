@@ -5,6 +5,7 @@
  */
 (function ($) {
     'use strict';
+    var L = window.APP_LNG || {}; // texts from lang/*.lng.php (index.tpl.php)
 
     var store = {
         get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
@@ -32,7 +33,7 @@
         el.setAttribute('role', 'status');
         el.setAttribute('aria-live', 'polite');
         el.innerHTML = '<div class="d-flex"><div class="toast-body"><i class="fa-solid fa-' + (TOAST_ICONS[type] || 'circle-info') +
-            ' me-2"></i><span></span></div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div>';
+            ' me-2"></i><span></span></div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="' + (L.close || 'Close') + '"></button></div>';
         el.querySelector('span').textContent = msg;
         box.appendChild(el);
         var t = bootstrap.Toast.getOrCreateInstance(el, { delay: delay || 4000 });
@@ -73,11 +74,11 @@
     }
     window.goModal = function (l, t, s) {
         prepareModal(t, s);
-        $.ajax({ url: 'ajax/modal.php?p=' + l }).done(fillModal).fail(function (x) { fillModal(x.responseText || 'Error'); });
+        $.ajax({ url: 'ajax/modal.php?p=' + l }).done(fillModal).fail(function (x) { fillModal(x.responseText || L.error || 'Error'); });
     };
     window.postModal = function (l, t, p, s) {
         prepareModal(t, s);
-        $.post('ajax/modal.php?p=' + l, p).done(fillModal).fail(function (x) { fillModal(x.responseText || 'Error'); });
+        $.post('ajax/modal.php?p=' + l, p).done(fillModal).fail(function (x) { fillModal(x.responseText || L.error || 'Error'); });
     };
 
     /* ---------------- inline cell edit (right click) ---------------- */
@@ -86,15 +87,15 @@
         $.post('ajax/modal.php?p=mdoedit-' + page(), { id: sid, field: sfld, item: $('#ajaxitem').val() }, function (msg) {
             $('.cell[alt="' + sfld + '-' + sid + '"]').html(msg);
             $('#contextMenu').hide();
-            appToast('Saved', 'success', 2000);
-        }).fail(function () { appToast('Save failed', 'danger'); });
+            appToast(L.saved || 'Saved', 'success', 2000);
+        }).fail(function () { appToast(L.save_failed || 'Save failed', 'danger'); });
     };
     window.checkAll = function (x) { $('.chboxoper').prop('checked', x == 1 || x === true); };
 
     function initContextMenu() {
         $('body').on('contextmenu', '.cell', function (e) {
             var cm = $('#contextMenu');
-            cm.find('.panel-info').text('Editare ' + ($(this).attr('title') || ''));
+            cm.find('.panel-info').text((L.editing_field || 'Edit') + ' ' + ($(this).attr('title') || ''));
             cm.find('.panel-data').html(spinner);
             cm.find('.panel-submit').hide();
             var w = Math.min(420, $(window).width() * 0.92);

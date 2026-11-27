@@ -147,9 +147,9 @@ if ((isset($param[1])) && (!is_numeric($param[1]))) { // we have command
         //        echo $flt;
 
         $rows = db_select('*', $tabel, $flt, $order ?? NULL, ($st * $items_per_page) . ', ' . $items_per_page);
-        if ((count($rows ?? []) == 0) && empty($MESSAGE)) $MESSAGE = 'No records to show !';
+        if ((count($rows ?? []) == 0) && empty($MESSAGE)) $MESSAGE = t('no_records');
         $nr = 0;
     } else {
-        $MESSAGE = 'Config file missing';
+        $MESSAGE = t('config_file_missing');
     }
 }

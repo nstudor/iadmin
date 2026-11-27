@@ -1,8 +1,8 @@
 <form enctype="multipart/form-data" method="post" action="">
     <div class="container">
         <div class="card">
-            <div class="card-header <?= $tmpBackground ?> <?= $tmpText ?>">
-                <?= $title ?> - Editare
+            <div class="card-header bg-gray text-white">
+                <?= $title ?> - <?= t('form_editing') ?>
             </div>
             <div class="card-body">
                 <?php foreach ($editfields as $k => $v) { ?>
@@ -22,8 +22,8 @@
                 <?php } ?>
                 <div class="row">
                     <div class="col">
-                        <button class="btn btn-success float-end" type="submit"><i class="fas fa-check-circle"></i> SALVEAZA</button>
-                        <a href="./<?= $param[0] ?>.htm" class="btn btn-danger float-start"><i class="fas fa-times-circle"></i> ANULEAZA</a>
+                        <button class="btn btn-success float-end" type="submit"><i class="fas fa-check-circle"></i> <?= t('save') ?></button>
+                        <a href="./<?= $param[0] ?>.htm" class="btn btn-danger float-start"><i class="fas fa-times-circle"></i> <?= t('cancel') ?></a>
                     </div>
                 </div>
             </div>

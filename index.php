@@ -8,9 +8,6 @@ include('utils.php');
 if (file_exists('settings.ini')) {
 
     include('settings.ini');
-    // theme defaults, can be overridden in settings.ini
-    $tmpBackground ??= 'bg-gray';
-    $tmpText ??= 'text-white';
     if($DEBUG_MODE ?? false) {
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
@@ -27,11 +24,11 @@ if (file_exists('settings.ini')) {
     // every POST of a logged-in user must carry the session CSRF token
     if (isset($_SESSION['userid']) && $_SERVER['REQUEST_METHOD'] == 'POST' && !csrf_ok()) {
         http_response_code(403);
-        die(showMessage('Invalid or expired form token. Reload the page and try again.', 'danger'));
+        die(showMessage(t('invalid_token'), 'danger'));
     }
 
     if (isset($_POST['log_user'])) {
-        $MESSAGE = 'Utilizator inexistent';
+        $MESSAGE = t('login_unknown_user');
         $user = db_select('*', 'login__users', "user='" . db_esc($_POST['log_user']) . "'")[0] ?? null;
         if ($user && password_check($_POST['log_pass'] ?? '', $user['pass'])) {
             session_regenerate_id(true);
@@ -44,7 +41,7 @@ if (file_exists('settings.ini')) {
                 document.location = "./";
             </script>
 <?php
-        } else if ($user) $MESSAGE = 'Parola gresita';
+        } else if ($user) $MESSAGE = t('login_wrong_password');
     }
 
     if (isset($_GET['p'])) {
@@ -87,12 +84,12 @@ if (file_exists('settings.ini')) {
             // a list module needs a config file that defines $tabel and $fields
             $configErrors = [];
             if (!file_exists($settingFile)) {
-                $configErrors[] = "Configuration file not found: <tt>settings/$pag/config.php</tt>";
+                $configErrors[] = sprintf(t('config_file_not_found'), "<tt>settings/$pag/config.php</tt>");
             } else {
                 if (empty($tabel) || !is_string($tabel))
-                    $configErrors[] = "No table defined (<tt>\$tabel</tt>) in <tt>$settingFile</tt>";
+                    $configErrors[] = sprintf(t('config_no_table'), '<tt>$tabel</tt>', "<tt>$settingFile</tt>");
                 if (empty($fields) || !is_array($fields))
-                    $configErrors[] = "No fields defined (<tt>\$fields</tt>) in <tt>$settingFile</tt>";
+                    $configErrors[] = sprintf(t('config_no_fields'), '<tt>$fields</tt>', "<tt>$settingFile</tt>");
             }
             if (count($configErrors) > 0) {
                 $scriptPage = 'configerror';

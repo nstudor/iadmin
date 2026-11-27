@@ -1,14 +1,14 @@
 <?php
 /**
  * iAdmin setup: runs only while settings.ini does not exist (index.php redirects here).
- * 1. validates the form   2. connects to the database   3. imports setup/schema.sql
+ * 1. validates the form   2. connects to the database   3. imports setup/schema.<language>.sql
  * 4. writes ../settings.ini (only after the database is ready)
  */
 error_reporting(0);
 
 $root = dirname(__DIR__);
 $settingsFile = "$root/settings.ini";
-$schemaFile = __DIR__ . '/schema.sql';
+$schemaFile = __DIR__ . '/schema.english.sql'; // tables + seed data, one file per language: schema.<APP_LANGUAGE>.sql
 $h = fn($v) => htmlspecialchars((string)($v ?? ''), ENT_QUOTES);
 
 // choices offered by the form (also the only accepted values)
@@ -51,6 +51,8 @@ if (!$installed && $_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($s['APP_NAME'] === '' || mb_strlen($s['APP_NAME']) > 100) $errors['APP_NAME'] = 'Enter an application name (max 100 characters).';
     if (!in_array($s['APP_TEMPLATE'], $templates, true)) $errors['APP_TEMPLATE'] = 'Choose a template.';
     if (!in_array($s['APP_LANGUAGE'], $languages, true)) $errors['APP_LANGUAGE'] = 'Choose a language.';
+    // seed data (menu names, dashboard panels, public pages) in the chosen language; English when there is no file for it
+    elseif (is_file(__DIR__ . "/schema.{$s['APP_LANGUAGE']}.sql")) $schemaFile = __DIR__ . "/schema.{$s['APP_LANGUAGE']}.sql";
     // ---- step 2
     if (!in_array($s['APP_DB_TYPE'], $connectors, true)) $errors['APP_DB_TYPE'] = 'Choose a database type.';
     if ($s['APP_DB_SERVER'] === '') $errors['APP_DB_SERVER'] = 'Enter the database server.';
@@ -63,12 +65,15 @@ if (!$installed && $_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($admin['email'] !== '' && !filter_var($admin['email'], FILTER_VALIDATE_EMAIL)) $errors['iEmail'] = 'Enter a valid e-mail address (or leave it empty).';
     if (strlen($pass) < 6) $errors['iPass'] = 'The password must have at least 6 characters.';
     elseif ($pass !== $pass2) $errors['iPass2'] = 'The passwords do not match.';
-    if (!is_file($schemaFile)) $errors['_'] = 'setup/schema.sql is missing.';
+    if (!is_file($schemaFile)) $errors['_'] = 'setup/' . basename($schemaFile) . ' is missing.';
     if (!is_writable($root)) $errors['_'] = 'The application folder is not writable, settings.ini cannot be created. Allow the web server to write to it and try again.';
 
     if (!$errors) {
         // ---- database: connect, check for existing tables, import the schema
         foreach ($s as $k => $v) $$k = $v; // $APP_DB_SERVER, $APP_DB_USER ... used by db_connect()
+        include_once("$root/utils.php"); // t() for the connector messages
+        include("$root/lang/english.lng.php");
+        $_DEFLNG = $_LNG;
         include("$root/connector/$APP_DB_TYPE.con.php");
         if (!db_connect()) {
             $errors['APP_DB_SERVER'] = 'Cannot connect to the database: ' . $MESSAGE;
@@ -93,7 +98,6 @@ if (!$installed && $_SERVER['REQUEST_METHOD'] == 'POST') {
         $settingsText = "<?php\r\n";
         foreach ($s as $k => $v) $settingsText .= '$' . $k . ' = ' . var_export($v, true) . ";\r\n";
         $settingsText .= "\$DEBUG_MODE = false;\r\n";
-        $settingsText .= "// optional theme accents: \$tmpBackground = 'bg-gray'; \$tmpText = 'text-white';\r\n";
         $done = file_put_contents($settingsFile, $settingsText, LOCK_EX) !== false;
         if (!$done) $errors['_'] = 'The database is ready, but settings.ini could not be written.';
     }

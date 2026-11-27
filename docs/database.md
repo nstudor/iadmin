@@ -1,6 +1,8 @@
 # Database
 
-The framework tables are created by [`setup/schema.sql`](../setup/schema.sql) (InnoDB, `utf8mb4_unicode_ci`).
+The framework tables are created by `setup/schema.<language>.sql` ([english](../setup/schema.english.sql),
+[romana](../setup/schema.romana.sql); InnoDB, `utf8mb4_unicode_ci`). The files differ only in the seed texts
+(menu names, dashboard panels, role, public pages); module links stay the same.
 Your own module tables can have any name and structure; a module only needs a primary key (`$id`, default `id`).
 
 ## login__users

@@ -1,7 +1,7 @@
 <form enctype="multipart/form-data" method="post" action="">
     <div class="card ar-page-card">
-        <div class="card-header <?= $tmpBackground ?> <?= $tmpText ?>">
-            <i class="fa-solid fa-pen me-2"></i><?= $title ?? $pag ?> — Editare
+        <div class="card-header bg-gray text-white">
+            <i class="fa-solid fa-pen me-2"></i><?= $title ?? $pag ?> — <?= t('form_editing') ?>
         </div>
         <div class="card-body">
             <?php foreach ($editfields as $k => $v) { ?>
@@ -17,8 +17,8 @@
                 </div>
             <?php } ?>
             <div class="ar-actions">
-                <a href="./<?= $param[0] ?>.htm" class="btn btn-outline-secondary"><i class="fa-solid fa-xmark me-1"></i> Anuleaza</a>
-                <button class="btn btn-success" type="submit"><i class="fa-solid fa-check me-1"></i> Salveaza</button>
+                <a href="./<?= $param[0] ?>.htm" class="btn btn-outline-secondary"><i class="fa-solid fa-xmark me-1"></i> <?= t('cancel') ?></a>
+                <button class="btn btn-success" type="submit"><i class="fa-solid fa-check me-1"></i> <?= t('save') ?></button>
             </div>
         </div>
     </div>

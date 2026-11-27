@@ -1,63 +1,63 @@
 <?php 
     $tabel="login__users";
     $fields=array(
-	'nume'=>"Numele si prenumele",
-	'user'=>"Utilizator",
-	'email'=>'E-mail',
+	'nume'=>t('fld_full_name'),
+	'user'=>t('fld_user'),
+	'email'=>t('fld_email'),
 	'role'=>array(
-            "name"=>"Rol",
+            "name"=>t('fld_role'),
             'type'=>'dbSelect',
             'defaultValue'=>0,
-            'defaultResult'=>'Not set',
+            'defaultResult'=>t('not_set'),
             'field'=>'rolename',
             'table'=>'login__roles',
             'relatedField'=>'id',
         ),
 	'sex'=>array(
-            "name"=>"Sex",
+            "name"=>t('fld_sex'),
             'values'=>'M,F,X',
             'chars'=>'mars fa-2x,venus fa-2x,transgender fa-2x',
             'type'=>'awesomecase',
         ),
 	'telefon'=>array(
-            "name"=>"Telefon",
+            "name"=>t('fld_phone'),
             "noShow"=>1,
         ),
 	'mobil'=>array(
-            "name"=>"Telefon mobil",
+            "name"=>t('fld_mobile'),
             "noShow"=>1,
         ),
 	'fax'=>array(
-            "name"=>"Fax",
+            "name"=>t('fld_fax'),
             "noShow"=>1,
         ),
 	'yahooid'=>array(
-            "name"=>'Yahoo ID',
+            "name"=>t('fld_yahoo'),
             "noShow"=>1,
         ),
 	'functie'=>array(
-            "name"=>'Functie',
+            "name"=>t('fld_job'),
             "noShow"=>1,
         ),
 	'cnp'=>array(
-            "name"=>"C.N.P.",
+            "name"=>t('fld_cnp'),
             "noShow"=>1,
         ),
 	'ci'=>array(
-            "name"=>"C. I.",
+            "name"=>t('fld_id_card'),
             "noShow"=>1,
         ),
 	'details'=>array(
-            "name"=>"Detalii",
+            "name"=>t('fld_details'),
             "noShow"=>1,
         ),
     );
     $order="";
-    $title="Utilizatori";
+    $title=t('title_users');
     $loadmce='yes';
     $specials=array('key');
     $stitles=array(
-            'key'=>'Parola',
+            'key'=>t('special_password'),
     );
 
     $confdroptext='Stergi utilizatorul';

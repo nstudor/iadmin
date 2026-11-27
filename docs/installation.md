@@ -23,7 +23,7 @@ On **Install** the wizard:
 2. connects to the database;
 3. checks for existing iAdmin tables — if there are any, it stops unless **Replace existing iAdmin tables**
    is ticked (this drops and recreates them: **their data is lost**);
-4. imports [`setup/schema.sql`](../setup/schema.sql), replacing `[[USER]]`, `[[PASS]]` (a `password_hash()`),
+4. imports `setup/schema.<language>.sql` (the language chosen in step 1, English if there is no file for it), replacing `[[USER]]`, `[[PASS]]` (a `password_hash()`),
    `[[NAME]]` and `[[EMAIL]]` with the SQL-escaped form values;
 5. writes `settings.ini` — only after the database is ready.
 
@@ -46,8 +46,6 @@ $APP_DB_USER = 'iadmin';
 $APP_DB_PASS = '...';
 $APP_DB_PORT = '3306';
 $DEBUG_MODE = false;               // true: show all PHP errors (development only)
-// optional theme accents (class names, see templates.md):
-// $tmpBackground = 'bg-gray'; $tmpText = 'text-white';
 ```
 
 It contains the database password: keep it out of version control (add `settings.ini` to `.gitignore`) and make
@@ -82,5 +80,5 @@ generate a hash on the server with `php -r 'echo password_hash("NewPassword", PA
 UPDATE login__users SET pass = '<the $2y$... value>' WHERE user = '<user name>';
 ```
 
-Shortcuts with stacked icons need the columns from `setup/schema.sql` (`fa1`, `fa2`, `fa1type`, ... `extraclass`);
+Shortcuts with stacked icons need the columns from `setup/schema.<language>.sql` (`fa1`, `fa2`, `fa1type`, ... `extraclass`);
 see [Database](database.md#login__shortcuts).

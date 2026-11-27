@@ -8,7 +8,7 @@ if (count($ids) == 0) { ?>
     </div>
 <?php die();
 }
-if (!db_is_ident($pp[2] ?? null)) die(showMessage('Invalid operation !', 'danger'));
+if (!db_is_ident($pp[2] ?? null)) die(showMessage(t('invalid_operation'), 'danger'));
 $operFile = "multi.$pp[2].php";
 if (!file_exists($operFile)) $operFile = "../settings/$pag/multi.$pp[2].php";
 if (!file_exists($operFile)) $operFile = "../settings_default/$pag/multi.$pp[2].php";

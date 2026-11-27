@@ -4,7 +4,7 @@
     }
     $fieldValue = (string)($fieldValue ?? '');
     $format = $fieldDef['format'] ?? '';
-    echo ($fieldValue === '' || $fieldValue[0] == '0') ? (empty($fieldDef['nodate']) ? 'N/A' : $fieldDef['nodate']) :
+    echo ($fieldValue === '' || $fieldValue[0] == '0') ? (empty($fieldDef['nodate']) ? t('not_available') : $fieldDef['nodate']) :
         (strpos($format, '%') === false ?
             date((empty($format) ? 'd.m.Y H:i' : $format), strtotime($fieldValue)) :
             format_strftime($format, strtotime($fieldValue))

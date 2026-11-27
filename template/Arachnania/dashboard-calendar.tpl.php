@@ -9,7 +9,7 @@ $days = (int)date('t', $first);
 $today = strtotime('today');
 ?>
 <div class="d-flex align-items-center justify-content-between mb-2">
-    <a class="btn btn-sm btn-light" href="./?data=<?= date('Y-m-d', strtotime(date('Y-m-d', $dd) . ' -1 month')) ?>" aria-label="Previous month"><i class="fa-solid fa-chevron-left"></i></a>
+    <a class="btn btn-sm btn-light" href="./?data=<?= date('Y-m-d', strtotime(date('Y-m-d', $dd) . ' -1 month')) ?>" aria-label="<?= t('month_previous') ?>"><i class="fa-solid fa-chevron-left"></i></a>
     <div class="d-flex gap-1">
         <div class="dropdown">
             <button class="btn btn-sm btn-light dropdown-toggle fw-semibold" data-bs-toggle="dropdown" aria-expanded="false"><?= mb_strtoupper(format_strftime('%B', $dd)) ?></button>
@@ -28,12 +28,12 @@ $today = strtotime('today');
             </ul>
         </div>
     </div>
-    <a class="btn btn-sm btn-light" href="./?data=<?= date('Y-m-d', strtotime(date('Y-m-d', $dd) . ' +1 month')) ?>" aria-label="Next month"><i class="fa-solid fa-chevron-right"></i></a>
+    <a class="btn btn-sm btn-light" href="./?data=<?= date('Y-m-d', strtotime(date('Y-m-d', $dd) . ' +1 month')) ?>" aria-label="<?= t('month_next') ?>"><i class="fa-solid fa-chevron-right"></i></a>
 </div>
 <table class="table table-sm table-borderless ar-calendar mb-0">
     <thead>
         <tr class="text-body-secondary small">
-            <th>Lu</th><th>Ma</th><th>Mi</th><th>Jo</th><th>Vi</th><th>Sa</th><th>Du</th>
+            <?php for ($d = 1; $d <= 7; $d++) echo '<th>' . t("day_short_$d") . '</th>'; ?>
         </tr>
     </thead>
     <tbody>
